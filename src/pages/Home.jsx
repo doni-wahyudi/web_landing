@@ -5,12 +5,17 @@ import Pricing from '../components/Pricing';
 import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import SEO from '../components/SEO';
 
 const Home = () => {
   useScrollReveal();
 
   return (
     <div className="home">
+      <SEO 
+        title="Jasa Pembuatan Website Profesional & Premium"
+        description="Tingkatkan omset bisnis Anda dengan website profesional & elegan dari Aurotech. Garansi kepuasan 100%, gratis domain, dan hosting."
+      />
       <Hero />
       <div className="reveal-on-scroll">
         <Portfolio />

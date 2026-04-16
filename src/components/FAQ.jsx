@@ -32,8 +32,25 @@ const FAQ = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  // Schema.org FAQPage JSON-LD
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <section id="faq" className="section faq">
+      <script type="application/ld+json">
+        {JSON.stringify(faqSchema)}
+      </script>
       <div className="container">
         <div className="section-header text-center">
           <h2 className="section-title">Pertanyaan Umum <span className="text-gradient">(FAQ)</span></h2>

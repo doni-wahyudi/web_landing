@@ -27,7 +27,7 @@ const Portfolio = () => {
                 <div className="portfolio-image">
                     <img 
                       src={project.image} 
-                      alt={project.title}
+                      alt={`Website Portfolio Aurotech - ${project.title} (${project.category})`}
                       loading="lazy"
                     />
                 </div>
