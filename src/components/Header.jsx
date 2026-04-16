@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
+import logoImg from '../assets/logo_auro.png';
 import './Header.css';
 
 const Header = () => {
@@ -24,19 +25,22 @@ const Header = () => {
       <div className="container header-container">
         <Link to="/" className="logo">
           <span className="logo-icon">
-            <img src="/favicon.png" alt="WeBuildPremium Logo" />
+            <img src={logoImg} alt="Aurotech Logo" />
           </span>
-          <span className="logo-text">WeBuild<span className="text-gradient">Premium</span></span>
+          <span className="logo-text">Auro<span className="text-gradient">tech</span></span>
         </Link>
 
         <nav className={`nav-links ${isMobileMenuOpen ? 'open glass' : ''}`}>
+          <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Beranda</Link>
           <Link to="/services" onClick={() => setIsMobileMenuOpen(false)}>Layanan</Link>
           <Link to="/portfolio" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</Link>
           <Link to="/pricing" onClick={() => setIsMobileMenuOpen(false)}>Harga</Link>
           <Link to="/faq" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
-          <a href="https://wa.me/6281234567890" className="btn btn-primary nav-cta" onClick={() => setIsMobileMenuOpen(false)}>
-            Konsultasi Gratis
-          </a>
+          <div className="nav-cta-wrapper">
+            <a href="https://wa.me/6281234567890" className="btn btn-primary btn-glint nav-cta" onClick={() => setIsMobileMenuOpen(false)}>
+              Konsultasi Gratis
+            </a>
+          </div>
         </nav>
 
         <button className="mobile-toggle" onClick={toggleMenu} aria-label="Toggle menu">

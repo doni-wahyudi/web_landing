@@ -197,7 +197,7 @@ const PricingPage = () => {
     <div className="page-wrapper pt-20">
       <Pricing />
 
-      <section className="section pricing-wrapper pt-0" style={{background: 'linear-gradient(135deg, #0a192f 0%, #173f5f 100%)', marginTop: '-5rem'}}>
+      <section className="section pricing-wrapper pt-0">
         <div className="container">
           {/* Detail Paket Develop */}
           <div className="develop-details-container mt-16">

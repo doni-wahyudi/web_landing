@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FiInstagram, FiFacebook, FiTwitter, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
+import logoImg from '../assets/logo_auro.png';
 import './Footer.css';
 
 const Footer = () => {
@@ -11,9 +12,9 @@ const Footer = () => {
         <div className="footer-about">
           <Link to="/" className="logo">
             <span className="logo-icon">
-              <img src="/favicon.png" alt="WeBuildPremium Logo" />
+              <img src={logoImg} alt="Aurotech Logo" />
             </span>
-            <span className="logo-text">WeBuild<span className="text-gradient">Premium</span></span>
+            <span className="logo-text">Auro<span className="text-gradient">tech</span></span>
           </Link>
           <p className="footer-desc">
             Mitra terbaik Anda dalam mewujudkan identitas digital yang profesional, estetik, dan berorientasi pada hasil penjualan.
@@ -49,14 +50,15 @@ const Footer = () => {
           <h3>Hubungi Kami</h3>
           <ul>
             <li><FiPhone /> +62 812-3456-7890</li>
-            <li><FiMail /> hello@webuildpremium.com</li>
+            <li><FiMail /> hello@aurotech.com</li>
             <li><FiMapPin /> Sudirman Central Business District, Jakarta</li>
           </ul>
         </div>
       </div>
       
       <div className="footer-bottom border-t border-border mt-12 pt-8 text-center text-muted">
-        <p>&copy; {currentYear} WeBuildPremium. All rights reserved.</p>
+        <p className="mb-2">PT Swaraya Naraya Indonesia</p>
+        <p>&copy; {currentYear} Aurotech. All rights reserved.</p>
       </div>
     </footer>
   );

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FiArrowRight } from 'react-icons/fi';
+import { FiArrowRight, FiExternalLink } from 'react-icons/fi';
 import { projects } from '../data/projects';
 import './Portfolio.css';
 
@@ -7,9 +7,9 @@ const Portfolio = () => {
   return (
     <section id="portfolio" className="section portfolio bg-secondary">
       <div className="container">
-        <div className="section-header text-center">
+        <div className="section-header text-center animate-entrance">
           <h2 className="section-title">Karya <span className="text-gradient">Terbaik</span> Kami</h2>
-          <p className="section-subtitle">
+          <p className="section-subtitle lg">
             Lihat langsung hasil kerja kami. Klik pada portfolio untuk melihat detail proyek.
           </p>
         </div>
@@ -32,9 +32,14 @@ const Portfolio = () => {
                     />
                 </div>
                 <div className="portfolio-overlay">
-                  <Link to={`/portfolio/${project.id}`} className="btn btn-primary">
-                    Lihat Detail <FiArrowRight />
-                  </Link>
+                  <div className="portfolio-buttons">
+                    <Link to={`/portfolio/${project.id}`} className="btn btn-primary btn-sm">
+                      Lihat Detail <FiArrowRight />
+                    </Link>
+                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm">
+                      Visit Web <FiExternalLink />
+                    </a>
+                  </div>
                 </div>
               </div>
               <div className="portfolio-info">

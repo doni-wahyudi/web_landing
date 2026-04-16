@@ -7,7 +7,7 @@ const Hero = () => {
       <div className="hero-bg-glow"></div>
       
       <div className="container hero-container">
-        <div className="hero-content animate-fade-in">
+        <div className="hero-content animate-entrance">
           <div className="badge delay-100">
             <span className="badge-dot"></span>
             #1 Jasa Pembuatan Website Premium
@@ -21,8 +21,8 @@ const Hero = () => {
             Satu-satunya jasa pembuatan website yang berani memberikan garansi 100% kepuasan. Gratis Domain .COM, desain premium, dan support tanpa batas.
           </p>
           
-          <div className="hero-actions delay-300">
-            <a href="https://wa.me/6281234567890" className="btn btn-primary btn-lg">
+          <div className="hero-actions delay-400">
+            <a href="https://wa.me/6281234567890" className="btn btn-primary btn-lg btn-glint">
               Konsultasi Sekarang <FiArrowRight />
             </a>
             <a href="#portfolio" className="btn btn-outline btn-lg">
@@ -52,7 +52,7 @@ const Hero = () => {
               <div className="mockup-dots">
                 <span></span><span></span><span></span>
               </div>
-              <div className="mockup-url">webuildpremium.com</div>
+              <div className="mockup-url">aurotech.com</div>
             </div>
             <div className="mockup-body">
               {/* Abstract premium layout shapes */}
@@ -73,6 +73,13 @@ const Hero = () => {
           <div className="orb orb-1"></div>
           <div className="orb orb-2"></div>
         </div>
+      </div>
+
+      <div className="scroll-indicator animate-entrance delay-400">
+        <div className="mouse">
+          <div className="wheel"></div>
+        </div>
+        <span>Scroll Down</span>
       </div>
     </section>
   );

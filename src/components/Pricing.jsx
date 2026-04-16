@@ -100,7 +100,7 @@ const Pricing = () => {
       <div className="container">
         {/* Scarcity Banner Hook */}
         <div className="promo-banner text-center mb-8">
-          <div className="inline-block bg-primary text-white px-6 py-3 rounded-full font-bold shadow-lg animate-pulse" style={{backgroundColor: '#ff3366'}}>
+          <div className="inline-block bg-primary text-black px-6 py-3 rounded-full font-bold shadow-lg animate-pulse">
             🎉 PROMO TERBATAS: Gratis Domain & Hosting Super Cepat 1 Tahun Penuh!
           </div>
         </div>
