@@ -1,10 +1,40 @@
+import { useEffect, useRef, useState } from 'react';
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi';
+import personImage from '../assets/person_image.png';
 import './Hero.css';
 
 const Hero = () => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!heroRef.current) return;
+      
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      
+      // Calculate normalized mouse position (-0.5 to 0.5)
+      const x = (clientX / innerWidth) - 0.5;
+      const y = (clientY / innerHeight) - 0.5;
+      
+      setMousePos({ x, y });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Parallax intensity
+  const calculateTransform = (factor) => {
+    const xMove = mousePos.x * factor;
+    const yMove = mousePos.y * factor;
+    return `translate(${xMove}px, ${yMove}px)`;
+  };
+
   return (
-    <section className="hero">
-      <div className="hero-bg-glow"></div>
+    <section className="hero" ref={heroRef}>
+      <div className="hero-bg-glow" style={{ transform: calculateTransform(30) }}></div>
       
       <div className="container hero-container">
         <div className="hero-content animate-entrance">
@@ -14,8 +44,9 @@ const Hero = () => {
           </div>
           
           <h1 className="hero-title delay-200">
-            Tingkatkan Omset Bisnis Anda <br /> dengan Website <span className="text-gradient">Profesional & Elegan</span>
+            Tingkatkan Omset Bisnis&nbsp;Anda <br /> dengan Website <span className="text-gradient" style={{ whiteSpace: 'nowrap' }}>Profesional & Elegan</span>
           </h1>
+
           
           <p className="hero-subtitle delay-300">
             Satu-satunya jasa pembuatan website yang berani memberikan garansi 100% kepuasan. Gratis Domain .COM, desain premium, dan support tanpa batas.
@@ -47,31 +78,13 @@ const Hero = () => {
         </div>
         
         <div className="hero-visual animate-fade-in delay-200">
-          <div className="hero-mockup-wrapper glass">
-            <div className="mockup-header">
-              <div className="mockup-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <div className="mockup-url">aurotech.com</div>
-            </div>
-            <div className="mockup-body">
-              {/* Abstract premium layout shapes */}
-              <div className="skeleton-hero">
-                <div className="skel-title"></div>
-                <div className="skel-sub"></div>
-                <div className="skel-btn"></div>
-              </div>
-              <div className="skeleton-cards">
-                <div className="skel-card"></div>
-                <div className="skel-card"></div>
-                <div className="skel-card"></div>
-              </div>
-            </div>
+          <div className="hero-main-image-wrapper" style={{ transform: calculateTransform(-20) }}>
+            <img src={personImage} alt="Professional Project" className="hero-main-image" />
           </div>
           
           {/* Decorative glowing orbs */}
-          <div className="orb orb-1"></div>
-          <div className="orb orb-2"></div>
+          <div className="orb orb-1" style={{ transform: calculateTransform(40) }}></div>
+          <div className="orb orb-2" style={{ transform: calculateTransform(60) }}></div>
         </div>
       </div>
 

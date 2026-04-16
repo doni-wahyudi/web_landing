@@ -8,10 +8,12 @@ import PortfolioPage from './pages/PortfolioPage';
 import PortfolioDetail from './pages/PortfolioDetail';
 import PricingPage from './pages/PricingPage';
 import FAQPage from './pages/FAQPage';
+import Preloader from './components/Preloader';
 
 function App() {
   return (
     <>
+      <Preloader />
       <ScrollToTop />
       <Header />
       <main>
