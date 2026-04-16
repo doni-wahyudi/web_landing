@@ -249,6 +249,13 @@ body::after {
   .h2 { font-size: 2.25rem; }
 }
 
+@media (max-width: 480px) {
+  .h1, h1 { font-size: 2.25rem !important; }
+  .h2, h2 { font-size: 1.85rem !important; }
+  .section { padding: 4rem 0; }
+  .hero-title { font-size: 2.25rem !important; }
+}
+
 /* Glass Enhancement */
 .glass {
   background: rgba(10, 10, 10, 0.75);
