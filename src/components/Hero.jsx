@@ -14,7 +14,7 @@ const Hero = () => {
           </div>
           
           <h1 className="hero-title delay-200">
-            Tingkatkan Omset Bisnis Anda dengan Website <span className="text-gradient">Profesional & Elegan</span>
+            Tingkatkan Omset Bisnis Anda <br /> dengan Website <span className="text-gradient">Profesional & Elegan</span>
           </h1>
           
           <p className="hero-subtitle delay-300">

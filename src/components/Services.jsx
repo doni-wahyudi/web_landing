@@ -73,7 +73,7 @@ const Services = () => {
       <section className="section services-top-section">
         <div className="container">
           <div className="section-header text-center mb-16">
-            <h1 className="section-title h1 animate-entrance">Solusi Digital <span className="text-gradient">Tanpa Kompromi</span></h1>
+            <h1 className="section-title h1 animate-entrance">Solusi Digital <br /> <span className="text-gradient">Tanpa Kompromi</span></h1>
             <p className="section-subtitle lg animate-entrance delay-100">
               Kami menggabungkan estetika premium dengan teknologi mutakhir untuk menciptakan website yang bukan sekadar ada, tapi menghasilkan.
             </p>
