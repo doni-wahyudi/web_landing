@@ -4,7 +4,10 @@ import puppeteer from 'puppeteer';
   const websites = [
     { url: 'https://putrakaryapallet.com/', filename: 'putrakarya.png' },
     { url: 'https://aurobarbers.web.id/', filename: 'aurobarbers.png' },
-    { url: 'https://doni-wahyudi.github.io/bimbel_web/', filename: 'bimbel_web.png' }
+    { url: 'https://doni-wahyudi.github.io/bimbel_web/', filename: 'bimbel_web.png' },
+    { url: 'https://doni-wahyudi.github.io/web_clinic/#/', filename: 'clinic.png' },
+    { url: 'https://doni-wahyudi.github.io/web_rental/', filename: 'rental.png' },
+    { url: 'https://doni-wahyudi.github.io/web_bakery/', filename: 'bakery.png' }
   ];
 
   console.log('Launching browser...');

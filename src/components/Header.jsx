@@ -23,7 +23,9 @@ const Header = () => {
     <header className={`header ${isScrolled ? 'scrolled glass' : ''}`}>
       <div className="container header-container">
         <Link to="/" className="logo">
-          <span className="logo-icon">▲</span>
+          <span className="logo-icon">
+            <img src="/favicon.png" alt="WeBuildPremium Logo" />
+          </span>
           <span className="logo-text">WeBuild<span className="text-gradient">Premium</span></span>
         </Link>
 

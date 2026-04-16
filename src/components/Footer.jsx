@@ -10,7 +10,9 @@ const Footer = () => {
       <div className="container footer-grid">
         <div className="footer-about">
           <Link to="/" className="logo">
-            <span className="logo-icon">▲</span>
+            <span className="logo-icon">
+              <img src="/favicon.png" alt="WeBuildPremium Logo" />
+            </span>
             <span className="logo-text">WeBuild<span className="text-gradient">Premium</span></span>
           </Link>
           <p className="footer-desc">
