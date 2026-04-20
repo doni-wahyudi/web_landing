@@ -52,6 +52,7 @@ const Pricing = () => {
         { name: "5 Email Perusahaan", included: true },
         { name: "Integrasi WhatsApp", included: true },
         { name: "Integrasi Database", included: true },
+        { name: "Form Pendaftaran Online", included: true },
         { name: "🎁 Hosting & Domain .com 1 Tahun", included: true },
         { name: "SEO Google", included: true },
         { name: "10 Artikel SEO", included: true },
@@ -83,11 +84,10 @@ const Pricing = () => {
       category: "Design",
       price: "Rp300.000",
       features: [
-        "2-3 Konsep Desain",
-        "Revisi Maksimal 3x",
-        "File Master (AI/EPS/SVG)",
-        "High-Res (PNG/JPG)",
-        "Color Palette & Typography"
+        "3 Konsep Desain",
+        "Revisi Maksimal 2x",
+        "Pengerjaan 3 Hari Kerja",
+        "File Master (AI/EPS/SVG)"
       ],
       featured: false,
       btnText: "Pilih Paket",
@@ -98,10 +98,11 @@ const Pricing = () => {
       category: "Maintenance",
       price: "Rp150.000 / bln",
       features: [
-        "Backup Mingguan",
+        "Produksi Artikel 1/bulan",
+        "Fast Response Support",
         "Monitoring Uptime",
-        "Perbaikan Error Ringan",
-        "Support WhatsApp"
+        "Backup Mingguan",
+        "Perbaikan Error"
       ],
       featured: false,
       btnText: "Pilih Paket",
@@ -112,11 +113,13 @@ const Pricing = () => {
       category: "Maintenance",
       price: "Rp300.000 / bln",
       features: [
-        "Update Artikel (4x/bln)",
+        "Produksi Artikel 4/bulan",
         "Update Konten Halaman",
+        "Fast Response Support",
+        "Monitoring Uptime",
+        "Backup Mingguan",
         "Perbaikan Error",
-        "Optimasi Keyword",
-        "Fast Response Support"
+        "Optimasi Keyword"
       ],
       featured: false,
       btnText: "Pilih Paket",
@@ -127,12 +130,14 @@ const Pricing = () => {
       category: "Maintenance",
       price: "Rp750.000 / bln",
       features: [
-        "Update Artikel (8x/bln)",
-        "Update Konten Halaman",
+        "Produksi Artikel 8/bulan",
         "Penambahan Halaman Baru",
+        "Update Konten Halaman",
+        "Fast Response Support",
+        "Monitoring Uptime",
+        "Backup Mingguan",
         "Optimasi SEO Lanjutan",
-        "Audit SEO Mingguan",
-        "Priority Support (24/7)"
+        "Audit SEO Mingguan"
       ],
       featured: false,
       btnText: "Pilih Paket",
@@ -206,9 +211,6 @@ const Pricing = () => {
                 <a href={`https://wa.me/6282182252766?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Website%20${plan.name}`} className="btn w-full btn-blue">
                   {plan.btnText}
                 </a>
-                <Link to="/pricing" state={{ targetId: `develop-${plan.name}` }} className="btn btn-outline w-full mt-4">
-                  Lihat Detail Paket &rarr;
-                </Link>
                 <p className="text-center mt-4 text-sm text-gray-400 font-medium" style={{ opacity: 0.8 }}>🛡️ Garansi Revisi Desain Sampai Deal</p>
               </div>
             </div>
@@ -256,9 +258,6 @@ const Pricing = () => {
                       <a href={`https://wa.me/6282182252766?text=Halo,%20saya%20tertarik%20dengan%20${plan.name}`} className={`btn w-full ${plan.isRenewal ? 'btn-primary' : 'btn-blue'}`}>
                         {plan.btnText}
                       </a>
-                      <Link to="/pricing" state={{ targetId: plan.targetId }} className="btn btn-outline w-full mt-4">
-                        Lihat Detail &rarr;
-                      </Link>
                     </div>
                   </div>
                 </div>
