@@ -23,7 +23,7 @@ const Hero = () => {
 
 
           <p className="hero-subtitle delay-300">
-            Satu-satunya jasa pembuatan website yang berani memberikan garansi 100% kepuasan. Gratis Domain .COM, desain premium, dan support tanpa batas.
+            Membangun aset digital yang estetik dan siap untuk mempercepat pertumbuhan bisnis Anda. Dapatkan desain premium lengkap dengan Domain .COM gratis dan pemeliharaan teknis terpercaya.
           </p>
 
           <div className="hero-actions delay-400">
@@ -38,11 +38,11 @@ const Hero = () => {
           <div className="hero-trust delay-300">
             <div className="trust-item">
               <FiCheckCircle className="trust-icon" />
-              <span>Garansi 100% Uang Kembali</span>
+              <span>Revisi Unlimited</span>
             </div>
             <div className="trust-item">
               <FiCheckCircle className="trust-icon" />
-              <span>Gratis Domain .COM</span>
+              <span>Gratis Domain .com</span>
             </div>
             <div className="trust-item">
               <FiCheckCircle className="trust-icon" />
