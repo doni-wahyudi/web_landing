@@ -68,12 +68,12 @@
   display: flex;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   align-items: stretch;
-  width: 133.333%; 
+  width: 166.666%; /* (5 cards / 3 visible) * 100 */
 }
 
 .maintenance-slide {
-  padding: 0.75rem; /* Reduced padding for tighter but better fit */
-  flex: 0 0 25%; 
+  padding: 0.75rem; 
+  flex: 0 0 20%; /* 1/5 of the total track width */
   display: flex;
 }
 
@@ -184,6 +184,17 @@
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-category {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
 }
 
 .plan-name {

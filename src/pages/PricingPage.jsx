@@ -106,6 +106,29 @@ const PricingPage = () => {
       ]
     },
     {
+      name: "Pembuatan Logo",
+      subtitle: "Identitas visual yang profesional untuk membangun brand trust",
+      id: "design-logo",
+      gridClass: "grid-basic",
+      sections: [
+        {
+          icon: <FiAward />,
+          title: "Konsep",
+          items: ["2-3 Pilihan Konsep Desain", "Revisi Maksimal 3x", "Filosofi Logo & Makna"]
+        },
+        {
+          icon: <FiFileText />,
+          title: "File Output",
+          items: ["File Master (Vector AI/EPS/SVG)", "File High-Res (PNG/JPG)", "Transparansi Background"]
+        },
+        {
+          icon: <FiSettings />,
+          title: "Brand Guideline",
+          items: ["Kode Warna (Hex/CMYK)", "Rekomendasi Tipografi", "Mockup Presentasi"]
+        }
+      ]
+    },
+    {
       name: "Perpanjangan",
       subtitle: "Biaya rutin tahunan untuk identitas digital Anda",
       id: "renewal-detail",
@@ -267,7 +290,7 @@ const PricingPage = () => {
 
           {/* Detail Paket Maintenance */}
           <div className="develop-details-container mt-20 mb-20">
-            <h2 className="section-title text-center text-white mb-12">Rincian Modul <span className="text-gradient">Maintenance</span></h2>
+            <h2 className="section-title text-center text-white mb-12">Rincian <span className="text-gradient">Add-on Service</span></h2>
             {maintenanceDetails.map((pkg, index) => (
               <div key={index} id={pkg.id || `maintenance-${pkg.name}`} className="develop-package-block text-center mt-16">
                 <h2 className="develop-title">

@@ -14,8 +14,10 @@ const Pricing = () => {
       desc: "Cocok untuk Starter & UMKM Basic",
       features: [
         { name: "Up to 5 Halaman Website", included: true },
+        { name: "Revisi Unlimited", included: true },
+        { name: "3 Email Perusahaan", included: true },
         { name: "Integrasi WhatsApp", included: true },
-        { name: "Form Pendaftaran Online", included: true },
+        { name: "🎁 Hosting & Domain .com 1 Tahun", included: true },
         { name: "SEO Google", included: false },
         { name: "3 Artikel SEO", included: false },
         { name: "Maintenance 1 Bulan", included: false }
@@ -29,8 +31,10 @@ const Pricing = () => {
       desc: "Pilihan Terpopuler untuk Bisnis",
       features: [
         { name: "Up to 10 Halaman Website", included: true },
+        { name: "Revisi Unlimited", included: true },
+        { name: "5 Email Perusahaan", included: true },
         { name: "Integrasi WhatsApp", included: true },
-        { name: "Form Pendaftaran Online", included: true },
+        { name: "🎁 Hosting & Domain .com 1 Tahun", included: true },
         { name: "SEO Google", included: true },
         { name: "3 Artikel SEO", included: true },
         { name: "🎁 Maintenance & Update 1 Bulan", included: true }
@@ -44,12 +48,14 @@ const Pricing = () => {
       desc: "Untuk Skala Bisnis Besar & Kompleks",
       features: [
         { name: "10+ Halaman Website", included: true },
+        { name: "Revisi Unlimited", included: true },
+        { name: "5 Email Perusahaan", included: true },
         { name: "Integrasi WhatsApp", included: true },
-        { name: "Form Pendaftaran Online", included: true },
-        { name: "Optimasi SEO Google", included: true },
-        { name: "Fitur Admin dan Dashboard", included: true },
-        { name: "Sistem Membership", included: true },
+        { name: "Integrasi Database", included: true },
+        { name: "🎁 Hosting & Domain .com 1 Tahun", included: true },
+        { name: "SEO Google", included: true },
         { name: "10 Artikel SEO", included: true },
+        { name: "Fitur Admin dan Dashboard", included: true },
         { name: "🎁 Maintenance & Update 1 Tahun", included: true }
       ],
       featured: false,
@@ -60,20 +66,36 @@ const Pricing = () => {
   const maintenancePlansList = [
     {
       name: "Perpanjangan",
+      category: "Management",
       price: "Rp350.000 / thn",
       desc: "Khusus Hosting & Domain",
       isRenewal: true,
       features: [
         "Perpanjangan Domain (.com)",
         "Sewa Tempat Data (Hosting)",
-        "Website Tetap Aktif & Aman",
-        "Sertifikat Keamanan (SSL)"
+        "Website Tetap Aktif & Aman"
       ],
       btnText: "Pilih Paket",
       targetId: "renewal-detail"
     },
     {
+      name: "Pembuatan Logo",
+      category: "Design",
+      price: "Rp300.000",
+      features: [
+        "2-3 Konsep Desain",
+        "Revisi Maksimal 3x",
+        "File Master (AI/EPS/SVG)",
+        "High-Res (PNG/JPG)",
+        "Color Palette & Typography"
+      ],
+      featured: false,
+      btnText: "Pilih Paket",
+      targetId: "design-logo"
+    },
+    {
       name: "Basic",
+      category: "Maintenance",
       price: "Rp150.000 / bln",
       features: [
         "Backup Mingguan",
@@ -87,6 +109,7 @@ const Pricing = () => {
     },
     {
       name: "Profesional",
+      category: "Maintenance",
       price: "Rp300.000 / bln",
       features: [
         "Update Artikel (4x/bln)",
@@ -101,7 +124,8 @@ const Pricing = () => {
     },
     {
       name: "Premium",
-      price: "Rp1.000.000 / bln",
+      category: "Maintenance",
+      price: "Rp750.000 / bln",
       features: [
         "Update Artikel (8x/bln)",
         "Update Konten Halaman",
@@ -189,10 +213,10 @@ const Pricing = () => {
           ))}
         </div>
 
-        {/* 3. Paket Maintenance & Renewal Slider */}
+        {/* 3. Add-on Service Slider */}
         <div className="section-header text-center" style={{ marginTop: '8rem' }}>
-          <h2 className="section-title text-white">Layanan Perawatan & Perpanjangan</h2>
-          <p className="text-gray-300">Fokus pada bisnis Anda, biar kami yang menjaga website tetap prima dan aktif.</p>
+          <h2 className="section-title text-white">Add-on Service</h2>
+          <p className="text-gray-300">Layanan tambahan untuk mendukung pertumbuhan dan performa aset digital Anda.</p>
         </div>
 
         <div className="maintenance-slider-outer">
@@ -209,6 +233,7 @@ const Pricing = () => {
                 <div key={index} className="maintenance-slide">
                   <div className={`pricing-card glass-card maintenance-card ${plan.isRenewal ? 'renewal-card' : ''}`}>
                     <div className="pricing-header">
+                      <span className="card-category">{plan.category}</span>
                       <h3 className="plan-name">{plan.name}</h3>
                       <div className="plan-price gold-text">
                         {plan.price}

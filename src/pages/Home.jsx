@@ -1,5 +1,4 @@
 import Hero from '../components/Hero';
-import Services from '../components/Services';
 import Portfolio from '../components/Portfolio';
 import Pricing from '../components/Pricing';
 import Testimonials from '../components/Testimonials';
@@ -22,9 +21,6 @@ const Home = () => {
       </div>
       <div className="reveal-on-scroll delay-100">
         <Pricing />
-      </div>
-      <div className="reveal-on-scroll delay-200">
-        <Services />
       </div>
       {/* 
       <div className="reveal-on-scroll delay-300">

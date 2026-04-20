@@ -14,7 +14,7 @@ const Hero = () => {
         <div className="hero-content animate-entrance">
           <div className="badge delay-100">
             <span className="badge-dot"></span>
-            #1 Jasa Pembuatan Website Premium
+            Jasa Pembuatan Website Premium
           </div>
 
           <h1 className="hero-title delay-200">

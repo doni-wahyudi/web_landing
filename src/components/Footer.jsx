@@ -29,10 +29,11 @@ const Footer = () => {
         <div className="footer-links">
           <h3>Layanan Kami</h3>
           <ul>
-            <li><Link to="/services">Premium Company Profile</Link></li>
-            <li><Link to="/services">Landing Page Konversi Tinggi</Link></li>
-            <li><Link to="/services">Custom Web Application</Link></li>
-            <li><Link to="/services">SEO & Digital Marketing</Link></li>
+            <li><Link to="/portfolio">Premium Company Profile</Link></li>
+            <li><Link to="/portfolio">Landing Page</Link></li>
+            <li>Custom Web Application</li>
+            <li>Aplikasi Android</li>
+            <li>Custom Software</li>
           </ul>
         </div>
 

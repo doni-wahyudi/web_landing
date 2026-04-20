@@ -57,12 +57,14 @@
   gap: 1rem;
 }
 
-.footer-links a {
+.footer-links a, 
+.footer-links li {
   color: var(--text-muted);
   transition: var(--transition-fast);
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-links li:hover {
   color: var(--primary-light);
 }
 
