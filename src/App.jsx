@@ -9,6 +9,9 @@ import PortfolioPage from './pages/PortfolioPage';
 import PortfolioDetail from './pages/PortfolioDetail';
 import PricingPage from './pages/PricingPage';
 import FAQPage from './pages/FAQPage';
+import AboutPage from './pages/AboutPage';
+import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
 import Preloader from './components/Preloader';
 
 function App() {
@@ -25,6 +28,9 @@ function App() {
           <Route path="/portfolio/:id" element={<PortfolioDetail />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/faq" element={<FAQPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
         </Routes>
       </main>
       <Footer />

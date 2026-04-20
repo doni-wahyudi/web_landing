@@ -25,83 +25,106 @@ const PricingPage = () => {
   const maintenanceDetails = [
     {
       name: "Basic",
-      subtitle: "Cocok untuk Bimbel yang hanya butuh website tetap aman & stabil",
+      subtitle: "Menjaga website tetap aman dan berjalan stabil setiap bulan",
       gridClass: "grid-basic",
       sections: [
         {
-          icon: <FiGlobe />,
-          title: "Teknis",
-          items: ["Update plugin & sistem website", "Backup website (1x per minggu)", "Monitoring uptime (website tetap online)"]
+          icon: <FiSettings />,
+          title: "Pemeliharaan",
+          items: ["Update plugin & sistem website", "Monitoring agar tetap online", "Backup website rutin (1x/minggu)"]
         },
         {
           icon: <FiMonitor />,
-          title: "Support",
+          title: "Bantuan Teknis",
           items: ["Perbaikan error ringan", "Support via WhatsApp"]
         },
         {
           icon: <FiAward />,
           title: "Keunggulan",
-          items: ["Website aman dari error & bug", "Tidak perlu pusing urus teknis"]
+          items: ["Website aman dari error & bug", "Anda fokus bisnis, kami urus teknis"]
         }
       ]
     },
     {
       name: "Profesional",
-      subtitle: "Cocok untuk Bimbel yang ingin website aktif mendatangkan murid",
+      subtitle: "Cocok untuk website yang aktif digunakan untuk pemasaran",
       subAccent: "Semua fitur Basic + tambahan",
       gridClass: "grid-premium",
       sections: [
         {
           icon: <FiFileText />,
-          title: "Content Management",
-          items: ["Upload artikel / berita (4x per bulan)", "Update informasi program / jadwal", "Update foto kegiatan"]
+          title: "Update Konten",
+          items: ["Upload artikel/berita (4x per bulan)", "Update informasi & foto kegiatan", "Update jadwal/program rutin"]
         },
         {
-          icon: <FiSearch />,
-          title: "SEO Basic",
-          items: ["Optimasi artikel", "Penambahan keyword", "Monitoring performa Google"]
+          icon: <FiTrendingUp />,
+          title: "Peningkatan",
+          items: ["Optimasi kata kunci (Keyword)", "Monitoring performa di Google", "Peningkatan kecepatan website"]
         },
         {
           icon: <FiHeadphones />,
-          title: "Support Prioritas",
-          items: ["Respon lebih cepat", "Perbaikan minor tanpa biaya tambahan"]
+          title: "Layanan Ekstra",
+          items: ["Respon bantuan lebih cepat", "Perbaikan minor tanpa biaya tambahan"]
         },
         {
           icon: <FiAward />,
           title: "Keunggulan",
-          items: ["Website tidak \"mati\"", "Mulai menghasilkan traffic dari Google"]
+          items: ["Website selalu segar & terupdate", "Mulai mendatangkan pengunjung dari Google"]
         }
       ]
     },
     {
       name: "Premium",
-      subtitle: "Solusi lengkap untuk operasional Website Ekstra Skala Besar",
+      subtitle: "Solusi lengkap untuk operasional dan pengembangan aset digital",
       subAccent: "Semua fitur Profesional + tambahan eksklusif",
       gridClass: "grid-premium",
       sections: [
         {
           icon: <FiFileText />,
-          title: "Full Management",
-          items: ["Upload artikel / berita (8x per bulan)", "Desain banner & grafis bulanan", "Update halaman custom sesuai event"]
+          title: "Manajemen Penuh",
+          items: ["Upload artikel/berita (8x per bulan)", "Desain banner & grafis bulanan", "Penambahan halaman sesuai event"]
         },
         {
           icon: <FiTrendingUp />,
           title: "SEO Lanjutan",
-          items: ["Optimasi SEO On-Page mendalam", "Pembuatan Backlink High-Quality", "Audit SEO & Technical SEO"]
+          items: ["Optimasi mesin pencari mendalam", "Pembuatan link berkualitas (Backlink)", "Audit kesehatan website rutin"]
         },
         {
           icon: <FiHeadphones />,
-          title: "Support Prioritas",
-          items: ["Respon Instan 24/7 (SLA 1 Jam)", "Revisi konten tanpa batas", "Laporan analitik performa bulanan"]
+          title: "Prioritas Utama",
+          items: ["Dukungan prioritas (Respon Kilat)", "Laporan performa website bulanan"]
         },
         {
           icon: <FiAward />,
           title: "Keunggulan",
-          items: ["Website menjadi aset bisnis otopilot", "Traffic organik tertarget tinggi"],
+          items: ["Website menjadi aset yang terus tumbuh", "Pengunjung lebih tertarget"],
           bonus: {
-            title: "Bonus",
-            items: ["Bebas biaya migrasi server", "Konsultasi strategi digital bulanan"]
+            title: "Hadiah Spesial",
+            items: ["Konsultasi strategi digital bulanan", "Rekomendasi pengembangan berkala"]
           }
+        }
+      ]
+    },
+    {
+      name: "Perpanjangan",
+      subtitle: "Biaya rutin tahunan untuk identitas digital Anda",
+      id: "renewal-detail",
+      gridClass: "grid-basic",
+      sections: [
+        {
+          icon: <FiGlobe />,
+          title: "Pokok",
+          items: ["Perpanjangan Nama Website (.com)", "Biaya Sewa Tempat Data (Hosting)"]
+        },
+        {
+          icon: <FiMonitor />,
+          title: "Keamanan",
+          items: ["Website tetap bisa diakses", "Website tetap aman & terenkripsi (SSL)"]
+        },
+        {
+          icon: <FiHeadphones />,
+          title: "Layanan",
+          items: ["Notifikasi sebelum masa aktif habis", "Bantuan kendala akses domain"]
         }
       ]
     }
@@ -246,9 +269,9 @@ const PricingPage = () => {
           <div className="develop-details-container mt-20 mb-20">
             <h2 className="section-title text-center text-white mb-12">Rincian Modul <span className="text-gradient">Maintenance</span></h2>
             {maintenanceDetails.map((pkg, index) => (
-              <div key={index} id={`maintenance-${pkg.name}`} className="develop-package-block text-center mt-16">
+              <div key={index} id={pkg.id || `maintenance-${pkg.name}`} className="develop-package-block text-center mt-16">
                 <h2 className="develop-title">
-                  Paket Maintenance <span className={pkg.name === 'Basic' ? 'gold-text-light' : 'gold-text'}>{pkg.name}</span>
+                  {pkg.name} <span className={pkg.name === 'Basic' ? 'gold-text-light' : 'gold-text'}>{pkg.name === 'Perpanjangan' ? 'Domain & Hosting' : ''}</span>
                 </h2>
                 <p className="develop-subtitle">{pkg.subtitle}</p>
                 {pkg.subAccent && <p className="develop-subaccent">{pkg.subAccent}</p>}

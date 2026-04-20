@@ -1,20 +1,24 @@
-import { FiCheck, FiX } from 'react-icons/fi';
+import { useState, useEffect, useCallback } from 'react';
+import { FiCheck, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import './Pricing.css';
 
 const Pricing = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
   const mainPlans = [
     {
       name: "Basic",
       price: "Mulai Rp1.000.000",
       desc: "Cocok untuk Starter & UMKM Basic",
       features: [
-        { name: "5 Halaman Website", included: true },
+        { name: "Up to 5 Halaman Website", included: true },
         { name: "Integrasi WhatsApp", included: true },
         { name: "Form Pendaftaran Online", included: true },
-        { name: "Blog SEO", included: false },
         { name: "SEO Google", included: false },
-        { name: "3 Artikel SEO", included: false }
+        { name: "3 Artikel SEO", included: false },
+        { name: "Maintenance 1 Bulan", included: false }
       ],
       featured: false,
       btnText: "Pilih Paket"
@@ -24,13 +28,12 @@ const Pricing = () => {
       price: "Mulai Rp2.200.000",
       desc: "Pilihan Terpopuler untuk Bisnis",
       features: [
-        { name: "10 Halaman Website", included: true },
+        { name: "Up to 10 Halaman Website", included: true },
         { name: "Integrasi WhatsApp", included: true },
         { name: "Form Pendaftaran Online", included: true },
-        { name: "Blog SEO", included: true },
         { name: "SEO Google", included: true },
         { name: "3 Artikel SEO", included: true },
-        { name: "🎁 GRATIS Maintenance Bulan 1", included: true } // Upsell Hook
+        { name: "🎁 Maintenance & Update 1 Bulan", included: true }
       ],
       featured: true,
       btnText: "Pilih Paket"
@@ -40,63 +43,104 @@ const Pricing = () => {
       price: "Mulai Rp4.500.000",
       desc: "Untuk Skala Bisnis Besar & Kompleks",
       features: [
-        { name: "10 Halaman Website", included: true },
+        { name: "10+ Halaman Website", included: true },
         { name: "Integrasi WhatsApp", included: true },
         { name: "Form Pendaftaran Online", included: true },
-        { name: "Blog SEO", included: true },
-        { name: "SEO Google", included: true },
-        { name: "Dashboard", included: true },
+        { name: "Optimasi SEO Google", included: true },
+        { name: "Fitur Admin dan Dashboard", included: true },
         { name: "Sistem Membership", included: true },
-        { name: "10 Artikel SEO", included: true }
+        { name: "10 Artikel SEO", included: true },
+        { name: "🎁 Maintenance & Update 1 Tahun", included: true }
       ],
       featured: false,
       btnText: "Pilih Paket"
     }
   ];
 
-  const maintenancePlans = [
+  const maintenancePlansList = [
+    {
+      name: "Perpanjangan",
+      price: "Rp350.000 / thn",
+      desc: "Khusus Hosting & Domain",
+      isRenewal: true,
+      features: [
+        "Perpanjangan Domain (.com)",
+        "Sewa Tempat Data (Hosting)",
+        "Website Tetap Aktif & Aman",
+        "Sertifikat Keamanan (SSL)"
+      ],
+      btnText: "Pilih Paket",
+      targetId: "renewal-detail"
+    },
     {
       name: "Basic",
-      price: "Mulai Rp150.000",
+      price: "Rp150.000 / bln",
       features: [
-        "Update & Backup",
-        "Pengecekan Keamanan"
+        "Backup Mingguan",
+        "Monitoring Uptime",
+        "Perbaikan Error Ringan",
+        "Support WhatsApp"
       ],
       featured: false,
-      btnText: "Pilih Paket"
+      btnText: "Pilih Paket",
+      targetId: "maintenance-Basic"
     },
     {
       name: "Profesional",
-      price: "Mulai Rp300.000",
+      price: "Rp300.000 / bln",
       features: [
-        "Update & Backup",
+        "Update Artikel (4x/bln)",
+        "Update Konten Halaman",
         "Perbaikan Error",
-        "Update Konten",
-        "Artikel SEO 4/bln",
-        "Optimasi SEO"
+        "Optimasi Keyword",
+        "Fast Response Support"
       ],
-      featured: true,
-      btnText: "Pilih Paket"
+      featured: false,
+      btnText: "Pilih Paket",
+      targetId: "maintenance-Profesional"
     },
     {
       name: "Premium",
-      price: "Mulai Rp1.000.000",
+      price: "Rp1.000.000 / bln",
       features: [
-        "Update & Backup",
-        "Perbaikan Error",
-        "Update Konten",
-        "Artikel SEO 4/bln",
-        "Optimasi SEO",
-        "Analisa Website",
-        "Development"
+        "Update Artikel (8x/bln)",
+        "Update Konten Halaman",
+        "Penambahan Halaman Baru",
+        "Optimasi SEO Lanjutan",
+        "Audit SEO Mingguan",
+        "Priority Support (24/7)"
       ],
       featured: false,
-      btnText: "Pilih Paket"
+      btnText: "Pilih Paket",
+      targetId: "maintenance-Premium"
     }
   ];
 
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev === 0 ? maintenancePlansList.length - 3 : prev - 1));
+  }, [maintenancePlansList.length]);
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev >= maintenancePlansList.length - 3 ? 0 : prev + 1));
+  }, [maintenancePlansList.length]);
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      handleNext();
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [handleNext, isPaused, currentIndex]);
+
   return (
-    <section id="pricing" className="section pricing-wrapper">
+    <section
+      id="pricing"
+      className="section pricing-wrapper"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <div className="container">
         {/* Scarcity Banner Hook */}
         <div className="promo-banner text-center mb-8">
@@ -133,57 +177,71 @@ const Pricing = () => {
               </div>
 
               <div className="pricing-action">
-                <a href={`https://wa.me/6282182252766?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Website%20${plan.name}`} className={`btn w-full ${plan.featured ? 'btn-blue' : 'btn-blue'}`}>
+                <a href={`https://wa.me/6282182252766?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Website%20${plan.name}`} className="btn w-full btn-blue">
                   {plan.btnText}
                 </a>
                 <Link to="/pricing" state={{ targetId: `develop-${plan.name}` }} className="btn btn-outline w-full mt-4">
                   Lihat Detail Paket &rarr;
                 </Link>
-                {/* Risk Reversal Hook */}
                 <p className="text-center mt-4 text-sm text-gray-400 font-medium" style={{ opacity: 0.8 }}>🛡️ Garansi Revisi Desain Sampai Deal</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* 3. Paket Maintenance */}
+        {/* 3. Paket Maintenance & Renewal Slider */}
         <div className="section-header text-center" style={{ marginTop: '8rem' }}>
-          <h2 className="section-title text-white">Paket Maintenance</h2>
-          <p className="text-gray-300">Fokus pada bisnis Anda biarkan kami merawat website secara teknis.</p>
+          <h2 className="section-title text-white">Layanan Perawatan & Perpanjangan</h2>
+          <p className="text-gray-300">Fokus pada bisnis Anda, biar kami yang menjaga website tetap prima dan aktif.</p>
         </div>
 
-        <div className="pricing-grid">
-          {maintenancePlans.map((plan, index) => (
-            <div key={index} className={`pricing-card glass-card maintenance-card ${plan.featured ? 'featured' : ''}`}>
-              {plan.featured && <div className="featured-badge gold-ribbon">POPULAR</div>}
+        <div className="maintenance-slider-outer">
+          <button className="slider-arrow prev" onClick={handlePrev} aria-label="Previous">
+            <FiChevronLeft size={32} />
+          </button>
 
-              <div className="pricing-header">
-                <h3 className="plan-name">{plan.name}</h3>
-                <div className="plan-price gold-text">
-                  {plan.price}
+          <div className="maintenance-slider-window">
+            <div
+              className="maintenance-slider-track"
+              style={{ transform: `translateX(-${currentIndex * (100 / maintenancePlansList.length)}%)` }}
+            >
+              {maintenancePlansList.map((plan, index) => (
+                <div key={index} className="maintenance-slide">
+                  <div className={`pricing-card glass-card maintenance-card ${plan.isRenewal ? 'renewal-card' : ''}`}>
+                    <div className="pricing-header">
+                      <h3 className="plan-name">{plan.name}</h3>
+                      <div className="plan-price gold-text">
+                        {plan.price}
+                      </div>
+                    </div>
+
+                    <div className="pricing-features">
+                      <ul>
+                        {plan.features.map((feature, idx) => (
+                          <li key={idx} className="clean-list text-center">
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="pricing-action">
+                      <a href={`https://wa.me/6282182252766?text=Halo,%20saya%20tertarik%20dengan%20${plan.name}`} className={`btn w-full ${plan.isRenewal ? 'btn-primary' : 'btn-blue'}`}>
+                        {plan.btnText}
+                      </a>
+                      <Link to="/pricing" state={{ targetId: plan.targetId }} className="btn btn-outline w-full mt-4">
+                        Lihat Detail &rarr;
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              <div className="pricing-features">
-                <ul>
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="clean-list text-center">
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="pricing-action">
-                <a href={`https://wa.me/6282182252766?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Maintenance%20${plan.name}`} className="btn btn-blue w-full">
-                  {plan.btnText}
-                </a>
-                <Link to="/pricing" state={{ targetId: `maintenance-${plan.name}` }} className="btn btn-outline w-full mt-4">
-                  Lihat Detail Paket &rarr;
-                </Link>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          <button className="slider-arrow next" onClick={handleNext} aria-label="Next">
+            <FiChevronRight size={32} />
+          </button>
         </div>
       </div>
     </section>

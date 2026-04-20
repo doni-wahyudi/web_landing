@@ -21,16 +21,16 @@ const Home = () => {
         <Portfolio />
       </div>
       <div className="reveal-on-scroll delay-100">
+        <Pricing />
+      </div>
+      <div className="reveal-on-scroll delay-200">
         <Services />
       </div>
       {/* 
-      <div className="reveal-on-scroll delay-200">
+      <div className="reveal-on-scroll delay-300">
         <Testimonials />
       </div> 
       */}
-      <div className="reveal-on-scroll delay-300">
-        <Pricing />
-      </div>
       <div className="reveal-on-scroll delay-400">
         <FAQ />
       </div>

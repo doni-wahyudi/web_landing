@@ -29,20 +29,20 @@ const Footer = () => {
         <div className="footer-links">
           <h3>Layanan Kami</h3>
           <ul>
-            <li><a href="#">Pembuatan Website Company Profile</a></li>
-            <li><a href="#">Website Toko Online</a></li>
-            <li><a href="#">Landing Page Premium</a></li>
-            <li><a href="#">SEO & Digital Marketing</a></li>
+            <li><Link to="/services">Premium Company Profile</Link></li>
+            <li><Link to="/services">Landing Page Konversi Tinggi</Link></li>
+            <li><Link to="/services">Custom Web Application</Link></li>
+            <li><Link to="/services">SEO & Digital Marketing</Link></li>
           </ul>
         </div>
 
         <div className="footer-links">
           <h3>Perusahaan</h3>
           <ul>
-            <li><a href="#">Tentang Kami</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#">Syarat & Ketentuan</a></li>
-            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><Link to="/about">Tentang Kami</Link></li>
+            <li><Link to="/portfolio">Portfolio</Link></li>
+            <li><Link to="/terms">Syarat & Ketentuan</Link></li>
+            <li><Link to="/privacy">Kebijakan Privasi</Link></li>
           </ul>
         </div>
 
