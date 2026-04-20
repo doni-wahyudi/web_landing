@@ -37,7 +37,7 @@ const Header = () => {
           <Link to="/pricing" onClick={() => setIsMobileMenuOpen(false)}>Harga</Link>
           <Link to="/faq" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
           <div className="nav-cta-wrapper">
-            <a href="https://wa.me/6281234567890" className="btn btn-primary btn-glint nav-cta" onClick={() => setIsMobileMenuOpen(false)}>
+            <a href="https://wa.me/6282182252766" className="btn btn-primary btn-glint nav-cta" onClick={() => setIsMobileMenuOpen(false)}>
               Konsultasi Gratis
             </a>
           </div>

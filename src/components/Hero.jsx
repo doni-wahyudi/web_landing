@@ -9,25 +9,25 @@ const Hero = () => {
   return (
     <section className="hero" ref={heroRef}>
       <div className="hero-bg-glow"></div>
-      
+
       <div className="container hero-container">
         <div className="hero-content animate-entrance">
           <div className="badge delay-100">
             <span className="badge-dot"></span>
             #1 Jasa Pembuatan Website Premium
           </div>
-          
+
           <h1 className="hero-title delay-200">
             Tingkatkan Omset Bisnis&nbsp;Anda <br /> dengan Website <span className="text-gradient" style={{ whiteSpace: 'nowrap' }}>Profesional & Elegan</span>
           </h1>
 
-          
+
           <p className="hero-subtitle delay-300">
             Satu-satunya jasa pembuatan website yang berani memberikan garansi 100% kepuasan. Gratis Domain .COM, desain premium, dan support tanpa batas.
           </p>
-          
+
           <div className="hero-actions delay-400">
-            <a href="https://wa.me/6281234567890" className="btn btn-primary btn-lg btn-glint">
+            <a href="https://wa.me/6282182252766" className="btn btn-primary btn-lg btn-glint">
               Konsultasi Sekarang <FiArrowRight />
             </a>
             <a href="#portfolio" className="btn btn-outline btn-lg">
@@ -50,12 +50,12 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="hero-visual animate-fade-in delay-200">
           <div className="hero-main-image-wrapper">
             <img src={personImage} alt="Professional Project" className="hero-main-image" />
           </div>
-          
+
           {/* Decorative glowing orbs */}
           <div className="orb orb-1"></div>
           <div className="orb orb-2"></div>

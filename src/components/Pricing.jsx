@@ -114,7 +114,7 @@ const Pricing = () => {
           {mainPlans.map((plan, index) => (
             <div key={index} className={`pricing-card glass-card ${plan.featured ? 'featured' : ''}`}>
               {plan.featured && <div className="featured-badge gold-ribbon">POPULAR</div>}
-              
+
               <div className="pricing-header">
                 <h3 className="plan-name">{plan.name}</h3>
                 <div className="plan-price gold-text">
@@ -133,7 +133,7 @@ const Pricing = () => {
               </div>
 
               <div className="pricing-action">
-                <a href={`https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Website%20${plan.name}`} className={`btn w-full ${plan.featured ? 'btn-blue' : 'btn-blue'}`}>
+                <a href={`https://wa.me/6282182252766?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Website%20${plan.name}`} className={`btn w-full ${plan.featured ? 'btn-blue' : 'btn-blue'}`}>
                   {plan.btnText}
                 </a>
                 <Link to="/pricing" state={{ targetId: `develop-${plan.name}` }} className="btn btn-outline w-full mt-4">
@@ -156,7 +156,7 @@ const Pricing = () => {
           {maintenancePlans.map((plan, index) => (
             <div key={index} className={`pricing-card glass-card maintenance-card ${plan.featured ? 'featured' : ''}`}>
               {plan.featured && <div className="featured-badge gold-ribbon">POPULAR</div>}
-              
+
               <div className="pricing-header">
                 <h3 className="plan-name">{plan.name}</h3>
                 <div className="plan-price gold-text">
@@ -175,7 +175,7 @@ const Pricing = () => {
               </div>
 
               <div className="pricing-action">
-                <a href={`https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Maintenance%20${plan.name}`} className="btn btn-blue w-full">
+                <a href={`https://wa.me/6282182252766?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Maintenance%20${plan.name}`} className="btn btn-blue w-full">
                   {plan.btnText}
                 </a>
                 <Link to="/pricing" state={{ targetId: `maintenance-${plan.name}` }} className="btn btn-outline w-full mt-4">

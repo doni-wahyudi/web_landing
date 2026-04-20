@@ -1,5 +1,5 @@
-import { 
-  FiMonitor, FiSmartphone, FiTrendingUp, FiShield, FiClock, FiHeadphones, 
+import {
+  FiMonitor, FiSmartphone, FiTrendingUp, FiShield, FiClock, FiHeadphones,
   FiLayers, FiLayout, FiDatabase, FiSearch, FiCode, FiZap, FiMessageSquare
 } from 'react-icons/fi';
 import './Services.css';
@@ -106,7 +106,7 @@ const Services = () => {
             <h2 className="section-title">Alur Kerja <span className="text-gradient">Profesional</span></h2>
             <p className="section-subtitle">Bagaimana kami mewujudkan visi Anda menjadi realitas digital.</p>
           </div>
-          
+
           <div className="process-workflow">
             {steps.map((step, index) => (
               <div key={index} className="process-step">
@@ -129,7 +129,7 @@ const Services = () => {
             <h2 className="section-title">Standar <span className="text-gradient">Aurotech</span></h2>
             <p className="section-subtitle">Setiap baris kode yang kami tulis didesain untuk keunggulan.</p>
           </div>
-          
+
           <div className="benefits-grid">
             {benefits.map((benefit, index) => (
               <div key={index} className="benefit-item">
@@ -150,7 +150,7 @@ const Services = () => {
           <h2 className="cta-title animate-entrance">Siap Membangun Kehadiran Digital Anda?</h2>
           <p className="cta-desc animate-entrance delay-100">Konsultasikan kebutuhan website Anda dengan pakar kami sekarang.</p>
           <div className="cta-actions animate-entrance delay-200">
-            <a href="https://wa.me/6281234567890" className="btn btn-primary btn-lg btn-glint">
+            <a href="https://wa.me/6282182252766" className="btn btn-primary btn-lg btn-glint">
               <FiMessageSquare /> Mulai Konsultasi Gratis
             </a>
           </div>
