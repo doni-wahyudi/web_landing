@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import logoImg from '../assets/logo_auro.png';
+import typographyImg from '../assets/typography_white.png';
 import './Header.css';
 
 const Header = () => {
@@ -27,7 +28,7 @@ const Header = () => {
           <span className="logo-icon">
             <img src={logoImg} alt="Aurotech Logo" />
           </span>
-          <span className="logo-text">Auro<span className="text-gradient">tech</span></span>
+          <img src={typographyImg} alt="Aurotech" className="logo-typography" />
         </Link>
 
         <nav className={`nav-links ${isMobileMenuOpen ? 'open glass' : ''}`}>

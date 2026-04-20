@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FiInstagram, FiFacebook, FiTwitter, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 import logoImg from '../assets/logo_auro.png';
+import typographyImg from '../assets/typography_white.png';
 import './Footer.css';
 
 const Footer = () => {
@@ -14,7 +15,7 @@ const Footer = () => {
             <span className="logo-icon">
               <img src={logoImg} alt="Aurotech Logo" />
             </span>
-            <span className="logo-text">Auro<span className="text-gradient">tech</span></span>
+            <img src={typographyImg} alt="Aurotech" className="logo-typography" />
           </Link>
           <p className="footer-desc">
             Mitra terbaik Anda dalam mewujudkan identitas digital yang profesional, estetik, dan berorientasi pada hasil penjualan.

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Preloader.css';
 import logoImg from '../assets/logo_auro.png';
+import typographyImg from '../assets/typography_white.png';
 
 const Preloader = () => {
   const [loading, setLoading] = useState(true);
@@ -29,8 +30,9 @@ const Preloader = () => {
         <div className="loading-bar-container">
           <div className="loading-bar"></div>
         </div>
-        <div className="preloader-text">
-          <span>Auro</span>tech <span className="text-muted">Digital Agency</span>
+        <div className="preloader-branding">
+          <img src={typographyImg} alt="Aurotech" className="preloader-typography" />
+          <div className="preloader-jargon">Smart Code, Solid Growth</div>
         </div>
       </div>
       
