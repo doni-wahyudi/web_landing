@@ -112,27 +112,32 @@
 
 @media (max-width: 768px) {
   .maintenance-slider-outer {
-    padding: 0;
+    padding: 0 1rem;
   }
   .slider-arrow {
-    display: none; /* Use swipe or scroll on mobile */
+    display: none; 
   }
   .maintenance-slider-window {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    padding-bottom: 0.5rem;
   }
   .maintenance-slider-window::-webkit-scrollbar {
     display: none;
   }
   .maintenance-slider-track {
     transform: none !important;
-    width: auto !important;
+    width: max-content !important;
+    display: flex;
   }
   .maintenance-slide {
-    width: 90vw !important;
+    width: calc(100vw - 3rem) !important;
+    flex: 0 0 auto;
+    padding: 0.5rem;
     scroll-snap-align: center;
+    display: flex;
   }
 }
 

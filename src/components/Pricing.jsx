@@ -149,7 +149,9 @@ const Pricing = () => {
   }, [maintenancePlansList.length]);
 
   useEffect(() => {
-    if (isPaused) return;
+    // Disable auto-play on mobile where native touch scrolling is used
+    const isMobile = window.innerWidth <= 768;
+    if (isPaused || isMobile) return;
 
     const timer = setInterval(() => {
       handleNext();
