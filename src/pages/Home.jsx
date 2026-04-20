@@ -23,9 +23,11 @@ const Home = () => {
       <div className="reveal-on-scroll delay-100">
         <Services />
       </div>
+      {/* 
       <div className="reveal-on-scroll delay-200">
         <Testimonials />
-      </div>
+      </div> 
+      */}
       <div className="reveal-on-scroll delay-300">
         <Pricing />
       </div>

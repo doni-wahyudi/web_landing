@@ -25,7 +25,7 @@ const Footer = () => {
             <a href="#" aria-label="Twitter"><FiTwitter /></a>
           </div>
         </div>
-        
+
         <div className="footer-links">
           <h3>Layanan Kami</h3>
           <ul>
@@ -35,7 +35,7 @@ const Footer = () => {
             <li><a href="#">SEO & Digital Marketing</a></li>
           </ul>
         </div>
-        
+
         <div className="footer-links">
           <h3>Perusahaan</h3>
           <ul>
@@ -45,17 +45,17 @@ const Footer = () => {
             <li><a href="#">Kebijakan Privasi</a></li>
           </ul>
         </div>
-        
+
         <div className="footer-contact">
           <h3>Hubungi Kami</h3>
           <ul>
-            <li><FiPhone /> +62 812-3456-7890</li>
-            <li><FiMail /> hello@aurotech.com</li>
-            <li><FiMapPin /> Sudirman Central Business District, Jakarta</li>
+            <li><FiPhone /> +62 821-8225-2766</li>
+            <li><FiMail /> admin@aurotech.co.id</li>
+            <li><FiMapPin /> Permata Depok, Jawa Barat</li>
           </ul>
         </div>
       </div>
-      
+
       <div className="footer-bottom border-t border-border mt-12 pt-8 text-center text-muted">
         <p className="mb-2">PT Swaraya Naraya Indonesia</p>
         <p>&copy; {currentYear} Aurotech. All rights reserved.</p>

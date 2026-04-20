@@ -12,7 +12,7 @@ const FAQ = () => {
     },
     {
       question: "Apakah saya harus menyiapkan hosting & domain sendiri?",
-      answer: "Tidak perlu. Seluruh paket kami sudah termasuk gratis Domain (.com, .id, atau .co.id) dan Hosting berkecepatan tinggi selama 1 tahun pertama."
+      answer: "Tidak perlu. Seluruh paket kami sudah termasuk gratis Domain (.com) dan Hosting berkecepatan tinggi selama 1 tahun pertama."
     },
     {
       question: "Bagaimana jika saya ingin melakukan perubahan setelah website selesai?",
@@ -61,22 +61,22 @@ const FAQ = () => {
 
         <div className="faq-container">
           {faqs.map((faq, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className={`faq-item glass ${activeIndex === index ? 'active' : ''}`}
             >
-              <button 
-                className="faq-question" 
+              <button
+                className="faq-question"
                 onClick={() => toggleAccordion(index)}
                 aria-expanded={activeIndex === index}
               >
                 <span>{faq.question}</span>
                 <FiChevronDown className="faq-icon" />
               </button>
-              
-              <div 
+
+              <div
                 className="faq-answer-wrapper"
-                style={{ 
+                style={{
                   maxHeight: activeIndex === index ? '500px' : '0',
                   opacity: activeIndex === index ? 1 : 0
                 }}

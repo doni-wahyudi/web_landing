@@ -60,13 +60,20 @@ const PortfolioDetail = () => {
           <FiArrowLeft /> Kembali ke Portfolio
         </Link>
         
-        <div className="detail-header text-center mt-8 mb-12">
-          <h1 className="detail-title">{project.title}</h1>
-          <span className="badge">{project.category}</span>
+        <div className="detail-header text-center mt-8 mb-16">
+          <h1 className="detail-title hero-title">{project.title}</h1>
+          <div className="detail-meta mb-8">
+            <span className="badge">{project.category}</span>
+          </div>
+          <div className="detail-actions">
+            <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg btn-glint">
+              Kunjungi Website Live <FiExternalLink />
+            </a>
+          </div>
         </div>
 
-        <div className="detail-grid">
-          <div className="detail-visual glass">
+        <div className="detail-visual-wrapper mx-auto">
+          <div className="detail-visual glass animate-entrance delay-200">
              <div className="portfolio-browser-header">
                 <div className="browser-dots">
                   <span></span><span></span><span></span>
@@ -79,31 +86,6 @@ const PortfolioDetail = () => {
                     loading="lazy"
                   />
               </div>
-          </div>
-
-          <div className="detail-content">
-            <div className="content-block glass p-6 mb-6">
-              <h3>Tantangan (Challenge)</h3>
-              <p>{project.challenge}</p>
-            </div>
-            
-            <div className="content-block glass p-6 mb-6">
-              <h3>Solusi (Solution)</h3>
-              <p>{project.solution}</p>
-            </div>
-
-            <div className="content-block glass p-6 mb-8">
-              <h3>Teknologi (Tech Stack)</h3>
-              <ul className="tech-stack-list">
-                {project.techStack.map((tech, idx) => (
-                  <li key={idx}><FiCheckCircle className="text-primary" /> {tech}</li>
-                ))}
-              </ul>
-            </div>
-
-            <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg w-full text-center">
-              Kunjungi Website Live <FiExternalLink />
-            </a>
           </div>
         </div>
       </div>

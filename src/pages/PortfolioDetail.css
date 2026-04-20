@@ -26,27 +26,62 @@
 }
 
 .detail-title {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   margin-bottom: 1rem;
+  background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.detail-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+.detail-meta .badge {
+  font-size: 1rem;
+  padding: 0.5rem 1.25rem;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: var(--primary);
+  border-radius: 99px;
 }
 
-@media (min-width: 992px) {
-  .detail-grid {
-    grid-template-columns: 1fr 1fr;
-    align-items: flex-start;
-  }
+.detail-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.detail-visual-wrapper {
+  max-width: 1000px;
+  width: 100%;
 }
 
 .detail-visual {
-  border-radius: var(--radius-lg);
+  border-radius: 1.5rem;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5), 0 18px 36px -18px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.detail-visual:hover {
+  transform: translateY(-10px) scale(1.01);
+}
+
+.portfolio-browser-header {
+  background: rgba(30, 41, 59, 0.8);
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+}
+
+.browser-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.browser-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .detail-image {
@@ -61,40 +96,10 @@
   display: block;
 }
 
-.content-block {
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
+.mb-16 { margin-bottom: 4rem; }
 
-.content-block h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-.content-block p {
-  color: var(--text-light);
-  line-height: 1.6;
-}
-
-.tech-stack-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-}
-
-.tech-stack-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--text-light);
-}
-
-.w-full {
-  width: 100%;
-  justify-content: center;
+@media (max-width: 768px) {
+  .detail-title {
+    font-size: 2.5rem;
+  }
 }
