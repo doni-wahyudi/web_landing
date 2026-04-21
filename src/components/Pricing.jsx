@@ -10,7 +10,8 @@ const Pricing = () => {
   const mainPlans = [
     {
       name: "Basic",
-      price: "Mulai Rp1.000.000",
+      price: "Rp999.000",
+      originalPrice: "Rp1.500.000",
       desc: "Cocok untuk Starter & UMKM Basic",
       features: [
         { name: "Up to 5 Halaman Website", included: true },
@@ -27,7 +28,8 @@ const Pricing = () => {
     },
     {
       name: "Profesional",
-      price: "Mulai Rp2.200.000",
+      price: "Rp1.999.000",
+      originalPrice: "Rp2.500.000",
       desc: "Pilihan Terpopuler untuk Bisnis",
       features: [
         { name: "Up to 10 Halaman Website", included: true },
@@ -44,7 +46,8 @@ const Pricing = () => {
     },
     {
       name: "Premium",
-      price: "Mulai Rp4.500.000",
+      price: "Rp3.999.000",
+      originalPrice: "Rp4.500.000",
       desc: "Untuk Skala Bisnis Besar & Kompleks",
       features: [
         { name: "10+ Halaman Website", included: true },
@@ -192,8 +195,13 @@ const Pricing = () => {
 
               <div className="pricing-header">
                 <h3 className="plan-name">{plan.name}</h3>
-                <div className="plan-price gold-text">
-                  {plan.price}
+                <div className="plan-price-container">
+                  {plan.originalPrice && (
+                    <span className="original-price">{plan.originalPrice}</span>
+                  )}
+                  <div className="plan-price gold-text">
+                    {plan.price}
+                  </div>
                 </div>
               </div>
 

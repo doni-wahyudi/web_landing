@@ -4,7 +4,7 @@ import { useEffect } from 'react';
  * Custom hook to trigger entrance animations on scroll using Intersection Observer.
  * Adds 'reveal-active' class to elements when they enter the viewport.
  */
-export const useScrollReveal = (selector = '.reveal-on-scroll', threshold = 0.15) => {
+export const useScrollReveal = (selector = '.reveal-on-scroll', threshold = 0.05) => {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -19,7 +19,7 @@ export const useScrollReveal = (selector = '.reveal-on-scroll', threshold = 0.15
       });
     }, {
       threshold,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px'
     });
 
     const elements = document.querySelectorAll(selector);

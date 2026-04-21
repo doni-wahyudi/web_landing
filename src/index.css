@@ -178,6 +178,15 @@ body::after {
 .reveal-active.delay-300 { transition-delay: 450ms; }
 .reveal-active.delay-400 { transition-delay: 600ms; }
 
+/* Mobile Reveal Fallback */
+@media (max-width: 768px) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    transition: none !important;
+  }
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
