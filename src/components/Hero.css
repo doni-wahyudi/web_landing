@@ -194,22 +194,45 @@
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    overflow: hidden; /* Prevent overflow on very small devices */
+    overflow: visible; /* Changed to visible to let orbs glow outside */
   }
 
   .hero-main-image-wrapper {
     margin-top: 0;
     max-width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: 24px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
   }
 
   .hero-main-image {
     width: 100%;
     transform: none !important;
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    border-radius: 12px;
   }
 
-  
-  .hero-mockup-wrapper {
-    transform: none;
+  .orb-1 {
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(212, 175, 55, 0.4);
+    opacity: 0.6;
+  }
+
+  .orb-2 {
+    width: 150px;
+    height: 150px;
+    bottom: -20px;
+    right: 10%;
+    background: rgba(255, 215, 0, 0.2);
   }
 }
 
