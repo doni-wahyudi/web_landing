@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
+import { useLanguage } from '../context/LanguageContext';
 import './FAQ.css';
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const { language } = useLanguage();
 
-  const faqs = [
+  const faqsId = [
     {
       question: "Berapa lama proses pembuatan website?",
       answer: "Waktu pengerjaan bervariasi tergantung kompleksitas website. Untuk paket Basic dan Profesional biasanya memakan waktu 3-7 hari kerja setelah seluruh materi (teks, foto, logo) kami terima. Untuk sistem Custom, biasanya 2-4 minggu."
@@ -27,6 +29,45 @@ const FAQ = () => {
       answer: "Pembayaran dilakukan dengan sistem Down Payment (DP) 50% di awal sebelum project dimulai, dan pelunasan 50% setelah website selesai dibangun dan siap dipublikasi sesuai persetujuan."
     }
   ];
+
+  const faqsEn = [
+    {
+      question: "How long does the website creation process take?",
+      answer: "Turnaround time varies depending on website complexity. For Basic and Professional packages, it usually takes 3-7 working days after we receive all materials (text, photos, logo). For Custom systems, it usually takes 2-4 weeks."
+    },
+    {
+      question: "Do I need to provide my own hosting & domain?",
+      answer: "No need. All our packages include a free (.com) Domain and high-speed Hosting for the first year."
+    },
+    {
+      question: "What if I want to make changes after the website is finished?",
+      answer: "We provide revision guarantees according to the package you choose. Additionally, we use a user-friendly CMS system, so you can easily change text or images later."
+    },
+    {
+      question: "Will my website appear on Google?",
+      answer: "Yes, we implement on-page SEO practices from the beginning of development. We design the website structure to be easily read by search engines (Google) for optimal indexing performance."
+    },
+    {
+      question: "What is the service payment system?",
+      answer: "Payment is made with a 50% Down Payment (DP) upfront before the project starts, and the remaining 50% after the website is built and ready for publication upon approval."
+    }
+  ];
+
+  const translations = {
+    id: {
+      title: "Pertanyaan Umum",
+      titleGradient: "(FAQ)",
+      subtitle: "Beberapa pertanyaan yang sering diajukan klien sebelum memutuskan untuk menggunakan jasa kami."
+    },
+    en: {
+      title: "Frequently Asked Questions",
+      titleGradient: "(FAQ)",
+      subtitle: "Some questions frequently asked by clients before deciding to use our services."
+    }
+  };
+
+  const faqs = language === 'id' ? faqsId : faqsEn;
+  const t = translations[language];
 
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -53,9 +94,9 @@ const FAQ = () => {
       </script>
       <div className="container">
         <div className="section-header text-center">
-          <h2 className="section-title">Pertanyaan Umum <span className="text-gradient">(FAQ)</span></h2>
+          <h2 className="section-title">{t.title} <span className="text-gradient">{t.titleGradient}</span></h2>
           <p className="section-subtitle">
-            Beberapa pertanyaan yang sering diajukan klien sebelum memutuskan untuk menggunakan jasa kami.
+            {t.subtitle}
           </p>
         </div>
 
@@ -94,3 +135,4 @@ const FAQ = () => {
 };
 
 export default FAQ;
+

@@ -1,16 +1,40 @@
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiExternalLink } from 'react-icons/fi';
+import { useLanguage } from '../context/LanguageContext';
 import { projects } from '../data/projects';
 import './Portfolio.css';
 
 const Portfolio = () => {
+  const { language } = useLanguage();
+
+  const translations = {
+    id: {
+      title: "Karya",
+      titleGradient: "Terbaik",
+      titleSuffix: "Kami",
+      subtitle: "Lihat langsung hasil kerja kami. Klik pada portfolio untuk melihat detail proyek.",
+      viewDetail: "Lihat Detail",
+      visitWeb: "Visit Web"
+    },
+    en: {
+      title: "Our",
+      titleGradient: "Best",
+      titleSuffix: "Work",
+      subtitle: "See our work in action. Click on a portfolio item to view project details.",
+      viewDetail: "View Details",
+      visitWeb: "Visit Web"
+    }
+  };
+
+  const t = translations[language];
+
   return (
     <section id="portfolio" className="section portfolio bg-secondary">
       <div className="container">
         <div className="section-header text-center animate-entrance">
-          <h2 className="section-title">Karya <span className="text-gradient">Terbaik</span> Kami</h2>
+          <h2 className="section-title">{t.title} <span className="text-gradient">{t.titleGradient}</span> {t.titleSuffix}</h2>
           <p className="section-subtitle lg">
-            Lihat langsung hasil kerja kami. Klik pada portfolio untuk melihat detail proyek.
+            {t.subtitle}
           </p>
         </div>
 
@@ -27,24 +51,24 @@ const Portfolio = () => {
                 <div className="portfolio-image">
                     <img 
                       src={project.image} 
-                      alt={`Website Portfolio Aurotech - ${project.title} (${project.category})`}
+                      alt={`Website Portfolio Aurotech - ${project.title} (${project.category[language] || project.category.id})`}
                       loading="lazy"
                     />
                 </div>
                 <div className="portfolio-overlay">
                   <div className="portfolio-buttons">
                     <Link to={`/portfolio/${project.id}`} className="btn btn-primary btn-sm">
-                      Lihat Detail <FiArrowRight />
+                      {t.viewDetail} <FiArrowRight />
                     </Link>
                     <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm">
-                      Visit Web <FiExternalLink />
+                      {t.visitWeb} <FiExternalLink />
                     </a>
                   </div>
                 </div>
               </div>
               <div className="portfolio-info">
                 <h3>{project.title}</h3>
-                <span>{project.category}</span>
+                <span>{project.category[language] || project.category.id}</span>
               </div>
             </div>
           ))}
@@ -55,3 +79,4 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+

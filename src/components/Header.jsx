@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { useLanguage } from '../context/LanguageContext';
 import logoImg from '../assets/logo_auro.png';
 import typographyImg from '../assets/typography_white.png';
 import './Header.css';
@@ -8,6 +9,28 @@ import './Header.css';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
+
+  const translations = {
+    id: {
+      home: "Beranda",
+      services: "Layanan",
+      portfolio: "Portfolio",
+      pricing: "Harga",
+      faq: "FAQ",
+      cta: "Konsultasi Gratis"
+    },
+    en: {
+      home: "Home",
+      services: "Services",
+      portfolio: "Portfolio",
+      pricing: "Pricing",
+      faq: "FAQ",
+      cta: "Free Consultation"
+    }
+  };
+
+  const t = translations[language];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,14 +55,31 @@ const Header = () => {
         </Link>
 
         <nav className={`nav-links ${isMobileMenuOpen ? 'open glass' : ''}`}>
-          <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Beranda</Link>
-          <Link to="/services" onClick={() => setIsMobileMenuOpen(false)}>Layanan</Link>
-          <Link to="/portfolio" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</Link>
-          <Link to="/pricing" onClick={() => setIsMobileMenuOpen(false)}>Harga</Link>
-          <Link to="/faq" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
+          <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>{t.home}</Link>
+          <Link to="/services" onClick={() => setIsMobileMenuOpen(false)}>{t.services}</Link>
+          <Link to="/portfolio" onClick={() => setIsMobileMenuOpen(false)}>{t.portfolio}</Link>
+          <Link to="/pricing" onClick={() => setIsMobileMenuOpen(false)}>{t.pricing}</Link>
+          <Link to="/faq" onClick={() => setIsMobileMenuOpen(false)}>{t.faq}</Link>
+          
+          <div className="lang-switch">
+            <button 
+              className={`lang-btn ${language === 'id' ? 'active' : ''}`} 
+              onClick={() => { setLanguage('id'); setIsMobileMenuOpen(false); }}
+            >
+              ID
+            </button>
+            <span className="lang-separator">|</span>
+            <button 
+              className={`lang-btn ${language === 'en' ? 'active' : ''}`} 
+              onClick={() => { setLanguage('en'); setIsMobileMenuOpen(false); }}
+            >
+              EN
+            </button>
+          </div>
+
           <div className="nav-cta-wrapper">
             <a href="https://wa.me/6282182252766" className="btn btn-primary btn-glint nav-cta" onClick={() => setIsMobileMenuOpen(false)}>
-              Konsultasi Gratis
+              {t.cta}
             </a>
           </div>
         </nav>
@@ -53,3 +93,4 @@ const Header = () => {
 };
 
 export default Header;
+

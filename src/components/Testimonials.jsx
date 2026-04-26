@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { FiStar, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { FaQuoteLeft } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
 import './Testimonials.css';
 
 const Testimonials = () => {
@@ -8,8 +9,9 @@ const Testimonials = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const carouselRef = useRef(null);
+  const { language } = useLanguage();
 
-  const testimonials = [
+  const testimonialsId = [
     {
       id: 1,
       name: "Budi Santoso",
@@ -54,6 +56,67 @@ const Testimonials = () => {
     }
   ];
 
+  const testimonialsEn = [
+    {
+      id: 1,
+      name: "Budi Santoso",
+      role: "CEO, Logistics Company",
+      content: "Aurotech truly understands our brand vision. The website they built is not just aesthetic, but also increased conversions by up to 40% in the first 3 months.",
+      rating: 5
+    },
+    {
+      id: 2,
+      name: "Siska Wijaya",
+      role: "Founder, Fashion Company",
+      content: "The process was very professional. The Aurotech team is very detailed in UI/UX matters. Now our website feels much more premium and is trusted by customers.",
+      rating: 5
+    },
+    {
+      id: 3,
+      name: "Andi Pratama",
+      role: "Operations Director, Property Company",
+      content: "The support service is extraordinary. Every time there is a problem, they respond quickly. The best investment for our company's digital assets.",
+      rating: 5
+    },
+    {
+      id: 4,
+      name: "Hendra Kusuma",
+      role: "Owner, FnB Company",
+      content: "Aurotech helped us digitize our menu and reservation system. Very helpful for our daily operations and looks very classy.",
+      rating: 5
+    },
+    {
+      id: 5,
+      name: "Rina Melati",
+      role: "Manager, Retail Company",
+      content: "Very sleek website design and very fast performance. Our online sales increased significantly since the release.",
+      rating: 5
+    },
+    {
+      id: 6,
+      name: "Fahmi Idris",
+      role: "CEO, Construction Company",
+      content: "A very trusted digital partner. Their work always exceeds our expectations in functionality and design.",
+      rating: 5
+    }
+  ];
+
+  const translations = {
+    id: {
+      title: "Apa Kata",
+      titleGradient: "Klien Kami",
+      subtitle: "Kepercayaan Anda adalah prioritas utama kami dalam menghadirkan kualitas terbaik."
+    },
+    en: {
+      title: "What",
+      titleGradient: "Our Clients Say",
+      subtitle: "Your trust is our top priority in delivering the best quality."
+    }
+  };
+
+  const testimonials = language === 'id' ? testimonialsId : testimonialsEn;
+  const t = translations[language];
+
   const totalSlides = isMobile ? testimonials.length : Math.ceil(testimonials.length / 3);
 
   const nextSlide = useCallback(() => {
@@ -90,8 +153,8 @@ const Testimonials = () => {
     <section className="section testimonials-section bg-secondary overflow-hidden">
       <div className="container">
         <div className="section-header text-center animate-entrance">
-          <h2 className="section-title">Apa Kata <span className="text-gradient">Klien Kami</span></h2>
-          <p className="section-subtitle">Kepercayaan Anda adalah prioritas utama kami dalam menghadirkan kualitas terbaik.</p>
+          <h2 className="section-title">{t.title} <span className="text-gradient">{t.titleGradient}</span></h2>
+          <p className="section-subtitle">{t.subtitle}</p>
         </div>
 
         <div className="testimonials-carousel-container">
@@ -160,3 +223,4 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+
