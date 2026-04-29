@@ -14,14 +14,47 @@ import TermsPage from './pages/TermsPage';
 import PrivacyPage from './pages/PrivacyPage';
 import Preloader from './components/Preloader';
 
+// Admin Components
+import AdminLayout from './layouts/AdminLayout';
+import AdminLogin from './pages/admin/AdminLogin';
+import CpanelAccounts from './pages/admin/CpanelAccounts';
+
 function App() {
   return (
     <HelmetProvider>
       <Preloader />
       <ScrollToTop />
-      <Header />
+      
+      {/* 
+        We conditionally render Header/Footer or we can just let AdminLayout 
+        override the screen. Since Header/Footer are outside Routes, they will 
+        appear on Admin pages unless we hide them. 
+        Actually, the cleanest way is to move Header/Footer inside a PublicLayout 
+        if we want to hide them from Admin, OR we can conditionally hide them 
+        based on the pathname. Let's use useLocation to conditionally hide them.
+      */}
+      <AppContent />
+    </HelmetProvider>
+  );
+}
+
+// We extract the main content to use useLocation hook
+import { useLocation } from 'react-router-dom';
+
+import BlogGrid from './pages/blog/BlogGrid';
+import ArticleDetail from './pages/blog/ArticleDetail';
+import ArticlesManager from './pages/admin/ArticlesManager';
+
+function AppContent() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
+  return (
+    <>
+      {!isAdminRoute && <Header />}
       <main>
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
@@ -31,11 +64,23 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/blog" element={<BlogGrid />} />
+          <Route path="/blog/:slug" element={<ArticleDetail />} />
+
+
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="login" element={<AdminLogin />} />
+            <Route path="cpanel" element={<CpanelAccounts />} />
+            <Route path="articles" element={<ArticlesManager />} />
+          </Route>
         </Routes>
       </main>
-      <Footer />
-    </HelmetProvider>
+      {!isAdminRoute && <Footer />}
+    </>
   );
 }
 
+
 export default App;
+

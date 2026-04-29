@@ -106,3 +106,37 @@
     display: block;
   }
 }
+
+/* Language Switcher */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 99px;
+  backdrop-filter: blur(10px);
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 99px;
+  transition: all 0.3s ease;
+}
+
+.lang-btn.active {
+  color: var(--primary);
+  background: rgba(212, 175, 55, 0.15);
+}
+
+.lang-separator {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.85rem;
+}

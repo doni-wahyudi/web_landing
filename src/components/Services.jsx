@@ -2,10 +2,13 @@ import {
   FiMonitor, FiSmartphone, FiTrendingUp, FiShield, FiClock, FiHeadphones,
   FiLayers, FiLayout, FiDatabase, FiSearch, FiCode, FiZap, FiMessageSquare
 } from 'react-icons/fi';
+import { useLanguage } from '../context/LanguageContext';
 import './Services.css';
 
 const Services = () => {
-  const coreSolutions = [
+  const { language } = useLanguage();
+
+  const coreSolutionsId = [
     {
       icon: <FiLayout />,
       title: "Premium Company Profile",
@@ -26,7 +29,28 @@ const Services = () => {
     }
   ];
 
-  const benefits = [
+  const coreSolutionsEn = [
+    {
+      icon: <FiLayout />,
+      title: "Premium Company Profile",
+      desc: "Building B2B credibility with an elegant and informative institutional design.",
+      highlight: "Highly Recommended"
+    },
+    {
+      icon: <FiLayers />,
+      title: "High-Conversion Landing Page",
+      desc: "Designed specifically for marketing campaigns focusing on customer conversion rates.",
+      highlight: "Most Popular"
+    },
+    {
+      icon: <FiDatabase />,
+      title: "Custom Web Application",
+      desc: "Dashboard systems, CRM, or internal portals built to fit your unique business needs.",
+      highlight: "Enterprise"
+    }
+  ];
+
+  const benefitsId = [
     {
       icon: <FiZap />,
       title: "Laju Loading Sangat Cepat",
@@ -44,7 +68,25 @@ const Services = () => {
     }
   ];
 
-  const steps = [
+  const benefitsEn = [
+    {
+      icon: <FiZap />,
+      title: "Ultra-Fast Loading Speed",
+      desc: "Core web vitals optimization for a seamless user experience."
+    },
+    {
+      icon: <FiSmartphone />,
+      title: "Ultimate Mobile Experience",
+      desc: "Not just responsive, but designed for thumb-friendly user comfort."
+    },
+    {
+      icon: <FiShield />,
+      title: "Data Security Priority",
+      desc: "Implementation of modern security standards to protect your digital assets."
+    }
+  ];
+
+  const stepsId = [
     {
       num: "01",
       title: "Discovery & Strategy",
@@ -67,15 +109,84 @@ const Services = () => {
     }
   ];
 
+  const stepsEn = [
+    {
+      num: "01",
+      title: "Discovery & Strategy",
+      desc: "In-depth discussions to understand your audience, competitors, and business goals."
+    },
+    {
+      num: "02",
+      title: "UI/UX Design",
+      desc: "Creation of aesthetic and functional visual prototypes for approval."
+    },
+    {
+      num: "03",
+      title: "Development",
+      desc: "Coding process using the latest technology stack for fast results."
+    },
+    {
+      num: "04",
+      title: "Final QA & Launch",
+      desc: "Rigorous testing across multiple browsers and SEO integration before go-live."
+    }
+  ];
+
+  const translations = {
+    id: {
+      title: "Solusi Digital",
+      titleGradient: "Tanpa Kompromi",
+      subtitle: "Kami menggabungkan estetika premium dengan teknologi mutakhir untuk menciptakan website yang bukan sekadar ada, tapi menghasilkan.",
+      processTitle: "Alur Kerja",
+      processGradient: "Profesional",
+      processSubtitle: "Bagaimana kami mewujudkan visi Anda menjadi realitas digital.",
+      standardTitle: "Standar",
+      standardGradient: "Aurotech",
+      standardSubtitle: "Setiap baris kode yang kami tulis didesain untuk keunggulan.",
+      ctaTitle: "Siap Membangun Kehadiran Digital Anda?",
+      ctaDesc: "Konsultasikan kebutuhan website Anda dengan pakar kami sekarang.",
+      ctaButton: "Mulai Konsultasi Gratis"
+    },
+    en: {
+      title: "Digital Solutions",
+      titleGradient: "Without Compromise",
+      subtitle: "We combine premium aesthetics with cutting-edge technology to create websites that don't just exist, but perform.",
+      processTitle: "Professional",
+      processGradient: "Workflow",
+      processSubtitle: "How we turn your vision into digital reality.",
+      standardTitle: "Aurotech",
+      standardGradient: "Standards",
+      standardSubtitle: "Every line of code we write is designed for excellence.",
+      ctaTitle: "Ready to Build Your Digital Presence?",
+      ctaDesc: "Consult your website needs with our experts now.",
+      ctaButton: "Start Free Consultation"
+    }
+  };
+
+  const coreSolutions = language === 'en' ? coreSolutionsEn : coreSolutionsId;
+  const benefits = language === 'en' ? benefitsEn : benefitsId;
+  const steps = language === 'en' ? stepsEn : stepsId;
+  const t = translations[language] || translations.id;
+
   return (
     <div className="services-page-container">
       {/* COMBINED HERO & SOLUTIONS SECTION */}
       <section className="section services-top-section">
         <div className="container">
           <div className="section-header text-center mb-16">
-            <h1 className="section-title h1 animate-entrance">Solusi Digital <br /> <span className="text-gradient">Tanpa Kompromi</span></h1>
+            <h1 className="section-title h1 animate-entrance">
+              {language === 'id' ? (
+                <>
+                  {t.title} <br /> <span className="text-gradient">{t.titleGradient}</span>
+                </>
+              ) : (
+                <>
+                  {t.title} <span className="text-gradient">{t.titleGradient}</span>
+                </>
+              )}
+            </h1>
             <p className="section-subtitle lg animate-entrance delay-100">
-              Kami menggabungkan estetika premium dengan teknologi mutakhir untuk menciptakan website yang bukan sekadar ada, tapi menghasilkan.
+              {t.subtitle}
             </p>
           </div>
 
@@ -103,8 +214,8 @@ const Services = () => {
       <section className="section process-section bg-secondary">
         <div className="container">
           <div className="section-header text-center">
-            <h2 className="section-title">Alur Kerja <span className="text-gradient">Profesional</span></h2>
-            <p className="section-subtitle">Bagaimana kami mewujudkan visi Anda menjadi realitas digital.</p>
+            <h2 className="section-title">{t.processTitle} <span className="text-gradient">{t.processGradient}</span></h2>
+            <p className="section-subtitle">{t.processSubtitle}</p>
           </div>
 
           <div className="process-workflow">
@@ -126,8 +237,8 @@ const Services = () => {
       <section className="section benefits-section">
         <div className="container">
           <div className="section-header text-center">
-            <h2 className="section-title">Standar <span className="text-gradient">Aurotech</span></h2>
-            <p className="section-subtitle">Setiap baris kode yang kami tulis didesain untuk keunggulan.</p>
+            <h2 className="section-title">{t.standardTitle} <span className="text-gradient">{t.standardGradient}</span></h2>
+            <p className="section-subtitle">{t.standardSubtitle}</p>
           </div>
 
           <div className="benefits-grid">
@@ -147,11 +258,11 @@ const Services = () => {
       {/* 5. FINAL CTA */}
       <section className="section cta-section-mini glass">
         <div className="container text-center">
-          <h2 className="cta-title animate-entrance">Siap Membangun Kehadiran Digital Anda?</h2>
-          <p className="cta-desc animate-entrance delay-100">Konsultasikan kebutuhan website Anda dengan pakar kami sekarang.</p>
+          <h2 className="cta-title animate-entrance">{t.ctaTitle}</h2>
+          <p className="cta-desc animate-entrance delay-100">{t.ctaDesc}</p>
           <div className="cta-actions animate-entrance delay-200">
             <a href="https://wa.me/6282182252766" className="btn btn-primary btn-lg btn-glint">
-              <FiMessageSquare /> Mulai Konsultasi Gratis
+              <FiMessageSquare /> {t.ctaButton}
             </a>
           </div>
         </div>
@@ -161,3 +272,4 @@ const Services = () => {
 };
 
 export default Services;
+

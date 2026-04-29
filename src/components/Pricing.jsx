@@ -1,13 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 import { FiCheck, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import './Pricing.css';
 
 const Pricing = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const { language } = useLanguage();
 
-  const mainPlans = [
+  const mainPlansId = [
     {
       name: "Basic",
       price: "Rp999.000",
@@ -67,7 +69,67 @@ const Pricing = () => {
     }
   ];
 
-  const maintenancePlansList = [
+  const mainPlansEn = [
+    {
+      name: "Basic",
+      price: "Rp999.000",
+      originalPrice: "Rp1.500.000",
+      desc: "Perfect for Starters & Small Businesses",
+      features: [
+        { name: "Up to 5 Website Pages", included: true },
+        { name: "Unlimited Revisions", included: true },
+        { name: "3 Business Emails", included: true },
+        { name: "WhatsApp Integration", included: true },
+        { name: "🎁 1-Year Hosting & .com Domain", included: true },
+        { name: "Google SEO", included: false },
+        { name: "3 SEO Articles", included: false },
+        { name: "1-Month Maintenance", included: false }
+      ],
+      featured: false,
+      btnText: "Choose Plan"
+    },
+    {
+      name: "Professional",
+      price: "Rp1.999.000",
+      originalPrice: "Rp2.500.000",
+      desc: "Most Popular Choice for Businesses",
+      features: [
+        { name: "Up to 10 Website Pages", included: true },
+        { name: "Unlimited Revisions", included: true },
+        { name: "5 Business Emails", included: true },
+        { name: "WhatsApp Integration", included: true },
+        { name: "🎁 1-Year Hosting & .com Domain", included: true },
+        { name: "Google SEO", included: true },
+        { name: "3 SEO Articles", included: true },
+        { name: "🎁 1-Month Maintenance & Updates", included: true }
+      ],
+      featured: true,
+      btnText: "Choose Plan"
+    },
+    {
+      name: "Premium",
+      price: "Rp3.999.000",
+      originalPrice: "Rp4.500.000",
+      desc: "For Large & Complex Business Scale",
+      features: [
+        { name: "10+ Website Pages", included: true },
+        { name: "Unlimited Revisions", included: true },
+        { name: "5 Business Emails", included: true },
+        { name: "WhatsApp Integration", included: true },
+        { name: "Database Integration", included: true },
+        { name: "Online Registration Form", included: true },
+        { name: "🎁 1-Year Hosting & .com Domain", included: true },
+        { name: "Google SEO", included: true },
+        { name: "10 SEO Articles", included: true },
+        { name: "Admin & Dashboard Features", included: true },
+        { name: "🎁 1-Year Maintenance & Updates", included: true }
+      ],
+      featured: false,
+      btnText: "Choose Plan"
+    }
+  ];
+
+  const maintenancePlansListId = [
     {
       name: "Perpanjangan",
       category: "Management",
@@ -148,6 +210,110 @@ const Pricing = () => {
     }
   ];
 
+  const maintenancePlansListEn = [
+    {
+      name: "Renewal",
+      category: "Management",
+      price: "Rp350.000 / yr",
+      desc: "Hosting & Domain Only",
+      isRenewal: true,
+      features: [
+        "Domain Renewal (.com)",
+        "Data Storage Rent (Hosting)",
+        "Website Stays Active & Secure"
+      ],
+      btnText: "Choose Plan",
+      targetId: "renewal-detail"
+    },
+    {
+      name: "Logo Design",
+      category: "Design",
+      price: "Rp300.000",
+      features: [
+        "3 Design Concepts",
+        "Max 2x Revisions",
+        "3 Working Days Turnaround",
+        "Master Files (AI/EPS/SVG)"
+      ],
+      featured: false,
+      btnText: "Choose Plan",
+      targetId: "design-logo"
+    },
+    {
+      name: "Basic",
+      category: "Maintenance",
+      price: "Rp150.000 / mo",
+      features: [
+        "1 Article Production/mo",
+        "Fast Response Support",
+        "Uptime Monitoring",
+        "Weekly Backup",
+        "Error Fixing"
+      ],
+      featured: false,
+      btnText: "Choose Plan",
+      targetId: "maintenance-Basic"
+    },
+    {
+      name: "Professional",
+      category: "Maintenance",
+      price: "Rp300.000 / mo",
+      features: [
+        "4 Article Production/mo",
+        "Page Content Updates",
+        "Fast Response Support",
+        "Uptime Monitoring",
+        "Weekly Backup",
+        "Error Fixing",
+        "Keyword Optimization"
+      ],
+      featured: false,
+      btnText: "Choose Plan",
+      targetId: "maintenance-Profesional"
+    },
+    {
+      name: "Premium",
+      category: "Maintenance",
+      price: "Rp750.000 / mo",
+      features: [
+        "8 Article Production/mo",
+        "New Page Additions",
+        "Page Content Updates",
+        "Fast Response Support",
+        "Uptime Monitoring",
+        "Weekly Backup",
+        "Advanced SEO Optimization",
+        "Weekly SEO Audit"
+      ],
+      featured: false,
+      btnText: "Choose Plan",
+      targetId: "maintenance-Premium"
+    }
+  ];
+
+  const translations = {
+    id: {
+      promo: "🎉 PROMO TERBATAS: Gratis Domain & Hosting Super Cepat 1 Tahun Penuh!",
+      title: "Paket Pembuatan Website",
+      subtitle: "Pilih rentang harga yang sesuai dengan skala bisnis Anda.",
+      guarantee: "🛡️ Garansi Revisi Desain Sampai Deal",
+      addonTitle: "Add-on Service",
+      addonSubtitle: "Layanan tambahan untuk mendukung pertumbuhan dan performa aset digital Anda."
+    },
+    en: {
+      promo: "🎉 LIMITED PROMO: Free Super Fast Domain & Hosting for 1 Full Year!",
+      title: "Website Development Packages",
+      subtitle: "Choose the price range that suits your business scale.",
+      guarantee: "🛡️ Design Revision Guarantee",
+      addonTitle: "Add-on Services",
+      addonSubtitle: "Additional services to support the growth and performance of your digital assets."
+    }
+  };
+
+  const mainPlans = language === 'en' ? mainPlansEn : mainPlansId;
+  const maintenancePlansList = language === 'en' ? maintenancePlansListEn : maintenancePlansListId;
+  const t = translations[language] || translations.id;
+
   const handlePrev = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? maintenancePlansList.length - 3 : prev - 1));
   }, [maintenancePlansList.length]);
@@ -179,13 +345,13 @@ const Pricing = () => {
         {/* Scarcity Banner Hook */}
         <div className="promo-banner text-center mb-8">
           <div className="inline-block bg-primary text-black px-6 py-3 rounded-full font-bold shadow-lg animate-pulse">
-            🎉 PROMO TERBATAS: Gratis Domain & Hosting Super Cepat 1 Tahun Penuh!
+            {t.promo}
           </div>
         </div>
 
         <div className="section-header text-center mt-6">
-          <h2 className="section-title text-white">Paket Pembuatan Website</h2>
-          <p className="text-gray-300">Pilih rentang harga yang sesuai dengan skala bisnis Anda.</p>
+          <h2 className="section-title text-white">{t.title}</h2>
+          <p className="text-gray-300">{t.subtitle}</p>
         </div>
 
         <div className="pricing-grid">
@@ -219,7 +385,7 @@ const Pricing = () => {
                 <a href={`https://wa.me/6282182252766?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Website%20${plan.name}`} className="btn w-full btn-blue">
                   {plan.btnText}
                 </a>
-                <p className="text-center mt-4 text-sm text-gray-400 font-medium" style={{ opacity: 0.8 }}>🛡️ Garansi Revisi Desain Sampai Deal</p>
+                <p className="text-center mt-4 text-sm text-gray-400 font-medium" style={{ opacity: 0.8 }}>{t.guarantee}</p>
               </div>
             </div>
           ))}
@@ -227,9 +393,10 @@ const Pricing = () => {
 
         {/* 3. Add-on Service Slider */}
         <div className="section-header text-center" style={{ marginTop: '8rem' }}>
-          <h2 className="section-title text-white">Add-on Service</h2>
-          <p className="text-gray-300">Layanan tambahan untuk mendukung pertumbuhan dan performa aset digital Anda.</p>
+          <h2 className="section-title text-white">{t.addonTitle}</h2>
+          <p className="text-gray-300">{t.addonSubtitle}</p>
         </div>
+
 
         <div className="maintenance-slider-outer">
           <button className="slider-arrow prev" onClick={handlePrev} aria-label="Previous">

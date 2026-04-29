@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import { projects } from '../data/projects';
 import { FiArrowLeft, FiExternalLink, FiCheckCircle } from 'react-icons/fi';
 import SEO from '../components/SEO';
@@ -6,14 +7,34 @@ import './PortfolioDetail.css';
 
 const PortfolioDetail = () => {
   const { id } = useParams();
+  const { language } = useLanguage();
   const project = projects.find(p => p.id === parseInt(id));
+
+  const translations = {
+    id: {
+      notFoundTitle: "Project Tidak Ditemukan",
+      notFoundDesc: "Project portfolio yang Anda cari tidak tersedia.",
+      notFoundHeader: "Project tidak ditemukan",
+      backToPortfolio: "Kembali ke Portfolio",
+      visitLive: "Kunjungi Website Live"
+    },
+    en: {
+      notFoundTitle: "Project Not Found",
+      notFoundDesc: "The portfolio project you are looking for is not available.",
+      notFoundHeader: "Project not found",
+      backToPortfolio: "Back to Portfolio",
+      visitLive: "Visit Live Website"
+    }
+  };
+
+  const t = translations[language] || translations.id;
 
   if (!project) {
     return (
       <div className="portfolio-detail not-found pt-24 text-center">
-        <SEO title="Project Tidak Ditemukan" description="Project portfolio yang Anda cari tidak tersedia." />
-        <h2>Project tidak ditemukan</h2>
-        <Link to="/portfolio" className="btn btn-primary mt-4">Kembali ke Portfolio</Link>
+        <SEO title={t.notFoundTitle} description={t.notFoundDesc} />
+        <h2>{t.notFoundHeader}</h2>
+        <Link to="/portfolio" className="btn btn-primary mt-4">{t.backToPortfolio}</Link>
       </div>
     );
   }
@@ -48,7 +69,7 @@ const PortfolioDetail = () => {
     <div className="portfolio-detail pt-24 pb-16">
       <SEO 
         title={project.title}
-        description={`Portfolio project Aurotech: ${project.title}. ${project.challenge.substring(0, 150)}...`}
+        description={`Portfolio project Aurotech: ${project.title}. ${project.challenge[language].substring(0, 150)}...`}
         ogImage={project.image}
         canonical={`portfolio/${project.id}`}
       />
@@ -57,17 +78,17 @@ const PortfolioDetail = () => {
       </script>
       <div className="container">
         <Link to="/portfolio" className="back-link">
-          <FiArrowLeft /> Kembali ke Portfolio
+          <FiArrowLeft /> {t.backToPortfolio}
         </Link>
         
         <div className="detail-header text-center mt-8 mb-16">
           <h1 className="detail-title hero-title">{project.title}</h1>
           <div className="detail-meta mb-8">
-            <span className="badge">{project.category}</span>
+            <span className="badge">{project.category[language]}</span>
           </div>
           <div className="detail-actions">
             <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg btn-glint">
-              Kunjungi Website Live <FiExternalLink />
+              {t.visitLive} <FiExternalLink />
             </a>
           </div>
         </div>
@@ -94,3 +115,4 @@ const PortfolioDetail = () => {
 };
 
 export default PortfolioDetail;
+
