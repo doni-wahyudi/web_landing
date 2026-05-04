@@ -56,17 +56,74 @@ const Services = () => {
       title: "Laju Loading Sangat Cepat",
       desc: "Optimasi core web vitals untuk pengalaman pengguna tanpa hambatan."
     },
-    {
-      icon: <FiSmartphone />,
-      title: "Ultimate Mobile Experience",
-      desc: "Bukan sekadar responsif, tapi didesain untuk kenyamanan pengguna jempol."
-    },
-    {
-      icon: <FiShield />,
-      title: "Prioritas Keamanan Data",
-      desc: "Implementasi standar keamanan modern untuk melindungi aset digital Anda."
+    en: {
+      heroTitle: "Digital Solutions",
+      heroTitleGradient: "Without Compromise",
+      heroSubtitle: "We combine premium aesthetics with cutting-edge technology to create websites that don't just exist, but perform.",
+      workTitle: "Professional",
+      workTitleGradient: "Workflow",
+      workSubtitle: "How we turn your vision into digital reality.",
+      standardTitle: "Aurotech",
+      standardTitleGradient: "Standards",
+      standardSubtitle: "Every line of code we write is designed for excellence.",
+      ctaTitle: "Ready to Build Your Digital Presence?",
+      ctaDesc: "Consult your website needs with our experts now.",
+      ctaButton: "Start Free Consultation",
+      coreSolutions: [
+        {
+          title: "Premium Company Profile",
+          desc: "Build B2B credibility with an elegant and informative institutional design.",
+          highlight: "Highly Recommended"
+        },
+        {
+          title: "High-Conversion Landing Page",
+          desc: "Specially designed for marketing campaigns with a focus on customer conversion rates.",
+          highlight: "Most Popular"
+        },
+        {
+          title: "Custom Web Application",
+          desc: "Dashboard systems, CRM, or internal portals built to fit your unique business needs.",
+          highlight: "Enterprise"
+        }
+      ],
+      benefits: [
+        {
+          title: "Lightning Fast Loading",
+          desc: "Core web vitals optimization for a seamless user experience."
+        },
+        {
+          title: "Ultimate Mobile Experience",
+          desc: "Not just responsive, but designed for thumb-friendly comfort."
+        },
+        {
+          title: "Data Security Priority",
+          desc: "Implementation of modern security standards to protect your digital assets."
+        }
+      ],
+      steps: [
+        {
+          num: "01",
+          title: "Discovery & Strategy",
+          desc: "Deep discussions to understand your audience, competitors, and business goals."
+        },
+        {
+          num: "02",
+          title: "UI/UX Design",
+          desc: "Creation of aesthetic and functional visual prototypes for approval."
+        },
+        {
+          num: "03",
+          title: "Development",
+          desc: "Coding process using the latest technology stack for fast results."
+        },
+        {
+          num: "04",
+          title: "Final QA & Launch",
+          desc: "Rigorous testing across browsers and SEO integration before going live."
+        }
+      ]
     }
-  ];
+  };
 
   const benefitsEn = [
     {
@@ -219,14 +276,14 @@ const Services = () => {
           </div>
 
           <div className="process-workflow">
-            {steps.map((step, index) => (
+            {t.steps.map((step, index) => (
               <div key={index} className="process-step">
                 <div className="step-number">{step.num}</div>
                 <div className="step-content">
                   <h3>{step.title}</h3>
                   <p>{step.desc}</p>
                 </div>
-                {index < steps.length - 1 && <div className="step-connector"></div>}
+                {index < t.steps.length - 1 && <div className="step-connector"></div>}
               </div>
             ))}
           </div>
