@@ -18,6 +18,8 @@ import Preloader from './components/Preloader';
 import AdminLayout from './layouts/AdminLayout';
 import AdminLogin from './pages/admin/AdminLogin';
 import CpanelAccounts from './pages/admin/CpanelAccounts';
+import LeadsTracker from './pages/admin/LeadsTracker';
+import LeadsDashboard from './pages/admin/LeadsDashboard';
 
 function App() {
   return (
@@ -73,6 +75,8 @@ function AppContent() {
             <Route path="login" element={<AdminLogin />} />
             <Route path="cpanel" element={<CpanelAccounts />} />
             <Route path="articles" element={<ArticlesManager />} />
+            <Route path="leads" element={<LeadsTracker />} />
+            <Route path="dashboard" element={<LeadsDashboard />} />
           </Route>
         </Routes>
       </main>
