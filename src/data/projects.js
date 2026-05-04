@@ -1,9 +1,9 @@
-import putrakaryaImg from '../assets/portfolio/putrakarya.png';
-import aurobarbersImg from '../assets/portfolio/aurobarbers.png';
-import bimbelWebImg from '../assets/portfolio/bimbel_web.png';
-import clinicImg from '../assets/portfolio/clinic.png';
-import rentalImg from '../assets/portfolio/rental.png';
-import bakeryImg from '../assets/portfolio/bakery.png';
+import putrakaryaImg from '../assets/portfolio/putrakarya.webp';
+import aurobarbersImg from '../assets/portfolio/aurobarbers.webp';
+import bimbelWebImg from '../assets/portfolio/bimbel_web.webp';
+import clinicImg from '../assets/portfolio/clinic.webp';
+import rentalImg from '../assets/portfolio/rental.webp';
+import bakeryImg from '../assets/portfolio/bakery.webp';
 
 export const projects = [
   {

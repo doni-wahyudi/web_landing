@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -15,13 +15,21 @@ import TermsPage from './pages/TermsPage';
 import PrivacyPage from './pages/PrivacyPage';
 import Preloader from './components/Preloader';
 
-// Admin Components
-import AdminLayout from './layouts/AdminLayout';
-import AdminLogin from './pages/admin/AdminLogin';
-import CpanelAccounts from './pages/admin/CpanelAccounts';
-import LeadsTracker from './pages/admin/LeadsTracker';
-import LeadsDashboard from './pages/admin/LeadsDashboard';
-import VisitorsDashboard from './pages/admin/VisitorsDashboard';
+// Admin Components - Lazy Loaded
+const AdminLayout = lazy(() => import('./layouts/AdminLayout'));
+const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
+const CpanelAccounts = lazy(() => import('./pages/admin/CpanelAccounts'));
+const LeadsTracker = lazy(() => import('./pages/admin/LeadsTracker'));
+const LeadsDashboard = lazy(() => import('./pages/admin/LeadsDashboard'));
+const VisitorsDashboard = lazy(() => import('./pages/admin/VisitorsDashboard'));
+const ArticlesManager = lazy(() => import('./pages/admin/ArticlesManager'));
+
+// Loading component for Suspense
+const AdminLoader = () => (
+  <div style={{ padding: '2rem', textAlign: 'center', color: '#D4AF37' }}>
+    Loading dashboard...
+  </div>
+);
 
 function App() {
   return (
@@ -47,7 +55,6 @@ import { useLocation } from 'react-router-dom';
 
 import BlogGrid from './pages/blog/BlogGrid';
 import ArticleDetail from './pages/blog/ArticleDetail';
-import ArticlesManager from './pages/admin/ArticlesManager';
 
 function AppContent() {
   const location = useLocation();
@@ -87,7 +94,11 @@ function AppContent() {
 
 
           {/* Admin Routes */}
-          <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/admin" element={
+            <Suspense fallback={<AdminLoader />}>
+              <AdminLayout />
+            </Suspense>
+          }>
             <Route path="login" element={<AdminLogin />} />
             <Route path="cpanel" element={<CpanelAccounts />} />
             <Route path="articles" element={<ArticlesManager />} />

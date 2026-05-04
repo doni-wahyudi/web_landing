@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
-import personImage from '../assets/person_image.png';
+import personImage from '../assets/person_image.webp';
 import './Hero.css';
 
 const Hero = () => {
@@ -93,7 +93,13 @@ const Hero = () => {
 
         <div className="hero-visual animate-fade-in delay-200">
           <div className="hero-main-image-wrapper">
-            <img src={personImage} alt="Professional Project" className="hero-main-image" />
+            <img 
+              src={personImage} 
+              alt="Professional Project" 
+              className="hero-main-image" 
+              fetchpriority="high"
+              loading="eager"
+            />
           </div>
 
           {/* Decorative glowing orbs */}
