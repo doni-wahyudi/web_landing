@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiPlus, FiTrash2, FiCalendar, FiMapPin, FiBriefcase, FiMessageSquare, FiTrendingUp } from 'react-icons/fi';
+import { FiPlus, FiTrash2, FiCalendar, FiMapPin, FiBriefcase, FiMessageSquare, FiTrendingUp, FiUsers, FiActivity, FiTarget, FiCheckCircle } from 'react-icons/fi';
 import { getLeads, addLead, deleteLead } from '../../services/leadService';
 import './LeadsTracker.css';
 
