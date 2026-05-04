@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -50,6 +51,20 @@ import ArticlesManager from './pages/admin/ArticlesManager';
 function AppContent() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
+
+  // Visitor Tracking
+  useEffect(() => {
+    if (!isAdminRoute) {
+      fetch('https://aurotech.co.id/api/track-visit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          path: location.pathname,
+          referrer: document.referrer
+        })
+      }).catch(err => console.error('Tracking error:', err));
+    }
+  }, [location.pathname, isAdminRoute]);
 
   return (
     <>
