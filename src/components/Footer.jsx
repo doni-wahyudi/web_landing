@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { FiInstagram, FiFacebook, FiTwitter, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
-import logoImg from '../assets/logo_auro.png';
-import typographyImg from '../assets/typography_white.png';
+import logoImg from '../assets/logo_auro.webp';
+import typographyImg from '../assets/typography_white.webp';
 import './Footer.css';
 
 const Footer = () => {

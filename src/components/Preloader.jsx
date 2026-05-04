@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Preloader.css';
-import logoImg from '../assets/logo_auro.png';
-import typographyImg from '../assets/typography_white.png';
+import logoImg from '../assets/logo_auro.webp';
+import typographyImg from '../assets/typography_white.webp';
 
 const Preloader = () => {
   const [loading, setLoading] = useState(true);
