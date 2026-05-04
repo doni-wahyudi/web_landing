@@ -93,13 +93,17 @@ const LeadsTracker = () => {
                   onChange={e => setFormData({...formData, region: e.target.value})}
                   required
                 >
-                  <option value="">Select Region</option>
+                  <option value="">Pilih Wilayah</option>
                   <option value="Jakarta Pusat">Jakarta Pusat</option>
                   <option value="Jakarta Utara">Jakarta Utara</option>
                   <option value="Jakarta Timur">Jakarta Timur</option>
                   <option value="Jakarta Selatan">Jakarta Selatan</option>
                   <option value="Jakarta Barat">Jakarta Barat</option>
-                  <option value="Remote">Remote/Global</option>
+                  <option value="Bekasi">Bekasi</option>
+                  <option value="Depok">Depok</option>
+                  <option value="Tangerang">Tangerang</option>
+                  <option value="Bogor">Bogor</option>
+                  <option value="Luar Jabodetabek">Luar Jabodetabek</option>
                 </select>
               </div>
             </div>

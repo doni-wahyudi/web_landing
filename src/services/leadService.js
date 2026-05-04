@@ -1,5 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api'; // Local backend
-// Note: In production, this should be https://aurotech.co.id/api
+const API_BASE_URL = 'https://aurotech.co.id/api';
 
 export const getLeads = async () => {
   const response = await fetch(`${API_BASE_URL}/leads`);
