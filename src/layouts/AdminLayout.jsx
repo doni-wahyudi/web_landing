@@ -41,7 +41,10 @@ const AdminLayout = () => {
             <FiTarget /> Leads Tracker
           </Link>
           <Link to="/admin/dashboard" className="admin-nav-link">
-            <FiTrendingUp /> Dashboard
+            <FiTrendingUp /> Acquisition Stats
+          </Link>
+          <Link to="/admin/visitors" className="admin-nav-link">
+            <FiUsers /> Visitor Analytics
           </Link>
           <Link to="/" className="admin-nav-link">
             <FiHome /> Back to Site

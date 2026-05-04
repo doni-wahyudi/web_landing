@@ -136,7 +136,43 @@
   gap: 1rem;
 }
 
-.empty-placeholder svg {
-  font-size: 3rem;
-  opacity: 0.2;
+.next-plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.plan-card {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  border-left: 4px solid var(--primary);
+}
+
+.plan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.plan-date {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.plan-field {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.plan-text {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.plan-footer {
+  margin-top: auto;
 }

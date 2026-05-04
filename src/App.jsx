@@ -21,6 +21,7 @@ import AdminLogin from './pages/admin/AdminLogin';
 import CpanelAccounts from './pages/admin/CpanelAccounts';
 import LeadsTracker from './pages/admin/LeadsTracker';
 import LeadsDashboard from './pages/admin/LeadsDashboard';
+import VisitorsDashboard from './pages/admin/VisitorsDashboard';
 
 function App() {
   return (
@@ -92,6 +93,7 @@ function AppContent() {
             <Route path="articles" element={<ArticlesManager />} />
             <Route path="leads" element={<LeadsTracker />} />
             <Route path="dashboard" element={<LeadsDashboard />} />
+            <Route path="visitors" element={<VisitorsDashboard />} />
           </Route>
         </Routes>
       </main>
