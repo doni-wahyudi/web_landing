@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { FiCheck, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import './Pricing.css';
 
@@ -73,11 +74,11 @@ const Pricing = () => {
       name: "Basic",
       price: "Rp999.000",
       originalPrice: "Rp1.500.000",
-      desc: "Suitable for Starters & Basic MSMEs",
+      desc: "Perfect for Starters & Small Businesses",
       features: [
         { name: "Up to 5 Website Pages", included: true },
         { name: "Unlimited Revisions", included: true },
-        { name: "3 Corporate Emails", included: true },
+        { name: "3 Business Emails", included: true },
         { name: "WhatsApp Integration", included: true },
         { name: "🎁 1-Year Hosting & .com Domain", included: true },
         { name: "Google SEO", included: false },
@@ -91,11 +92,11 @@ const Pricing = () => {
       name: "Professional",
       price: "Rp1.999.000",
       originalPrice: "Rp2.500.000",
-      desc: "Most Popular Choice for Business",
+      desc: "Most Popular Choice for Businesses",
       features: [
         { name: "Up to 10 Website Pages", included: true },
         { name: "Unlimited Revisions", included: true },
-        { name: "5 Corporate Emails", included: true },
+        { name: "5 Business Emails", included: true },
         { name: "WhatsApp Integration", included: true },
         { name: "🎁 1-Year Hosting & .com Domain", included: true },
         { name: "Google SEO", included: true },
@@ -113,7 +114,7 @@ const Pricing = () => {
       features: [
         { name: "10+ Website Pages", included: true },
         { name: "Unlimited Revisions", included: true },
-        { name: "5 Corporate Emails", included: true },
+        { name: "5 Business Emails", included: true },
         { name: "WhatsApp Integration", included: true },
         { name: "Database Integration", included: true },
         { name: "Online Registration Form", included: true },
@@ -309,9 +310,9 @@ const Pricing = () => {
     }
   };
 
-  const mainPlans = language === 'id' ? mainPlansId : mainPlansEn;
-  const maintenancePlansList = language === 'id' ? maintenancePlansListId : maintenancePlansListEn;
-  const t = translations[language];
+  const mainPlans = language === 'en' ? mainPlansEn : mainPlansId;
+  const maintenancePlansList = language === 'en' ? maintenancePlansListEn : maintenancePlansListId;
+  const t = translations[language] || translations.id;
 
   const handlePrev = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? maintenancePlansList.length - 3 : prev - 1));
@@ -394,6 +395,7 @@ const Pricing = () => {
           <h2 className="section-title text-white">{t.addonTitle}</h2>
           <p className="text-gray-300">{t.addonSubtitle}</p>
         </div>
+
 
         <div className="maintenance-slider-outer">
           <button className="slider-arrow prev" onClick={handlePrev} aria-label="Previous">

@@ -38,35 +38,35 @@ const PrivacyPage = () => {
       titleGradient: "Policy",
       updated: "Last updated: April 20, 2026",
       sec1Title: "1. Information We Collect",
-      sec1Text: "We collect information you provide directly when contacting us via WhatsApp or other forms, including but not limited to:",
+      sec1Text: "We collect information you provide directly when you contact us via WhatsApp or other forms, including but not limited to:",
       sec1Item1: "Name and contact details (phone number, email).",
-      sec1Item2: "Project details and business requirements.",
-      sec1Item3: "Media assets provided for website content.",
+      sec1Item2: "Project details and business needs.",
+      sec1Item3: "Media assets provided for website materials.",
       sec2Title: "2. How We Use Information",
       sec2Text: "The information you provide is used to:",
       sec2Item1: "Provide consultation services and price quotes.",
       sec2Item2: "Execute website projects and feature integration.",
-      sec2Item3: "Communicate project status and technical support.",
-      sec2Item4: "Send updates or new service offers.",
+      sec2Item3: "Communicate regarding project status and technical support.",
+      sec2Item4: "Send update information or new service offers.",
       sec3Title: "3. Data Security",
-      sec3Text: "We implement reasonable technical and organizational security measures to protect clients' personal data from unauthorized access, disclosure, or damage. Domain and hosting registration data will be securely managed in accordance with relevant provider protocols.",
+      sec3Text: "We implement reasonable technical and organizational security measures to protect client personal data from unauthorized access, disclosure, or damage. Domain and hosting registration data will be managed securely in accordance with relevant provider protocols.",
       sec4Title: "4. Sharing Information with Third Parties",
-      sec4Text: "We will not sell your data to outside parties. We only share data with third-party partners required to provide services (such as domain registrars or hosting providers) who have similar privacy policies.",
+      sec4Text: "We will not sell your data to outsiders. We only share data with third-party partners required for service provision (such as domain registrars or hosting providers) who have similar privacy policies.",
       sec5Title: "5. Cookies and Analytics",
-      sec5Text: "Our website may use cookies to improve navigation experience and analyze traffic using third-party services like Google Analytics for internal evaluation purposes.",
+      sec5Text: "Our website may use cookies to improve navigation experience and analyze traffic using third-party services such as Google Analytics for internal evaluation purposes.",
       sec6Title: "6. Your Rights",
-      sec6Text: "You have the right to request access to your personal information we store, request correction of inaccurate data, or request deletion of your data from our marketing communication systems at any time."
+      sec6Text: "You have the right to request access to the personal information we hold, request correction of inaccurate data, or request deletion of your data from our marketing communication systems at any time."
     }
   };
 
-  const t = translations[language];
+  const t = translations[language] || translations.id;
 
   return (
     <div className="privacy-page pt-32 pb-20">
       <SEO title={t.seoTitle} description={t.seoDesc} />
       <div className="container max-w-4xl">
         <div className="section-header text-center mb-16">
-          <h1 className="h1 animate-entrance">{t.title} <span className="text-gradient">{t.titleGradient}</span></h1>
+          <h1 className="h1 animate-entrance">{language === 'id' ? <>{t.title} <span className="text-gradient">{t.titleGradient}</span></> : <><span className="text-gradient">{t.title}</span> {t.titleGradient}</>}</h1>
           <p className="text-muted animate-entrance delay-100">{t.updated}</p>
         </div>
 

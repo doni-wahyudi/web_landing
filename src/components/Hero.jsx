@@ -37,7 +37,7 @@ const Hero = () => {
     }
   };
 
-  const t = translations[language];
+  const t = translations[language] || translations.id;
 
   return (
     <section className="hero" ref={heroRef}>
@@ -61,7 +61,6 @@ const Hero = () => {
               </>
             )}
           </h1>
-
 
           <p className="hero-subtitle delay-300">
             {t.subtitle}

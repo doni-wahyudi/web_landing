@@ -1,0 +1,35 @@
+name: Build and Deploy Frontend
+on:
+  push:
+    branches:
+      - main # Change this if your main branch has a different name
+
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Matches a modern React environment
+
+      - name: 🔨 Install dependencies
+        run: npm install
+
+      - name: 🏗️ Build Project
+        run: npm run build
+
+      - name: 📂 Sync Files to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: /public_html/ # This points to your public web folder
+          # We don't need to exclude server_side here because we are only 
+          # uploading the content of the ./dist/ folder.

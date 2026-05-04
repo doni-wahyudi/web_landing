@@ -61,42 +61,42 @@ const Testimonials = () => {
       id: 1,
       name: "Budi Santoso",
       role: "CEO, Logistics Company",
-      content: "Aurotech truly understands our brand vision. The website they built is not just aesthetic, but also increased conversions by up to 40% in the first 3 months.",
+      content: "Aurotech truly understands our brand vision. The website they built is not only aesthetic but also increased conversions by up to 40% in the first 3 months.",
       rating: 5
     },
     {
       id: 2,
       name: "Siska Wijaya",
       role: "Founder, Fashion Company",
-      content: "The process was very professional. The Aurotech team is very detailed in UI/UX matters. Now our website feels much more premium and is trusted by customers.",
+      content: "The work process was highly professional. The Aurotech team is very detailed when it comes to UI/UX. Now our website feels much more premium and trusted by customers.",
       rating: 5
     },
     {
       id: 3,
       name: "Andi Pratama",
       role: "Operations Director, Property Company",
-      content: "The support service is extraordinary. Every time there is a problem, they respond quickly. The best investment for our company's digital assets.",
+      content: "Their support service is outstanding. Every time there is an issue, they respond quickly. The best investment for our company's digital assets.",
       rating: 5
     },
     {
       id: 4,
       name: "Hendra Kusuma",
       role: "Owner, FnB Company",
-      content: "Aurotech helped us digitize our menu and reservation system. Very helpful for our daily operations and looks very classy.",
+      content: "Aurotech helped us digitize our menu and reservation system. It really helps our daily operations and looks very classy.",
       rating: 5
     },
     {
       id: 5,
       name: "Rina Melati",
       role: "Manager, Retail Company",
-      content: "Very sleek website design and very fast performance. Our online sales increased significantly since the release.",
+      content: "Very sleek website design and very fast performance. Our online sales have increased significantly since the release.",
       rating: 5
     },
     {
       id: 6,
       name: "Fahmi Idris",
       role: "CEO, Construction Company",
-      content: "A very trusted digital partner. Their work always exceeds our expectations in functionality and design.",
+      content: "A very reliable digital partner. Their work always exceeds our expectations in terms of functionality and design.",
       rating: 5
     }
   ];
@@ -108,14 +108,14 @@ const Testimonials = () => {
       subtitle: "Kepercayaan Anda adalah prioritas utama kami dalam menghadirkan kualitas terbaik."
     },
     en: {
-      title: "What",
-      titleGradient: "Our Clients Say",
+      title: "What Our",
+      titleGradient: "Clients Say",
       subtitle: "Your trust is our top priority in delivering the best quality."
     }
   };
 
-  const testimonials = language === 'id' ? testimonialsId : testimonialsEn;
-  const t = translations[language];
+  const testimonials = language === 'en' ? testimonialsEn : testimonialsId;
+  const t = translations[language] || translations.id;
 
   const totalSlides = isMobile ? testimonials.length : Math.ceil(testimonials.length / 3);
 

@@ -15,9 +15,9 @@ const AboutPage = () => {
       mission: "Misi",
       missionGradient: "Kami",
       missionDesc: "Di Aurotech, misi kami sederhana: memberdayakan bisnis dengan website yang bukan sekadar ada, tetapi website yang bekerja untuk tujuan bisnis Anda—meningkatkan kredibilitas, konversi, dan pertumbuhan.",
-      mission1: "Kualitas desain tanpa kompromi.",
-      mission2: "Teknologi mutakhir untuk performa maksimal.",
-      mission3: "Dukungan berkelanjutan pasca-peluncuran.",
+      feat1: "Kualitas desain tanpa kompromi.",
+      feat2: "Teknologi mutakhir untuk performa maksimal.",
+      feat3: "Dukungan berkelanjutan pasca-peluncuran.",
       vision: "Visi",
       visionGradient: "Masa Depan",
       visionDesc: "Menjadi standar emas dalam agensi digital di Indonesia, dikenal karena estetika visual yang kuat dan integritas teknis yang tak tertandingi. Kami percaya bahwa setiap bisnis, besar maupun kecil, berhak memiliki kehadiran digital kelas dunia."
@@ -30,17 +30,17 @@ const AboutPage = () => {
       subtitle: "We are a team of experts dedicated to creating extraordinary digital experiences through premium design and cutting-edge technology.",
       mission: "Our",
       missionGradient: "Mission",
-      missionDesc: "At Aurotech, our mission is simple: to empower businesses with websites that don't just exist, but websites that work for your business goals—increasing credibility, conversion, and growth.",
-      mission1: "Uncompromised design quality.",
-      mission2: "Cutting-edge technology for maximum performance.",
-      mission3: "Ongoing post-launch support.",
-      vision: "Future",
-      visionGradient: "Vision",
-      visionDesc: "To be the gold standard in digital agencies in Indonesia, known for strong visual aesthetics and unparalleled technical integrity. We believe that every business, large or small, deserves to have a world-class digital presence."
+      missionDesc: "At Aurotech, our mission is simple: to empower businesses with websites that don't just exist, but websites that work for your business goals—increasing credibility, conversions, and growth.",
+      feat1: "Uncompromising design quality.",
+      feat2: "Cutting-edge technology for maximum performance.",
+      feat3: "Ongoing support after launch.",
+      vision: "Vision for the",
+      visionGradient: "Future",
+      visionDesc: "To be the gold standard in digital agencies in Indonesia, known for strong visual aesthetics and unparalleled technical integrity. We believe every business, large or small, deserves a world-class digital presence."
     }
   };
 
-  const t = translations[language];
+  const t = translations[language] || translations.id;
 
   return (
     <div className="about-page pt-32 pb-20">
@@ -70,15 +70,15 @@ const AboutPage = () => {
             <ul className="space-y-4">
               <li className="flex items-center gap-3">
                 <FiCheckCircle className="text-primary" /> 
-                <span>{t.mission1}</span>
+                <span>{t.feat1}</span>
               </li>
               <li className="flex items-center gap-3">
                 <FiCheckCircle className="text-primary" /> 
-                <span>{t.mission2}</span>
+                <span>{t.feat2}</span>
               </li>
               <li className="flex items-center gap-3">
                 <FiCheckCircle className="text-primary" /> 
-                <span>{t.mission3}</span>
+                <span>{t.feat3}</span>
               </li>
             </ul>
           </div>

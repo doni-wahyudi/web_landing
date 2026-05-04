@@ -1,0 +1,32 @@
+const API_BASE_URL = 'https://aurotech.co.id/api';
+
+export const getArticles = async () => {
+  const response = await fetch(`${API_BASE_URL}/articles`);
+  if (!response.ok) throw new Error('Fetch failed');
+  return response.json();
+};
+
+export const createArticle = async (formData) => {
+  const response = await fetch(`${API_BASE_URL}/articles`, {
+    method: 'POST',
+    body: formData // Form data handles multipart files automatically
+  });
+  if (!response.ok) throw new Error('Post failed');
+  return response.json();
+};
+export const updateArticle = async (id, formData) => {
+  const response = await fetch(`${API_BASE_URL}/articles/${id}`, {
+    method: 'PUT',
+    body: formData
+  });
+  if (!response.ok) throw new Error('Update failed');
+  return response.json();
+};
+
+export const deleteArticle = async (id) => {
+  const response = await fetch(`${API_BASE_URL}/articles/${id}`, {
+    method: 'DELETE'
+  });
+  if (!response.ok) throw new Error('Delete failed');
+  return true;
+};

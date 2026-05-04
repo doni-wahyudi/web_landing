@@ -20,13 +20,13 @@ const Portfolio = () => {
       title: "Our",
       titleGradient: "Best",
       titleSuffix: "Work",
-      subtitle: "See our work in action. Click on a portfolio item to view project details.",
-      viewDetail: "View Details",
+      subtitle: "See our work first-hand. Click on a portfolio to view project details.",
+      viewDetail: "View Detail",
       visitWeb: "Visit Web"
     }
   };
 
-  const t = translations[language];
+  const t = translations[language] || translations.id;
 
   return (
     <section id="portfolio" className="section portfolio bg-secondary">
@@ -51,7 +51,7 @@ const Portfolio = () => {
                 <div className="portfolio-image">
                     <img 
                       src={project.image} 
-                      alt={`Website Portfolio Aurotech - ${project.title} (${project.category[language] || project.category.id})`}
+                      alt={`Website Portfolio Aurotech - ${project.title} (${project.category[language]})`}
                       loading="lazy"
                     />
                 </div>
@@ -68,7 +68,7 @@ const Portfolio = () => {
               </div>
               <div className="portfolio-info">
                 <h3>{project.title}</h3>
-                <span>{project.category[language] || project.category.id}</span>
+                <span>{project.category[language]}</span>
               </div>
             </div>
           ))}

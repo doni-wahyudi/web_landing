@@ -26,26 +26,26 @@ const TermsPage = () => {
     },
     en: {
       seoTitle: "Terms & Conditions",
-      seoDesc: "Terms and conditions of Aurotech Digital Agency services.",
+      seoDesc: "Terms and conditions of service at Aurotech Digital Agency.",
       title: "Terms &",
       titleGradient: "Conditions",
       updated: "Last updated: April 20, 2026",
       sec1Title: "1. Acceptance of Terms",
       sec1Text: "By accessing and using Aurotech services, you agree to be bound by these Terms and Conditions. If you do not agree to any part of these terms, you are not permitted to use our services.",
       sec2Title: "2. Scope of Services",
-      sec2Text: "Aurotech provides website development, UI/UX design, and SEO optimization services. Specific details of the services will be outlined in the mutually agreed proposal or invoice.",
+      sec2Text: "Aurotech provides website creation, UI/UX design, and SEO optimization services. Specific details of the service will be outlined in a mutually agreed proposal or invoice.",
       sec3Title: "3. Intellectual Property Rights",
       sec3Text: "Upon receipt of full payment, ownership of the final design and website code will be transferred to the client. However, Aurotech reserves the right to display the work in our portfolio for promotional purposes, unless agreed otherwise in writing.",
       sec4Title: "4. Client Obligations",
-      sec4Text: "The client is responsible for providing necessary content (text, images, logos) in a timely manner. Delays in providing content may cause delays in the website launch schedule.",
+      sec4Text: "The client is responsible for providing necessary content (text, images, logos) in a timely manner. Delays in content provision may lead to delays in the website launch schedule.",
       sec5Title: "5. Cancellation & Refunds",
-      sec5Text: "The refund policy will be based on the completed stages of work. Initial setup fees or deposits are usually non-refundable as they cover initial research and planning costs.",
+      sec5Text: "The refund policy will be based on the completed stages of work. Initial setup fees or deposits are generally non-refundable as they cover initial research and planning costs.",
       sec6Title: "6. Limitation of Liability",
-      sec6Text: "Aurotech is not liable for any indirect loss or data loss caused by using our products after the warranty period or due to unauthorized third-party intervention."
+      sec6Text: "Aurotech is not liable for indirect losses or data loss caused by using our products after the warranty period or due to unauthorized third-party intervention."
     }
   };
 
-  const t = translations[language];
+  const t = translations[language] || translations.id;
 
   return (
     <div className="terms-page pt-32 pb-20">

@@ -17,8 +17,7 @@ const Footer = () => {
       contact: "Hubungi Kami",
       about: "Tentang Kami",
       terms: "Syarat & Ketentuan",
-      privacy: "Kebijakan Privasi",
-      portfolio: "Portfolio"
+      privacy: "Kebijakan Privasi"
     },
     en: {
       desc: "Your best partner in realizing a professional, aesthetic, and sales-oriented digital identity.",
@@ -27,12 +26,11 @@ const Footer = () => {
       contact: "Contact Us",
       about: "About Us",
       terms: "Terms & Conditions",
-      privacy: "Privacy Policy",
-      portfolio: "Portfolio"
+      privacy: "Privacy Policy"
     }
   };
 
-  const t = translations[language];
+  const t = translations[language] || translations.id;
 
   return (
     <footer className="footer section">
@@ -69,7 +67,7 @@ const Footer = () => {
           <h3>{t.company}</h3>
           <ul>
             <li><Link to="/about">{t.about}</Link></li>
-            <li><Link to="/portfolio">{t.portfolio}</Link></li>
+            <li><Link to="/portfolio">Portfolio</Link></li>
             <li><Link to="/terms">{t.terms}</Link></li>
             <li><Link to="/privacy">{t.privacy}</Link></li>
           </ul>

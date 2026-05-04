@@ -33,23 +33,23 @@ const FAQ = () => {
   const faqsEn = [
     {
       question: "How long does the website creation process take?",
-      answer: "Turnaround time varies depending on website complexity. For Basic and Professional packages, it usually takes 3-7 working days after we receive all materials (text, photos, logo). For Custom systems, it usually takes 2-4 weeks."
+      answer: "The processing time varies depending on the complexity of the website. For the Basic and Professional packages, it usually takes 3-7 working days after we receive all materials (text, photos, logo). For Custom systems, it usually takes 2-4 weeks."
     },
     {
-      question: "Do I need to provide my own hosting & domain?",
-      answer: "No need. All our packages include a free (.com) Domain and high-speed Hosting for the first year."
+      question: "Do I need to prepare my own hosting & domain?",
+      answer: "No need. All our packages include a free Domain (.com) and high-speed Hosting for the first 1 year."
     },
     {
       question: "What if I want to make changes after the website is finished?",
-      answer: "We provide revision guarantees according to the package you choose. Additionally, we use a user-friendly CMS system, so you can easily change text or images later."
+      answer: "We provide revision guarantees according to the package you choose. In addition, we use a user-friendly CMS system, so you can easily change text or images later."
     },
     {
       question: "Will my website appear on Google?",
-      answer: "Yes, we implement on-page SEO practices from the beginning of development. We design the website structure to be easily read by search engines (Google) for optimal indexing performance."
+      answer: "Yes, we implement on-page SEO practices from the beginning of development. We design the website structure to be easily read by search engines (Google) so indexing performance is more optimal."
     },
     {
-      question: "What is the service payment system?",
-      answer: "Payment is made with a 50% Down Payment (DP) upfront before the project starts, and the remaining 50% after the website is built and ready for publication upon approval."
+      question: "What is the payment system for the service?",
+      answer: "Payment is made with a 50% Down Payment (DP) system at the beginning before the project starts, and a 50% payoff after the website is built and ready to be published as agreed."
     }
   ];
 
@@ -60,14 +60,14 @@ const FAQ = () => {
       subtitle: "Beberapa pertanyaan yang sering diajukan klien sebelum memutuskan untuk menggunakan jasa kami."
     },
     en: {
-      title: "Frequently Asked Questions",
-      titleGradient: "(FAQ)",
-      subtitle: "Some questions frequently asked by clients before deciding to use our services."
+      title: "Frequently Asked",
+      titleGradient: "Questions",
+      subtitle: "Some questions clients frequently ask before deciding to use our services."
     }
   };
 
-  const faqs = language === 'id' ? faqsId : faqsEn;
-  const t = translations[language];
+  const faqs = language === 'en' ? faqsEn : faqsId;
+  const t = translations[language] || translations.id;
 
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? null : index);

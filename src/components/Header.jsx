@@ -11,6 +11,18 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   const translations = {
     id: {
       home: "Beranda",
@@ -30,19 +42,7 @@ const Header = () => {
     }
   };
 
-  const t = translations[language];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const t = translations[language] || translations.id;
 
   return (
     <header className={`header ${isScrolled ? 'scrolled glass' : ''}`}>
@@ -60,18 +60,19 @@ const Header = () => {
           <Link to="/portfolio" onClick={() => setIsMobileMenuOpen(false)}>{t.portfolio}</Link>
           <Link to="/pricing" onClick={() => setIsMobileMenuOpen(false)}>{t.pricing}</Link>
           <Link to="/faq" onClick={() => setIsMobileMenuOpen(false)}>{t.faq}</Link>
+          <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
           
           <div className="lang-switch">
             <button 
               className={`lang-btn ${language === 'id' ? 'active' : ''}`} 
-              onClick={() => { setLanguage('id'); setIsMobileMenuOpen(false); }}
+              onClick={() => setLanguage('id')}
             >
               ID
             </button>
             <span className="lang-separator">|</span>
             <button 
               className={`lang-btn ${language === 'en' ? 'active' : ''}`} 
-              onClick={() => { setLanguage('en'); setIsMobileMenuOpen(false); }}
+              onClick={() => setLanguage('en')}
             >
               EN
             </button>

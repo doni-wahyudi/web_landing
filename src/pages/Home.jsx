@@ -22,7 +22,7 @@ const Home = () => {
     }
   };
 
-  const t = translations[language];
+  const t = translations[language] || translations.id;
 
   return (
     <div className="home">
