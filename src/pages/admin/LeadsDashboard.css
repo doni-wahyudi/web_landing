@@ -61,20 +61,82 @@
   color: var(--primary);
 }
 
-.full-width {
-  grid-column: 1 / -1;
+.kpi-card.highlight {
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: rgba(212, 175, 55, 0.05);
 }
 
-.chart-container {
-  width: 100%;
-  height: 300px;
+.top-pages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-/* Custom Tooltip Styling for Recharts */
-.recharts-tooltip-wrapper {
-  outline: none;
+.page-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
 }
-.recharts-default-tooltip {
-  border-radius: 8px !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+
+.page-path {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #3498db;
+}
+
+.efficiency-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.eff-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.eff-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.eff-bar-bg {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.eff-bar-fill {
+  height: 100%;
+  transition: width 1s ease-in-out;
+}
+
+.eff-val {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+  text-align: right;
+}
+
+.empty-msg, .empty-placeholder {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 2rem;
+}
+
+.empty-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.empty-placeholder svg {
+  font-size: 3rem;
+  opacity: 0.2;
 }
