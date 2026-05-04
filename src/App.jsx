@@ -44,6 +44,8 @@ import { useLocation } from 'react-router-dom';
 import BlogGrid from './pages/blog/BlogGrid';
 import ArticleDetail from './pages/blog/ArticleDetail';
 import ArticlesManager from './pages/admin/ArticlesManager';
+import LeadTracker from './pages/admin/LeadTracker';
+import LeadDashboard from './pages/admin/LeadDashboard';
 
 function AppContent() {
   const location = useLocation();
@@ -73,6 +75,8 @@ function AppContent() {
             <Route path="login" element={<AdminLogin />} />
             <Route path="cpanel" element={<CpanelAccounts />} />
             <Route path="articles" element={<ArticlesManager />} />
+          <Route path="leads" element={<LeadTracker />} />
+          <Route path="leads/dashboard" element={<LeadDashboard />} />
           </Route>
         </Routes>
       </main>

@@ -1,5 +1,5 @@
 import { Outlet, Link, useNavigate } from 'react-router-dom';
-import { FiServer, FiLogOut, FiHome, FiFileText } from 'react-icons/fi';
+import { FiServer, FiLogOut, FiHome, FiFileText, FiUsers, FiBarChart2 } from 'react-icons/fi';
 import './AdminLayout.css';
 import { useEffect } from 'react';
 
@@ -36,6 +36,12 @@ const AdminLayout = () => {
           </Link>
           <Link to="/admin/articles" className="admin-nav-link">
             <FiFileText /> Manage Articles
+          </Link>
+          <Link to="/admin/leads" className="admin-nav-link">
+            <FiUsers /> Lead Tracker
+          </Link>
+          <Link to="/admin/leads/dashboard" className="admin-nav-link">
+            <FiBarChart2 /> Lead Dashboard
           </Link>
           <Link to="/" className="admin-nav-link">
             <FiHome /> Back to Site
