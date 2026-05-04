@@ -65,6 +65,9 @@ const PortfolioDetail = () => {
     ]
   };
 
+  const projectChallenge = project.challenge[language] || project.challenge.id || project.challenge;
+  const projectSolution = project.solution[language] || project.solution.id || project.solution;
+
   return (
     <div className="portfolio-detail pt-24 pb-16">
       <SEO 
