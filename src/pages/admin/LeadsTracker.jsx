@@ -6,16 +6,20 @@ import './LeadsTracker.css';
 const LeadsTracker = () => {
   const [leads, setLeads] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showCustomRegion, setShowCustomRegion] = useState(false);
   const [formData, setFormData] = useState({
     reportDate: new Date().toISOString().split('T')[0],
     region: '',
+    customRegion: '',
     businessField: '',
-    contactCount: 0,
-    respondedCount: 0,
-    dealCount: 0,
-    failedCount: 0,
-    progressCount: 0,
-    notes: ''
+    contactCount: '',
+    followedUpCount: '',
+    respondedCount: '',
+    dealCount: '',
+    failedCount: '',
+    progressCount: '',
+    notes: '',
+    nextPlan: ''
   });
 
   useEffect(() => {
@@ -36,17 +40,29 @@ const LeadsTracker = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addLead(formData);
+      const submissionData = {
+        ...formData,
+        region: formData.region === 'Luar Jabodetabek' ? formData.customRegion : formData.region,
+        contactCount: parseInt(formData.contactCount) || 0,
+        followedUpCount: parseInt(formData.followedUpCount) || 0,
+        respondedCount: parseInt(formData.respondedCount) || 0,
+        dealCount: parseInt(formData.dealCount) || 0,
+        failedCount: parseInt(formData.failedCount) || 0,
+        progressCount: parseInt(formData.progressCount) || 0
+      };
+      await addLead(submissionData);
       fetchLeads();
       // Reset some fields but keep date and region for quick entry
       setFormData(prev => ({
         ...prev,
-        contactCount: 0,
-        respondedCount: 0,
-        dealCount: 0,
-        failedCount: 0,
-        progressCount: 0,
-        notes: ''
+        contactCount: '',
+        followedUpCount: '',
+        respondedCount: '',
+        dealCount: '',
+        failedCount: '',
+        progressCount: '',
+        notes: '',
+        nextPlan: ''
       }));
     } catch (err) {
       alert('Error adding lead: ' + err.message);
@@ -90,7 +106,10 @@ const LeadsTracker = () => {
                 <label><FiMapPin /> Region</label>
                 <select 
                   value={formData.region}
-                  onChange={e => setFormData({...formData, region: e.target.value})}
+                  onChange={e => {
+                    setFormData({...formData, region: e.target.value});
+                    setShowCustomRegion(e.target.value === 'Luar Jabodetabek');
+                  }}
                   required
                 >
                   <option value="">Pilih Wilayah</option>
@@ -108,6 +127,19 @@ const LeadsTracker = () => {
               </div>
             </div>
 
+            {showCustomRegion && (
+              <div className="form-group animate-fade-in">
+                <label><FiMapPin /> Nama Wilayah (Luar Jabodetabek)</label>
+                <input 
+                  type="text" 
+                  placeholder="Masukkan nama kota/provinsi"
+                  value={formData.customRegion}
+                  onChange={e => setFormData({...formData, customRegion: e.target.value})}
+                  required
+                />
+              </div>
+            )}
+
             <div className="form-group">
               <label><FiBriefcase /> Business Field</label>
               <input 
@@ -119,48 +151,56 @@ const LeadsTracker = () => {
               />
             </div>
 
-            <div className="stats-row">
+            <div className="form-row">
               <div className="form-group">
-                <label>Contacted</label>
+                <label><FiUsers /> Newly Contacted</label>
                 <input 
                   type="number" 
                   value={formData.contactCount}
-                  onChange={e => setFormData({...formData, contactCount: parseInt(e.target.value) || 0})}
+                  onChange={e => setFormData({...formData, contactCount: e.target.value})}
                 />
               </div>
               <div className="form-group">
-                <label>Responded</label>
+                <label><FiActivity /> Followed Up</label>
+                <input 
+                  type="number" 
+                  value={formData.followedUpCount}
+                  onChange={e => setFormData({...formData, followedUpCount: e.target.value})}
+                />
+              </div>
+              <div className="form-group">
+                <label><FiActivity /> Responded</label>
                 <input 
                   type="number" 
                   value={formData.respondedCount}
-                  onChange={e => setFormData({...formData, respondedCount: parseInt(e.target.value) || 0})}
-                />
-              </div>
-              <div className="form-group">
-                <label>Deals</label>
-                <input 
-                  type="number" 
-                  value={formData.dealCount}
-                  onChange={e => setFormData({...formData, dealCount: parseInt(e.target.value) || 0})}
+                  onChange={e => setFormData({...formData, respondedCount: e.target.value})}
                 />
               </div>
             </div>
 
-            <div className="stats-row">
+            <div className="form-row">
               <div className="form-group">
-                <label>Progress</label>
+                <label><FiTarget /> Deals</label>
                 <input 
                   type="number" 
-                  value={formData.progressCount}
-                  onChange={e => setFormData({...formData, progressCount: parseInt(e.target.value) || 0})}
+                  value={formData.dealCount}
+                  onChange={e => setFormData({...formData, dealCount: e.target.value})}
                 />
               </div>
               <div className="form-group">
-                <label>Failed</label>
+                <label><FiActivity /> Progress</label>
+                <input 
+                  type="number" 
+                  value={formData.progressCount}
+                  onChange={e => setFormData({...formData, progressCount: e.target.value})}
+                />
+              </div>
+              <div className="form-group">
+                <label><FiActivity /> Failed</label>
                 <input 
                   type="number" 
                   value={formData.failedCount}
-                  onChange={e => setFormData({...formData, failedCount: parseInt(e.target.value) || 0})}
+                  onChange={e => setFormData({...formData, failedCount: e.target.value})}
                 />
               </div>
             </div>
@@ -168,10 +208,21 @@ const LeadsTracker = () => {
             <div className="form-group">
               <label><FiMessageSquare /> Notes</label>
               <textarea 
-                placeholder="Any specific details (e.g. why they declined)"
+                rows="3"
                 value={formData.notes}
                 onChange={e => setFormData({...formData, notes: e.target.value})}
-              />
+                placeholder="Any specific details (e.g. why they declined)"
+              ></textarea>
+            </div>
+
+            <div className="form-group">
+              <label><FiCheckCircle /> Next Plan</label>
+              <textarea 
+                rows="3"
+                value={formData.nextPlan}
+                onChange={e => setFormData({...formData, nextPlan: e.target.value})}
+                placeholder="What to do next with these leads?"
+              ></textarea>
             </div>
 
             <button type="submit" className="btn btn-primary btn-full">
