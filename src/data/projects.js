@@ -4,6 +4,7 @@ import bimbelWebImg from '../assets/portfolio/bimbel_web.webp';
 import clinicImg from '../assets/portfolio/clinic.webp';
 import rentalImg from '../assets/portfolio/rental.webp';
 import bakeryImg from '../assets/portfolio/bakery.webp';
+import glowmartImg from '../assets/portfolio/glowmart.webp';
 
 export const projects = [
   {
@@ -119,6 +120,24 @@ techStack: ["React", "Custom CSS", "Vite", "SEO Optimization"]
       en: "A web design prioritizing product visuals (appetizing design) with an organized menu catalog and direct ordering CTAs for easy customer conversion."
     },
     techStack: ["React", "High-Fidelity Imagery", "Animated UI", "F&B Marketing"]
+  },
+  {
+    id: 7,
+    title: "GlowMart",
+    category: {
+      id: "E-Commerce & Kecantikan",
+      en: "E-Commerce & Beauty"
+    },
+    url: "https://doni-wahyudi.github.io/web_beauty_commerce/",
+    image: glowmartImg,
+    challenge: {
+      id: "Platform kecantikan yang membutuhkan antarmuka e-commerce yang responsif dan estetis untuk meningkatkan pengalaman belanja pelanggan di berbagai perangkat.",
+      en: "A beauty platform requiring a responsive and aesthetic e-commerce interface to enhance the customer shopping experience across various devices."
+    },
+    solution: {
+      id: "Kami mengembangkan website e-commerce modern dengan desain elegan, katalog produk yang tertata, dan navigasi yang dioptimalkan untuk mobile.",
+      en: "We developed a modern e-commerce website with an elegant design, organized product catalog, and mobile-optimized navigation."
+    },
+    techStack: ["HTML5/CSS3", "JavaScript", "Vite", "Mobile-First Design"]
   }
 ];
-
