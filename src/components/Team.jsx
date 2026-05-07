@@ -3,6 +3,7 @@ import './Team.css';
 import { FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
 import doniImg from '../assets/doni.png';
 import ridhoImg from '../assets/ridho.png';
+import feniImg from '../assets/feni.png';
 
 const Team = () => {
   const { language } = useLanguage();
@@ -38,7 +39,9 @@ const Team = () => {
       name: "Feni Refita",
       role: "Director of Operations & Business Development",
       bio: "Bertanggung jawab atas efisiensi operasional dan pertumbuhan kemitraan strategis Aurotech.",
-      image: "https://ui-avatars.com/api/?name=Feni+Refita&background=333&color=fff&size=200",
+      image: feniImg,
+      scale: 1.1,
+      objectPosition: "center 15%",
       social: {
         linkedin: "#"
       }
@@ -75,8 +78,10 @@ const Team = () => {
       id: 3,
       name: "Feni Refita",
       role: "Director of Operations & Business Development",
-      bio: "Responsible for operational efficiency and the growth of Aurotech's strategic partnerships.",
-      image: "https://ui-avatars.com/api/?name=Feni+Refita&background=333&color=fff&size=200",
+      bio: "Responsible for operational efficiency and strategic partnership growth at Aurotech.",
+      image: feniImg,
+      scale: 1.1,
+      objectPosition: "center 15%",
       social: {
         linkedin: "#"
       }
@@ -121,17 +126,6 @@ const Team = () => {
                     transform: `scale(${member.scale || 1.4})`
                   }}
                 />
-                <div className="team-social">
-                  {member.social.linkedin && (
-                    <a href={member.social.linkedin} aria-label="LinkedIn"><FaLinkedin /></a>
-                  )}
-                  {member.social.twitter && (
-                    <a href={member.social.twitter} aria-label="Twitter"><FaTwitter /></a>
-                  )}
-                  {member.social.github && (
-                    <a href={member.social.github} aria-label="GitHub"><FaGithub /></a>
-                  )}
-                </div>
               </div>
               <div className="team-content">
                 <h3 className="team-name">{member.name}</h3>
