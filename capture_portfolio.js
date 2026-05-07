@@ -2,12 +2,13 @@ import puppeteer from 'puppeteer';
 
 (async () => {
   const websites = [
-    { url: 'https://putrakaryapallet.com/', filename: 'putrakarya.png' },
-    { url: 'https://aurobarbers.web.id/', filename: 'aurobarbers.png' },
-    { url: 'https://doni-wahyudi.github.io/bimbel_web/', filename: 'bimbel_web.png' },
-    { url: 'https://doni-wahyudi.github.io/web_clinic/#/', filename: 'clinic.png' },
-    { url: 'https://doni-wahyudi.github.io/web_rental/', filename: 'rental.png' },
-    { url: 'https://doni-wahyudi.github.io/web_bakery/', filename: 'bakery.png' }
+    { url: 'http://aurotechbimbel.my.id/', filename: 'bimbel_web.webp' },
+    { url: 'http://aurotechklinik.my.id/', filename: 'clinic.webp' },
+    { url: 'https://putrakaryapallet.com/', filename: 'putrakarya.webp' },
+    { url: 'https://aurobarbers.web.id/', filename: 'aurobarbers.webp' },
+    { url: 'http://aurotechrental.my.id/', filename: 'rental.webp' },
+    { url: 'http://aurotechbakery.my.id/', filename: 'bakery.webp' },
+    { url: 'http://glowmart.my.id/', filename: 'glowmart.webp' }
   ];
 
   console.log('Launching browser...');

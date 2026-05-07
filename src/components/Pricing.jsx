@@ -26,7 +26,7 @@ const Pricing = () => {
         { name: "Maintenance 1 Bulan", included: false }
       ],
       featured: false,
-      btnText: "Pilih Paket"
+      btnText: "Mulai Proyek Ini"
     },
     {
       name: "Profesional",
@@ -44,7 +44,7 @@ const Pricing = () => {
         { name: "🎁 Maintenance & Update 1 Bulan", included: true }
       ],
       featured: true,
-      btnText: "Pilih Paket"
+      btnText: "Mulai Proyek Ini"
     },
     {
       name: "Premium",
@@ -65,7 +65,7 @@ const Pricing = () => {
         { name: "🎁 Maintenance & Update 1 Tahun", included: true }
       ],
       featured: false,
-      btnText: "Pilih Paket"
+      btnText: "Mulai Proyek Ini"
     }
   ];
 
@@ -86,7 +86,7 @@ const Pricing = () => {
         { name: "1-Month Maintenance", included: false }
       ],
       featured: false,
-      btnText: "Choose Plan"
+      btnText: "Start This Project"
     },
     {
       name: "Professional",
@@ -104,7 +104,7 @@ const Pricing = () => {
         { name: "🎁 1-Month Maintenance & Updates", included: true }
       ],
       featured: true,
-      btnText: "Choose Plan"
+      btnText: "Start This Project"
     },
     {
       name: "Premium",
@@ -381,7 +381,7 @@ const Pricing = () => {
               </div>
 
               <div className="pricing-action">
-                <a href={`https://wa.me/6282182252766?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Website%20${plan.name}`} className="btn w-full btn-blue">
+                <a href={`https://wa.me/6285219461408?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Website%20${plan.name}`} className="btn w-full btn-blue">
                   {plan.btnText}
                 </a>
                 <p className="text-center mt-4 text-sm text-gray-400 font-medium" style={{ opacity: 0.8 }}>{t.guarantee}</p>
@@ -429,7 +429,7 @@ const Pricing = () => {
                     </div>
 
                     <div className="pricing-action">
-                      <a href={`https://wa.me/6282182252766?text=Halo,%20saya%20tertarik%20dengan%20${plan.name}`} className={`btn w-full ${plan.isRenewal ? 'btn-primary' : 'btn-blue'}`}>
+                      <a href={`https://wa.me/6285219461408?text=Halo,%20saya%20tertarik%20dengan%20${plan.name}`} className={`btn w-full ${plan.isRenewal ? 'btn-primary' : 'btn-blue'}`}>
                         {plan.btnText}
                       </a>
                     </div>

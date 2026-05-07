@@ -201,6 +201,7 @@ body::after {
   cursor: pointer;
   border: none;
   font-family: var(--font-body);
+  white-space: nowrap;
 }
 
 .btn-primary {

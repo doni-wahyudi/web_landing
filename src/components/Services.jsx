@@ -11,42 +11,76 @@ const Services = () => {
   const coreSolutionsId = [
     {
       icon: <FiLayout />,
-      title: "Premium Company Profile",
+      title: "Company Profile Website",
       desc: "Membangun kredibilitas B2B dengan desain institusional yang elegan dan informatif.",
-      highlight: "Sangat Rekomen"
+      highlight: "Sangat Rekomen",
+      features: ["Premium Design", "Fast Loading", "Estimasi: 5–7 hari kerja"]
+    },
+    {
+      icon: <FiSearch />,
+      title: "E-Commerce / Toko Online",
+      desc: "Platform jualan online lengkap dengan fitur keranjang belanja dan pembayaran.",
+      highlight: "Bisnis Retail",
+      features: ["Payment Gateway", "Manajemen Produk", "Estimasi: 14–21 hari kerja"]
     },
     {
       icon: <FiLayers />,
-      title: "Landing Page Konversi Tinggi",
+      title: "Landing Page / Iklan",
       desc: "Dirancang khusus untuk kampanye marketing dengan fokus pada tingkat konversi pelanggan.",
-      highlight: "Terpopuler"
+      highlight: "Terpopuler",
+      features: ["Copywriting Konversi", "A/B Testing Ready", "Estimasi: 3–5 hari kerja"]
     },
     {
       icon: <FiDatabase />,
       title: "Custom Web Application",
       desc: "Sistem dashboard, CRM, atau portal internal yang dibangun sesuai kebutuhan bisnis unik Anda.",
-      highlight: "Enterprise"
+      highlight: "Enterprise",
+      features: ["Sistem Kompleks", "Integrasi Database", "Estimasi: Sesuai Scope"]
+    },
+    {
+      icon: <FiShield />,
+      title: "Maintenance & Support Plan",
+      desc: "Layanan pemeliharaan, update konten, dan dukungan teknis berkelanjutan.",
+      highlight: "Berlangganan",
+      features: ["Update Bulanan", "Keamanan", "Fast Response Support"]
     }
   ];
 
   const coreSolutionsEn = [
     {
       icon: <FiLayout />,
-      title: "Premium Company Profile",
+      title: "Company Profile Website",
       desc: "Building B2B credibility with an elegant and informative institutional design.",
-      highlight: "Highly Recommended"
+      highlight: "Highly Recommended",
+      features: ["Premium Design", "Fast Loading", "Est: 5–7 working days"]
+    },
+    {
+      icon: <FiSearch />,
+      title: "E-Commerce / Online Store",
+      desc: "Online selling platform complete with shopping cart and payment features.",
+      highlight: "Retail Business",
+      features: ["Payment Gateway", "Product Management", "Est: 14–21 working days"]
     },
     {
       icon: <FiLayers />,
       title: "High-Conversion Landing Page",
       desc: "Designed specifically for marketing campaigns focusing on customer conversion rates.",
-      highlight: "Most Popular"
+      highlight: "Most Popular",
+      features: ["Conversion Copywriting", "A/B Testing Ready", "Est: 3–5 working days"]
     },
     {
       icon: <FiDatabase />,
       title: "Custom Web Application",
       desc: "Dashboard systems, CRM, or internal portals built to fit your unique business needs.",
-      highlight: "Enterprise"
+      highlight: "Enterprise",
+      features: ["Complex Systems", "Database Integration", "Est: Custom Scope"]
+    },
+    {
+      icon: <FiShield />,
+      title: "Maintenance & Support Plan",
+      desc: "Ongoing maintenance, content updates, and technical support services.",
+      highlight: "Subscription",
+      features: ["Monthly Updates", "Security", "Fast Response Support"]
     }
   ];
 
@@ -201,9 +235,9 @@ const Services = () => {
                 <h3 className="service-title">{sol.title}</h3>
                 <p className="service-desc">{sol.desc}</p>
                 <ul className="solution-features">
-                  <li>Premium Design</li>
-                  <li>Fast Loading</li>
-                  <li>SEO Ready</li>
+                  {sol.features && sol.features.map((feat, fIndex) => (
+                    <li key={fIndex}>{feat}</li>
+                  ))}
                 </ul>
               </div>
             ))}
@@ -262,7 +296,7 @@ const Services = () => {
           <h2 className="cta-title animate-entrance">{t.ctaTitle}</h2>
           <p className="cta-desc animate-entrance delay-100">{t.ctaDesc}</p>
           <div className="cta-actions animate-entrance delay-200">
-            <a href="https://wa.me/6282182252766" className="btn btn-primary btn-lg btn-glint">
+            <a href="https://wa.me/6285219461408" className="btn btn-primary btn-lg btn-glint">
               <FiMessageSquare /> {t.ctaButton}
             </a>
           </div>

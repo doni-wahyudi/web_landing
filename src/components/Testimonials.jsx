@@ -17,42 +17,48 @@ const Testimonials = () => {
       name: "Budi Santoso",
       role: "CEO, Perusahaan Logistik",
       content: "Aurotech benar-benar memahami visi brand kami. Website yang mereka bangun bukan sekadar estetik, tapi juga meningkatkan konversi hingga 40% dalam 3 bulan pertama.",
-      rating: 5
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Budi+Santoso&background=0D8ABC&color=fff"
     },
     {
       id: 2,
       name: "Siska Wijaya",
       role: "Founder, Perusahaan Fashion",
       content: "Proses pengerjaannya sangat profesional. Tim Aurotech sangat detail dalam urusan UI/UX. Sekarang website kami terasa jauh lebih premium dan dipercaya pelanggan.",
-      rating: 5
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Siska+Wijaya&background=FF69B4&color=fff"
     },
     {
       id: 3,
       name: "Andi Pratama",
       role: "Direktur Operasional, Perusahaan Properti",
       content: "Layanan support-nya luar biasa. Setiap kali ada kendala, mereka merespon dengan cepat. Investasi terbaik untuk aset digital perusahaan kami.",
-      rating: 5
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Andi+Pratama&background=2E8B57&color=fff"
     },
     {
       id: 4,
       name: "Hendra Kusuma",
       role: "Owner, Perusahaan FnB",
       content: "Aurotech membantu kami mendigitalkan menu dan sistem reservasi. Sangat membantu operasional harian kami dan terlihat sangat berkelas.",
-      rating: 5
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Hendra+Kusuma&background=D2691E&color=fff"
     },
     {
       id: 5,
       name: "Rina Melati",
       role: "Manajer, Perusahaan Retail",
       content: "Desain website yang sangat sleek dan performa yang sangat cepat. Penjualan online kami meningkat signifikan sejak rilis.",
-      rating: 5
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Rina+Melati&background=9370DB&color=fff"
     },
     {
       id: 6,
       name: "Fahmi Idris",
       role: "CEO, Perusahaan Konstruksi",
       content: "Partner digital yang sangat terpercaya. Hasil kerjanya selalu melampaui ekspektasi kami dalam hal fungsionalitas dan desain.",
-      rating: 5
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Fahmi+Idris&background=708090&color=fff"
     }
   ];
 
@@ -62,42 +68,48 @@ const Testimonials = () => {
       name: "Budi Santoso",
       role: "CEO, Logistics Company",
       content: "Aurotech truly understands our brand vision. The website they built is not only aesthetic but also increased conversions by up to 40% in the first 3 months.",
-      rating: 5
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Budi+Santoso&background=0D8ABC&color=fff"
     },
     {
       id: 2,
       name: "Siska Wijaya",
       role: "Founder, Fashion Company",
       content: "The work process was highly professional. The Aurotech team is very detailed when it comes to UI/UX. Now our website feels much more premium and trusted by customers.",
-      rating: 5
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Siska+Wijaya&background=FF69B4&color=fff"
     },
     {
       id: 3,
       name: "Andi Pratama",
       role: "Operations Director, Property Company",
       content: "Their support service is outstanding. Every time there is an issue, they respond quickly. The best investment for our company's digital assets.",
-      rating: 5
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Andi+Pratama&background=2E8B57&color=fff"
     },
     {
       id: 4,
       name: "Hendra Kusuma",
       role: "Owner, FnB Company",
       content: "Aurotech helped us digitize our menu and reservation system. It really helps our daily operations and looks very classy.",
-      rating: 5
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Hendra+Kusuma&background=D2691E&color=fff"
     },
     {
       id: 5,
       name: "Rina Melati",
       role: "Manager, Retail Company",
       content: "Very sleek website design and very fast performance. Our online sales have increased significantly since the release.",
-      rating: 5
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Rina+Melati&background=9370DB&color=fff"
     },
     {
       id: 6,
       name: "Fahmi Idris",
       role: "CEO, Construction Company",
       content: "A very reliable digital partner. Their work always exceeds our expectations in terms of functionality and design.",
-      rating: 5
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Fahmi+Idris&background=708090&color=fff"
     }
   ];
 
@@ -180,8 +192,11 @@ const Testimonials = () => {
                     </div>
                     <p className="testimonial-content">"{testimonial.content}"</p>
                     <div className="testimonial-author">
-                      <h4>{testimonial.name}</h4>
-                      <span>{testimonial.role}</span>
+                      <img src={testimonial.image} alt={testimonial.name} className="testimonial-avatar" loading="lazy" />
+                      <div className="author-info">
+                        <h4>{testimonial.name}</h4>
+                        <span>{testimonial.role}</span>
+                      </div>
                     </div>
                   </div>
                 </div>

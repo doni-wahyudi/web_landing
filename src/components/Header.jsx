@@ -79,7 +79,7 @@ const Header = () => {
           </div>
 
           <div className="nav-cta-wrapper">
-            <a href="https://wa.me/6282182252766" className="btn btn-primary btn-glint nav-cta" onClick={() => setIsMobileMenuOpen(false)}>
+            <a href={`https://wa.me/6285219461408?text=${encodeURIComponent(language === 'id' ? 'Halo Aurotech, saya ingin bertanya tentang layanan pembuatan website.' : 'Hello Aurotech, I have a question about your website development services.')}`} className="btn btn-primary btn-glint nav-cta" onClick={() => setIsMobileMenuOpen(false)}>
               {t.cta}
             </a>
           </div>

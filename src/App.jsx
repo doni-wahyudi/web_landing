@@ -55,6 +55,7 @@ import { useLocation } from 'react-router-dom';
 
 import BlogGrid from './pages/blog/BlogGrid';
 import ArticleDetail from './pages/blog/ArticleDetail';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 function AppContent() {
   const location = useLocation();
@@ -108,7 +109,12 @@ function AppContent() {
           </Route>
         </Routes>
       </main>
-      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && (
+        <>
+          <FloatingWhatsApp />
+          <Footer />
+        </>
+      )}
     </>
   );
 }

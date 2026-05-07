@@ -11,19 +11,27 @@ const PortfolioDetail = () => {
   const project = projects.find(p => p.id === parseInt(id));
 
   const translations = {
-    id: {
-      notFoundTitle: "Project Tidak Ditemukan",
-      notFoundDesc: "Project portfolio yang Anda cari tidak tersedia.",
-      notFoundHeader: "Project tidak ditemukan",
-      backToPortfolio: "Kembali ke Portfolio",
-      visitLive: "Kunjungi Website Live"
-    },
     en: {
       notFoundTitle: "Project Not Found",
       notFoundDesc: "The portfolio project you are looking for is not available.",
       notFoundHeader: "Project not found",
       backToPortfolio: "Back to Portfolio",
-      visitLive: "Visit Live Website"
+      visitLive: "Visit Live Website",
+      challenge: "The Challenge",
+      solution: "Our Solution",
+      outcome: "Measurable Outcome",
+      tech: "Technologies Used"
+    },
+    id: {
+      notFoundTitle: "Project Tidak Ditemukan",
+      notFoundDesc: "Project portfolio yang Anda cari tidak tersedia.",
+      notFoundHeader: "Project tidak ditemukan",
+      backToPortfolio: "Kembali ke Portfolio",
+      visitLive: "Kunjungi Website Live",
+      challenge: "Tantangan",
+      solution: "Solusi Kami",
+      outcome: "Hasil yang Terukur",
+      tech: "Teknologi yang Digunakan"
     }
   };
 
@@ -65,8 +73,9 @@ const PortfolioDetail = () => {
     ]
   };
 
-  const projectChallenge = project.challenge[language] || project.challenge.id || project.challenge;
-  const projectSolution = project.solution[language] || project.solution.id || project.solution;
+  const projectChallenge = project.challenge ? (project.challenge[language] || project.challenge.id || project.challenge) : '';
+  const projectSolution = project.solution ? (project.solution[language] || project.solution.id || project.solution) : '';
+  const projectOutcome = project.outcome ? (project.outcome[language] || project.outcome.id || project.outcome) : '';
 
   return (
     <div className="portfolio-detail pt-24 pb-16">
@@ -84,7 +93,7 @@ const PortfolioDetail = () => {
           <FiArrowLeft /> {t.backToPortfolio}
         </Link>
         
-        <div className="detail-header text-center mt-8 mb-16">
+        <div className="detail-header text-center mt-8 mb-12">
           <h1 className="detail-title hero-title">{project.title}</h1>
           <div className="detail-meta mb-8">
             <span className="badge">{project.category[language]}</span>
@@ -96,20 +105,64 @@ const PortfolioDetail = () => {
           </div>
         </div>
 
-        <div className="detail-visual-wrapper mx-auto">
-          <div className="detail-visual glass animate-entrance delay-200">
-             <div className="portfolio-browser-header">
-                <div className="browser-dots">
-                  <span></span><span></span><span></span>
+        <div className="portfolio-showcase">
+          {/* Left Column: Visuals */}
+          <div className="portfolio-visual-col">
+            <div className="detail-visual glass animate-entrance delay-200">
+               <div className="portfolio-browser-header">
+                  <div className="browser-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div className="detail-image">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      loading="lazy"
+                    />
+                </div>
+            </div>
+          </div>
+
+          {/* Right Column: Content */}
+          <div className="portfolio-content-col animate-entrance delay-300">
+            <div className="detail-section glass">
+              <h3>
+                <FiCheckCircle /> {t.challenge}
+              </h3>
+              <p>{projectChallenge}</p>
+            </div>
+
+            <div className="detail-section glass">
+              <h3>
+                <FiCheckCircle /> {t.solution}
+              </h3>
+              <p>{projectSolution}</p>
+            </div>
+            
+            {projectOutcome && (
+              <div className="detail-section glass outcome-section">
+                <h3>
+                  <span style={{fontSize: '1.5rem'}}>📈</span> {t.outcome}
+                </h3>
+                <p style={{color: '#f8fafc', fontWeight: '500'}}>{projectOutcome}</p>
+              </div>
+            )}
+
+            {project.techStack && (
+              <div className="detail-section tech-section">
+                <h3 style={{color: 'var(--text-muted)'}}>
+                  <FiCheckCircle style={{opacity: 0.5}} /> {t.tech}
+                </h3>
+                <div className="tech-stack-container">
+                  {project.techStack.map((tech, idx) => (
+                    <span key={idx} className="tech-badge">
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </div>
-              <div className="detail-image">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    loading="lazy"
-                  />
-              </div>
+            )}
           </div>
         </div>
       </div>

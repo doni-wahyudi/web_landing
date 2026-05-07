@@ -9,44 +9,6 @@ import glowmartImg from '../assets/portfolio/glowmart.webp';
 export const projects = [
   {
     id: 1,
-    title: "Putra Karya Pallet",
-    category: {
-      id: "Profil Perusahaan & B2B",
-      en: "Company Profile & B2B"
-    },
-    url: "https://putrakaryapallet.com/",
-    image: putrakaryaImg,
-    challenge: {
-      id: "Klien membutuhkan profil perusahaan profesional untuk menjangkau pasar B2B berskala nasional dan internasional yang kredibel.",
-      en: "The client needed a professional company profile to reach a credible national and international B2B market."
-    },
-    solution: {
-      id: "Kami merancang website profesional dengan tata letak yang menampilkan kapasitas pabrik, katalog produk berstandar ekspor, dan form penawaran yang terintegrasi (Call-to-Action).",
-      en: "We designed a professional website with a layout showcasing factory capacity, export-standard product catalogs, and an integrated request-for-quote form (Call-to-Action)."
-    },
-techStack: ["React", "Custom CSS", "Vite", "SEO Optimization"]
-  },
-  {
-    id: 2,
-    title: "Auro Barbers",
-    category: {
-      id: "Halaman Bisnis & Pemesanan",
-      en: "Business & Booking Page"
-    },
-    url: "https://aurobarbers.web.id/",
-    image: aurobarbersImg,
-    challenge: {
-      id: "Barbershop premium yang kesulitan mengatur antrean pelanggan dan ingin membangun merek yang modern dan maskulin di dunia digital.",
-      en: "A premium barbershop struggling to manage customer queues and wanting to build a modern, masculine brand in the digital world."
-    },
-    solution: {
-      id: "Website dengan desain estetika gelap, elegan, dan informatif yang menampilkan layanan, harga, dan fitur pemesanan / integrasi kontak secara mudah.",
-      en: "A website with a dark, elegant, and informative aesthetic design showcasing services, pricing, and easy booking/contact integration features."
-    },
-    techStack: ["HTML5/CSS3", "JavaScript", "Mobile-First Design"]
-  },
-  {
-    id: 3,
     title: "Bimbel Web",
     category: {
       id: "Landing Page Pendidikan",
@@ -55,17 +17,21 @@ techStack: ["React", "Custom CSS", "Vite", "SEO Optimization"]
     url: "https://aurotechbimbel.my.id/",
     image: bimbelWebImg,
     challenge: {
-      id: "Lembaga bimbingan belajar yang membutuhkan landing page dengan konversi tinggi untuk program penerimaan siswa baru.",
-      en: "A tutoring institution requiring a high-conversion landing page for their new student admission program."
+      id: "Lembaga bimbingan belajar yang membutuhkan platform digital profesional untuk program pendaftaran siswa baru dan tes diagnostik.",
+      en: "A tutoring institution requiring a professional digital platform for new student registration and diagnostic testing programs."
     },
     solution: {
-      id: "Desain UI modern yang menonjolkan fitur unggulan, testimoni, dan bagian CTA yang kuat untuk pendaftaran kelas langsung.",
-      en: "A modern UI design highlighting key features, testimonials, and a strong CTA section for direct class registration."
+      id: "Landing page modern dengan fitur pendaftaran online, tes diagnostik terintegrasi, dan dashboard manajemen siswa.",
+      en: "A modern landing page with online registration features, integrated diagnostic testing, and a student management dashboard."
     },
-    techStack: ["React", "Framer Motion", "Tailwind CSS"]
+    outcome: {
+      id: "Memudahkan proses seleksi siswa dan meningkatkan efisiensi pendaftaran hingga 70%.",
+      en: "Facilitates student selection and increases registration efficiency by up to 70%."
+    },
+    techStack: ["React", "TypeScript", "Vite", "React Router", "Context API"]
   },
   {
-    id: 4,
+    id: 2,
     title: "KlinikSehat",
     category: {
       id: "Kesehatan & Reservasi",
@@ -74,14 +40,64 @@ techStack: ["React", "Custom CSS", "Vite", "SEO Optimization"]
     url: "https://aurotechklinik.my.id/",
     image: clinicImg,
     challenge: {
-      id: "Pasien seringkali kesulitan menemukan fasilitas kesehatan modern yang menyediakan informasi dokter spesialis yang transparan dan proses booking yang cepat.",
-      en: "Patients often struggle to find modern healthcare facilities providing transparent specialist doctor information and a fast booking process."
+      id: "Klinik kesehatan yang memerlukan sistem reservasi online yang efisien dan portal informasi layanan medis yang transparan.",
+      en: "A healthcare clinic requiring an efficient online reservation system and a transparent medical service information portal."
     },
     solution: {
-      id: "Kami membangun portal kesehatan dengan sistem reservasi online terintegrasi, profil dokter lengkap, dan integrasi WhatsApp untuk dukungan pasien instan.",
-      en: "We built a healthcare portal with an integrated online reservation system, comprehensive doctor profiles, and WhatsApp integration for instant patient support."
+      id: "Portal kesehatan modern dengan fitur booking dokter, informasi jadwal poli, dan integrasi database untuk manajemen pasien.",
+      en: "A modern healthcare portal with doctor booking features, clinic schedule information, and database integration for patient management."
     },
-    techStack: ["React", "Bootstrap", "Health-Tech SEO", "Responsive Design"]
+    outcome: {
+      id: "Mengurangi waktu tunggu pasien dan meningkatkan akurasi jadwal konsultasi sebesar 50%.",
+      en: "Reduces patient waiting time and increases consultation schedule accuracy by 50%."
+    },
+    techStack: ["React", "TypeScript", "Vite", "Supabase"]
+  },
+  {
+    id: 3,
+    title: "Putra Karya Pallet",
+    category: {
+      id: "Profil Perusahaan & B2B",
+      en: "Company Profile & B2B"
+    },
+    url: "https://putrakaryapallet.com/",
+    image: putrakaryaImg,
+    challenge: {
+      id: "Supplier pallet kayu industri yang memerlukan kehadiran digital untuk menjangkau klien korporasi skala nasional.",
+      en: "An industrial wooden pallet supplier requiring a digital presence to reach national-scale corporate clients."
+    },
+    solution: {
+      id: "Website profil perusahaan profesional yang menonjolkan katalog produk industri, standar kualitas, dan form penawaran B2B.",
+      en: "A professional company profile website showcasing industrial product catalogs, quality standards, and B2B inquiry forms."
+    },
+    outcome: {
+      id: "Memperluas jangkauan pasar hingga ke luar daerah dan meningkatkan lead B2B sebesar 40%.",
+      en: "Expands market reach beyond the region and increases B2B leads by 40%."
+    },
+    techStack: ["React", "Vite", "SEO Optimized"]
+  },
+  {
+    id: 4,
+    title: "Auro Barbers",
+    category: {
+      id: "Halaman Bisnis & Pemesanan",
+      en: "Business & Booking Page"
+    },
+    url: "https://aurobarbers.web.id/",
+    image: aurobarbersImg,
+    challenge: {
+      id: "Barbershop premium yang ingin mendigitalisasi layanan pemesanan dan membangun identitas brand yang modern.",
+      en: "A premium barbershop wanting to digitize booking services and build a modern brand identity."
+    },
+    solution: {
+      id: "Website dengan desain estetika gelap dan elegan, fitur pemesanan jadwal terintegrasi, dan dukungan PWA untuk akses mobile cepat.",
+      en: "A website with a dark and elegant aesthetic design, integrated schedule booking features, and PWA support for fast mobile access."
+    },
+    outcome: {
+      id: "Meningkatkan jumlah booking harian dan memperkuat loyalitas pelanggan melalui akses digital yang mudah.",
+      en: "Increases daily booking volume and strengthens customer loyalty through easy digital access."
+    },
+    techStack: ["React", "Vite", "Tailwind CSS", "PWA"]
   },
   {
     id: 5,
@@ -93,14 +109,18 @@ techStack: ["React", "Custom CSS", "Vite", "SEO Optimization"]
     url: "https://aurotechrental.my.id/",
     image: rentalImg,
     challenge: {
-      id: "Pasar penyewaan mobil yang terfragmentasi seringkali menyulitkan pelanggan dalam menemukan layanan yang terpercaya dengan harga transparan dan kendaraan yang terawat.",
-      en: "A fragmented car rental market often makes it difficult for customers to find trusted services with transparent pricing and well-maintained vehicles."
+      id: "Penyedia jasa sewa mobil yang membutuhkan platform untuk mempermudah pelanggan dalam memilih armada dan melakukan pemesanan.",
+      en: "A car rental service provider needing a platform to make it easier for customers to choose fleets and make bookings."
     },
     solution: {
-      id: "Landing page konversi tinggi dengan katalog armada yang elegan, sistem booking WhatsApp sekali klik, dan detail layanan profesional untuk kebutuhan harian maupun acara khusus.",
-      en: "A high-conversion landing page with an elegant fleet catalog, one-click WhatsApp booking system, and professional service details for daily needs or special events."
+      id: "Landing page responsif dengan katalog armada lengkap, sistem booking WhatsApp sekali klik, dan detail layanan antar-jemput.",
+      en: "A responsive landing page with a complete fleet catalog, one-click WhatsApp booking system, and shuttle service details."
     },
-    techStack: ["Vite", "React", "Modern Fleet UI", "Mobile-First Design"]
+    outcome: {
+      id: "Meningkatkan konversi pemesanan armada sebesar 60% melalui proses booking yang lebih ringkas.",
+      en: "Increases fleet booking conversion by 60% through a more concise booking process."
+    },
+    techStack: ["React", "Vite"]
   },
   {
     id: 6,
@@ -112,14 +132,18 @@ techStack: ["React", "Custom CSS", "Vite", "SEO Optimization"]
     url: "https://aurotechbakery.my.id/",
     image: bakeryImg,
     challenge: {
-      id: "Toko kue lokal yang memiliki produk estetik seringkali kesulitan menampilkan visual produk mereka secara digital sehingga melewatkan potensi pesanan online.",
-      en: "A local bakery with aesthetic products often struggles to display product visuals digitally, missing out on potential online orders."
+      id: "Toko kue artisan yang ingin menampilkan produk visualnya secara menarik untuk meningkatkan pesanan online.",
+      en: "An artisan bakery wanting to display its visual products attractively to increase online orders."
     },
     solution: {
-      id: "Desain web yang mengutamakan visual produk (appetizing design) with katalog menu yang terorganisir dan CTA pemesanan langsung yang memudahkan konversi pelanggan.",
-      en: "A web design prioritizing product visuals (appetizing design) with an organized menu catalog and direct ordering CTAs for easy customer conversion."
+      id: "Desain website yang mengedepankan visual produk (appetizing design) dengan katalog menu terorganisir dan CTA pemesanan langsung.",
+      en: "A web design prioritizing product visuals (appetizing design) with an organized menu catalog and direct ordering CTAs."
     },
-    techStack: ["React", "High-Fidelity Imagery", "Animated UI", "F&B Marketing"]
+    outcome: {
+      id: "Meningkatkan awareness brand dan volume pesanan kue kustom sebesar 45%.",
+      en: "Increases brand awareness and custom cake order volume by 45%."
+    },
+    techStack: ["React", "Vite", "Custom Typography"]
   },
   {
     id: 7,
@@ -128,16 +152,20 @@ techStack: ["React", "Custom CSS", "Vite", "SEO Optimization"]
       id: "E-Commerce & Kecantikan",
       en: "E-Commerce & Beauty"
     },
-    url: "https://doni-wahyudi.github.io/web_beauty_commerce/",
+    url: "http://glowmart.my.id/",
     image: glowmartImg,
     challenge: {
-      id: "Platform kecantikan yang membutuhkan antarmuka e-commerce yang responsif dan estetis untuk meningkatkan pengalaman belanja pelanggan di berbagai perangkat.",
-      en: "A beauty platform requiring a responsive and aesthetic e-commerce interface to enhance the customer shopping experience across various devices."
+      id: "Platform retail kecantikan yang membutuhkan antarmuka belanja yang estetik dan navigasi mobile yang lancar.",
+      en: "A beauty retail platform requiring an aesthetic shopping interface and smooth mobile navigation."
     },
     solution: {
-      id: "Kami mengembangkan website e-commerce modern dengan desain elegan, katalog produk yang tertata, dan navigasi yang dioptimalkan untuk mobile.",
-      en: "We developed a modern e-commerce website with an elegant design, organized product catalog, and mobile-optimized navigation."
+      id: "Website e-commerce modern dengan katalog produk yang tertata, desain elegan yang selaras dengan brand kecantikan, dan performa loading cepat.",
+      en: "A modern e-commerce website with an organized product catalog, elegant design aligned with the beauty brand, and fast loading performance."
     },
-    techStack: ["HTML5/CSS3", "JavaScript", "Vite", "Mobile-First Design"]
+    outcome: {
+      id: "Memperbaiki pengalaman belanja pelanggan dan menurunkan bounce rate sebesar 20%.",
+      en: "Improves the customer shopping experience and reduces bounce rate by 20%."
+    },
+    techStack: ["React", "Vite"]
   }
 ];

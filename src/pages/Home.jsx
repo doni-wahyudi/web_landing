@@ -1,7 +1,9 @@
 import Hero from '../components/Hero';
 import Portfolio from '../components/Portfolio';
+import Process from '../components/Process';
 import Pricing from '../components/Pricing';
 import Testimonials from '../components/Testimonials';
+import Team from '../components/Team';
 import FAQ from '../components/FAQ';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useLanguage } from '../context/LanguageContext';
@@ -31,13 +33,22 @@ const Home = () => {
         description={t.seoDesc}
       />
       <Hero />
-      <div className="reveal-on-scroll">
+      <div className="reveal-on-scroll delay-100">
+        <Process />
+      </div>
+      <div className="reveal-on-scroll delay-200">
         <Portfolio />
       </div>
-      <div className="reveal-on-scroll delay-100">
+      <div className="reveal-on-scroll delay-300">
         <Pricing />
       </div>
       <div className="reveal-on-scroll delay-400">
+        <Team />
+      </div>
+      <div className="reveal-on-scroll delay-500">
+        <Testimonials />
+      </div>
+      <div className="reveal-on-scroll delay-600">
         <FAQ />
       </div>
     </div>

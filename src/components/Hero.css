@@ -5,19 +5,10 @@
   align-items: center;
   padding: 8rem 0 4rem;
   overflow: hidden;
+  background-color: #050505;
 }
 
-.hero-bg-glow {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80vw;
-  height: 80vh;
-  background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(5,5,5,0) 70%);
-  z-index: -1;
-  pointer-events: none;
-}
+
 
 .hero-container {
   display: grid;
@@ -125,32 +116,80 @@
   left: -50px;
 }
 
-.hero-main-image-wrapper {
+.hero-image-card {
   position: relative;
-  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-  max-width: 1000px; /* Kept huge */
   width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 500px;
   margin-left: auto;
+  background: linear-gradient(135deg, #444 0%, #1a1a1a 100%);
+  border: none;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(212, 175, 55, 0.2);
+  display: flex;
+  align-items: flex-end;
+  /* Align to bottom so person stands on the edge */
+  justify-content: center;
   z-index: 2;
 }
 
-
 .hero-main-image {
-  width: 170%; /* Truly massive scale */
-  height: auto;
-  display: block;
-  transform-origin: top;
-  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-  filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
+  height: 105%;
+  width: auto;
+  max-width: none;
+  /* Allow it to be larger than the container */
+  object-fit: contain;
+  object-position: bottom;
+  transition: transform 0.5s ease;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25));
 }
 
-
-
-
-.hero-main-image-wrapper:hover .hero-main-image {
+.hero-image-card:hover .hero-main-image {
   transform: scale(1.05);
-  filter: drop-shadow(0 30px 60px var(--primary-glow));
 }
+
+.card-glass-sheen {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-25deg);
+  animation: glass-sheen 8s infinite;
+}
+
+@keyframes glass-sheen {
+  0% {
+    left: -100%;
+  }
+
+  20% {
+    left: 200%;
+  }
+
+  100% {
+    left: 200%;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+
 
 
 
@@ -172,29 +211,30 @@
     grid-template-columns: 1fr;
     text-align: center;
   }
-  
+
   .hero-title {
     font-size: 3rem;
   }
-  
+
   .hero-subtitle {
     margin: 0 auto 2.5rem;
   }
-  
+
   .hero-actions {
     justify-content: center;
   }
-  
+
   .hero-trust {
     justify-content: center;
   }
-  
+
   .hero-visual {
     margin-top: 3rem;
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    overflow: visible; /* Changed to visible to let orbs glow outside */
+    overflow: visible;
+    /* Changed to visible to let orbs glow outside */
   }
 
   .hero-main-image-wrapper {
@@ -206,7 +246,7 @@
     border-radius: 24px;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   }
 
   .hero-main-image {
@@ -273,8 +313,15 @@
 }
 
 @keyframes scroll-wheel {
-  0% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(15px); }
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(15px);
+  }
 }
 
 @media (max-width: 992px) {
@@ -282,4 +329,3 @@
     display: none;
   }
 }
-

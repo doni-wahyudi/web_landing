@@ -50,6 +50,11 @@ const Footer = () => {
             <a href="#" aria-label="Facebook"><FiFacebook /></a>
             <a href="#" aria-label="Twitter"><FiTwitter /></a>
           </div>
+
+          <div className="legitimacy-signals">
+            <p className="legitimacy-item">✓ Terdaftar di Kemenkumham</p>
+            <p className="legitimacy-item">✓ NIB: 0303260065722</p>
+          </div>
         </div>
 
         <div className="footer-links">

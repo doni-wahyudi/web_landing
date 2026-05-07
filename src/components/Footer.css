@@ -130,3 +130,23 @@
     gap: 2.5rem;
   }
 }
+
+.legitimacy-signals {
+  margin-top: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.legitimacy-item {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+}
+
+.legitimacy-item:last-child {
+  margin-bottom: 0;
+}

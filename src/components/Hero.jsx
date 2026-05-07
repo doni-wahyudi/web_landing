@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
-import personImage from '../assets/person_image.webp';
+import personImage from '../assets/hero_alt.png';
 import './Hero.css';
 
 const Hero = () => {
@@ -14,8 +14,8 @@ const Hero = () => {
       title: "Tingkatkan Omset Bisnis Anda",
       titleSuffix: "dengan Website",
       titleGradient: "Profesional & Elegan",
-      subtitle: "Membangun aset digital yang estetik dan siap untuk mempercepat pertumbuhan bisnis Anda. Dapatkan desain premium lengkap dengan Domain .COM gratis dan pemeliharaan teknis terpercaya.",
-      ctaConsult: "Konsultasi Sekarang",
+      subtitle: "Klien kami rata-rata melaporkan peningkatan 40% dalam permintaan online dalam 90 hari pertama setelah peluncuran. Dapatkan desain premium lengkap dengan Domain .COM gratis dan pemeliharaan teknis terpercaya.",
+      ctaConsult: "Konsultasi Gratis - Respon 10 Menit",
       ctaPortfolio: "Lihat Portfolio",
       trust1: "Revisi Unlimited",
       trust2: "Gratis Domain .com",
@@ -27,8 +27,8 @@ const Hero = () => {
       title: "Increase Your Business Turnover",
       titleSuffix: "with a",
       titleGradient: "Professional & Elegant Website",
-      subtitle: "Building aesthetic digital assets ready to accelerate your business growth. Get premium designs complete with a free .COM domain and trusted technical maintenance.",
-      ctaConsult: "Consult Now",
+      subtitle: "Our clients report an average 40% increase in online inquiries within the first 90 days of launch. Get premium designs complete with a free .COM domain and trusted technical maintenance.",
+      ctaConsult: "Free Consultation — 1 Hour Response",
       ctaPortfolio: "View Portfolio",
       trust1: "Unlimited Revisions",
       trust2: "Free .com Domain",
@@ -41,8 +41,6 @@ const Hero = () => {
 
   return (
     <section className="hero" ref={heroRef}>
-      <div className="hero-bg-glow"></div>
-
       <div className="container hero-container">
         <div className="hero-content animate-entrance">
           <div className="badge delay-100">
@@ -67,7 +65,7 @@ const Hero = () => {
           </p>
 
           <div className="hero-actions delay-400">
-            <a href="https://wa.me/6282182252766" className="btn btn-primary btn-lg btn-glint">
+            <a href={`https://wa.me/6285219461408?text=${encodeURIComponent(language === 'id' ? 'Halo Aurotech, saya ingin berkonsultasi mengenai pembuatan website.' : 'Hello Aurotech, I would like to consult about website development.')}`} className="btn btn-primary btn-lg btn-glint">
               {t.ctaConsult} <FiArrowRight />
             </a>
             <a href="#portfolio" className="btn btn-outline btn-lg">
@@ -92,19 +90,16 @@ const Hero = () => {
         </div>
 
         <div className="hero-visual animate-fade-in delay-200">
-          <div className="hero-main-image-wrapper">
+          <div className="hero-image-card">
             <img 
               src={personImage} 
               alt="Professional Project" 
-              className="hero-main-image" 
+              className="hero-main-image"
               fetchpriority="high"
               loading="eager"
             />
+            <div className="card-glass-sheen"></div>
           </div>
-
-          {/* Decorative glowing orbs */}
-          <div className="orb orb-1"></div>
-          <div className="orb orb-2"></div>
         </div>
       </div>
 

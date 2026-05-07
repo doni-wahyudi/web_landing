@@ -27,6 +27,22 @@ const FAQ = () => {
     {
       question: "Bagaimana sistem pembayaran jasanya?",
       answer: "Pembayaran dilakukan dengan sistem Down Payment (DP) 50% di awal sebelum project dimulai, dan pelunasan 50% setelah website selesai dibangun dan siap dipublikasi sesuai persetujuan."
+    },
+    {
+      question: "Siapa yang memiliki domain dan hosting?",
+      answer: "Anda adalah pemilik penuh atas domain dan hosting. Kami mendaftarkannya atas nama Anda atau bisnis Anda. Jika di masa depan Anda ingin mengelola sendiri, kami akan memberikan semua aksesnya."
+    },
+    {
+      question: "Apakah ada garansi purna jual / support setelah launch?",
+      answer: "Tentu. Setiap paket sudah termasuk garansi perbaikan bug dan support teknis selama 1 bulan setelah peluncuran. Kami juga menyediakan paket maintenance bulanan jika Anda membutuhkan bantuan pengelolaan konten jangka panjang."
+    },
+    {
+      question: "Apakah saya bisa update konten sendiri?",
+      answer: "Sangat bisa! Kami membangun website dengan sistem CMS (Content Management System) yang mudah dipelajari. Kami juga akan memberikan panduan atau sesi training singkat cara menggunakannya."
+    },
+    {
+      question: "Teknologi apa yang digunakan?",
+      answer: "Kami menggunakan teknologi modern standar industri terkini seperti React.js, Next.js, atau WordPress kustom (tergantung kebutuhan proyek) untuk memastikan website Anda cepat, aman, dan mudah di-scale."
     }
   ];
 
@@ -50,6 +66,22 @@ const FAQ = () => {
     {
       question: "What is the payment system for the service?",
       answer: "Payment is made with a 50% Down Payment (DP) system at the beginning before the project starts, and a 50% payoff after the website is built and ready to be published as agreed."
+    },
+    {
+      question: "Who owns the domain and hosting?",
+      answer: "You are the full owner of the domain and hosting. We register them under your name or business. If you wish to manage them yourself in the future, we will hand over all access credentials."
+    },
+    {
+      question: "Is there an after-sales guarantee / support after launch?",
+      answer: "Certainly. Every package includes a bug fix guarantee and technical support for 1 month after launch. We also provide monthly maintenance packages if you need long-term content management assistance."
+    },
+    {
+      question: "Can I update the content myself?",
+      answer: "Absolutely! We build websites with an easy-to-learn CMS (Content Management System). We will also provide a guide or a short training session on how to use it."
+    },
+    {
+      question: "What technology is used?",
+      answer: "We use modern, industry-standard technologies such as React.js, Next.js, or custom WordPress (depending on project needs) to ensure your website is fast, secure, and highly scalable."
     }
   ];
 
