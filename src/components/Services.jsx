@@ -296,7 +296,7 @@ const Services = () => {
           <h2 className="cta-title animate-entrance">{t.ctaTitle}</h2>
           <p className="cta-desc animate-entrance delay-100">{t.ctaDesc}</p>
           <div className="cta-actions animate-entrance delay-200">
-            <a href="https://wa.me/6285219461408" className="btn btn-primary btn-lg btn-glint">
+            <a href={`https://wa.me/6285219461408?text=${encodeURIComponent(language === 'id' ? 'Halo Aurotech, saya tertarik dengan layanan pembuatan website Anda.' : 'Hello Aurotech, I am interested in your website development services.')}`} className="btn btn-primary btn-lg btn-glint">
               <FiMessageSquare /> {t.ctaButton}
             </a>
           </div>
