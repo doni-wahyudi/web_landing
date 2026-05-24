@@ -51,7 +51,7 @@ const Hero = () => {
           <h1 className="hero-title delay-200">
             {language === 'id' ? (
               <>
-                {t.title} <br /> {t.titleSuffix} <span className="text-gradient">{t.titleGradient}</span>
+                {t.title} <br className="desktop-only" /> {t.titleSuffix} <span className="text-gradient">{t.titleGradient}</span>
               </>
             ) : (
               <>
