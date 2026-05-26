@@ -31,7 +31,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: /public_html/
-          # Fix for cPanel ECONNRESET (Ignored certificate validations/TLS session issues)
-          protocol: ftps
-          security: loose
-          # state-name: .ftp-deploy-sync-state.json
+          # Fix for cPanel ECONNRESET (Switching to SFTP over Port 22)
+          protocol: sftp
+          port: 22
