@@ -42,6 +42,12 @@ const BlogGrid = () => {
     fetchBlog();
   }, []);
 
+  const getImageUrl = (url) => {
+    if (!url) return '';
+    if (url.startsWith('http://') || url.startsWith('https://')) return url;
+    return `https://aurotech.co.id${url}`;
+  };
+
   return (
     <section className="section blog-section bg-primary">
       <div className="container animate-fade-in">
@@ -62,7 +68,7 @@ const BlogGrid = () => {
               <article key={article.id} className="blog-card glass">
                 {article.image_url && (
                   <div className="blog-card-img">
-                    <img src={article.image_url} alt={article.title} loading="lazy" />
+                    <img src={getImageUrl(article.image_url)} alt={article.title} loading="lazy" />
                   </div>
                 )}
                 <div className="blog-card-body">
