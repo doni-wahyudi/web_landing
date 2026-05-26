@@ -24,12 +24,16 @@ jobs:
         run: npm run build
 
       - name: 📂 Sync Files to cPanel
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: /public_html/ # This points to your public web folder
-          # We don't need to exclude server_side here because we are only 
-          # uploading the content of the ./dist/ folder.
+          server-dir: /public_html/
+          # Fix for cPanel ECONNRESET (Ignored certificate validations/TLS session issues)
+          protocol: ftp
+          # If your server requires secure FTPS, uncomment the lines below:
+          # protocol: ftps
+          # security: loose
+          # state-name: .ftp-deploy-sync-state.json

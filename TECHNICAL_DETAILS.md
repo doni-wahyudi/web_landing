@@ -10,7 +10,7 @@ A premium, high-conversion landing page and management portal for Aurotech web d
 * **SEO**: React Helmet Async (Centralized in `SEO.jsx`)
 * **Styling**: Vanilla CSS (CSS variables design system defined in `src/index.css`)
 * **Automation**: Puppeteer script for dynamic portfolio screenshot generation (`capture_portfolio.js`)
-* **Deployment**: Automated build & deploy to GitHub Pages (`gh-pages`)
+* **Deployment**: Automated FTP Deployment to cPanel public_html via GitHub Actions (`.github/workflows/deploy.yml`)
 
 ---
 
