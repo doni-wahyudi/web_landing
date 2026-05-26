@@ -32,8 +32,6 @@ jobs:
           local-dir: ./dist/
           server-dir: /public_html/
           # Fix for cPanel ECONNRESET (Ignored certificate validations/TLS session issues)
-          protocol: ftp
-          # If your server requires secure FTPS, uncomment the lines below:
-          # protocol: ftps
-          # security: loose
+          protocol: ftps
+          security: loose
           # state-name: .ftp-deploy-sync-state.json
