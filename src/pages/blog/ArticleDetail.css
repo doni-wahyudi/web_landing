@@ -4,19 +4,33 @@
 }
 
 .btn-back {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   margin-bottom: 2rem;
+  padding: 0.6rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
   color: var(--color-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px; /* Elegant pill shape */
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-back:hover {
-  text-decoration: underline;
+  background: var(--color-primary);
+  color: #000;
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 204, 0, 0.2); /* Soft primary shadow */
+  text-decoration: none;
 }
 
 .article-header {
-  margin-bottom: 2rem;
+  max-width: 760px;
+  margin: 0 auto 2rem;
 }
 
 .article-title {
@@ -29,10 +43,11 @@
 
 .article-hero-img {
   width: 100%;
+  max-width: 760px;
   max-height: 500px;
+  margin: 0 auto 3rem;
   border-radius: 16px;
   overflow: hidden;
-  margin-bottom: 3rem;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -47,24 +62,37 @@
   line-height: 1.85;
   color: var(--color-text-muted);
   max-width: 760px; /* Optimized reading line-length (75-85 chars) for absolute premium layout */
-  margin-top: 2rem;
+  margin: 2rem auto 0;
 }
 
 /* Beautiful spacing and readability for custom markdown tags */
 .article-p {
   margin-bottom: 1.75rem;
-  text-align: justify;
+  text-align: left;
   line-height: 1.9;
 }
 
+/* Editorial Drop Cap for the first paragraph */
+.article-body-content .article-p:first-of-type::first-letter {
+  font-size: 3.5rem;
+  float: left;
+  margin-right: 0.75rem;
+  color: var(--color-primary);
+  line-height: 0.9;
+  font-weight: 800;
+}
+
 .article-bold {
-  color: var(--color-text); /* Brighter contrast for emphasized words to pop */
+  color: var(--color-primary); /* Brighter gold/primary contrast for emphasized words to pop */
   font-weight: 700;
 }
 
 .article-em {
   font-style: italic;
-  color: var(--color-text);
+  color: #fff; /* Crisp white for italics to differentiate from standard text */
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0 4px;
+  border-radius: 4px;
 }
 
 .article-h1,
@@ -86,6 +114,10 @@
   border-left: 4px solid var(--color-primary);
   padding-left: 1rem;
   margin-left: -1.25rem;
+  background: linear-gradient(90deg, rgba(255, 204, 0, 0.08) 0%, rgba(0, 0, 0, 0) 100%);
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 0 8px 8px 0;
 }
 
 .article-h3 {
@@ -100,7 +132,7 @@
   margin-left: 1.5rem;
   margin-bottom: 1.25rem;
   line-height: 1.85;
-  text-align: justify;
+  text-align: left;
 }
 
 .article-marker {
@@ -120,7 +152,8 @@
 
 .article-hr {
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 204, 0, 0.3), transparent);
   margin: 3rem 0;
   width: 100%;
 }
@@ -141,4 +174,32 @@
   .article-ol {
     margin-left: 1.25rem;
   }
+}
+
+/* Keywords Styling */
+.article-keywords-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  max-width: 760px;
+  margin: 3rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.article-keyword-pill {
+  padding: 0.4rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.article-keyword-pill:hover {
+  background: rgba(255, 204, 0, 0.1);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }

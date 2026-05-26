@@ -17,6 +17,16 @@ const ArticleDetail = () => {
         // Find by slug or ID
         const match = data.find(a => a.slug === slug || a.id.toString() === slug);
         setArticle(match);
+        if (match && match.keywords) {
+          // Update meta keywords dynamically for SEO
+          let metaKeywords = document.querySelector('meta[name="keywords"]');
+          if (!metaKeywords) {
+            metaKeywords = document.createElement('meta');
+            metaKeywords.name = "keywords";
+            document.head.appendChild(metaKeywords);
+          }
+          metaKeywords.content = match.keywords;
+        }
       } catch (e) {
         console.error(e);
       } finally {
@@ -29,7 +39,7 @@ const ArticleDetail = () => {
   const getImageUrl = (url) => {
     if (!url) return '';
     if (url.startsWith('http://') || url.startsWith('https://')) return url;
-    return `https://aurotech.co.id${url}`;
+    return url.startsWith('/') ? `https://aurotech.co.id${url}` : `https://aurotech.co.id/${url}`;
   };
 
   const parseInline = (inlineText) => {
@@ -132,6 +142,14 @@ const ArticleDetail = () => {
         <div className="article-body-content">
           {parseMarkdown(article.content)}
         </div>
+
+        {article.keywords && (
+          <div className="article-keywords-container">
+            {article.keywords.split(',').map((kw, i) => (
+              <span key={i} className="article-keyword-pill">#{kw.trim()}</span>
+            ))}
+          </div>
+        )}
       </div>
     </article>
   );

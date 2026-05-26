@@ -9,10 +9,10 @@ const ArticlesManager = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingArticle, setEditingArticle] = useState(null);
   
-  // Form State
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [content, setContent] = useState('');
+  const [keywords, setKeywords] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
   const loadData = async () => {
@@ -37,11 +37,13 @@ const ArticlesManager = () => {
       setTitle(article.title);
       setCategory(article.category);
       setContent(article.content);
+      setKeywords(article.keywords || '');
     } else {
       setEditingArticle(null);
       setTitle('');
       setCategory('');
       setContent('');
+      setKeywords('');
     }
     setImageFile(null);
     setIsModalOpen(true);
@@ -64,6 +66,7 @@ const ArticlesManager = () => {
     formData.append('title', title);
     formData.append('category', category);
     formData.append('content', content);
+    formData.append('keywords', keywords);
     if (imageFile) {
       formData.append('image', imageFile);
     }
@@ -152,6 +155,10 @@ const ArticlesManager = () => {
               <div className="form-group">
                 <label>Category</label>
                 <input type="text" value={category} onChange={e => setCategory(e.target.value)} required />
+              </div>
+              <div className="form-group">
+                <label>Keywords (comma separated)</label>
+                <input type="text" value={keywords} onChange={e => setKeywords(e.target.value)} placeholder="e.g. tech, business, startup" />
               </div>
               <div className="form-group">
                 <label>Content</label>

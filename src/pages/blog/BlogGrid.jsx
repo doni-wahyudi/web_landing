@@ -45,7 +45,7 @@ const BlogGrid = () => {
   const getImageUrl = (url) => {
     if (!url) return '';
     if (url.startsWith('http://') || url.startsWith('https://')) return url;
-    return `https://aurotech.co.id${url}`;
+    return url.startsWith('/') ? `https://aurotech.co.id${url}` : `https://aurotech.co.id/${url}`;
   };
 
   return (
