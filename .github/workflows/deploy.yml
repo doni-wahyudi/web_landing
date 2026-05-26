@@ -23,9 +23,6 @@ jobs:
       - name: 🏗️ Build Project
         run: npm run build
 
-      - name: 📂 Sync Files to cPanel via Custom Sequential FTP
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        run: node deploy_ftp.js
+      - name: 📂 Sync Files to cPanel via lftp (Sequential & Firewall-Friendly)
+        run: |
+          lftp -c "set ftp:passive-mode true; set ftp:ssl-allow false; set net:connection-limit 1; set net:limit-total-connections 1; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -p 21 ${{ secrets.FTP_SERVER }}; mirror --parallel=1 -R ./dist/ /public_html/"
