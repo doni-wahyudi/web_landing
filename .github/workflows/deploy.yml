@@ -31,6 +31,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: /public_html/
-          # Fix for cPanel ECONNRESET (Switching to SFTP over Port 22)
-          protocol: sftp
-          port: 22
+          # Fix for cPanel ECONNRESET (Switching to FTPS Legacy with Loose Security)
+          protocol: ftps-legacy
+          security: loose
