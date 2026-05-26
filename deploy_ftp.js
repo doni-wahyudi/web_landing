@@ -10,7 +10,8 @@ async function deploy() {
   client.ftp.verbose = true; // Shows exact file upload logs in GitHub Actions
 
   // Force standard IPv4 PASV mode (prevents cPanel firewall drops on Extended Passive Mode EPSV)
-  client.prepareTransfer = client.enterPassiveModeIPv4;
+  client.ftp.ipFamily = 4;
+  client.prepareTransfer = client.enterPassiveModeIPv4.bind(client);
 
   try {
     console.log("Connecting to FTP server...");
