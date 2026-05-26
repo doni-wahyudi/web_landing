@@ -92,33 +92,30 @@
   font-size: 1.45rem;
 }
 
-/* Premium lists with generous indentation and gaps */
-.article-ul,
-.article-ol {
-  margin-left: 1.5rem;
-  margin-bottom: 2rem;
+/* Premium flat list layout with flexbox and custom gold markers */
+.article-li-flat {
   display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-}
-
-.article-ul {
-  list-style-type: disc;
-}
-
-.article-ol {
-  list-style-type: decimal;
-}
-
-.article-li {
-  line-height: 1.8;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-left: 1.5rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.85;
   text-align: justify;
-  padding-left: 0.25rem;
 }
 
-.article-li::marker {
-  color: var(--color-primary); /* Stylish gold numbers/bullets */
+.article-marker {
+  color: var(--color-primary); /* Gold markers */
   font-weight: 700;
+  min-width: 1.5rem;
+  display: inline-block;
+}
+
+.article-li-content {
+  flex: 1;
+}
+
+.article-spacing {
+  height: 1.25rem;
 }
 
 .article-hr {

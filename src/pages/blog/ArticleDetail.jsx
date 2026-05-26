@@ -50,91 +50,64 @@ const ArticleDetail = () => {
         }
         return subPart;
       });
-    });
+    }).flat(Infinity); // Flat rendering array prevents production React build from skipping/halting renders
   };
 
   const parseMarkdown = (text) => {
     if (!text) return '';
     
+    // Split by newlines to process line-by-line flatly (prevents nested list grouping bugs)
     const lines = text.split('\n');
-    const elements = [];
-    let currentList = [];
-    let currentListType = null; // 'ul' or 'ol'
-
-    const flushList = (key) => {
-      if (currentList.length > 0) {
-        if (currentListType === 'ul') {
-          elements.push(<ul key={`ul-${key}`} className="article-ul">{currentList}</ul>);
-        } else if (currentListType === 'ol') {
-          elements.push(<ol key={`ol-${key}`} className="article-ol">{currentList}</ol>);
-        }
-        currentList = [];
-        currentListType = null;
-      }
-    };
-
-    lines.forEach((line, index) => {
+    
+    return lines.map((line, index) => {
       const trimmed = line.trim();
+
+      // Empty lines -> render elegant vertical spacing
+      if (trimmed === '') {
+        return <div key={`space-${index}`} className="article-spacing" />;
+      }
 
       // Horizontal Rule
       if (trimmed === '---') {
-        flushList(index);
-        elements.push(<hr key={index} className="article-hr" />);
-        return;
+        return <hr key={`hr-${index}`} className="article-hr" />;
       }
 
       // Headings
       if (trimmed.startsWith('# ')) {
-        flushList(index);
-        elements.push(<h1 key={index} className="article-h1">{parseInline(trimmed.substring(2))}</h1>);
-        return;
+        return <h1 key={`h1-${index}`} className="article-h1">{parseInline(trimmed.substring(2))}</h1>;
       }
       if (trimmed.startsWith('## ')) {
-        flushList(index);
-        elements.push(<h2 key={index} className="article-h2">{parseInline(trimmed.substring(3))}</h2>);
-        return;
+        return <h2 key={`h2-${index}`} className="article-h2">{parseInline(trimmed.substring(3))}</h2>;
       }
       if (trimmed.startsWith('### ')) {
-        flushList(index);
-        elements.push(<h3 key={index} className="article-h3">{parseInline(trimmed.substring(4))}</h3>);
-        return;
+        return <h3 key={`h3-${index}`} className="article-h3">{parseInline(trimmed.substring(4))}</h3>;
       }
 
       // Unordered list item (* or -)
       const ulMatch = trimmed.match(/^[-*]\s+(.*)/);
       if (ulMatch) {
-        if (currentListType && currentListType !== 'ul') {
-          flushList(index);
-        }
-        currentListType = 'ul';
-        currentList.push(<li key={`li-${index}`} className="article-li">{parseInline(ulMatch[1])}</li>);
-        return;
+        return (
+          <div key={`li-ul-${index}`} className="article-li-flat bullet">
+            <span className="article-marker">•</span>
+            <span className="article-li-content">{parseInline(ulMatch[1])}</span>
+          </div>
+        );
       }
 
       // Ordered list item (number.)
       const olMatch = trimmed.match(/^(\d+)\.\s+(.*)/);
       if (olMatch) {
-        if (currentListType && currentListType !== 'ol') {
-          flushList(index);
-        }
-        currentListType = 'ol';
-        currentList.push(<li key={`li-${index}`} className="article-li">{parseInline(olMatch[2])}</li>);
-        return;
-      }
-
-      // Empty line
-      if (trimmed === '') {
-        flushList(index);
-        return;
+        return (
+          <div key={`li-ol-${index}`} className="article-li-flat numbered">
+            <span className="article-marker">{olMatch[1]}.</span>
+            <span className="article-li-content">{parseInline(olMatch[2])}</span>
+          </div>
+        );
       }
 
       // Normal paragraph
-      flushList(index);
-      elements.push(<p key={index} className="article-p">{parseInline(line)}</p>);
-    });
-
-    flushList('final');
-    return elements;
+      return <p key={`p-${index}`} className="article-p">{parseInline(line)}</p>;
+    }).flat(Infinity);
   };
 
   if (isLoading) return <div className="blog-loading text-center">Loading article...</div>;
