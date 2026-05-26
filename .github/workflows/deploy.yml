@@ -23,6 +23,9 @@ jobs:
       - name: 🏗️ Build Project
         run: npm run build
 
+      - name: ⚙️ Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
       - name: 📂 Sync Files to cPanel via lftp (Sequential & Firewall-Friendly)
         run: |
           lftp -c "set ftp:passive-mode true; set ftp:ssl-allow false; set net:connection-limit 1; set net:limit-total-connections 1; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -p 21 ${{ secrets.FTP_SERVER }}; mirror --parallel=1 -R ./dist/ /public_html/"
