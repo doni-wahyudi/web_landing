@@ -1,4 +1,4 @@
-import ftp from 'basic-ftp';
+import ftp, { enterPassiveModeIPv4 } from 'basic-ftp';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -11,7 +11,7 @@ async function deploy() {
 
   // Force standard IPv4 PASV mode (prevents cPanel firewall drops on Extended Passive Mode EPSV)
   client.ftp.ipFamily = 4;
-  client.prepareTransfer = client.enterPassiveModeIPv4.bind(client);
+  client.prepareTransfer = enterPassiveModeIPv4;
 
   try {
     console.log("Connecting to FTP server...");
