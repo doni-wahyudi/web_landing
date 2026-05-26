@@ -1,3 +1,5 @@
+import tanyaadvokatImg from '../assets/portfolio/tanyaadvokat.webp';
+import bimbelJuniorImg from '../assets/portfolio/bimbel_junior.webp';
 import putrakaryaImg from '../assets/portfolio/putrakarya.webp';
 import aurobarbersImg from '../assets/portfolio/aurobarbers.webp';
 import bimbelWebImg from '../assets/portfolio/bimbel_web.webp';
@@ -9,6 +11,52 @@ import glowmartImg from '../assets/portfolio/glowmart.webp';
 export const projects = [
   {
     id: 1,
+    title: "TanyaAdvokat.id",
+    category: {
+      id: "Konsultasi & Layanan Hukum",
+      en: "Legal Consultation & Services"
+    },
+    url: "https://tanyaadvokat.id",
+    image: tanyaadvokatImg,
+    challenge: {
+      id: "Masyarakat dan UMKM seringkali kesulitan mendapatkan akses konsultasi hukum yang transparan, terpercaya, dan terjangkau secara digital.",
+      en: "The public and MSMEs often face difficulties accessing transparent, trustworthy, and affordable legal consultation services digitally."
+    },
+    solution: {
+      id: "Platform portal hukum dinamis dengan fitur direktori advokat, informasi biaya layanan yang transparan, modul khusus UMKM Go, manajemen konten blog hukum, serta integrasi database Supabase.",
+      en: "A dynamic legal portal platform featuring a lawyer directory, transparent service fee structures, a dedicated MSME Go module, legal blog content management, and Supabase database integration."
+    },
+    outcome: {
+      id: "Menjembatani pencari keadilan dengan advokat profesional secara mudah, meningkatkan kesadaran hukum UMKM, dan mendigitalisasi manajemen dokumentasi hukum.",
+      en: "Easily bridges justice seekers with professional lawyers, increases MSME legal awareness, and digitizes legal documentation management."
+    },
+    techStack: ["React", "TypeScript", "Vite", "React Router", "Supabase", "Swiper"]
+  },
+  {
+    id: 2,
+    title: "Bimbel Junior",
+    category: {
+      id: "Landing Page Pendidikan",
+      en: "Education Landing Page"
+    },
+    url: "https://doni-wahyudi.github.io/bimbel_junior/",
+    image: bimbelJuniorImg,
+    challenge: {
+      id: "Lembaga bimbingan belajar anak-anak yang memerlukan platform digital responsif berkecepatan tinggi untuk mengenalkan program, profil pengajar, transparansi legalitas, serta pendaftaran siswa baru secara langsung via WhatsApp.",
+      en: "A children's tutoring center requiring a high-speed, responsive digital platform to introduce programs, teacher profiles, public legality compliance, and direct WhatsApp new student registration."
+    },
+    solution: {
+      id: "Website modern dengan sistem dynamic routing, cross-fade hero slider, visual timeline transit interaktif, integrasi dokumen PDF legalitas, dan form pendaftaran instan tanpa redundansi data.",
+      en: "A modern website with dynamic routing, a cross-fade hero slider, interactive transit timeline visualizers, integrated PDF legality preview documents, and streamlined registration form direct pathways."
+    },
+    outcome: {
+      id: "Menghilangkan hambatan pendaftaran siswa baru, memperkuat kepercayaan orang tua melalui keterbukaan dokumen legal, dan menciptakan citra akademis yang premium di Tanjung Priok.",
+      en: "Eliminates barriers to new student enrollment, reinforces parents' trust through legal transparency documents, and establishes a premium academic brand image in Tanjung Priok."
+    },
+    techStack: ["React", "TypeScript", "Vite", "React Router", "Lucide Icons", "Markdown"]
+  },
+  {
+    id: 3,
     title: "Bimbel Web",
     category: {
       id: "Landing Page Pendidikan",
@@ -31,7 +79,7 @@ export const projects = [
     techStack: ["React", "TypeScript", "Vite", "React Router", "Context API"]
   },
   {
-    id: 2,
+    id: 4,
     title: "KlinikSehat",
     category: {
       id: "Kesehatan & Reservasi",
@@ -54,7 +102,7 @@ export const projects = [
     techStack: ["React", "TypeScript", "Vite", "Supabase"]
   },
   {
-    id: 3,
+    id: 5,
     title: "Putra Karya Pallet",
     category: {
       id: "Profil Perusahaan & B2B",
@@ -77,7 +125,7 @@ export const projects = [
     techStack: ["React", "Vite", "SEO Optimized"]
   },
   {
-    id: 4,
+    id: 6,
     title: "Auro Barbers",
     category: {
       id: "Halaman Bisnis & Pemesanan",
@@ -100,7 +148,7 @@ export const projects = [
     techStack: ["React", "Vite", "Tailwind CSS", "PWA"]
   },
   {
-    id: 5,
+    id: 7,
     title: "RentalKu",
     category: {
       id: "Transportasi & Rental Mobil",
@@ -123,7 +171,7 @@ export const projects = [
     techStack: ["React", "Vite"]
   },
   {
-    id: 6,
+    id: 8,
     title: "Sweet Delights Bakery",
     category: {
       id: "Makanan & Minuman",
@@ -136,7 +184,7 @@ export const projects = [
       en: "An artisan bakery wanting to display its visual products attractively to increase online orders."
     },
     solution: {
-      id: "Desain website yang mengedepankan visual produk (appetizing design) dengan katalog menu terorganisir dan CTA pemesanan langsung.",
+      id: "Desain website yang mengedepankan visual produk (appetizing design) dengan katalog menu terorganisir and CTA pemesanan langsung.",
       en: "A web design prioritizing product visuals (appetizing design) with an organized menu catalog and direct ordering CTAs."
     },
     outcome: {
@@ -146,7 +194,7 @@ export const projects = [
     techStack: ["React", "Vite", "Custom Typography"]
   },
   {
-    id: 7,
+    id: 9,
     title: "GlowMart",
     category: {
       id: "E-Commerce & Kecantikan",

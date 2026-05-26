@@ -2,6 +2,8 @@ import puppeteer from 'puppeteer';
 
 (async () => {
   const websites = [
+    { url: 'https://tanyaadvokat.id', filename: 'tanyaadvokat.webp' },
+    { url: 'https://doni-wahyudi.github.io/bimbel_junior/', filename: 'bimbel_junior.webp' },
     { url: 'http://aurotechbimbel.my.id/', filename: 'bimbel_web.webp' },
     { url: 'http://aurotechklinik.my.id/', filename: 'clinic.webp' },
     { url: 'https://putrakaryapallet.com/', filename: 'putrakarya.webp' },
