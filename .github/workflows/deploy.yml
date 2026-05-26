@@ -23,12 +23,13 @@ jobs:
       - name: 🏗️ Build Project
         run: npm run build
 
-      - name: 📂 Sync Files to cPanel via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: 📂 Sync Files to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          username: ${{ secrets.FTP_USERNAME }}
           server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 22 # If your cPanel host uses a custom SSH port (e.g. 65002), change 22 to your custom port number.
-          local_path: './dist/*'
-          remote_path: '/public_html'
+          local-dir: ./dist/
+          server-dir: /public_html/
+          protocol: ftp
+          port: 21
