@@ -124,9 +124,17 @@
   box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
 }
 
+.form-group select optgroup {
+  background: #0f0f0f;
+  color: var(--primary);
+  font-weight: 700;
+  font-style: normal;
+}
+
 .form-group select option {
   background: #0f0f0f;
   color: var(--text-main);
+  font-weight: normal;
 }
 
 .wa-submit-btn {

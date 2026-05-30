@@ -348,6 +348,13 @@ const Services = () => {
                       <li key={fIndex}>{feat}</li>
                     ))}
                   </ul>
+                  <button 
+                    onClick={() => openWhatsAppModal(sol.title)}
+                    className="btn btn-outline btn-sm w-full"
+                    style={{ marginTop: '1.5rem' }}
+                  >
+                    {language === 'en' ? 'Select Service' : 'Pilih Layanan'}
+                  </button>
                 </div>
               ))}
             </div>
@@ -370,6 +377,13 @@ const Services = () => {
                       <li key={fIndex}>{feat}</li>
                     ))}
                   </ul>
+                  <button 
+                    onClick={() => openWhatsAppModal(sol.title)}
+                    className="btn btn-outline btn-sm w-full"
+                    style={{ marginTop: '1.5rem' }}
+                  >
+                    {language === 'en' ? 'Select Service' : 'Pilih Layanan'}
+                  </button>
                 </div>
               ))}
             </div>
@@ -392,6 +406,13 @@ const Services = () => {
                       <li key={fIndex}>{feat}</li>
                     ))}
                   </ul>
+                  <button 
+                    onClick={() => openWhatsAppModal(sol.title)}
+                    className="btn btn-outline btn-sm w-full"
+                    style={{ marginTop: '1.5rem' }}
+                  >
+                    {language === 'en' ? 'Select Service' : 'Pilih Layanan'}
+                  </button>
                 </div>
               ))}
             </div>

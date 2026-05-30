@@ -32,19 +32,65 @@ export const WhatsAppModalProvider = ({ children }) => {
       errorName: "Nama Lengkap wajib diisi.",
       errorService: "Silakan pilih layanan.",
       errorNeeds: "Kebutuhan proyek wajib diisi.",
-      services: [
-        "Company Profile Website",
-        "E-Commerce / Toko Online",
-        "Landing Page / Iklan",
-        "Custom Web Application",
-        "Maintenance & Support Plan",
-        "Google Ads",
-        "Meta Ads (Facebook & Instagram)",
-        "Social Media Management",
-        "Search Engine Optimization (SEO)",
-        "Media Monitoring",
-        "Sistem Informasi & Aplikasi Kustom",
-        "Konsultasi Umum / Lainnya"
+      serviceGroups: [
+        {
+          label: "Core Web Solutions (Jasa Pembuatan Website)",
+          options: [
+            "Company Profile Website",
+            "E-Commerce / Toko Online",
+            "Landing Page / Iklan",
+            "Custom Web Application",
+            "Maintenance & Support Plan",
+            "Website - Paket Basic",
+            "Website - Paket Profesional",
+            "Website - Paket Premium"
+          ]
+        },
+        {
+          label: "Digital Marketing & SEO (Pemasaran & Optimasi)",
+          options: [
+            "Google Ads",
+            "Meta Ads (FB & IG)",
+            "Social Media Management",
+            "Search Engine Optimization (SEO)",
+            "SEO Google - Paket Starter",
+            "SEO Google - Paket Growth",
+            "SEO Google - Paket Enterprise",
+            "Kelola Sosmed - Paket Basic",
+            "Kelola Sosmed - Paket Medium",
+            "Kelola Sosmed - Paket Profesional",
+            "Kelola Sosmed - Paket Custom Package"
+          ]
+        },
+        {
+          label: "Enterprise Solutions & Intelligence",
+          options: [
+            "Media Monitoring",
+            "Media Monitoring - Paket BASIC NEWS",
+            "Media Monitoring - Paket SOSMED",
+            "Media Monitoring - Paket PROFESIONAL",
+            "Media Monitoring - Paket ENTERPRISE",
+            "Media Monitoring - Paket ULTIMATE",
+            "Media Monitoring - Paket DIAMOND",
+            "Sistem Informasi & Aplikasi"
+          ]
+        },
+        {
+          label: "Add-on Services (Layanan Tambahan)",
+          options: [
+            "Add-on Service - Perpanjangan",
+            "Add-on Service - Pembuatan Logo",
+            "Add-on Service - Basic",
+            "Add-on Service - Profesional",
+            "Add-on Service - Premium"
+          ]
+        },
+        {
+          label: "Lainnya / Others",
+          options: [
+            "Konsultasi Umum / Lainnya"
+          ]
+        }
       ]
     },
     en: {
@@ -61,24 +107,74 @@ export const WhatsAppModalProvider = ({ children }) => {
       errorName: "Full Name is required.",
       errorService: "Please select a service.",
       errorNeeds: "Project needs are required.",
-      services: [
-        "Company Profile Website",
-        "E-Commerce / Online Store",
-        "Landing Page / Advertising",
-        "Custom Web Application",
-        "Maintenance & Support Plan",
-        "Google Ads",
-        "Meta Ads (Facebook & Instagram)",
-        "Social Media Management",
-        "Search Engine Optimization (SEO)",
-        "Media Monitoring",
-        "Bespoke Information Systems",
-        "General Consultation / Others"
+      serviceGroups: [
+        {
+          label: "Core Web Solutions (Website Creation)",
+          options: [
+            "Company Profile Website",
+            "E-Commerce / Online Store",
+            "High-Conversion Landing Page",
+            "Custom Web Application",
+            "Maintenance & Support Plan",
+            "Website - Paket Basic",
+            "Website - Paket Professional",
+            "Website - Paket Premium"
+          ]
+        },
+        {
+          label: "Digital Marketing & SEO Services",
+          options: [
+            "Google Ads",
+            "Meta Ads (FB & IG)",
+            "Social Media Management",
+            "Search Engine Optimization (SEO)",
+            "SEO Google - Paket Starter",
+            "SEO Google - Paket Growth",
+            "SEO Google - Paket Enterprise",
+            "Kelola Sosmed - Paket Basic",
+            "Kelola Sosmed - Paket Medium",
+            "Kelola Sosmed - Paket Professional",
+            "Kelola Sosmed - Paket Custom Package"
+          ]
+        },
+        {
+          label: "Enterprise Solutions & Intelligence",
+          options: [
+            "Media Monitoring",
+            "Media Monitoring - Paket BASIC NEWS",
+            "Media Monitoring - Paket SOSMED",
+            "Media Monitoring - Paket PROFESIONAL",
+            "Media Monitoring - Paket ENTERPRISE",
+            "Media Monitoring - Paket ULTIMATE",
+            "Media Monitoring - Paket DIAMOND",
+            "Information Systems & Apps"
+          ]
+        },
+        {
+          label: "Add-on Services",
+          options: [
+            "Add-on Service - Renewal",
+            "Add-on Service - Logo Design",
+            "Add-on Service - Basic",
+            "Add-on Service - Professional",
+            "Add-on Service - Premium"
+          ]
+        },
+        {
+          label: "Others",
+          options: [
+            "General Consultation / Others"
+          ]
+        }
       ]
     }
   };
 
   const t = translations[language] || translations.id;
+
+  const flatServices = t.serviceGroups.reduce((acc, group) => {
+    return acc.concat(group.options);
+  }, []);
 
   const openWhatsAppModal = (serviceName = '') => {
     setSelectedService(serviceName);
@@ -92,7 +188,7 @@ export const WhatsAppModalProvider = ({ children }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name.strip || formData.name.trim() === '') {
+    if (!formData.name || formData.name.trim() === '') {
       alert(t.errorName);
       return;
     }
@@ -100,7 +196,7 @@ export const WhatsAppModalProvider = ({ children }) => {
       alert(t.errorService);
       return;
     }
-    if (!formData.message.strip || formData.message.trim() === '') {
+    if (!formData.message || formData.message.trim() === '') {
       alert(t.errorNeeds);
       return;
     }
@@ -166,8 +262,15 @@ export const WhatsAppModalProvider = ({ children }) => {
                   onChange={(e) => setSelectedService(e.target.value)}
                 >
                   <option value="" disabled>{language === 'en' ? '-- Select Service --' : '-- Pilih Layanan --'}</option>
-                  {t.services.map((service, idx) => (
-                    <option key={idx} value={service}>{service}</option>
+                  {selectedService && !flatServices.includes(selectedService) && (
+                    <option value={selectedService}>{selectedService}</option>
+                  )}
+                  {t.serviceGroups.map((group, idx) => (
+                    <optgroup key={idx} label={group.label}>
+                      {group.options.map((service, sIdx) => (
+                        <option key={sIdx} value={service}>{service}</option>
+                      ))}
+                    </optgroup>
                   ))}
                 </select>
               </div>
