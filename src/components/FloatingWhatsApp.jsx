@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import './FloatingWhatsApp.css';
 import { useLanguage } from '../context/LanguageContext';
+import { useWhatsAppModal } from '../context/WhatsAppModalContext';
 
 const FloatingWhatsApp = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { language } = useLanguage();
+  const { openWhatsAppModal } = useWhatsAppModal();
 
   const translations = {
     id: {
@@ -19,8 +21,6 @@ const FloatingWhatsApp = () => {
   };
 
   const t = translations[language] || translations.id;
-  const phoneNumber = "6285219461408";
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(t.defaultText)}`;
 
   useEffect(() => {
     // Show button after scrolling down a bit
@@ -41,15 +41,13 @@ const FloatingWhatsApp = () => {
       <div className="whatsapp-tooltip">
         {t.message}
       </div>
-      <a 
-        href={whatsappUrl} 
-        target="_blank" 
-        rel="noopener noreferrer" 
+      <button 
+        onClick={() => openWhatsAppModal(language === 'en' ? 'General Consultation / Others' : 'Konsultasi Umum / Lainnya')}
         className="floating-whatsapp-btn"
         aria-label="Chat on WhatsApp"
       >
         <FaWhatsapp className="whatsapp-icon" />
-      </a>
+      </button>
     </div>
   );
 };

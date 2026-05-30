@@ -446,3 +446,247 @@
     transform: translateY(-5px);
   }
 }
+
+/* Pricing Category Tab Selector */
+.pricing-tabs-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.pricing-tabs {
+  display: flex;
+  padding: 0.35rem;
+  border-radius: 99px;
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 0.25rem;
+  backdrop-filter: blur(16px);
+}
+
+.pricing-tab {
+  padding: 0.75rem 1.75rem;
+  border-radius: 99px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  border: none;
+  white-space: nowrap;
+}
+
+.pricing-tab:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.pricing-tab.active {
+  color: #000;
+  background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #996515 100%);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* Extra Bonuses Callout */
+.extra-bonuses-panel {
+  border: 1px solid var(--border-glow);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.05);
+}
+
+.bonuses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.bonus-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1.25rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.9rem;
+  color: var(--text-main);
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.bonus-pill:hover {
+  transform: translateY(-2px);
+  border-color: rgba(212, 175, 55, 0.2);
+  background: rgba(212, 175, 55, 0.02);
+}
+
+/* Media Monitoring Table Matrix */
+.monitoring-table-container {
+  margin-top: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(20px);
+}
+
+.monitoring-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.monitoring-table th, 
+.monitoring-table td {
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.95rem;
+}
+
+.monitoring-table th {
+  background: rgba(255, 255, 255, 0.01);
+  font-family: var(--font-heading);
+  text-align: center;
+  vertical-align: top;
+}
+
+.monitoring-table th.feature-col {
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 700;
+  vertical-align: middle;
+  min-width: 250px;
+}
+
+.monitoring-table th.pkg-col {
+  min-width: 140px;
+}
+
+.pkg-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pkg-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.pkg-price {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.pkg-period {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.feature-row:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.feature-label {
+  font-weight: 600;
+  color: var(--text-main);
+  min-width: 220px;
+}
+
+.feature-val {
+  text-align: center;
+}
+
+.val-icon {
+  font-size: 1.25rem;
+  margin: 0 auto;
+}
+
+.val-icon.yes {
+  color: #10b981;
+}
+
+.val-icon.no {
+  color: #4b5563;
+  opacity: 0.5;
+}
+
+.text-val {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.pkg-action-cell {
+  text-align: center;
+  padding: 1.5rem 1rem !important;
+}
+
+/* Media Monitoring Details & Terms Grid */
+.monitoring-additional-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+
+.details-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.details-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.details-list li:last-child {
+  border-bottom: none;
+}
+
+.terms-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.border-glow {
+  border: 1px solid var(--border-glow) !important;
+}
+
+.price-period {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .pricing-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 0.5rem;
+  }
+  .pricing-tab {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  .monitoring-table-container {
+    padding: 1rem 0.5rem;
+  }
+  .monitoring-table th, 
+  .monitoring-table td {
+    padding: 0.8rem 0.5rem;
+    font-size: 0.85rem;
+  }
+  .monitoring-table th.feature-col {
+    min-width: 180px;
+  }
+}

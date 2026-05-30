@@ -1,0 +1,204 @@
+import React, { createContext, useState, useContext } from 'react';
+import { useLanguage } from './LanguageContext';
+import { FiX, FiMessageSquare, FiSend } from 'react-icons/fi';
+import './WhatsAppModal.css';
+
+const WhatsAppModalContext = createContext();
+
+export const WhatsAppModalProvider = ({ children }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    business: '',
+    message: ''
+  });
+  
+  const { language } = useLanguage();
+  const phoneNumber = "6285219461408";
+
+  const translations = {
+    id: {
+      title: "Konsultasi via WhatsApp",
+      subtitle: "Silakan isi form singkat ini agar kami dapat memberikan solusi dan penawaran terbaik untuk bisnis Anda.",
+      labelName: "Nama Lengkap *",
+      placeholderName: "Nama Anda...",
+      labelBusiness: "Nama Bisnis / Perusahaan (Opsional)",
+      placeholderBusiness: "Nama Bisnis Anda...",
+      labelService: "Layanan yang Diminati *",
+      labelMessage: "Kebutuhan / Detail Proyek *",
+      placeholderMessage: "Ceritakan singkat kebutuhan website/digital marketing Anda...",
+      submitBtn: "Kirim & Lanjutkan ke WhatsApp",
+      errorName: "Nama Lengkap wajib diisi.",
+      errorService: "Silakan pilih layanan.",
+      errorNeeds: "Kebutuhan proyek wajib diisi.",
+      services: [
+        "Company Profile Website",
+        "E-Commerce / Toko Online",
+        "Landing Page / Iklan",
+        "Custom Web Application",
+        "Maintenance & Support Plan",
+        "Google Ads",
+        "Meta Ads (Facebook & Instagram)",
+        "Social Media Management",
+        "Search Engine Optimization (SEO)",
+        "Media Monitoring",
+        "Sistem Informasi & Aplikasi Kustom",
+        "Konsultasi Umum / Lainnya"
+      ]
+    },
+    en: {
+      title: "WhatsApp Consultation",
+      subtitle: "Please fill out this short form so we can provide the best solution and pricing for your business.",
+      labelName: "Full Name *",
+      placeholderName: "Your Name...",
+      labelBusiness: "Business / Company Name (Optional)",
+      placeholderBusiness: "Your Business Name...",
+      labelService: "Service of Interest *",
+      labelMessage: "Project Needs / Details *",
+      placeholderMessage: "Briefly describe your website/digital marketing needs...",
+      submitBtn: "Send & Proceed to WhatsApp",
+      errorName: "Full Name is required.",
+      errorService: "Please select a service.",
+      errorNeeds: "Project needs are required.",
+      services: [
+        "Company Profile Website",
+        "E-Commerce / Online Store",
+        "Landing Page / Advertising",
+        "Custom Web Application",
+        "Maintenance & Support Plan",
+        "Google Ads",
+        "Meta Ads (Facebook & Instagram)",
+        "Social Media Management",
+        "Search Engine Optimization (SEO)",
+        "Media Monitoring",
+        "Bespoke Information Systems",
+        "General Consultation / Others"
+      ]
+    }
+  };
+
+  const t = translations[language] || translations.id;
+
+  const openWhatsAppModal = (serviceName = '') => {
+    setSelectedService(serviceName);
+    setIsOpen(true);
+  };
+
+  const closeWhatsAppModal = () => {
+    setIsOpen(false);
+    setFormData({ name: '', business: '', message: '' });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name.strip || formData.name.trim() === '') {
+      alert(t.errorName);
+      return;
+    }
+    if (!selectedService) {
+      alert(t.errorService);
+      return;
+    }
+    if (!formData.message.strip || formData.message.trim() === '') {
+      alert(t.errorNeeds);
+      return;
+    }
+
+    // Build the WhatsApp message
+    const formattedText = language === 'en' 
+      ? `Hello Aurotech! I am *${formData.name.trim()}*${formData.business ? ` from *${formData.business.trim()}*` : ''}.\n\nI am interested in your *${selectedService}* package/service and want to consult.\n\n*My Project Details:*\n${formData.message.trim()}`
+      : `Halo Aurotech! Saya *${formData.name.trim()}*${formData.business ? ` dari *${formData.business.trim()}*` : ''}.\n\nSaya tertarik dengan layanan *${selectedService}* dan ingin berkonsultasi.\n\n*Detail Kebutuhan Saya:*\n${formData.message.trim()}`;
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(formattedText)}`;
+    
+    // Open in new window/tab
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    closeWhatsAppModal();
+  };
+
+  return (
+    <WhatsAppModalContext.Provider value={{ openWhatsAppModal, closeWhatsAppModal }}>
+      {children}
+      
+      {isOpen && (
+        <div className="wa-modal-overlay">
+          <div className="wa-modal glass animate-entrance">
+            <div className="wa-modal-header">
+              <div className="wa-modal-title-wrapper">
+                <FiMessageSquare className="wa-title-icon" />
+                <h3>{t.title}</h3>
+              </div>
+              <button className="wa-close-btn" onClick={closeWhatsAppModal} aria-label="Close form">
+                <FiX size={20} />
+              </button>
+            </div>
+            
+            <p className="wa-modal-subtitle">{t.subtitle}</p>
+            
+            <form onSubmit={handleSubmit} className="wa-modal-form">
+              <div className="form-group">
+                <label>{t.labelName}</label>
+                <input 
+                  type="text" 
+                  required
+                  placeholder={t.placeholderName}
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                />
+              </div>
+
+              <div className="form-group">
+                <label>{t.labelBusiness}</label>
+                <input 
+                  type="text" 
+                  placeholder={t.placeholderBusiness}
+                  value={formData.business}
+                  onChange={(e) => setFormData({ ...formData, business: e.target.value })}
+                />
+              </div>
+
+              <div className="form-group">
+                <label>{t.labelService}</label>
+                <select 
+                  required 
+                  value={selectedService}
+                  onChange={(e) => setSelectedService(e.target.value)}
+                >
+                  <option value="" disabled>{language === 'en' ? '-- Select Service --' : '-- Pilih Layanan --'}</option>
+                  {t.services.map((service, idx) => (
+                    <option key={idx} value={service}>{service}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>{t.labelMessage}</label>
+                <textarea 
+                  required
+                  rows="4"
+                  placeholder={t.placeholderMessage}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                ></textarea>
+              </div>
+
+              <button type="submit" className="btn btn-primary w-full wa-submit-btn">
+                <FiSend />
+                {t.submitBtn}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </WhatsAppModalContext.Provider>
+  );
+};
+
+export const useWhatsAppModal = () => {
+  const context = useContext(WhatsAppModalContext);
+  if (!context) {
+    throw new Error('useWhatsAppModal must be used within a WhatsAppModalProvider');
+  }
+  return context;
+};

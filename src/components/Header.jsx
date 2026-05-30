@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
+import { useWhatsAppModal } from '../context/WhatsAppModalContext';
 import logoImg from '../assets/logo_auro.webp';
 import typographyImg from '../assets/typography_white.webp';
 import './Header.css';
@@ -10,6 +11,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
+  const { openWhatsAppModal } = useWhatsAppModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,9 +81,15 @@ const Header = () => {
           </div>
 
           <div className="nav-cta-wrapper">
-            <a href={`https://wa.me/6285219461408?text=${encodeURIComponent(language === 'id' ? 'Halo Aurotech, saya ingin bertanya tentang layanan pembuatan website.' : 'Hello Aurotech, I have a question about your website development services.')}`} className="btn btn-primary btn-glint nav-cta" onClick={() => setIsMobileMenuOpen(false)}>
+            <button 
+              className="btn btn-primary btn-glint nav-cta" 
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                openWhatsAppModal(language === 'en' ? 'General Consultation / Others' : 'Konsultasi Umum / Lainnya');
+              }}
+            >
               {t.cta}
-            </a>
+            </button>
           </div>
         </nav>
 

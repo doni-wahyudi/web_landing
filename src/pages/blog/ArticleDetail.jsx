@@ -66,58 +66,104 @@ const ArticleDetail = () => {
   const parseMarkdown = (text) => {
     if (!text) return '';
     
-    // Split by newlines to process line-by-line flatly (prevents nested list grouping bugs)
     const lines = text.split('\n');
-    
-    return lines.map((line, index) => {
+    const elements = [];
+    let activeCard = null;
+
+    const flushCard = () => {
+      if (activeCard) {
+        const colorIndex = (activeCard.num - 1) % 4; 
+        const colorClass = ['card-pink', 'card-green', 'card-purple', 'card-peach'][colorIndex];
+        
+        elements.push(
+          <div key={`card-${activeCard.id}`} className={`article-colored-card ${colorClass}`}>
+            <h4 className="article-card-title">{activeCard.num}. {parseInline(activeCard.title)}</h4>
+            {activeCard.body.map((bodyLine, i) => (
+              <p key={i} className="article-card-p">{parseInline(bodyLine)}</p>
+            ))}
+          </div>
+        );
+        activeCard = null;
+      }
+    };
+
+    lines.forEach((line, index) => {
       const trimmed = line.trim();
 
-      // Empty lines -> render elegant vertical spacing
+      // Check for numbered list to start a card
+      const olMatch = trimmed.match(/^(\d+)\.\s+(.*)/);
+      if (olMatch) {
+        flushCard(); // close previous card if any
+        
+        let titleText = olMatch[2];
+        if (titleText.startsWith('**') && titleText.endsWith('**')) {
+           titleText = titleText.substring(2, titleText.length - 2);
+        }
+        
+        activeCard = {
+          id: index,
+          num: parseInt(olMatch[1], 10),
+          title: titleText,
+          body: []
+        };
+        return;
+      }
+
+      // If we are currently inside a card building its body
+      if (activeCard) {
+        if (trimmed === '') {
+          flushCard();
+          elements.push(<div key={`space-${index}`} className="article-spacing" />);
+        } else {
+          activeCard.body.push(trimmed);
+        }
+        return;
+      }
+
       if (trimmed === '') {
-        return <div key={`space-${index}`} className="article-spacing" />;
+        elements.push(<div key={`space-${index}`} className="article-spacing" />);
+        return;
       }
 
       // Horizontal Rule
       if (trimmed === '---') {
-        return <hr key={`hr-${index}`} className="article-hr" />;
+        elements.push(<hr key={`hr-${index}`} className="article-hr" />);
+        return;
       }
 
       // Headings
       if (trimmed.startsWith('# ')) {
-        return <h1 key={`h1-${index}`} className="article-h1">{parseInline(trimmed.substring(2))}</h1>;
+        elements.push(<h1 key={`h1-${index}`} className="article-h1">{parseInline(trimmed.substring(2))}</h1>);
+        return;
       }
       if (trimmed.startsWith('## ')) {
-        return <h2 key={`h2-${index}`} className="article-h2">{parseInline(trimmed.substring(3))}</h2>;
+        elements.push(<h2 key={`h2-${index}`} className="article-h2">{parseInline(trimmed.substring(3))}</h2>);
+        return;
       }
       if (trimmed.startsWith('### ')) {
-        return <h3 key={`h3-${index}`} className="article-h3">{parseInline(trimmed.substring(4))}</h3>;
+        elements.push(<h3 key={`h3-${index}`} className="article-h3">{parseInline(trimmed.substring(4))}</h3>);
+        return;
       }
 
       // Unordered list item (* or -)
       const ulMatch = trimmed.match(/^[-*]\s+(.*)/);
       if (ulMatch) {
-        return (
+        elements.push(
           <div key={`li-ul-${index}`} className="article-li-flat bullet">
             <span className="article-marker">•</span>
             <span className="article-li-content">{parseInline(ulMatch[1])}</span>
           </div>
         );
-      }
-
-      // Ordered list item (number.)
-      const olMatch = trimmed.match(/^(\d+)\.\s+(.*)/);
-      if (olMatch) {
-        return (
-          <div key={`li-ol-${index}`} className="article-li-flat numbered">
-            <span className="article-marker">{olMatch[1]}.</span>
-            <span className="article-li-content">{parseInline(olMatch[2])}</span>
-          </div>
-        );
+        return;
       }
 
       // Normal paragraph
-      return <p key={`p-${index}`} className="article-p">{parseInline(line)}</p>;
-    }).flat(Infinity);
+      elements.push(<p key={`p-${index}`} className="article-p">{parseInline(line)}</p>);
+    });
+
+    flushCard();
+
+    return elements.flat(Infinity);
   };
 
   if (isLoading) return <div className="blog-loading text-center">Loading article...</div>;

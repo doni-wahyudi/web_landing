@@ -146,6 +146,62 @@
   flex: 1;
 }
 
+/* Beautiful Numbered Cards Styling (Dark Theme Adapted) */
+.article-colored-card {
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+  color: var(--color-text); 
+}
+
+.article-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  margin-top: 0;
+}
+
+.article-card-p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.article-card-p + .article-card-p {
+  margin-top: 0.75rem;
+}
+
+/* Alternating Dark-Theme Glass Accents */
+.card-pink { 
+  background-color: rgba(255, 204, 0, 0.03); /* Gold/Primary accent */
+  border: 1px solid rgba(255, 204, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(255, 204, 0, 0.02);
+}
+.card-pink .article-card-title { color: var(--color-primary); }
+
+.card-green { 
+  background-color: rgba(0, 230, 118, 0.03); /* Soft Emerald */
+  border: 1px solid rgba(0, 230, 118, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 230, 118, 0.02);
+}
+.card-green .article-card-title { color: #00e676; }
+
+.card-purple { 
+  background-color: rgba(0, 176, 255, 0.03); /* Bright Sky Blue */
+  border: 1px solid rgba(0, 176, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 176, 255, 0.02);
+}
+.card-purple .article-card-title { color: #00b0ff; }
+
+.card-peach { 
+  background-color: rgba(179, 136, 255, 0.03); /* Soft Lavender */
+  border: 1px solid rgba(179, 136, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(179, 136, 255, 0.02);
+}
+.card-peach .article-card-title { color: #b388ff; }
+
 .article-spacing {
   height: 1.25rem;
 }

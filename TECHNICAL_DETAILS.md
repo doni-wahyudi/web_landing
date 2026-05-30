@@ -40,6 +40,7 @@ A premium, high-conversion landing page and management portal for Aurotech web d
   2. **Bimbel Junior** (`bimbel_junior`) — Modern responsive education landing page featuring cross-fading sliders and interactive timeline visualizers.
 * **First Order Priority**: Configured both new projects to load in the first positions (ID 1 & 2) of the portfolio grid to showcase them as premier accomplishments.
 * **Auto-capture Utility**: Enhanced `capture_portfolio.js` to automatically target, scroll, freeze viewports, and capture high-resolution webp screenshots for both projects.
+* **Services & Pricing Expansion**: Restructured the Services component into three clean business sections (Core Web, Digital Marketing, and Enterprise Tech) and implemented an interactive tabbed Pricing page displaying detailed package grids for Google SEO, Social Media (with bonus callouts), and a comprehensive Media Monitoring table matrix.
 
 ---
 

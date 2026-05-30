@@ -1,12 +1,14 @@
 import { useRef } from 'react';
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
+import { useWhatsAppModal } from '../context/WhatsAppModalContext';
 import personImage from '../assets/hero_alt.png';
 import './Hero.css';
 
 const Hero = () => {
   const heroRef = useRef(null);
   const { language } = useLanguage();
+  const { openWhatsAppModal } = useWhatsAppModal();
 
   const translations = {
     id: {
@@ -65,9 +67,12 @@ const Hero = () => {
           </p>
 
           <div className="hero-actions delay-400">
-            <a href={`https://wa.me/6285219461408?text=${encodeURIComponent(language === 'id' ? 'Halo Aurotech, saya ingin berkonsultasi mengenai pembuatan website.' : 'Hello Aurotech, I would like to consult about website development.')}`} className="btn btn-primary btn-lg btn-glint">
+            <button 
+              className="btn btn-primary btn-lg btn-glint"
+              onClick={() => openWhatsAppModal(language === 'en' ? 'Company Profile Website' : 'Company Profile Website')}
+            >
               {t.ctaConsult} <FiArrowRight />
-            </a>
+            </button>
             <a href="#portfolio" className="btn btn-outline btn-lg">
               {t.ctaPortfolio}
             </a>

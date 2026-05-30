@@ -3,10 +3,12 @@ import {
   FiLayers, FiLayout, FiDatabase, FiSearch, FiCode, FiZap, FiMessageSquare
 } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
+import { useWhatsAppModal } from '../context/WhatsAppModalContext';
 import './Services.css';
 
 const Services = () => {
   const { language } = useLanguage();
+  const { openWhatsAppModal } = useWhatsAppModal();
 
   const coreSolutionsId = [
     {
@@ -81,6 +83,102 @@ const Services = () => {
       desc: "Ongoing maintenance, content updates, and technical support services.",
       highlight: "Subscription",
       features: ["Monthly Updates", "Security", "Fast Response Support"]
+    }
+  ];
+
+  const marketingSolutionsId = [
+    {
+      icon: <FiTrendingUp />,
+      title: "Google Ads",
+      desc: "Tangkap calon konsumen yang siap membeli di halaman pertama Google tepat saat mencari layanan Anda.",
+      highlight: "Urgensi Tinggi",
+      features: ["Riset Kata Kunci & Kompetitor", "Setup Search & Maps Ads", "Ad Copywriting Persuasif", "Optimasi Negative Keywords"]
+    },
+    {
+      icon: <FiZap />,
+      title: "Meta Ads (FB & IG)",
+      desc: "Jangkau jutaan target pasar secara masif berdasarkan lokasi geografis, usia, dan minat spesifik.",
+      highlight: "Visual Branding",
+      features: ["A/B Testing Target Audiens", "Desain Visual & Editing Video", "Setup Meta Pixel & Tracking", "Targeting Lokal (Radius 5–10 KM)"]
+    },
+    {
+      icon: <FiMessageSquare />,
+      title: "Social Media Management",
+      desc: "Ubah profil Instagram/TikTok Anda menjadi etalase digital premium yang estetik dan tepercaya.",
+      highlight: "Brand Authority",
+      features: ["Kalender Konten Bulanan", "Desain Feeds & Stories", "Copywriting Caption & Tagar", "Optimasi Profil & Interaksi"]
+    },
+    {
+      icon: <FiSearch />,
+      title: "Search Engine Optimization (SEO)",
+      desc: "Melejitkan visibilitas organik bisnis Anda di Google secara jangka panjang tanpa biaya klik iklan.",
+      highlight: "Organik & Stabil",
+      features: ["Riset Kata Kunci Funnel Mendalam", "Produksi Artikel Teroptimasi SEO", "Technical SEO & Schema Markup", "Backlink Building Berkualitas"]
+    }
+  ];
+
+  const marketingSolutionsEn = [
+    {
+      icon: <FiTrendingUp />,
+      title: "Google Ads",
+      desc: "Capture high-intent buyers on Google's first page precisely when they search for your services.",
+      highlight: "High Urgency",
+      features: ["Keyword & Competitor Research", "Search & Maps Ads Setup", "Persuasive Ad Copywriting", "Negative Keyword Optimization"]
+    },
+    {
+      icon: <FiZap />,
+      title: "Meta Ads (FB & IG)",
+      desc: "Reach millions of targeted prospects massively based on location, age, and specific interests.",
+      highlight: "Visual Branding",
+      features: ["A/B Audience Testing", "Visual Design & Video Editing", "Meta Pixel & Conversion Setup", "Local Radius targeting (5–10 KM)"]
+    },
+    {
+      icon: <FiMessageSquare />,
+      title: "Social Media Management",
+      desc: "Transform your Instagram/TikTok profile into a premium, aesthetic, and trustworthy digital storefront.",
+      highlight: "Brand Authority",
+      features: ["Monthly Content Calendar", "Feeds & Stories Graphic Design", "Persuasive Captions & Hashtags", "Profile & Interactive Optimization"]
+    },
+    {
+      icon: <FiSearch />,
+      title: "Search Engine Optimization (SEO)",
+      desc: "Elevate your business organic visibility on Google long-term without recurring pay-per-click costs.",
+      highlight: "Organic & Stable",
+      features: ["Full-Funnel Keyword Research", "SEO-Optimized Content Production", "Technical SEO & Schema Markup", "High-Quality Backlink Building"]
+    }
+  ];
+
+  const enterpriseSolutionsId = [
+    {
+      icon: <FiMonitor />,
+      title: "Media Monitoring",
+      desc: "Pantau reputasi brand dan pergerakan kompetitor di internet secara real-time untuk keputusan strategis.",
+      highlight: "Real-time Intelligence",
+      features: ["Pelacakan Kata Kunci Sentimen", "Monitoring Media Sosial & Cetak", "Live Dashboard Pelaporan", "Analisis Kompetitor Berkala"]
+    },
+    {
+      icon: <FiCode />,
+      title: "Sistem Informasi & Aplikasi",
+      desc: "Digitalisasi operasional bisnis Anda dengan sistem internal (CRM/ERP) dan aplikasi mobile kustom.",
+      highlight: "Digitalisasi Efisien",
+      features: ["Otomatisasi Catatan Keuangan", "Manajemen Stok & Inventaris", "Dashboard Analitik Kustom", "Integrasi Sistem Terbuka"]
+    }
+  ];
+
+  const enterpriseSolutionsEn = [
+    {
+      icon: <FiMonitor />,
+      title: "Media Monitoring",
+      desc: "Track brand reputation and competitor movements in real-time for data-driven strategic decisions.",
+      highlight: "Real-time Intelligence",
+      features: ["Sentiment & Keyword Tracking", "Social, Print & TV Monitoring", "Live Dashboard Analytics", "Regular Competitor Insights"]
+    },
+    {
+      icon: <FiCode />,
+      title: "Information Systems & Apps",
+      desc: "Digitize your business operations with bespoke internal systems (CRM/ERP) and custom mobile applications.",
+      highlight: "Efficient Digitize",
+      features: ["Finance Record Automation", "Stock & Inventory Management", "Custom Analytical Dashboards", "Open API/System Integration"]
     }
   ];
 
@@ -172,6 +270,9 @@ const Services = () => {
       title: "Solusi Digital",
       titleGradient: "Tanpa Kompromi",
       subtitle: "Kami menggabungkan estetika premium dengan teknologi mutakhir untuk menciptakan website yang bukan sekadar ada, tapi menghasilkan.",
+      catWeb: "1. Core Web Solutions",
+      catMarketing: "2. Digital Marketing & SEO",
+      catEnterprise: "3. Enterprise & Analytics",
       processTitle: "Alur Kerja",
       processGradient: "Profesional",
       processSubtitle: "Bagaimana kami mewujudkan visi Anda menjadi realitas digital.",
@@ -186,6 +287,9 @@ const Services = () => {
       title: "Digital Solutions",
       titleGradient: "Without Compromise",
       subtitle: "We combine premium aesthetics with cutting-edge technology to create websites that don't just exist, but perform.",
+      catWeb: "1. Core Web Solutions",
+      catMarketing: "2. Digital Marketing & SEO",
+      catEnterprise: "3. Enterprise & Analytics",
       processTitle: "Professional",
       processGradient: "Workflow",
       processSubtitle: "How we turn your vision into digital reality.",
@@ -199,6 +303,8 @@ const Services = () => {
   };
 
   const coreSolutions = language === 'en' ? coreSolutionsEn : coreSolutionsId;
+  const marketingSolutions = language === 'en' ? marketingSolutionsEn : marketingSolutionsId;
+  const enterpriseSolutions = language === 'en' ? enterpriseSolutionsEn : enterpriseSolutionsId;
   const benefits = language === 'en' ? benefitsEn : benefitsId;
   const steps = language === 'en' ? stepsEn : stepsId;
   const t = translations[language] || translations.id;
@@ -225,23 +331,72 @@ const Services = () => {
             </p>
           </div>
 
-          <div className="solutions-grid">
-            {coreSolutions.map((sol, index) => (
-              <div key={index} className={`solution-card glass animate-entrance delay-${(index + 1) * 150}`}>
-                <div className="solution-badge">{sol.highlight}</div>
-                <div className="service-icon-wrapper gold-bg">
-                  {sol.icon}
+          {/* Group 1: Core Web Solutions */}
+          <div className="service-category-group mb-16">
+            <h2 className="category-group-title text-gradient mb-8">{t.catWeb}</h2>
+            <div className="solutions-grid">
+              {coreSolutions.map((sol, index) => (
+                <div key={index} className={`solution-card glass animate-entrance delay-${(index + 1) * 150}`}>
+                  <div className="solution-badge">{sol.highlight}</div>
+                  <div className="service-icon-wrapper gold-bg">
+                    {sol.icon}
+                  </div>
+                  <h3 className="service-title">{sol.title}</h3>
+                  <p className="service-desc">{sol.desc}</p>
+                  <ul className="solution-features">
+                    {sol.features && sol.features.map((feat, fIndex) => (
+                      <li key={fIndex}>{feat}</li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="service-title">{sol.title}</h3>
-                <p className="service-desc">{sol.desc}</p>
-                <ul className="solution-features">
-                  {sol.features && sol.features.map((feat, fIndex) => (
-                    <li key={fIndex}>{feat}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
+          {/* Group 2: Digital Marketing & SEO */}
+          <div className="service-category-group mb-16">
+            <h2 className="category-group-title text-gradient mb-8">{t.catMarketing}</h2>
+            <div className="solutions-grid">
+              {marketingSolutions.map((sol, index) => (
+                <div key={index} className={`solution-card glass animate-entrance delay-${(index + 1) * 150}`}>
+                  <div className="solution-badge">{sol.highlight}</div>
+                  <div className="service-icon-wrapper gold-bg">
+                    {sol.icon}
+                  </div>
+                  <h3 className="service-title">{sol.title}</h3>
+                  <p className="service-desc">{sol.desc}</p>
+                  <ul className="solution-features">
+                    {sol.features && sol.features.map((feat, fIndex) => (
+                      <li key={fIndex}>{feat}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Group 3: Enterprise & Analytics */}
+          <div className="service-category-group">
+            <h2 className="category-group-title text-gradient mb-8">{t.catEnterprise}</h2>
+            <div className="solutions-grid">
+              {enterpriseSolutions.map((sol, index) => (
+                <div key={index} className={`solution-card glass animate-entrance delay-${(index + 1) * 150}`}>
+                  <div className="solution-badge">{sol.highlight}</div>
+                  <div className="service-icon-wrapper gold-bg">
+                    {sol.icon}
+                  </div>
+                  <h3 className="service-title">{sol.title}</h3>
+                  <p className="service-desc">{sol.desc}</p>
+                  <ul className="solution-features">
+                    {sol.features && sol.features.map((feat, fIndex) => (
+                      <li key={fIndex}>{feat}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -296,9 +451,12 @@ const Services = () => {
           <h2 className="cta-title animate-entrance">{t.ctaTitle}</h2>
           <p className="cta-desc animate-entrance delay-100">{t.ctaDesc}</p>
           <div className="cta-actions animate-entrance delay-200">
-            <a href={`https://wa.me/6285219461408?text=${encodeURIComponent(language === 'id' ? 'Halo Aurotech, saya tertarik dengan layanan pembuatan website Anda.' : 'Hello Aurotech, I am interested in your website development services.')}`} className="btn btn-primary btn-lg btn-glint">
+            <button 
+              className="btn btn-primary btn-lg btn-glint"
+              onClick={() => openWhatsAppModal(language === 'en' ? 'Company Profile Website' : 'Company Profile Website')}
+            >
               <FiMessageSquare /> {t.ctaButton}
-            </a>
+            </button>
           </div>
         </div>
       </section>

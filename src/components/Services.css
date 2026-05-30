@@ -24,6 +24,20 @@
   margin: 0 auto;
 }
 
+/* Service Category Grouping */
+.service-category-group {
+  margin-top: 4rem;
+}
+
+.category-group-title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  padding-left: 1rem;
+  border-left: 4px solid var(--primary);
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
 /* Solutions Grid */
 .solutions-grid {
   display: grid;
