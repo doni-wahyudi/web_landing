@@ -34,16 +34,18 @@ export const WhatsAppModalProvider = ({ children }) => {
       errorNeeds: "Kebutuhan proyek wajib diisi.",
       serviceGroups: [
         {
-          label: "Core Web Solutions (Jasa Pembuatan Website)",
+          label: "Web, Information System (IS) & Apps Development",
           options: [
+            "Website - Paket Basic",
+            "Website - Paket Profesional",
+            "Website - Paket Premium",
+            "IS & Apps Dev - Information System (IS)",
+            "IS & Apps Dev - Apps Development",
             "Company Profile Website",
             "E-Commerce / Toko Online",
             "Landing Page / Iklan",
             "Custom Web Application",
-            "Maintenance & Support Plan",
-            "Website - Paket Basic",
-            "Website - Paket Profesional",
-            "Website - Paket Premium"
+            "Maintenance & Support Plan"
           ]
         },
         {
@@ -109,16 +111,18 @@ export const WhatsAppModalProvider = ({ children }) => {
       errorNeeds: "Project needs are required.",
       serviceGroups: [
         {
-          label: "Core Web Solutions (Website Creation)",
+          label: "Web, Information System (IS) & Apps Development",
           options: [
+            "Website - Paket Basic",
+            "Website - Paket Professional",
+            "Website - Paket Premium",
+            "IS & Apps Dev - Information System (IS)",
+            "IS & Apps Dev - Apps Development",
             "Company Profile Website",
             "E-Commerce / Online Store",
             "High-Conversion Landing Page",
             "Custom Web Application",
-            "Maintenance & Support Plan",
-            "Website - Paket Basic",
-            "Website - Paket Professional",
-            "Website - Paket Premium"
+            "Maintenance & Support Plan"
           ]
         },
         {

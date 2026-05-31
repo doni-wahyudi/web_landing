@@ -1,9 +1,82 @@
-import { useState, useEffect, useCallback } from 'react';
-import { FiCheck, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { 
+  FiCheck, FiX, FiChevronLeft, FiChevronRight,
+  FiLayout, FiDatabase, FiDollarSign, FiPackage, FiLock, FiServer, FiPieChart, FiShield,
+  FiSmartphone, FiCreditCard, FiBell, FiMapPin, FiCloud, FiAward,
+  FiTrendingUp, FiEdit3, FiPenTool, FiShare2, FiUsers, FiMail, FiVideo, FiSearch,
+  FiClock, FiSettings, FiSliders, FiLink, FiGlobe, FiFileText, FiMessageSquare, FiZap, FiLayers, FiTarget
+} from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useWhatsAppModal } from '../context/WhatsAppModalContext';
 import './Pricing.css';
+
+const getFeatureIcon = (name) => {
+  const lowercase = name.toLowerCase();
+  
+  // Dashboard, Admin, Layout
+  if (lowercase.includes('dashboard') || lowercase.includes('layout') || lowercase.includes('admin')) return <FiLayout />;
+  
+  // Database, Storage
+  if (lowercase.includes('database') || lowercase.includes('stok') || lowercase.includes('inventaris') || lowercase.includes('stock') || lowercase.includes('erp') || lowercase.includes('package')) return <FiDatabase />;
+  
+  // Finance, Money, Payment, Price
+  if (lowercase.includes('keuangan') || lowercase.includes('finance') || lowercase.includes('pencatatan') || lowercase.includes('dollar') || lowercase.includes('payment') || lowercase.includes('pembayaran') || lowercase.includes('gateway') || lowercase.includes('credit') || lowercase.includes('biaya')) return <FiDollarSign />;
+  
+  // Security, Shield, Guarantee, License
+  if (lowercase.includes('garansi') || lowercase.includes('warranty') || lowercase.includes('shield') || lowercase.includes('security') || lowercase.includes('ssl') || lowercase.includes('aman') || lowercase.includes('secure')) return <FiShield />;
+  
+  // User, Profile, Access Control
+  if (lowercase.includes('user') || lowercase.includes('access') || lowercase.includes('multi-level') || lowercase.includes('lock') || lowercase.includes('login') || lowercase.includes('hak akses')) return <FiLock />;
+  
+  // Server, API, Cloud, Domain, Hosting
+  if (lowercase.includes('server') || lowercase.includes('cloud') || lowercase.includes('api') || lowercase.includes('hosting')) return <FiServer />;
+  
+  // Analytics, Chart, Reporting, PDF, Laporan
+  if (lowercase.includes('analitik') || lowercase.includes('analytical') || lowercase.includes('visualisasi') || lowercase.includes('chart') || lowercase.includes('laporan') || lowercase.includes('report') || lowercase.includes('pdf')) return <FiPieChart />;
+  
+  // App, Smartphone, Mobile
+  if (lowercase.includes('aplikasi') || lowercase.includes('app') || lowercase.includes('flutter') || lowercase.includes('smartphone') || lowercase.includes('mobile')) return <FiSmartphone />;
+  
+  // Maps, Location, GPS, Address
+  if (lowercase.includes('maps') || lowercase.includes('map') || lowercase.includes('gps') || lowercase.includes('kamera') || lowercase.includes('pin') || lowercase.includes('lokasi') || lowercase.includes('cabang')) return <FiMapPin />;
+  
+  // Cloud Upload, App Store, Play Store
+  if (lowercase.includes('play store') || lowercase.includes('app store') || lowercase.includes('publikasi') || lowercase.includes('submission')) return <FiCloud />;
+  
+  // Award, Best, Main
+  if (lowercase.includes('award') || lowercase.includes('utama') || lowercase.includes('premium')) return <FiAward />;
+  
+  // Email, Message, Contact
+  if (lowercase.includes('email') || lowercase.includes('surat')) return <FiMail />;
+  
+  // WhatsApp, Chat, Discussion
+  if (lowercase.includes('whatsapp') || lowercase.includes('wa') || lowercase.includes('diskusi') || lowercase.includes('grup') || lowercase.includes('chat') || lowercase.includes('brainstorming')) return <FiMessageSquare />;
+  
+  // SEO, Google, Keyword, Competitor, Search
+  if (lowercase.includes('seo') || lowercase.includes('google') || lowercase.includes('keyword') || lowercase.includes('audit') || lowercase.includes('kompetitor') || lowercase.includes('riset') || lowercase.includes('search') || lowercase.includes('analisis')) return <FiSearch />;
+  
+  // Content, Article, Design, Copywriting, Video, Feed, Post, Story
+  if (lowercase.includes('artikel') || lowercase.includes('konten') || lowercase.includes('content') || lowercase.includes('copywriting') || lowercase.includes('caption') || lowercase.includes('desain') || lowercase.includes('design') || lowercase.includes('logo') || lowercase.includes('feed') || lowercase.includes('post') || lowercase.includes('revisi')) return <FiEdit3 />;
+  
+  // Video, Reels, TikTok, Zoom
+  if (lowercase.includes('video') || lowercase.includes('reels') || lowercase.includes('tiktok') || lowercase.includes('zoom')) return <FiVideo />;
+  
+  // Link, Backlink
+  if (lowercase.includes('link') || lowercase.includes('backlink')) return <FiLink />;
+  
+  // Speed, Fast, Performance, Uptime, Optimization
+  if (lowercase.includes('cepat') || lowercase.includes('speed') || lowercase.includes('optimasi') || lowercase.includes('uptime') || lowercase.includes('performance') || lowercase.includes('fast') || lowercase.includes('zap')) return <FiZap />;
+  
+  // Maintenance, Support, Setup, Configuration, Automation
+  if (lowercase.includes('maintenance') || lowercase.includes('support') || lowercase.includes('dukungan') || lowercase.includes('setup') || lowercase.includes('otomatisasi') || lowercase.includes('perbaikan') || lowercase.includes('backup')) return <FiSettings />;
+  
+  // Multi-Platform, Channels
+  if (lowercase.includes('platform') || lowercase.includes('channel') || lowercase.includes('sosmed') || lowercase.includes('media')) return <FiLayers />;
+  
+  // Default checkmark
+  return <FiCheck />;
+};
 
 const Pricing = () => {
   const [activeCategory, setActiveCategory] = useState('web');
@@ -11,6 +84,25 @@ const Pricing = () => {
   const [isPaused, setIsPaused] = useState(false);
   const { language } = useLanguage();
   const { openWhatsAppModal } = useWhatsAppModal();
+
+  const sosmedScrollRef = useRef(null);
+
+  const scrollSosmed = (direction) => {
+    if (sosmedScrollRef.current) {
+      const container = sosmedScrollRef.current;
+      const card = container.querySelector('.pricing-card');
+      if (card) {
+        const cardWidth = card.clientWidth + 24;
+        const targetScroll = direction === 'left'
+          ? container.scrollLeft - cardWidth
+          : container.scrollLeft + cardWidth;
+        container.scrollTo({
+          left: targetScroll,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
 
   const mainPlansId = [
     {
@@ -129,6 +221,76 @@ const Pricing = () => {
       ],
       featured: false,
       btnText: "Choose Premium Plan"
+    }
+  ];
+
+  const appPlansId = [
+    {
+      name: "Information System (IS)",
+      price: "Hubungi Kami",
+      desc: "Sistem internal (ERP, CRM, Keuangan, Inventaris) untuk efisiensi bisnis.",
+      features: [
+        { name: "Custom Dashboard & Database", included: true },
+        { name: "Otomatisasi Pencatatan Keuangan", included: true },
+        { name: "Manajemen Stok & Inventaris ERP", included: true },
+        { name: "Multi-Level User Access Control", included: true },
+        { name: "Integrasi API Pihak Ketiga & Cloud Server", included: true },
+        { name: "Dashboard Analitik & Visualisasi Data", included: true },
+        { name: "🎁 Dukungan Teknis & Maintenance 1 Tahun", included: true }
+      ],
+      featured: false,
+      btnText: "Konsultasi Sistem IS"
+    },
+    {
+      name: "Apps Development",
+      price: "Hubungi Kami",
+      desc: "Aplikasi mobile (Android & iOS) dan Web Apps kustom khusus.",
+      features: [
+        { name: "Aplikasi Kustom (React Native / Flutter)", included: true },
+        { name: "Integrasi Payment Gateway & Pembayaran", included: true },
+        { name: "Fitur Notifikasi Push & Akses GPS/Kamera", included: true },
+        { name: "Desain UI/UX Kustom Sesuai Alur Bisnis", included: true },
+        { name: "Server Setup, Security Hardening & SSL", included: true },
+        { name: "🎁 Publikasi Play Store & App Store", included: true },
+        { name: "Dukungan Teknis Penuh & Garansi 6 Bulan", included: true }
+      ],
+      featured: false,
+      btnText: "Konsultasi App Dev"
+    }
+  ];
+
+  const appPlansEn = [
+    {
+      name: "Information System (IS)",
+      price: "Contact Us",
+      desc: "Internal systems (ERP, CRM, Finance, Stock) to maximize business efficiency.",
+      features: [
+        { name: "Custom Dashboard & Database", included: true },
+        { name: "Financial Recording & Invoicing Automation", included: true },
+        { name: "Stock & Inventory Management (ERP)", included: true },
+        { name: "Multi-Level User Access Control", included: true },
+        { name: "Third-Party API & Cloud Server Integration", included: true },
+        { name: "Analytical Dashboards & Data Visualization", included: true },
+        { name: "🎁 Priority Support & 1-Year Maintenance", included: true }
+      ],
+      featured: false,
+      btnText: "Consult Systems IS"
+    },
+    {
+      name: "Apps Development",
+      price: "Contact Us",
+      desc: "Bespoke interactive mobile apps (Android & iOS) and web applications.",
+      features: [
+        { name: "Custom App Building (React Native / Flutter)", included: true },
+        { name: "Payment Gateway & Subscriptions Integration", included: true },
+        { name: "Push Notifications, Camera & GPS Features", included: true },
+        { name: "Fully Custom UI/UX Tailored to Business Workflows", included: true },
+        { name: "Secure Server Hosting Setup & SSL", included: true },
+        { name: "🎁 App Store & Play Store Submissions", included: true },
+        { name: "Full Technical Support & 6-Month Warranty", included: true }
+      ],
+      featured: false,
+      btnText: "Consult App Dev"
     }
   ];
 
@@ -602,6 +764,7 @@ const Pricing = () => {
       addonTitle: "Add-on Service",
       addonSubtitle: "Layanan tambahan untuk mendukung pertumbuhan dan performa aset digital Anda.",
       tabWeb: "Pembuatan Website",
+      tabApps: "Pembuatan Aplikasi",
       tabSEO: "SEO Google",
       tabSosmed: "Kelola Sosmed",
       tabMonitoring: "Media Monitoring",
@@ -653,6 +816,7 @@ const Pricing = () => {
       addonTitle: "Add-on Services",
       addonSubtitle: "Additional services to support the growth and performance of your digital assets.",
       tabWeb: "Web Development",
+      tabApps: "App Development",
       tabSEO: "Google SEO",
       tabSosmed: "Social Media",
       tabMonitoring: "Media Monitoring",
@@ -701,6 +865,7 @@ const Pricing = () => {
   const mainPlans = language === 'en' ? mainPlansEn : mainPlansId;
   const seoPlans = language === 'en' ? seoPlansEn : seoPlansId;
   const sosmedPlans = language === 'en' ? sosmedPlansEn : sosmedPlansId;
+  const appPlans = language === 'en' ? appPlansEn : appPlansId;
   const maintenancePlansList = language === 'en' ? maintenancePlansListEn : maintenancePlansListId;
   const monitoringFeatures = language === 'en' ? monitoringFeaturesEn : monitoringFeaturesId;
   const t = translations[language] || translations.id;
@@ -754,6 +919,12 @@ const Pricing = () => {
               {t.tabWeb}
             </button>
             <button
+              className={`pricing-tab ${activeCategory === 'apps' ? 'active' : ''}`}
+              onClick={() => setActiveCategory('apps')}
+            >
+              {t.tabApps}
+            </button>
+            <button
               className={`pricing-tab ${activeCategory === 'seo' ? 'active' : ''}`}
               onClick={() => setActiveCategory('seo')}
             >
@@ -794,13 +965,19 @@ const Pricing = () => {
                 </div>
 
                 <div className="pricing-features">
-                  <ul>
+                  <div className="app-feature-badges-container">
                     {plan.features.map((feature, idx) => (
-                      <li key={idx} className={feature.included ? 'clean-list' : 'clean-list not-included'}>
-                        {feature.name}
-                      </li>
+                      <div 
+                        key={idx} 
+                        className={`app-feature-badge ${!feature.included ? 'not-included' : ''}`}
+                      >
+                        <span className="badge-icon">
+                          {feature.included ? getFeatureIcon(feature.name) : <FiX />}
+                        </span>
+                        <span>{feature.name}</span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
 
                 <div className="pricing-action">
@@ -814,6 +991,57 @@ const Pricing = () => {
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* Tab 5: App Development Packages */}
+        {activeCategory === 'apps' && (
+          <div className="animate-entrance">
+            <div className="pricing-grid max-w-4xl mx-auto" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', justifyContent: 'center' }}>
+              {appPlans.map((plan, index) => (
+                <div key={index} className={`pricing-card glass-card ${plan.featured ? 'featured' : ''}`}>
+                  {plan.featured && <div className="featured-badge gold-ribbon">POPULAR</div>}
+
+                  <div className="pricing-header">
+                    <h3 className="plan-name">{plan.name}</h3>
+                    <div className="plan-price-container">
+                      {plan.originalPrice && (
+                        <span className="original-price">{plan.originalPrice}</span>
+                      )}
+                      <div className="plan-price gold-text" style={{ fontSize: '1.8rem', minHeight: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        {plan.price}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pricing-features">
+                    <div className="app-feature-badges-container">
+                      {plan.features.map((feature, idx) => (
+                        <div 
+                          key={idx} 
+                          className={`app-feature-badge ${!feature.included ? 'not-included' : ''}`}
+                        >
+                          <span className="badge-icon">
+                            {feature.included ? getFeatureIcon(feature.name) : <FiX />}
+                          </span>
+                          <span>{feature.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="pricing-action">
+                    <button 
+                      onClick={() => openWhatsAppModal(`IS & Apps Dev - ${plan.name}`)}
+                      className="btn w-full btn-blue"
+                    >
+                      {plan.btnText}
+                    </button>
+                    <p className="text-center mt-4 text-sm text-gray-400 font-medium" style={{ opacity: 0.8 }}>{t.guarantee}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
@@ -837,13 +1065,19 @@ const Pricing = () => {
                 </div>
 
                 <div className="pricing-features">
-                  <ul>
+                  <div className="app-feature-badges-container">
                     {plan.features.map((feature, idx) => (
-                      <li key={idx} className={feature.included ? 'clean-list' : 'clean-list not-included'}>
-                        {feature.name}
-                      </li>
+                      <div 
+                        key={idx} 
+                        className={`app-feature-badge ${!feature.included ? 'not-included' : ''}`}
+                      >
+                        <span className="badge-icon">
+                          {feature.included ? getFeatureIcon(feature.name) : <FiX />}
+                        </span>
+                        <span>{feature.name}</span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
 
                 <div className="pricing-action">
@@ -863,47 +1097,73 @@ const Pricing = () => {
         {/* Tab 3: Social Media Management */}
         {activeCategory === 'sosmed' && (
           <div className="animate-entrance">
-            <div className="pricing-grid">
-              {sosmedPlans.map((plan, index) => (
-                <div key={index} className={`pricing-card glass-card ${plan.featured ? 'featured' : ''}`}>
-                  {plan.featured && <div className="featured-badge gold-ribbon">POPULAR</div>}
+            <div className="sosmed-slider-outer">
+              <button 
+                className="slider-arrow prev" 
+                onClick={() => scrollSosmed('left')} 
+                aria-label="Previous"
+              >
+                <FiChevronLeft size={32} />
+              </button>
 
-                  <div className="pricing-header">
-                    <h3 className="plan-name">{plan.name}</h3>
-                    <div className="plan-price-container">
-                      {plan.originalPrice && (
-                        <span className="original-price">{plan.originalPrice}</span>
-                      )}
-                      <div className="plan-price gold-text">
-                        {plan.price}
-                        {plan.price !== 'Kustom' && plan.price !== 'Custom' && (
-                          <span className="price-period" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>/bln</span>
+              <div className="sosmed-scroll-container" ref={sosmedScrollRef}>
+                {sosmedPlans.map((plan, index) => (
+                  <div key={index} className={`pricing-card glass-card sosmed-card ${plan.featured ? 'featured' : ''}`}>
+                    {plan.featured && <div className="featured-badge gold-ribbon">POPULAR</div>}
+
+                    <div className="pricing-header">
+                      <h3 className="plan-name">{plan.name}</h3>
+                      <div className="plan-price-container">
+                        {plan.originalPrice && (
+                          <span className="original-price">{plan.originalPrice}</span>
                         )}
+                        <div className="plan-price gold-text">
+                          {plan.price}
+                          {plan.price !== 'Kustom' && plan.price !== 'Custom' && (
+                            <span className="price-period" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>/bln</span>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="pricing-features">
-                    <ul>
-                      {plan.features.map((feature, idx) => (
-                        <li key={idx} className={feature.included ? 'clean-list' : 'clean-list not-included'}>
-                          {feature.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                    <div className="pricing-features">
+                      <div className="app-feature-badges-container">
+                        {plan.features.map((feature, idx) => (
+                          <div 
+                            key={idx} 
+                            className={`app-feature-badge ${!feature.included ? 'not-included' : ''}`}
+                          >
+                            <span className="badge-icon">
+                              {feature.included ? getFeatureIcon(feature.name) : <FiX />}
+                            </span>
+                            <span>{feature.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
 
-                  <div className="pricing-action">
-                    <button 
-                      onClick={() => openWhatsAppModal(`Kelola Sosmed - Paket ${plan.name}`)}
-                      className="btn w-full btn-blue"
-                    >
-                      {plan.btnText}
-                    </button>
-                    <p className="text-center mt-4 text-sm text-gray-400 font-medium" style={{ opacity: 0.8 }}>{t.guarantee}</p>
+                    <div className="pricing-action">
+                      <button 
+                        onClick={() => openWhatsAppModal(`Kelola Sosmed - Paket ${plan.name}`)}
+                        className="btn w-full btn-blue"
+                      >
+                        {plan.btnText}
+                      </button>
+                      <p className="text-center mt-4 text-sm text-gray-400 font-medium" style={{ opacity: 0.8 }}>{t.guarantee}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+                {/* Spacer to prevent final card cropping */}
+                <div className="sosmed-scroll-spacer" style={{ flex: '0 0 5rem', width: '5rem', minWidth: '5rem', height: '1px', pointerEvents: 'none' }}></div>
+              </div>
+
+              <button 
+                className="slider-arrow next" 
+                onClick={() => scrollSosmed('right')} 
+                aria-label="Next"
+              >
+                <FiChevronRight size={32} />
+              </button>
             </div>
 
             {/* Extra Bonuses Callout */}
@@ -1052,13 +1312,16 @@ const Pricing = () => {
                         </div>
 
                         <div className="pricing-features">
-                          <ul>
+                          <div className="app-feature-badges-container" style={{ minHeight: 'auto' }}>
                             {plan.features.map((feature, idx) => (
-                              <li key={idx} className="clean-list text-center">
-                                {feature}
-                              </li>
+                              <div key={idx} className="app-feature-badge">
+                                <span className="badge-icon">
+                                  {getFeatureIcon(feature)}
+                                </span>
+                                <span>{feature}</span>
+                              </div>
                             ))}
-                          </ul>
+                          </div>
                         </div>
 
                         <div className="pricing-action">

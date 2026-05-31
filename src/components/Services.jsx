@@ -158,10 +158,10 @@ const Services = () => {
     },
     {
       icon: <FiCode />,
-      title: "Sistem Informasi & Aplikasi",
-      desc: "Digitalisasi operasional bisnis Anda dengan sistem internal (CRM/ERP) dan aplikasi mobile kustom.",
+      title: "Information System (IS) dan Apps Development (Web/Mobile Apps)",
+      desc: '"Digitalisasi Operasional Bisnis Anda dengan Sistem & Aplikasi yang Efisien." Kami membangun sistem informasi internal dan aplikasi kustom (Web/Mobile) yang dirancang khusus untuk memangkas proses manual bisnis Anda. Dari otomatisasi pencatatan keuangan, manajemen stok, ERP, hingga pembuatan aplikasi interaktif untuk pelanggan, kami menghadirkan solusi teknologi yang stabil, mudah digunakan, dan siap mendukung pertumbuhan bisnis Anda.',
       highlight: "Digitalisasi Efisien",
-      features: ["Otomatisasi Catatan Keuangan", "Manajemen Stok & Inventaris", "Dashboard Analitik Kustom", "Integrasi Sistem Terbuka"]
+      features: ["Otomatisasi Catatan Keuangan", "Manajemen Stok & ERP", "Aplikasi Web & Mobile Kustom", "Integrasi & Otomatisasi Sistem"]
     }
   ];
 
@@ -175,10 +175,10 @@ const Services = () => {
     },
     {
       icon: <FiCode />,
-      title: "Information Systems & Apps",
-      desc: "Digitize your business operations with bespoke internal systems (CRM/ERP) and custom mobile applications.",
+      title: "Information System (IS) & Apps Development (Web/Mobile Apps)",
+      desc: '"Digitizing Your Business Operations with Efficient Systems & Apps." We build bespoke internal information systems and custom apps (Web/Mobile) designed to streamline your business\'s manual processes. From financial recording automation, inventory management, ERP, to interactive app development for clients, we deliver stable, user-friendly technological solutions ready to support your business growth.',
       highlight: "Efficient Digitize",
-      features: ["Finance Record Automation", "Stock & Inventory Management", "Custom Analytical Dashboards", "Open API/System Integration"]
+      features: ["Financial Recording Automation", "Stock Management & ERP", "Custom Web & Mobile Apps", "System Integration & Automation"]
     }
   ];
 
