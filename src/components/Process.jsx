@@ -67,6 +67,37 @@ const Process = () => {
     }
   ];
 
+  const processStepsDe = [
+    {
+      id: 1,
+      title: "Beratung",
+      description: "Besprechung der Anforderungen & des Projektbriefings, um Ihre Geschäftsvision und Zielgruppe zu verstehen.",
+      time: "Tag 1",
+      icon: <FiMessageCircle />
+    },
+    {
+      id: 2,
+      title: "Design",
+      description: "Erstellung von Wireframes & UI/UX-Mockups zur Freigabe vor der Entwicklung.",
+      time: "Tag 2–4",
+      icon: <FiPenTool />
+    },
+    {
+      id: 3,
+      title: "Revision",
+      description: "Verfeinerung von Design und Funktionalität basierend auf Ihrem Feedback.",
+      time: "Tag 5–6",
+      icon: <FiRefreshCw />
+    },
+    {
+      id: 4,
+      title: "Launch",
+      description: "Umfangreiche Tests, Go-Live und Übergabe der digitalen Assets.",
+      time: "Tag 7",
+      icon: <FiSend />
+    }
+  ];
+
   const translations = {
     id: {
       title: "Cara",
@@ -77,11 +108,16 @@ const Process = () => {
       title: "How",
       titleGradient: "We Work",
       subtitle: "A transparent and efficient process to ensure the best results on time."
+    },
+    de: {
+      title: "Wie",
+      titleGradient: "wir arbeiten",
+      subtitle: "Ein transparenter und effizienter Prozess, um die besten Ergebnisse pünktlich zu liefern."
     }
   };
 
   const t = translations[language] || translations.id;
-  const steps = language === 'en' ? processStepsEn : processStepsId;
+  const steps = language === 'en' ? processStepsEn : language === 'de' ? processStepsDe : processStepsId;
 
   return (
     <section className="section process-section bg-secondary">

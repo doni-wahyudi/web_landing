@@ -56,6 +56,32 @@ const PrivacyPage = () => {
       sec5Text: "Our website may use cookies to improve navigation experience and analyze traffic using third-party services such as Google Analytics for internal evaluation purposes.",
       sec6Title: "6. Your Rights",
       sec6Text: "You have the right to request access to the personal information we hold, request correction of inaccurate data, or request deletion of your data from our marketing communication systems at any time."
+    },
+    de: {
+      seoTitle: "Datenschutzerklärung",
+      seoDesc: "Datenschutzrichtlinie der Aurotech Digital Agency.",
+      title: "Datenschutz-",
+      titleGradient: "erklärung",
+      updated: "Zuletzt aktualisiert: 20. April 2026",
+      sec1Title: "1. Informationen, die wir sammeln",
+      sec1Text: "Wir sammeln Informationen, die Sie uns direkt zur Verfügung stellen, wenn Sie uns über WhatsApp oder andere Formulare kontaktieren, einschließlich, aber nicht beschränkt auf:",
+      sec1Item1: "Name und Kontaktdaten (Telefonnummer, E-Mail).",
+      sec1Item2: "Projektdetails und geschäftliche Anforderungen.",
+      sec1Item3: "Medien-Assets, die für Website-Materialien bereitgestellt werden.",
+      sec2Title: "2. Wie wir Informationen verwenden",
+      sec2Text: "Die von Ihnen bereitgestellten Informationen werden verwendet, um:",
+      sec2Item1: "Beratungsleistungen und Preisangebote bereitzustellen.",
+      sec2Item2: "Website-Projekte durchzuführen und Funktionen zu integrieren.",
+      sec2Item3: "Über den Projektstatus und den technischen Support zu kommunizieren.",
+      sec2Item4: "Aktualisierungsinformationen oder neue Serviceangebote zu senden.",
+      sec3Title: "3. Datensicherheit",
+      sec3Text: "Wir implementieren angemessene technische und organisatorische Sicherheitsmaßnahmen, um die personenbezogenen Daten unserer Kunden vor unbefugtem Zugriff, Offenlegung oder Beschädigung zu schützen. Domain- und Hosting-Registrierungsdaten werden gemäß den Protokollen der jeweiligen Anbieter sicher verwaltet.",
+      sec4Title: "4. Weitergabe von Informationen an Dritte",
+      sec4Text: "Wir werden Ihre Daten nicht an Außenstehende verkaufen. Wir teilen Daten nur mit Drittpartnern, die für die Bereitstellung des Dienstes erforderlich sind (wie Domain-Registrare oder Hosting-Anbieter) und die über ähnliche Datenschutzrichtlinien verfügen.",
+      sec5Title: "5. Cookies und Analysen",
+      sec5Text: "Unsere Website verwendet möglicherweise Cookies, um das Surferlebnis zu verbessern und den Datenverkehr mithilfe von Drittanbieterdiensten wie Google Analytics für interne Evaluierungszwecke zu analysieren.",
+      sec6Title: "6. Ihre Rechte",
+      sec6Text: "Sie haben das Recht, Auskunft über die von uns gespeicherten personenbezogenen Daten zu verlangen, die Berichtigung unrichtiger Daten zu fordern oder die Löschung Ihrer Daten aus unseren Marketingkommunikationssystemen jederzeit zu beantragen."
     }
   };
 

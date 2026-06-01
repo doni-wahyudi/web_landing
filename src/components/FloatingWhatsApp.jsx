@@ -17,6 +17,10 @@ const FloatingWhatsApp = () => {
     en: {
       message: "Chat via WhatsApp — Response within 1 hour",
       defaultText: "Hello Aurotech, I would like to consult about website development..."
+    },
+    de: {
+      message: "Kontakt via WhatsApp — Antwort innerhalb 1 Stunde",
+      defaultText: "Hallo Aurotech, ich wünsche eine Beratung bezüglich Webentwicklung..."
     }
   };
 
@@ -42,7 +46,13 @@ const FloatingWhatsApp = () => {
         {t.message}
       </div>
       <button 
-        onClick={() => openWhatsAppModal(language === 'en' ? 'General Consultation / Others' : 'Konsultasi Umum / Lainnya')}
+        onClick={() => openWhatsAppModal(
+          language === 'en' 
+            ? 'General Consultation / Others' 
+            : language === 'de' 
+            ? 'Allgemeine Beratung / Sonstiges' 
+            : 'Konsultasi Umum / Lainnya'
+        )}
         className="floating-whatsapp-btn"
         aria-label="Chat on WhatsApp"
       >

@@ -86,6 +86,44 @@ const Services = () => {
     }
   ];
 
+  const coreSolutionsDe = [
+    {
+      icon: <FiLayout />,
+      title: "Company Profile Website",
+      desc: "Aufbau von B2B-Glaubwürdigkeit mit einem eleganten und informativen institutionellen Design.",
+      highlight: "Sehr empfohlen",
+      features: ["Premium-Design", "Schnelle Ladezeit", "Schätzung: 5–7 Werktage"]
+    },
+    {
+      icon: <FiSearch />,
+      title: "E-Commerce / Online-Shop",
+      desc: "Online-Verkaufsplattform komplett mit Warenkorb- und Zahlungsfunktionen.",
+      highlight: "Einzelhandel",
+      features: ["Zahlungs-Gateway", "Produktmanagement", "Schätzung: 14–21 Werktage"]
+    },
+    {
+      icon: <FiLayers />,
+      title: "Landingpage / Werbewebsite",
+      desc: "Speziell für Marketingkampagnen entwickelt, mit Fokus auf die Konversionsrate von Kunden.",
+      highlight: "Am beliebtesten",
+      features: ["Konvertierungs-Copywriting", "A/B-Testing bereit", "Schätzung: 3–5 Werktage"]
+    },
+    {
+      icon: <FiDatabase />,
+      title: "Custom Web Application",
+      desc: "Dashboard-Systeme, CRM oder interne Portale, die auf Ihre individuellen Geschäftsanforderungen zugeschnitten sind.",
+      highlight: "Enterprise",
+      features: ["Komplexe Systeme", "Datenbank-Integration", "Schätzung: Individueller Umfang"]
+    },
+    {
+      icon: <FiShield />,
+      title: "Maintenance & Support Plan",
+      desc: "Laufende Wartung, Inhaltsaktualisierungen und technische Supportdienste.",
+      highlight: "Abonnement",
+      features: ["Monatliche Updates", "Sicherheit", "Schnelle Support-Reaktion"]
+    }
+  ];
+
   const marketingSolutionsId = [
     {
       icon: <FiTrendingUp />,
@@ -148,6 +186,37 @@ const Services = () => {
     }
   ];
 
+  const marketingSolutionsDe = [
+    {
+      icon: <FiTrendingUp />,
+      title: "Google Ads",
+      desc: "Gewinnen Sie kaufbereite Interessenten auf der ersten Seite von Google, genau dann, wenn sie nach Ihren Dienstleistungen suchen.",
+      highlight: "Hohe Dringlichkeit",
+      features: ["Keyword- & Wettbewerbsrecherche", "Such- & Maps-Anzeigen-Setup", "Überzeugendes Anzeigen-Copywriting", "Optimierung negativer Keywords"]
+    },
+    {
+      icon: <FiZap />,
+      title: "Meta Ads (FB & IG)",
+      desc: "Erreichen Sie massiv Millionen von zielgerichteten Interessenten basierend auf Standort, Alter und spezifischen Interessen.",
+      highlight: "Visuelles Branding",
+      features: ["A/B-Zielgruppentests", "Visuelles Design & Videobearbeitung", "Meta-Pixel & Conversion-Setup", "Lokaler Radius-Targeting (5–10 KM)"]
+    },
+    {
+      icon: <FiMessageSquare />,
+      title: "Social Media Management",
+      desc: "Verwandeln Sie Ihr Instagram-/TikTok-Profil in ein hochwertiges, ästhetisches und vertrauenswürdiges digitales Schaufenster.",
+      highlight: "Markenautorität",
+      features: ["Monatlicher Inhaltskalender", "Feeds & Stories Grafikdesign", "Überzeugende Captions & Hashtags", "Profil- & Interaktionsoptimierung"]
+    },
+    {
+      icon: <FiSearch />,
+      title: "Search Engine Optimization (SEO)",
+      desc: "Steigern Sie langfristig die organische Sichtbarkeit Ihres Unternehmens bei Google ohne wiederkehrende Klickkosten.",
+      highlight: "Organisch & Stabil",
+      features: ["Full-Funnel Keyword-Recherche", "SEO-optimierte Inhaltsproduktion", "Technisches SEO & Schema-Markup", "Hochwertiger Backlink-Aufbau"]
+    }
+  ];
+
   const enterpriseSolutionsId = [
     {
       icon: <FiMonitor />,
@@ -179,6 +248,23 @@ const Services = () => {
       desc: '"Digitizing Your Business Operations with Efficient Systems & Apps." We build bespoke internal information systems and custom apps (Web/Mobile) designed to streamline your business\'s manual processes. From financial recording automation, inventory management, ERP, to interactive app development for clients, we deliver stable, user-friendly technological solutions ready to support your business growth.',
       highlight: "Efficient Digitize",
       features: ["Financial Recording Automation", "Stock Management & ERP", "Custom Web & Mobile Apps", "System Integration & Automation"]
+    }
+  ];
+
+  const enterpriseSolutionsDe = [
+    {
+      icon: <FiMonitor />,
+      title: "Media Monitoring",
+      desc: "Überwachen Sie Markenreputation und Wettbewerberbewegungen im Internet in Echtzeit für datengestützte strategische Entscheidungen.",
+      highlight: "Echtzeit-Analysen",
+      features: ["Sentiment- & Keyword-Tracking", "Social-, Print- & TV-Monitoring", "Live-Dashboard-Analysen", "Regelmäßige Wettbewerber-Insights"]
+    },
+    {
+      icon: <FiCode />,
+      title: "Information System (IS) & Apps Development (Web/Mobile Apps)",
+      desc: '"Digitalisierung Ihrer Geschäftsabläufe mit effizienten Systemen & Apps." Wir entwickeln maßgeschneiderte interne Informationssysteme und kustomisierte Apps (Web/Mobile), um die manuellen Prozesse Ihres Unternehmens zu rationalisieren. Von der Automatisierung der Finanzbuchhaltung über Bestandsmanagement, ERP, bis hin zur interaktiven App-Entwicklung für Kunden liefern wir stabile, benutzerfreundliche Technologielösungen, die für Ihr Geschäftswachstum bereit sind.',
+      highlight: "Effiziente Digitalisierung",
+      features: ["Finanzaufzeichnungs-Automatisierung", "Bestandsverwaltung & ERP", "Custom Web- & Mobile-Apps", "Systemintegration & Automatisierung"]
     }
   ];
 
@@ -216,6 +302,24 @@ const Services = () => {
       icon: <FiShield />,
       title: "Data Security Priority",
       desc: "Implementation of modern security standards to protect your digital assets."
+    }
+  ];
+
+  const benefitsDe = [
+    {
+      icon: <FiZap />,
+      title: "Ultraschnelle Ladezeit",
+      desc: "Optimierung der Core Web Vitals für eine nahtlose Benutzererfahrung."
+    },
+    {
+      icon: <FiSmartphone />,
+      title: "Ultimatives mobiles Erlebnis",
+      desc: "Nicht nur responsiv, sondern für daumenfreundlichen Benutzerkomfort konzipiert."
+    },
+    {
+      icon: <FiShield />,
+      title: "Priorität für Datensicherheit",
+      desc: "Implementierung moderner Sicherheitsstandards zum Schutz Ihrer digitalen Assets."
     }
   ];
 
@@ -265,6 +369,29 @@ const Services = () => {
     }
   ];
 
+  const stepsDe = [
+    {
+      num: "01",
+      title: "Entdeckung & Strategie",
+      desc: "Tiefgehende Gespräche, um Ihre Zielgruppe, Wettbewerber und Geschäftsziele zu verstehen."
+    },
+    {
+      num: "02",
+      title: "UI/UX Design",
+      desc: "Erstellung von ästhetischen und funktionalen visuellen Prototypen zur Freigabe."
+    },
+    {
+      num: "03",
+      title: "Entwicklung",
+      desc: "Codierungsprozess mit dem neuesten Technologie-Stack für schnelle Ergebnisse."
+    },
+    {
+      num: "04",
+      title: "Abschließende QS & Launch",
+      desc: "Umfangreiche Tests auf verschiedenen Browsern und SEO-Integration vor dem Go-live."
+    }
+  ];
+
   const translations = {
     id: {
       title: "Solusi Digital",
@@ -299,14 +426,31 @@ const Services = () => {
       ctaTitle: "Ready to Build Your Digital Presence?",
       ctaDesc: "Consult your website needs with our experts now.",
       ctaButton: "Start Free Consultation"
+    },
+    de: {
+      title: "Digitale Lösungen",
+      titleGradient: "ohne Kompromisse",
+      subtitle: "Wir verbinden erstklassige Ästhetik mit modernster Technologie, um Websites zu erstellen, die nicht nur existieren, sondern performen.",
+      catWeb: "1. Core Web Solutions",
+      catMarketing: "2. Digitales Marketing & SEO",
+      catEnterprise: "3. Enterprise & Analytics",
+      processTitle: "Professioneller",
+      processGradient: "Workflow",
+      processSubtitle: "Wie wir Ihre Vision in eine digitale Realität umsetzen.",
+      standardTitle: "Aurotech-",
+      standardGradient: "Standards",
+      standardSubtitle: "Jede Zeile Code, die wir schreiben, ist auf Spitzenleistung ausgelegt.",
+      ctaTitle: "Bereit, Ihre digitale Präsenz aufzubauen?",
+      ctaDesc: "Besprechen Sie Ihre Website-Anforderungen jetzt mit unseren Experten.",
+      ctaButton: "Kostenlose Beratung starten"
     }
   };
 
-  const coreSolutions = language === 'en' ? coreSolutionsEn : coreSolutionsId;
-  const marketingSolutions = language === 'en' ? marketingSolutionsEn : marketingSolutionsId;
-  const enterpriseSolutions = language === 'en' ? enterpriseSolutionsEn : enterpriseSolutionsId;
-  const benefits = language === 'en' ? benefitsEn : benefitsId;
-  const steps = language === 'en' ? stepsEn : stepsId;
+  const coreSolutions = language === 'en' ? coreSolutionsEn : language === 'de' ? coreSolutionsDe : coreSolutionsId;
+  const marketingSolutions = language === 'en' ? marketingSolutionsEn : language === 'de' ? marketingSolutionsDe : marketingSolutionsId;
+  const enterpriseSolutions = language === 'en' ? enterpriseSolutionsEn : language === 'de' ? enterpriseSolutionsDe : enterpriseSolutionsId;
+  const benefits = language === 'en' ? benefitsEn : language === 'de' ? benefitsDe : benefitsId;
+  const steps = language === 'en' ? stepsEn : language === 'de' ? stepsDe : stepsId;
   const t = translations[language] || translations.id;
 
   return (
@@ -353,7 +497,7 @@ const Services = () => {
                     className="btn btn-outline btn-sm w-full"
                     style={{ marginTop: '1.5rem' }}
                   >
-                    {language === 'en' ? 'Select Service' : 'Pilih Layanan'}
+                    {language === 'en' ? 'Select Service' : language === 'de' ? 'Dienstleistung wählen' : 'Pilih Layanan'}
                   </button>
                 </div>
               ))}
@@ -382,7 +526,7 @@ const Services = () => {
                     className="btn btn-outline btn-sm w-full"
                     style={{ marginTop: '1.5rem' }}
                   >
-                    {language === 'en' ? 'Select Service' : 'Pilih Layanan'}
+                    {language === 'en' ? 'Select Service' : language === 'de' ? 'Dienstleistung wählen' : 'Pilih Layanan'}
                   </button>
                 </div>
               ))}
@@ -411,7 +555,7 @@ const Services = () => {
                     className="btn btn-outline btn-sm w-full"
                     style={{ marginTop: '1.5rem' }}
                   >
-                    {language === 'en' ? 'Select Service' : 'Pilih Layanan'}
+                    {language === 'en' ? 'Select Service' : language === 'de' ? 'Dienstleistung wählen' : 'Pilih Layanan'}
                   </button>
                 </div>
               ))}

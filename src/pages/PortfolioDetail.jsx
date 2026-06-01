@@ -32,6 +32,17 @@ const PortfolioDetail = () => {
       solution: "Solusi Kami",
       outcome: "Hasil yang Terukur",
       tech: "Teknologi yang Digunakan"
+    },
+    de: {
+      notFoundTitle: "Projekt nicht gefunden",
+      notFoundDesc: "Das gesuchte Portfolio-Projekt ist nicht verfügbar.",
+      notFoundHeader: "Projekt nicht gefunden",
+      backToPortfolio: "Zurück zum Portfolio",
+      visitLive: "Live-Website besuchen",
+      challenge: "Die Herausforderung",
+      solution: "Unsere Lösung",
+      outcome: "Messbares Ergebnis",
+      tech: "Verwendete Technologien"
     }
   };
 
@@ -81,7 +92,7 @@ const PortfolioDetail = () => {
     <div className="portfolio-detail pt-24 pb-16">
       <SEO 
         title={project.title}
-        description={`Portfolio project Aurotech: ${project.title}. ${project.challenge[language].substring(0, 150)}...`}
+        description={`Portfolio project Aurotech: ${project.title}. ${(project.challenge[language] || project.challenge.id || project.challenge || '').substring(0, 150)}...`}
         ogImage={project.image}
         canonical={`portfolio/${project.id}`}
       />

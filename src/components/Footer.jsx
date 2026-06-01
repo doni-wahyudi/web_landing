@@ -17,7 +17,8 @@ const Footer = () => {
       contact: "Hubungi Kami",
       about: "Tentang Kami",
       terms: "Syarat & Ketentuan",
-      privacy: "Kebijakan Privasi"
+      privacy: "Kebijakan Privasi",
+      legitimacy: "Terdaftar di Kemenkumham"
     },
     en: {
       desc: "Your best partner in realizing a professional, aesthetic, and sales-oriented digital identity.",
@@ -26,7 +27,18 @@ const Footer = () => {
       contact: "Contact Us",
       about: "About Us",
       terms: "Terms & Conditions",
-      privacy: "Privacy Policy"
+      privacy: "Privacy Policy",
+      legitimacy: "Registered at Ministry of Law"
+    },
+    de: {
+      desc: "Ihr bester Partner bei der Verwirklichung einer professionellen, ästhetischen und verkaufsorientierten digitalen Identität.",
+      services: "Unsere Dienstleistungen",
+      company: "Unternehmen",
+      contact: "Kontaktieren Sie uns",
+      about: "Über uns",
+      terms: "Nutzungsbedingungen",
+      privacy: "Datenschutzerklärung",
+      legitimacy: "Registriert beim Justizministerium"
     }
   };
 
@@ -52,7 +64,7 @@ const Footer = () => {
           </div>
 
           <div className="legitimacy-signals">
-            <p className="legitimacy-item">✓ Terdaftar di Kemenkumham</p>
+            <p className="legitimacy-item">✓ {t.legitimacy}</p>
             <p className="legitimacy-item">✓ NIB: 0303260065722</p>
           </div>
         </div>

@@ -171,6 +171,83 @@ export const WhatsAppModalProvider = ({ children }) => {
           ]
         }
       ]
+    },
+    de: {
+      title: "WhatsApp-Beratung",
+      subtitle: "Bitte füllen Sie dieses kurze Formular aus, damit wir Ihnen die beste Lösung und das beste Angebot für Ihr Unternehmen anbieten können.",
+      labelName: "Vollständiger Name *",
+      placeholderName: "Ihr Name...",
+      labelBusiness: "Name des Unternehmens / der Marke (Optional)",
+      placeholderBusiness: "Name Ihres Unternehmens...",
+      labelService: "Gewünschte Dienstleistung *",
+      labelMessage: "Projektanforderungen / Details *",
+      placeholderMessage: "Beschreiben Sie kurz Ihre Website- oder Digital-Marketing-Anforderungen...",
+      submitBtn: "Senden & weiter zu WhatsApp",
+      errorName: "Bitte geben Sie Ihren vollständigen Namen ein.",
+      errorService: "Bitte wählen Sie eine Dienstleistung.",
+      errorNeeds: "Bitte beschreiben Sie Ihre Projektanforderungen.",
+      serviceGroups: [
+        {
+          label: "Web-, Informationssystem- (IS) & App-Entwicklung",
+          options: [
+            "Website - Paket Basic",
+            "Website - Paket Professional",
+            "Website - Paket Premium",
+            "IS & Apps Dev - Information System (IS)",
+            "IS & Apps Dev - Apps Development",
+            "Company Profile Website",
+            "E-Commerce / Online Store",
+            "High-Conversion Landing Page",
+            "Custom Web Application",
+            "Maintenance & Support Plan"
+          ]
+        },
+        {
+          label: "Digitales Marketing & SEO-Dienstleistungen",
+          options: [
+            "Google Ads",
+            "Meta Ads (FB & IG)",
+            "Social Media Management",
+            "Search Engine Optimization (SEO)",
+            "SEO Google - Paket Starter",
+            "SEO Google - Paket Growth",
+            "SEO Google - Paket Enterprise",
+            "Kelola Sosmed - Paket Basic",
+            "Kelola Sosmed - Paket Medium",
+            "Kelola Sosmed - Paket Professional",
+            "Kelola Sosmed - Paket Custom Package"
+          ]
+        },
+        {
+          label: "Enterprise-Lösungen & Analyse",
+          options: [
+            "Media Monitoring",
+            "Media Monitoring - Paket BASIC NEWS",
+            "Media Monitoring - Paket SOSMED",
+            "Media Monitoring - Paket PROFESIONAL",
+            "Media Monitoring - Paket ENTERPRISE",
+            "Media Monitoring - Paket ULTIMATE",
+            "Media Monitoring - Paket DIAMOND",
+            "Information Systems & Apps"
+          ]
+        },
+        {
+          label: "Zusatzleistungen",
+          options: [
+            "Add-on Service - Renewal",
+            "Add-on Service - Logo Design",
+            "Add-on Service - Basic",
+            "Add-on Service - Professional",
+            "Add-on Service - Premium"
+          ]
+        },
+        {
+          label: "Sonstiges",
+          options: [
+            "General Consultation / Others"
+          ]
+        }
+      ]
     }
   };
 
@@ -206,9 +283,14 @@ export const WhatsAppModalProvider = ({ children }) => {
     }
 
     // Build the WhatsApp message
-    const formattedText = language === 'en' 
-      ? `Hello Aurotech! I am *${formData.name.trim()}*${formData.business ? ` from *${formData.business.trim()}*` : ''}.\n\nI am interested in your *${selectedService}* package/service and want to consult.\n\n*My Project Details:*\n${formData.message.trim()}`
-      : `Halo Aurotech! Saya *${formData.name.trim()}*${formData.business ? ` dari *${formData.business.trim()}*` : ''}.\n\nSaya tertarik dengan layanan *${selectedService}* dan ingin berkonsultasi.\n\n*Detail Kebutuhan Saya:*\n${formData.message.trim()}`;
+    let formattedText = '';
+    if (language === 'en') {
+      formattedText = `Hello Aurotech! I am *${formData.name.trim()}*${formData.business ? ` from *${formData.business.trim()}*` : ''}.\n\nI am interested in your *${selectedService}* package/service and want to consult.\n\n*My Project Details:*\n${formData.message.trim()}`;
+    } else if (language === 'de') {
+      formattedText = `Hallo Aurotech! Ich bin *${formData.name.trim()}*${formData.business ? ` von *${formData.business.trim()}*` : ''}.\n\nIch interessiere mich für Ihre Dienstleistung *${selectedService}* und möchte mich beraten lassen.\n\n*Meine Projektdetails:*\n${formData.message.trim()}`;
+    } else {
+      formattedText = `Halo Aurotech! Saya *${formData.name.trim()}*${formData.business ? ` dari *${formData.business.trim()}*` : ''}.\n\nSaya tertarik dengan layanan *${selectedService}* dan ingin berkonsultasi.\n\n*Detail Kebutuhan Saya:*\n${formData.message.trim()}`;
+    }
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(formattedText)}`;
     
@@ -216,6 +298,7 @@ export const WhatsAppModalProvider = ({ children }) => {
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     closeWhatsAppModal();
   };
+
 
   return (
     <WhatsAppModalContext.Provider value={{ openWhatsAppModal, closeWhatsAppModal }}>
@@ -265,7 +348,7 @@ export const WhatsAppModalProvider = ({ children }) => {
                   value={selectedService}
                   onChange={(e) => setSelectedService(e.target.value)}
                 >
-                  <option value="" disabled>{language === 'en' ? '-- Select Service --' : '-- Pilih Layanan --'}</option>
+                  <option value="" disabled>{language === 'en' ? '-- Select Service --' : language === 'de' ? '-- Dienstleistung auswählen --' : '-- Pilih Layanan --'}</option>
                   {selectedService && !flatServices.includes(selectedService) && (
                     <option value={selectedService}>{selectedService}</option>
                   )}

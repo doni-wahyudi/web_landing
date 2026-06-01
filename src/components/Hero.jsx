@@ -36,6 +36,19 @@ const Hero = () => {
       trust2: "Free .com Domain",
       trust3: "Free Hosting",
       scroll: "Scroll Down"
+    },
+    de: {
+      badge: "Premium-Webentwicklungsdienste",
+      title: "Steigern Sie Ihren Geschäftsumsatz",
+      titleSuffix: "mit einer",
+      titleGradient: "professionellen & eleganten Website",
+      subtitle: "Unsere Kunden berichten von einer durchschnittlichen Steigerung der Online-Anfragen um 40 % innerhalb der ersten 90 Tage nach dem Launch. Erhalten Sie Premium-Designs komplett mit kostenloser .COM-Domain und zuverlässiger technischer Wartung.",
+      ctaConsult: "Kostenlose Beratung — Antwort innerhalb 1 Stunde",
+      ctaPortfolio: "Portfolio ansehen",
+      trust1: "Unbegrenzte Überarbeitungen",
+      trust2: "Kostenlose .com-Domain",
+      trust3: "Kostenloses Hosting",
+      scroll: "Nach unten scrollen"
     }
   };
 
@@ -69,7 +82,13 @@ const Hero = () => {
           <div className="hero-actions delay-400">
             <button 
               className="btn btn-primary btn-lg btn-glint"
-              onClick={() => openWhatsAppModal(language === 'en' ? 'Company Profile Website' : 'Company Profile Website')}
+              onClick={() => openWhatsAppModal(
+                language === 'en' 
+                  ? 'Company Profile Website' 
+                  : language === 'de' 
+                  ? 'Unternehmens-Website' 
+                  : 'Company Profile Website'
+              )}
             >
               {t.ctaConsult} <FiArrowRight />
             </button>

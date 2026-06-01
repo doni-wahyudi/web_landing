@@ -41,6 +41,14 @@ const Header = () => {
       pricing: "Pricing",
       faq: "FAQ",
       cta: "Free Consultation"
+    },
+    de: {
+      home: "Startseite",
+      services: "Dienstleistungen",
+      portfolio: "Portfolio",
+      pricing: "Preise",
+      faq: "FAQ",
+      cta: "Kostenlose Beratung"
     }
   };
 
@@ -78,6 +86,13 @@ const Header = () => {
             >
               EN
             </button>
+            <span className="lang-separator">|</span>
+            <button 
+              className={`lang-btn ${language === 'de' ? 'active' : ''}`} 
+              onClick={() => setLanguage('de')}
+            >
+              DE
+            </button>
           </div>
 
           <div className="nav-cta-wrapper">
@@ -85,7 +100,13 @@ const Header = () => {
               className="btn btn-primary btn-glint nav-cta" 
               onClick={() => {
                 setIsMobileMenuOpen(false);
-                openWhatsAppModal(language === 'en' ? 'General Consultation / Others' : 'Konsultasi Umum / Lainnya');
+                openWhatsAppModal(
+                  language === 'en' 
+                    ? 'General Consultation / Others' 
+                    : language === 'de' 
+                    ? 'Allgemeine Beratung / Sonstiges' 
+                    : 'Konsultasi Umum / Lainnya'
+                );
               }}
             >
               {t.cta}

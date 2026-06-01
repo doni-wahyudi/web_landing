@@ -42,6 +42,25 @@ const TermsPage = () => {
       sec5Text: "The refund policy will be based on the completed stages of work. Initial setup fees or deposits are generally non-refundable as they cover initial research and planning costs.",
       sec6Title: "6. Limitation of Liability",
       sec6Text: "Aurotech is not liable for indirect losses or data loss caused by using our products after the warranty period or due to unauthorized third-party intervention."
+    },
+    de: {
+      seoTitle: "Allgemeine Geschäftsbedingungen",
+      seoDesc: "Allgemeine Geschäftsbedingungen für die Dienstleistungen der Aurotech Digital Agency.",
+      title: "Allgemeine",
+      titleGradient: "Geschäftsbedingungen",
+      updated: "Zuletzt aktualisiert: 20. April 2026",
+      sec1Title: "1. Anerkennung der Bedingungen",
+      sec1Text: "Mit dem Zugriff auf und der Nutzung der Dienste von Aurotech erklären Sie sich mit diesen Allgemeinen Geschäftsbedingungen einverstanden. Wenn Sie einem Teil dieser Bedingungen nicht zustimmen, ist Ihnen die Nutzung unserer Dienste nicht gestattet.",
+      sec2Title: "2. Leistungsumfang",
+      sec2Text: "Aurotech bietet Dienstleistungen im Bereich Website-Erstellung, UI/UX-Design und SEO-Optimierung an. Spezifische Details der Dienstleistung werden in einem beidseitig vereinbarten Angebot oder einer Rechnung dargelegt.",
+      sec3Title: "3. Rechte an geistigem Eigentum",
+      sec3Text: "Nach Erhalt der vollständigen Zahlung geht das Eigentum am endgültigen Design und Website-Code auf den Kunden über. Aurotech behält sich jedoch das Recht vor, das Werk zu Werbezwecken in unserem Portfolio zu präsentieren, sofern schriftlich nichts anderes vereinbart wurde.",
+      sec4Title: "4. Pflichten des Kunden",
+      sec4Text: "Der Kunde ist dafür verantwortlich, die erforderlichen Inhalte (Texte, Bilder, Logos) rechtzeitig bereitzustellen. Verzögerungen bei der Bereitstellung von Inhalten können zu Verzögerungen im Zeitplan für den Website-Launch führen.",
+      sec5Title: "5. Stornierung & Rückerstattung",
+      sec5Text: "Die Rückerstattungsrichtlinie basiert auf den abgeschlossenen Phasen der Arbeit. Erstmalige Einrichtungsgebühren oder Anzahlungen sind in der Regel nicht erstattungsfähig, da sie die anfänglichen Recherche- und Planungskosten abdecken.",
+      sec6Title: "6. Haftungsbeschränkung",
+      sec6Text: "Aurotech haftet nicht für indirekte Schäden oder Datenverlust, die durch die Nutzung unserer Produkte nach Ablauf der Garantiezeit oder durch unbefugte Eingriffe Dritter entstehen."
     }
   };
 

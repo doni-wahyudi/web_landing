@@ -88,6 +88,46 @@ const Team = () => {
     }
   ];
 
+  const teamMembersDe = [
+    {
+      id: 1,
+      name: "Doni Wahyudi",
+      role: "Gründer & Lead-Entwickler",
+      bio: "Lead-Entwickler & strategischer Vordenker mit über 5 Jahren Erfahrung im Aufbau von Premium-Digitallösungen.",
+      image: doniImg,
+      scale: 1.4,
+      objectPosition: "center 22%",
+      social: {
+        linkedin: "#",
+        github: "#"
+      }
+    },
+    {
+      id: 2,
+      name: "Ridho Saputra",
+      role: "Gründer & Projektmanager",
+      bio: "Experte im strategischen Projektmanagement, der die qualitativ hochwertige und termingerechte Lieferung digitaler Produkte sicherstellt.",
+      image: ridhoImg,
+      scale: 1.4,
+      objectPosition: "center 12%",
+      social: {
+        linkedin: "#"
+      }
+    },
+    {
+      id: 3,
+      name: "Feni Refita",
+      role: "Betriebsleiterin & Geschäftsentwicklung",
+      bio: "Verantwortlich für die betriebliche Effizienz und das Wachstum strategischer Partnerschaften bei Aurotech.",
+      image: feniImg,
+      scale: 1.1,
+      objectPosition: "center 15%",
+      social: {
+        linkedin: "#"
+      }
+    }
+  ];
+
   const translations = {
     id: {
       title: "Tim",
@@ -98,11 +138,16 @@ const Team = () => {
       title: "Our",
       titleGradient: "Team",
       subtitle: "The professionals behind the success of your digital projects."
+    },
+    de: {
+      title: "Unser",
+      titleGradient: "Team",
+      subtitle: "Die Profis hinter dem Erfolg Ihrer digitalen Projekte."
     }
   };
 
   const t = translations[language] || translations.id;
-  const teamMembers = language === 'en' ? teamMembersEn : teamMembersId;
+  const teamMembers = language === 'en' ? teamMembersEn : language === 'de' ? teamMembersDe : teamMembersId;
 
   return (
     <section className="section team-section bg-primary">

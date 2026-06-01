@@ -1,40 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FiX, FiEye, FiEyeOff } from 'react-icons/fi';
 import './CpanelAccountModal.css';
 
 const CpanelAccountModal = ({ isOpen, onClose, onSave, accountToEdit }) => {
   const [formData, setFormData] = useState({
-    websiteUrl: '',
-    cpanelUrl: '',
-    username: '',
-    password: ''
+    websiteUrl: accountToEdit?.websiteUrl || '',
+    cpanelUrl: accountToEdit?.cpanelUrl || '',
+    username: accountToEdit?.username || '',
+    password: accountToEdit?.password || ''
   });
   
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Populate form if editing
-  useEffect(() => {
-    if (accountToEdit) {
-      setFormData({
-        websiteUrl: accountToEdit.websiteUrl || '',
-        cpanelUrl: accountToEdit.cpanelUrl || '',
-        username: accountToEdit.username || '',
-        password: accountToEdit.password || ''
-      });
-    } else {
-      // Reset form if adding new
-      setFormData({
-        websiteUrl: '',
-        cpanelUrl: '',
-        username: '',
-        password: ''
-      });
-    }
-    // Reset UI states
-    setShowPassword(false);
-    setIsSubmitting(false);
-  }, [accountToEdit, isOpen]);
 
   if (!isOpen) return null;
 

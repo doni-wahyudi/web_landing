@@ -10,6 +10,25 @@ const ArticleDetail = () => {
   const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const translations = {
+    id: {
+      loading: "Memuat artikel...",
+      notFound: "Artikel tidak ditemukan.",
+      back: "← Kembali ke Blog"
+    },
+    en: {
+      loading: "Loading article...",
+      notFound: "Article not found.",
+      back: "← Back to Blog"
+    },
+    de: {
+      loading: "Artikel wird geladen...",
+      notFound: "Artikel nicht gefunden.",
+      back: "← Zurück zum Blog"
+    }
+  };
+  const t = translations[language] || translations.id;
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -166,13 +185,13 @@ const ArticleDetail = () => {
     return elements.flat(Infinity);
   };
 
-  if (isLoading) return <div className="blog-loading text-center">Loading article...</div>;
-  if (!article) return <div className="blog-empty text-center">Article not found.</div>;
+  if (isLoading) return <div className="blog-loading text-center">{t.loading}</div>;
+  if (!article) return <div className="blog-empty text-center">{t.notFound}</div>;
 
   return (
     <article className="article-detail bg-primary section animate-fade-in">
       <div className="container">
-        <Link to="/blog" className="btn-back">← Back to Blog</Link>
+        <Link to="/blog" className="btn-back">{t.back}</Link>
         
         <div className="article-header">
           <span className="blog-card-category">{article.category}</span>

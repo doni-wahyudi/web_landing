@@ -81,6 +81,7 @@ const ArticlesManager = () => {
       closeModal();
       loadData();
     } catch (error) {
+      console.error(error);
       alert("Save failed. Verify backend.");
     }
   };
@@ -91,6 +92,7 @@ const ArticlesManager = () => {
         await deleteArticle(id);
         loadData();
       } catch (e) {
+        console.error(e);
         alert("Delete failed.");
       }
     }

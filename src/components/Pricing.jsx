@@ -167,8 +167,8 @@ const Pricing = () => {
   const mainPlansEn = [
     {
       name: "Basic",
-      price: "Rp999.000",
-      originalPrice: "Rp1.500.000",
+      price: "$69",
+      originalPrice: "$99",
       desc: "Perfect for Starters & Small Businesses",
       features: [
         { name: "Up to 5 Website Pages", included: true },
@@ -185,8 +185,8 @@ const Pricing = () => {
     },
     {
       name: "Professional",
-      price: "Rp1.999.000",
-      originalPrice: "Rp2.500.000",
+      price: "$129",
+      originalPrice: "$159",
       desc: "Most Popular Choice for Businesses",
       features: [
         { name: "Up to 10 Website Pages", included: true },
@@ -203,8 +203,8 @@ const Pricing = () => {
     },
     {
       name: "Premium",
-      price: "Rp3.999.000",
-      originalPrice: "Rp4.500.000",
+      price: "$249",
+      originalPrice: "$279",
       desc: "For Large & Complex Business Scale",
       features: [
         { name: "10+ Website Pages", included: true },
@@ -223,6 +223,67 @@ const Pricing = () => {
       btnText: "Choose Premium Plan"
     }
   ];
+
+  const mainPlansDe = [
+    {
+      name: "Basic",
+      price: "€63",
+      originalPrice: "€89",
+      desc: "Ideal für Einsteiger & Kleinunternehmer",
+      features: [
+        { name: "Bis zu 5 Website-Seiten", included: true },
+        { name: "Unbegrenzte Revisions", included: true },
+        { name: "3 Business-E-Mails", included: true },
+        { name: "WhatsApp-Integration", included: true },
+        { name: "🎁 1 Jahr Hosting & .com-Domain", included: true },
+        { name: "Google-SEO", included: false },
+        { name: "3 SEO-Artikel", included: false },
+        { name: "1 Monat Wartung", included: false }
+      ],
+      featured: false,
+      btnText: "Basic-Paket wählen"
+    },
+    {
+      name: "Professionell",
+      price: "€119",
+      originalPrice: "€149",
+      desc: "Die beliebteste Wahl für Unternehmen",
+      features: [
+        { name: "Bis zu 10 Website-Seiten", included: true },
+        { name: "Unbegrenzte Revisions", included: true },
+        { name: "5 Business-E-Mails", included: true },
+        { name: "WhatsApp-Integration", included: true },
+        { name: "🎁 1 Jahr Hosting & .com-Domain", included: true },
+        { name: "Google-SEO", included: true },
+        { name: "3 SEO-Artikel", included: true },
+        { name: "🎁 1 Monat Wartung & Updates", included: true }
+      ],
+      featured: true,
+      btnText: "Professional-Paket wählen"
+    },
+    {
+      name: "Premium",
+      price: "€229",
+      originalPrice: "€259",
+      desc: "Für große & komplexe Geschäftsskalen",
+      features: [
+        { name: "10+ Website-Seiten", included: true },
+        { name: "Unbegrenzte Revisions", included: true },
+        { name: "5 Business-E-Mails", included: true },
+        { name: "WhatsApp-Integration", included: true },
+        { name: "Datenbank-Integration", included: true },
+        { name: "Online-Anmeldeformular", included: true },
+        { name: "🎁 1 Jahr Hosting & .com-Domain", included: true },
+        { name: "Google-SEO", included: true },
+        { name: "10 SEO-Artikel", included: true },
+        { name: "Admin- & Dashboard-Funktionen", included: true },
+        { name: "🎁 1 Jahr Wartung & Updates", included: true }
+      ],
+      featured: false,
+      btnText: "Premium-Paket wählen"
+    }
+  ];
+
 
   const appPlansId = [
     {
@@ -294,6 +355,42 @@ const Pricing = () => {
     }
   ];
 
+  const appPlansDe = [
+    {
+      name: "Informationssystem (IS)",
+      price: "Kontaktieren Sie uns",
+      desc: "Interne Systeme (ERP, CRM, Finanzen, Lager) zur Maximierung der Unternehmenseffizienz.",
+      features: [
+        { name: "Custom Dashboard & Datenbank", included: true },
+        { name: "Automatisierung der Finanzbuchhaltung", included: true },
+        { name: "Bestands- & Lagerverwaltung (ERP)", included: true },
+        { name: "Multi-Level-Benutzerzugriffskontrolle", included: true },
+        { name: "Drittanbieter-API & Cloud-Server-Integration", included: true },
+        { name: "Analytische Dashboards & Datenvisualisierung", included: true },
+        { name: "🎁 Priorisierter Support & 1 Jahr Wartung", included: true }
+      ],
+      featured: false,
+      btnText: "IS-Systemberatung"
+    },
+    {
+      name: "App-Entwicklung",
+      price: "Kontaktieren Sie uns",
+      desc: "Maßgeschneiderte interaktive mobile Apps (Android & iOS) und Webanwendungen.",
+      features: [
+        { name: "Custom App-Entwicklung (React Native / Flutter)", included: true },
+        { name: "Zahlungsgateway- & Abonnement-Integration", included: true },
+        { name: "Push-Benachrichtigungen, Kamera- & GPS-Funktionen", included: true },
+        { name: "Vollständig individuelles UI/UX für Workflows", included: true },
+        { name: "Sichere Server-Hosting-Einrichtung & SSL", included: true },
+        { name: "🎁 App Store- & Play Store-Einreichungen", included: true },
+        { name: "Voller technischer Support & 6 Monate Garantie", included: true }
+      ],
+      featured: false,
+      btnText: "App-Entwicklungsberatung"
+    }
+  ];
+
+
   const seoPlansId = [
     {
       name: "Starter",
@@ -351,8 +448,8 @@ const Pricing = () => {
   const seoPlansEn = [
     {
       name: "Starter",
-      price: "Rp999.000",
-      originalPrice: "Rp1.500.000",
+      price: "$69",
+      originalPrice: "$99",
       desc: "Ideal for Local Business & SMEs",
       features: [
         { name: "Up to 10 Primary Keywords", included: true },
@@ -368,8 +465,8 @@ const Pricing = () => {
     },
     {
       name: "Growth",
-      price: "Rp1.750.000",
-      originalPrice: "Rp2.500.000",
+      price: "$109",
+      originalPrice: "$159",
       desc: "For Growing Companies",
       features: [
         { name: "Up to 30 Comprehensive Keywords", included: true },
@@ -385,8 +482,8 @@ const Pricing = () => {
     },
     {
       name: "Enterprise",
-      price: "Rp3.500.000",
-      originalPrice: "Rp4.500.000",
+      price: "$219",
+      originalPrice: "$279",
       desc: "For National Brands & Large E-Commerce",
       features: [
         { name: "Unlimited Keywords (All Funnel)", included: true },
@@ -401,6 +498,61 @@ const Pricing = () => {
       btnText: "Choose Enterprise Plan"
     }
   ];
+
+  const seoPlansDe = [
+    {
+      name: "Starter",
+      price: "€63",
+      originalPrice: "€89",
+      desc: "Ideal für lokale Unternehmen & KKMU",
+      features: [
+        { name: "Bis zu 10 primäre Keywords", included: true },
+        { name: "Google My Business- & Maps-Optimierung", included: true },
+        { name: "Bestehendes Inhaltsaudit", included: true },
+        { name: "Technische Grundlagen- & Linkfehlerbehebung", included: true },
+        { name: "Basis-Backlink-Profiling", included: true },
+        { name: "Monatliche Berichte (E-Mail/PDF)", included: true },
+        { name: "Eingehende Wettbewerbsanalyse", included: false }
+      ],
+      featured: false,
+      btnText: "Starter-Paket wählen"
+    },
+    {
+      name: "Wachstum",
+      price: "€99",
+      originalPrice: "€149",
+      desc: "Für wachsende Unternehmen",
+      features: [
+        { name: "Bis zu 30 umfassende Keywords", included: true },
+        { name: "Optimierung von Filialkarten (falls vorhanden)", included: true },
+        { name: "4 – 6 SEO-Artikel pro Monat", included: true },
+        { name: "Website-Struktur & Geschwindigkeitsoptimierung", included: true },
+        { name: "Content-Platzierung (mittlere Medien)", included: true },
+        { name: "Strategieanalyse von 3 Hauptkonkurrenten", included: true },
+        { name: "Monatlicher Bericht + Zoom (30 Min.)", included: true }
+      ],
+      featured: true,
+      btnText: "Growth-Paket wählen"
+    },
+    {
+      name: "Enterprise",
+      price: "€199",
+      originalPrice: "€259",
+      desc: "Für nationale Marken & E-Commerce",
+      features: [
+        { name: "Unbegrenzte Keywords (All-Funnel)", included: true },
+        { name: "Multi-Standort / Filial-Optimierung", included: true },
+        { name: "10 – 15 ausführliche Artikel pro Monat", included: true },
+        { name: "Erweitertes SEO (CWV & Schema-Markup)", included: true },
+        { name: "Premium-Backlinks (nationale Hauptmedien)", included: true },
+        { name: "Kontinuierliche Wettbewerbsanalyse", included: true },
+        { name: "Live-Dashboard + Dedizierter Manager", included: true }
+      ],
+      featured: false,
+      btnText: "Enterprise-Paket wählen"
+    }
+  ];
+
 
   const sosmedPlansId = [
     {
@@ -476,8 +628,8 @@ const Pricing = () => {
   const sosmedPlansEn = [
     {
       name: "Basic",
-      price: "Rp750.000",
-      originalPrice: "Rp1.000.000",
+      price: "$49",
+      originalPrice: "$65",
       desc: "Initial Digital Image",
       features: [
         { name: "10 Graphic Design Feeds", included: true },
@@ -494,8 +646,8 @@ const Pricing = () => {
     },
     {
       name: "Medium",
-      price: "Rp1.350.000",
-      originalPrice: "Rp1.800.000",
+      price: "$89",
+      originalPrice: "$115",
       desc: "Best for Growing Small Businesses",
       features: [
         { name: "24 Graphic Design Feeds", included: true },
@@ -512,8 +664,8 @@ const Pricing = () => {
     },
     {
       name: "Professional",
-      price: "Rp2.490.000",
-      originalPrice: "Rp3.200.000",
+      price: "$159",
+      originalPrice: "$199",
       desc: "Premium Reputability & Automation",
       features: [
         { name: "45 Graphic Design Feeds", included: true },
@@ -543,6 +695,78 @@ const Pricing = () => {
       btnText: "Discuss Custom Package"
     }
   ];
+
+  const sosmedPlansDe = [
+    {
+      name: "Basic",
+      price: "€45",
+      originalPrice: "€59",
+      desc: "Erstes digitales Image",
+      features: [
+        { name: "10 Grafikdesign-Feeds", included: true },
+        { name: "3 Kurzvideos (Reels/TikTok)", included: true },
+        { name: "3 interaktive Stories", included: true },
+        { name: "2x kleinere Revisions", included: true },
+        { name: "Bio- & Highlight-Optimierung", included: false },
+        { name: "Setup von Werbekampagnen (Ads)", included: false },
+        { name: "Umfassendes Kontoaudit", included: false },
+        { name: "Monatlicher Leistungsbericht", included: false }
+      ],
+      featured: false,
+      btnText: "Basic-Paket wählen"
+    },
+    {
+      name: "Medium",
+      price: "€79",
+      originalPrice: "€105",
+      desc: "Bestes Paket für wachsende KKMU",
+      features: [
+        { name: "24 Grafikdesign-Feeds", included: true },
+        { name: "8 Kurzvideos (Reels/TikTok)", included: true },
+        { name: "8 interaktive Stories", included: true },
+        { name: "3x kleinere Revisions", included: true },
+        { name: "Bio- & Highlight-Optimierung", included: true },
+        { name: "Setup von Werbekampagnen (Ads)", included: true },
+        { name: "Umfassendes Kontoaudit", included: false },
+        { name: "Monatlicher Leistungsbericht", included: false }
+      ],
+      featured: true,
+      btnText: "Medium-Paket wählen"
+    },
+    {
+      name: "Professionell",
+      price: "€149",
+      originalPrice: "€185",
+      desc: "Premium-Reputation & Automatisierung",
+      features: [
+        { name: "45 Grafikdesign-Feeds", included: true },
+        { name: "12 Kurzvideos (Reels/TikTok)", included: true },
+        { name: "12 interaktive Stories", included: true },
+        { name: "Unbegrenzte kleinere Revisions", included: true },
+        { name: "Bio- & Highlight-Optimierung", included: true },
+        { name: "Setup von Werbekampagnen (Ads)", included: true },
+        { name: "Umfassendes Kontoaudit", included: true },
+        { name: "Monatlicher Leistungsbericht (Monthly)", included: true }
+      ],
+      featured: false,
+      btnText: "Professional-Paket wählen"
+    },
+    {
+      name: "Custom Package",
+      price: "Individuell",
+      desc: "Auf Ihren Umfang & Ihr Budget zugeschnitten",
+      features: [
+        { name: "Individuelle Inhaltsanzahl pro Monat", included: true },
+        { name: "Dedizierte Brainstorming-Sitzung", included: true },
+        { name: "Custom Copywriting & Talent", included: true },
+        { name: "Dedizierter Content-Spezialist", included: true },
+        { name: "Integrierte Multi-Platform-Strategie", included: true }
+      ],
+      featured: false,
+      btnText: "Individuelles Paket besprechen"
+    }
+  ];
+
 
   const maintenancePlansListId = [
     {
@@ -629,7 +853,7 @@ const Pricing = () => {
     {
       name: "Renewal",
       category: "Management",
-      price: "Rp350.000 / yr",
+      price: "$25 / yr",
       desc: "Hosting & Domain Only",
       isRenewal: true,
       features: [
@@ -643,7 +867,7 @@ const Pricing = () => {
     {
       name: "Logo Design",
       category: "Design",
-      price: "Rp300.000",
+      price: "$19",
       features: [
         "3 Design Concepts",
         "Max 2x Revisions",
@@ -657,7 +881,7 @@ const Pricing = () => {
     {
       name: "Basic",
       category: "Maintenance",
-      price: "Rp150.000 / mo",
+      price: "$9 / mo",
       features: [
         "1 Article Production/mo",
         "Fast Response Support",
@@ -672,7 +896,7 @@ const Pricing = () => {
     {
       name: "Professional",
       category: "Maintenance",
-      price: "Rp300.000 / mo",
+      price: "$19 / mo",
       features: [
         "4 Article Production/mo",
         "Page Content Updates",
@@ -689,7 +913,7 @@ const Pricing = () => {
     {
       name: "Premium",
       category: "Maintenance",
-      price: "Rp750.000 / mo",
+      price: "$49 / mo",
       features: [
         "8 Article Production/mo",
         "New Page Additions",
@@ -706,13 +930,113 @@ const Pricing = () => {
     }
   ];
 
-  const monitoringPlans = [
+  const maintenancePlansListDe = [
+    {
+      name: "Verlängerung",
+      category: "Management",
+      price: "€23 / Jahr",
+      desc: "Nur Hosting & Domain",
+      isRenewal: true,
+      features: [
+        "Domain-Verlängerung (.com)",
+        "Speicherplatzmiete (Hosting)",
+        "Website bleibt aktiv & sicher"
+      ],
+      btnText: "Paket wählen",
+      targetId: "renewal-detail"
+    },
+    {
+      name: "Logo-Design",
+      category: "Design",
+      price: "€17",
+      features: [
+        "3 Designkonzepte",
+        "Max. 2x Revisions",
+        "3 Werktage Bearbeitungszeit",
+        "Master-Dateien (AI/EPS/SVG)"
+      ],
+      featured: false,
+      btnText: "Paket wählen",
+      targetId: "design-logo"
+    },
+    {
+      name: "Basic",
+      category: "Maintenance",
+      price: "€8 / Monat",
+      features: [
+        "Produktion von 1 Artikel/Monat",
+        "Schneller Reaktionssupport",
+        "Uptime-Überwachung",
+        "Wöchentliches Backup",
+        "Fehlerbehebung"
+      ],
+      featured: false,
+      btnText: "Paket wählen",
+      targetId: "maintenance-Basic"
+    },
+    {
+      name: "Professionell",
+      category: "Maintenance",
+      price: "€17 / Monat",
+      features: [
+        "Produktion von 4 Artikeln/Monat",
+        "Aktualisierung von Seiteninhalten",
+        "Schneller Reaktionssupport",
+        "Uptime-Überwachung",
+        "Wöchentliches Backup",
+        "Fehlerbehebung",
+        "Keyword-Optimierung"
+      ],
+      featured: false,
+      btnText: "Paket wählen",
+      targetId: "maintenance-Profesional"
+    },
+    {
+      name: "Premium",
+      category: "Maintenance",
+      price: "€45 / Monat",
+      features: [
+        "Produktion von 8 Artikeln/Monat",
+        "Hinzufügen neuer Seiten",
+        "Aktualisierung von Seiteninhalten",
+        "Schneller Reaktionssupport",
+        "Uptime-Überwachung",
+        "Wöchentliches Backup",
+        "Erweiterte SEO-Optimierung",
+        "Wöchentliches SEO-Audit"
+      ],
+      featured: false,
+      btnText: "Paket wählen",
+      targetId: "maintenance-Premium"
+    }
+  ];
+
+
+  const monitoringPlansId = [
     { name: "BASIC NEWS", price: "Rp10.500.000" },
     { name: "SOSMED", price: "Rp13.500.000" },
     { name: "PROFESIONAL", price: "Rp14.500.000" },
     { name: "ENTERPRISE", price: "Rp16.500.000" },
     { name: "ULTIMATE", price: "Rp18.500.000" },
     { name: "DIAMOND", price: "Rp29.900.000" }
+  ];
+
+  const monitoringPlansEn = [
+    { name: "BASIC NEWS", price: "$699" },
+    { name: "SOSMED", price: "$899" },
+    { name: "PROFESSIONAL", price: "$949" },
+    { name: "ENTERPRISE", price: "$1,099" },
+    { name: "ULTIMATE", price: "$1,249" },
+    { name: "DIAMOND", price: "$1,999" }
+  ];
+
+  const monitoringPlansDe = [
+    { name: "BASIC NEWS", price: "€639" },
+    { name: "SOSMED", price: "€819" },
+    { name: "PROFESSIONELL", price: "€869" },
+    { name: "ENTERPRISE", price: "€999" },
+    { name: "ULTIMATE", price: "€1.139" },
+    { name: "DIAMOND", price: "€1.829" }
   ];
 
   const monitoringFeaturesId = [
@@ -754,6 +1078,27 @@ const Pricing = () => {
     { label: "Daily Summary Feed", values: [false, false, false, false, true, true] },
     { label: "Monthly Dynamic Report", values: [false, false, false, true, true, true] }
   ];
+
+  const monitoringFeaturesDe = [
+    { label: "Anzahl der Benutzer", values: ["1 Benutzer", "1 Benutzer", "1 Benutzer", "3 Benutzer", "5 Benutzer", "5 Benutzer"] },
+    { label: "Anzahl der Themen", values: ["5", "5", "5", "8", "10", "12"] },
+    { label: "Online-News-Abdeckung", values: [true, false, true, true, true, true] },
+    { label: "Dedizierte soziale Medien (IG, X, YT, FB)", values: [false, true, "Nur X", true, true, true] },
+    { label: "Printmedien (100 Outlets)", values: [false, false, false, false, true, true] },
+    { label: "Fernsehen (10 Kanäle)", values: [false, false, false, false, false, true] },
+    { label: "Sentiment-Profilierung", values: [true, true, true, true, true, true] },
+    { label: "Identifikation von Top-Personen & Organisationen", values: [true, true, true, true, true, true] },
+    { label: "Datenextraktion", values: [true, true, true, true, true, true] },
+    { label: "Datenvergleichsmatrizen", values: [true, true, true, true, true, true] },
+    { label: "Trendanalyse-Engine", values: [true, true, true, true, true, true] },
+    { label: "Wordcloud- / Hashtag-Tracking", values: [true, true, true, true, true, true] },
+    { label: "Redaktionelle Überprüfung von News", values: [true, false, true, true, true, true] },
+    { label: "Standort- / Geotargeting", values: [true, false, true, true, true, true] },
+    { label: "IG-Listening (max. 3 Konten)", values: [false, true, false, false, true, true] },
+    { label: "Tägliches Zusammenfassungs-Feed", values: [false, false, false, false, true, true] },
+    { label: "Monatlicher dynamischer Bericht", values: [false, false, false, true, true, true] }
+  ];
+
 
   const translations = {
     id: {
@@ -835,39 +1180,92 @@ const Pricing = () => {
       monitoringOneTime: "One Time Historical Report",
       monitoringTerms: "Terms & Conditions",
       monAddons: [
-        { item: "Additional Topic", price: "Rp1.000.000 / topic" },
-        { item: "Additional TV/Radio", price: "Rp1.500.000 / channel" },
-        { item: "Weekly Report", price: "Rp3.000.000 / month" },
-        { item: "Daily Report", price: "Rp3.000.000 / month" },
-        { item: "Additional Listening Account", price: "Rp500.000 / account" },
-        { item: "Incidental Special Report", price: "Rp1.500.000 / report" },
-        { item: "Additional Print Media", price: "Rp5.000.000 / 30 outlets" },
-        { item: "User Increment", price: "Rp300.000 / user" },
-        { item: "SNA (Social Network Analysis)", price: "Rp2.000.000 / month" },
-        { item: "Tiktok Feeds Data", price: "Rp3.000.000 / month" },
-        { item: "Linkedin Profile Data", price: "Rp3.000.000 / month" }
+        { item: "Additional Topic", price: "$65 / topic" },
+        { item: "Additional TV/Radio", price: "$95 / channel" },
+        { item: "Weekly Report", price: "$195 / month" },
+        { item: "Daily Report", price: "$195 / month" },
+        { item: "Additional Listening Account", price: "$35 / account" },
+        { item: "Incidental Special Report", price: "$95 / report" },
+        { item: "Additional Print Media", price: "$325 / 30 outlets" },
+        { item: "User Increment", price: "$19 / user" },
+        { item: "SNA (Social Network Analysis)", price: "$129 / month" },
+        { item: "Tiktok Feeds Data", price: "$195 / month" },
+        { item: "Linkedin Profile Data", price: "$195 / month" }
       ],
       monOneTimes: [
-        { item: "1-Month Historical Data", price: "Rp8.000.000" },
-        { item: "3-Month Historical Data", price: "Rp15.000.000" },
-        { item: "6-Month Historical Data", price: "Rp25.000.000" },
-        { item: "12-Month Historical Data", price: "Rp40.000.000" },
-        { item: "24-Month Historical Data", price: "Rp60.000.000" }
+        { item: "1-Month Historical Data", price: "$499" },
+        { item: "3-Month Historical Data", price: "$949" },
+        { item: "6-Month Historical Data", price: "$1,549" },
+        { item: "12-Month Historical Data", price: "$2,499" },
+        { item: "24-Month Historical Data", price: "$3,749" }
       ],
       monTermsList: [
         "Minimum contract subscription duration of 6 months.",
         "Get a 10% discount if payment is settled 100% in advance.",
         "Custom packages will be adjusted based on detailed requirements and scope."
       ]
+    },
+    de: {
+      promo: "🎉 BEGRENZTES ANGEBOT: Kostenlose Domain & ultraschnelles Hosting für 1 ganzes Jahr!",
+      title: "Unsere spezialisierten Leistungspakete",
+      subtitle: "Wählen Sie das Paket, das für die Beschleunigung Ihres Geschäftswachstums am relevantesten ist.",
+      guarantee: "🛡️ Umsetzungsgarantie bis zur vollen Zufriedenheit",
+      addonTitle: "Zusatzleistungen (Add-ons)",
+      addonSubtitle: "Zusätzliche Dienstleistungen zur Unterstützung des Wachstums und der Performance Ihrer digitalen Assets.",
+      tabWeb: "Webentwicklung",
+      tabApps: "App-Entwicklung",
+      tabSEO: "Google SEO",
+      tabSosmed: "Social Media",
+      tabMonitoring: "Media Monitoring",
+      extraBonus: "🔥 EXTRA-BONI (IN ALLEN SOCIAL-MEDIA-PAKETEN ENTHALTEN):",
+      bonuses: [
+        "Kostenlose Texterstellung für Captions",
+        "Private WhatsApp-Diskussionsgruppe",
+        "Kostenloser monatlicher Inhaltsplaner",
+        "Kostenloses Posten von Inhalten durch Admins",
+        "Voice-Over / Sprecher (Optional)",
+        "1x kostenlose Zoom-Brainstorming-Sitzung"
+      ],
+      customPrompt: "Benötigen Sie ein speziell zugeschnittenes Social-Media-Paket?",
+      discussBtn: "Besprechen Sie Ihre Anforderungen",
+      monitoringAddon: "Zusatzleistungsgebühren",
+      monitoringOneTime: "Einmaliger historischer Bericht",
+      monitoringTerms: "Allgemeine Geschäftsbedingungen",
+      monAddons: [
+        { item: "Zusätzliches Thema", price: "€59 / Thema" },
+        { item: "Zusätzliches TV/Radio", price: "€87 / Kanal" },
+        { item: "Wöchentlicher Bericht", price: "€179 / Monat" },
+        { item: "Täglicher Bericht", price: "€179 / Monat" },
+        { item: "Zusätzliches Listening-Konto", price: "€29 / Konto" },
+        { item: "Inzidenteller Sonderbericht", price: "€87 / Bericht" },
+        { item: "Zusätzliche Printmedien", price: "€295 / 30 Outlets" },
+        { item: "Benutzererhöhung", price: "€17 / Benutzer" },
+        { item: "SNA (Social Network Analysis)", price: "€115 / Monat" },
+        { item: "Tiktok-Feeds-Daten", price: "€175 / Monat" },
+        { item: "Linkedin-Profildaten", price: "€175 / Monat" }
+      ],
+      monOneTimes: [
+        { item: "Historische Daten für 1 Monat", price: "€459" },
+        { item: "Historische Daten für 3 Monate", price: "€869" },
+        { item: "Historische Daten für 6 Monate", price: "€1.415" },
+        { item: "Historische Daten für 12 Monate", price: "€2.285" },
+        { item: "Historische Daten für 24 Monate", price: "€3.429" }
+      ],
+      monTermsList: [
+        "Mindestvertragslaufzeit des Abonnements 6 Monate.",
+        "Erhalten Sie 10% Rabatt bei 100% Vorauszahlung.",
+        "Individuelle Pakete werden basierend auf den detaillierten Anforderungen und dem Umfang angepasst."
+      ]
     }
   };
 
-  const mainPlans = language === 'en' ? mainPlansEn : mainPlansId;
-  const seoPlans = language === 'en' ? seoPlansEn : seoPlansId;
-  const sosmedPlans = language === 'en' ? sosmedPlansEn : sosmedPlansId;
-  const appPlans = language === 'en' ? appPlansEn : appPlansId;
-  const maintenancePlansList = language === 'en' ? maintenancePlansListEn : maintenancePlansListId;
-  const monitoringFeatures = language === 'en' ? monitoringFeaturesEn : monitoringFeaturesId;
+  const mainPlans = language === 'en' ? mainPlansEn : language === 'de' ? mainPlansDe : mainPlansId;
+  const seoPlans = language === 'en' ? seoPlansEn : language === 'de' ? seoPlansDe : seoPlansId;
+  const sosmedPlans = language === 'en' ? sosmedPlansEn : language === 'de' ? sosmedPlansDe : sosmedPlansId;
+  const appPlans = language === 'en' ? appPlansEn : language === 'de' ? appPlansDe : appPlansId;
+  const maintenancePlansList = language === 'en' ? maintenancePlansListEn : language === 'de' ? maintenancePlansListDe : maintenancePlansListId;
+  const monitoringPlans = language === 'en' ? monitoringPlansEn : language === 'de' ? monitoringPlansDe : monitoringPlansId;
+  const monitoringFeatures = language === 'en' ? monitoringFeaturesEn : language === 'de' ? monitoringFeaturesDe : monitoringFeaturesId;
   const t = translations[language] || translations.id;
 
   const handlePrev = useCallback(() => {
@@ -950,7 +1348,7 @@ const Pricing = () => {
           <div className="pricing-grid animate-entrance">
             {mainPlans.map((plan, index) => (
               <div key={index} className={`pricing-card glass-card ${plan.featured ? 'featured' : ''}`}>
-                {plan.featured && <div className="featured-badge gold-ribbon">POPULAR</div>}
+                {plan.featured && <div className="featured-badge gold-ribbon">{language === 'en' ? 'POPULAR' : language === 'de' ? 'BELIEBT' : 'POPULER'}</div>}
 
                 <div className="pricing-header">
                   <h3 className="plan-name">{plan.name}</h3>
@@ -1000,7 +1398,7 @@ const Pricing = () => {
             <div className="pricing-grid max-w-4xl mx-auto" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', justifyContent: 'center' }}>
               {appPlans.map((plan, index) => (
                 <div key={index} className={`pricing-card glass-card ${plan.featured ? 'featured' : ''}`}>
-                  {plan.featured && <div className="featured-badge gold-ribbon">POPULAR</div>}
+                  {plan.featured && <div className="featured-badge gold-ribbon">{language === 'en' ? 'POPULAR' : language === 'de' ? 'BELIEBT' : 'POPULER'}</div>}
 
                   <div className="pricing-header">
                     <h3 className="plan-name">{plan.name}</h3>
@@ -1050,7 +1448,7 @@ const Pricing = () => {
           <div className="pricing-grid animate-entrance">
             {seoPlans.map((plan, index) => (
               <div key={index} className={`pricing-card glass-card ${plan.featured ? 'featured' : ''}`}>
-                {plan.featured && <div className="featured-badge gold-ribbon">BEST VALUE</div>}
+                {plan.featured && <div className="featured-badge gold-ribbon">{language === 'en' ? 'BEST VALUE' : language === 'de' ? 'BESTES ANGEBOT' : 'TERBAIK'}</div>}
 
                 <div className="pricing-header">
                   <h3 className="plan-name">{plan.name}</h3>
@@ -1059,7 +1457,7 @@ const Pricing = () => {
                       <span className="original-price">{plan.originalPrice}</span>
                     )}
                     <div className="plan-price gold-text">
-                      {plan.price} <span className="price-period" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>/bln</span>
+                      {plan.price} <span className="price-period" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>{language === 'en' ? '/mo' : language === 'de' ? '/Monat' : '/bln'}</span>
                     </div>
                   </div>
                 </div>
@@ -1109,7 +1507,7 @@ const Pricing = () => {
               <div className="sosmed-scroll-container" ref={sosmedScrollRef}>
                 {sosmedPlans.map((plan, index) => (
                   <div key={index} className={`pricing-card glass-card sosmed-card ${plan.featured ? 'featured' : ''}`}>
-                    {plan.featured && <div className="featured-badge gold-ribbon">POPULAR</div>}
+                    {plan.featured && <div className="featured-badge gold-ribbon">{language === 'en' ? 'POPULAR' : language === 'de' ? 'BELIEBT' : 'POPULER'}</div>}
 
                     <div className="pricing-header">
                       <h3 className="plan-name">{plan.name}</h3>
@@ -1119,8 +1517,8 @@ const Pricing = () => {
                         )}
                         <div className="plan-price gold-text">
                           {plan.price}
-                          {plan.price !== 'Kustom' && plan.price !== 'Custom' && (
-                            <span className="price-period" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>/bln</span>
+                          {plan.price !== 'Kustom' && plan.price !== 'Custom' && plan.price !== 'Individuell' && (
+                            <span className="price-period" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>{language === 'en' ? '/mo' : language === 'de' ? '/Monat' : '/bln'}</span>
                           )}
                         </div>
                       </div>
@@ -1188,13 +1586,13 @@ const Pricing = () => {
               <table className="monitoring-table">
                 <thead>
                   <tr>
-                    <th className="feature-col">Fitur / Komponen</th>
+                    <th className="feature-col">{language === 'en' ? 'Features / Components' : language === 'de' ? 'Features / Komponenten' : 'Fitur / Komponen'}</th>
                     {monitoringPlans.map((plan, idx) => (
                       <th key={idx} className="pkg-col">
                         <div className="pkg-header">
                           <span className="pkg-title">{plan.name}</span>
                           <span className="pkg-price gold-text">{plan.price}</span>
-                          <span className="pkg-period">/bln</span>
+                          <span className="pkg-period">{language === 'en' ? '/mo' : language === 'de' ? '/Monat' : '/bln'}</span>
                         </div>
                       </th>
                     ))}
@@ -1228,7 +1626,7 @@ const Pricing = () => {
                           onClick={() => openWhatsAppModal(`Media Monitoring - Paket ${plan.name}`)}
                           className="btn btn-sm btn-outline"
                         >
-                          Order
+                          {language === 'en' ? 'Order' : language === 'de' ? 'Bestellen' : 'Pesan'}
                         </button>
                       </td>
                     ))}

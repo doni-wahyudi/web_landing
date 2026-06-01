@@ -23,6 +23,13 @@ const BlogGrid = () => {
       readMore: "Read More",
       noArticles: "No articles published yet.",
       loading: "Loading articles..."
+    },
+    de: {
+      title: "Artikel & Neuigkeiten",
+      subtitle: "Aktuelle Einblicke in die digitale Entwicklung und Branchentrends.",
+      readMore: "Weiterlesen",
+      noArticles: "Noch keine Artikel veröffentlicht.",
+      loading: "Artikel werden geladen..."
     }
   };
 

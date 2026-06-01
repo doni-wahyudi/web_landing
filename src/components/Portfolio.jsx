@@ -23,10 +23,22 @@ const Portfolio = () => {
       subtitle: "See our work first-hand. Click on a portfolio to view project details.",
       viewDetail: "View Detail",
       visitWeb: "Visit Web"
+    },
+    de: {
+      title: "Unsere",
+      titleGradient: "besten",
+      titleSuffix: "Arbeiten",
+      subtitle: "Überzeugen Sie sich selbst von unseren Arbeitsergebnissen. Klicken Sie auf ein Portfolio, um Projektdetails anzuzeigen.",
+      viewDetail: "Details ansehen",
+      visitWeb: "Webseite besuchen"
     }
   };
 
   const t = translations[language] || translations.id;
+
+  const homepageProjects = [1, 2, 10, 6, 5, 9]
+    .map(id => projects.find(p => p.id === id))
+    .filter(Boolean);
 
   return (
     <section id="portfolio" className="section portfolio bg-secondary">
@@ -39,7 +51,7 @@ const Portfolio = () => {
         </div>
 
         <div className="portfolio-grid">
-          {projects.map(project => (
+          {homepageProjects.map(project => (
             <div key={project.id} className="portfolio-card glass">
               <div className="portfolio-img-wrapper">
                 <div className="portfolio-browser-header">
@@ -72,6 +84,12 @@ const Portfolio = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="text-center mt-12 animate-entrance">
+          <Link to="/portfolio" className="btn btn-outline btn-lg btn-glint">
+            {language === 'en' ? 'View All Projects' : language === 'de' ? 'Alle Projekte anzeigen' : 'Lihat Semua Portfolio'} <FiArrowRight />
+          </Link>
         </div>
       </div>
     </section>

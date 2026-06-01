@@ -85,6 +85,45 @@ const FAQ = () => {
     }
   ];
 
+  const faqsDe = [
+    {
+      question: "Wie lange dauert die Erstellung einer Website?",
+      answer: "Die Bearbeitungszeit variiert je nach Komplexität der Website. Bei Basic- und Professional-Paketen dauert es in der Regel 3-7 Werktage, nachdem wir alle Unterlagen (Texte, Fotos, Logo) erhalten haben. Bei maßgeschneiderten Systemen dauert es in der Regel 2-4 Wochen."
+    },
+    {
+      question: "Muss ich mein eigenes Hosting & meine eigene Domain vorbereiten?",
+      answer: "Nein, das ist nicht nötig. Alle unsere Pakete enthalten eine kostenlose Domain (.com) und Highspeed-Hosting für das erste Jahr."
+    },
+    {
+      question: "Was passiert, wenn ich nach Fertigstellung der Website Änderungen vornehmen möchte?",
+      answer: "Wir bieten Revisionsgarantien entsprechend dem von Ihnen gewählten Paket. Darüber hinaus verwenden wir ein benutzerfreundliches CMS-System, sodass Sie Texte oder Bilder später problemlos selbst ändern können."
+    },
+    {
+      question: "Wird meine Website bei Google angezeigt?",
+      answer: "Ja, wir implementieren von Beginn der Entwicklung an On-Page-SEO-Praktiken. Wir gestalten die Website-Struktur so, dass sie von Suchmaschinen (Google) leicht erfasst werden kann, um eine optimale Indexierung zu gewährleisten."
+    },
+    {
+      question: "Wie funktioniert das Zahlungssystem für die Dienstleistung?",
+      answer: "Die Zahlung erfolgt über ein Anzahlungssystem: 50% Anzahlung zu Beginn vor Projektstart und 50% Restzahlung nach Fertigstellung und Freigabe der Website zur Veröffentlichung."
+    },
+    {
+      question: "Wer ist der Eigentümer von Domain und Hosting?",
+      answer: "Sie sind der alleinige Eigentümer der Domain und des Hostings. Wir registrieren diese auf Ihren Namen oder Ihr Unternehmen. Wenn Sie diese in Zukunft selbst verwalten möchten, übergeben wir Ihnen alle Zugangsdaten."
+    },
+    {
+      question: "Gibt es eine Garantie / Support nach dem Launch?",
+      answer: "Ja, natürlich. Jedes Paket beinhaltet eine Fehlerbehebungsgarantie und technischen Support für 1 Monat nach dem Launch. Wir bieten auch monatliche Wartungspakete an, wenn Sie langfristige Unterstützung bei der Inhaltsverwaltung benötigen."
+    },
+    {
+      question: "Kann ich die Inhalte selbst aktualisieren?",
+      answer: "Absolut! Wir erstellen Websites mit einem leicht erlernbaren CMS (Content Management System). Wir stellen Ihnen auch eine Anleitung oder eine kurze Schulung zur Verfügung."
+    },
+    {
+      question: "Welche Technologie wird verwendet?",
+      answer: "Wir verwenden moderne Industriestandard-Technologien wie React.js, Next.js oder ein maßgeschneidertes WordPress (je nach Projektanforderungen), um sicherzustellen, dass Ihre Website schnell, sicher und hochgradig skalierbar ist."
+    }
+  ];
+
   const translations = {
     id: {
       title: "Pertanyaan Umum",
@@ -95,10 +134,15 @@ const FAQ = () => {
       title: "Frequently Asked",
       titleGradient: "Questions",
       subtitle: "Some questions clients frequently ask before deciding to use our services."
+    },
+    de: {
+      title: "Häufig gestellte",
+      titleGradient: "Fragen",
+      subtitle: "Einige Fragen, die uns Kunden häufig stellen, bevor sie sich für unsere Dienstleistungen entscheiden."
     }
   };
 
-  const faqs = language === 'en' ? faqsEn : faqsId;
+  const faqs = language === 'en' ? faqsEn : language === 'de' ? faqsDe : faqsId;
   const t = translations[language] || translations.id;
 
   const toggleAccordion = (index) => {

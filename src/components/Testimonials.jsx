@@ -113,6 +113,57 @@ const Testimonials = () => {
     }
   ];
 
+  const testimonialsDe = [
+    {
+      id: 1,
+      name: "Budi Santoso",
+      role: "CEO, Logistikunternehmen",
+      content: "Aurotech versteht unsere Markenvision wirklich. Die von ihnen erstellte Website ist nicht nur ästhetisch, sondern hat auch die Conversions in den ersten 3 Monaten um bis zu 40% gesteigert.",
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Budi+Santoso&background=0D8ABC&color=fff"
+    },
+    {
+      id: 2,
+      name: "Siska Wijaya",
+      role: "Gründerin, Modeunternehmen",
+      content: "Der Arbeitsprozess war hochprofessionell. Das Aurotech-Team arbeitet im Bereich UI/UX extrem detailorientiert. Jetzt fühlt sich unsere Website viel hochwertiger an und genießt volles Vertrauen bei unseren Kunden.",
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Siska+Wijaya&background=FF69B4&color=fff"
+    },
+    {
+      id: 3,
+      name: "Andi Pratama",
+      role: "Betriebsleiter, Immobilienunternehmen",
+      content: "Ihr Support-Service ist herausragend. Jedes Mal, wenn es ein Problem gibt, reagieren sie schnell. Die beste Investition für die digitalen Assets unseres Unternehmens.",
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Andi+Pratama&background=2E8B57&color=fff"
+    },
+    {
+      id: 4,
+      name: "Hendra Kusuma",
+      role: "Inhaber, FnB-Unternehmen",
+      content: "Aurotech hat uns geholfen, unsere Speisekarte und unser Reservierungssystem zu digitalisieren. Das entlastet unseren täglichen Betrieb enorm und sieht sehr edel aus.",
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Hendra+Kusuma&background=D2691E&color=fff"
+    },
+    {
+      id: 5,
+      name: "Rina Melati",
+      role: "Managerin, Einzelhandelsunternehmen",
+      content: "Sehr elegantes Website-Design und extrem schnelle Performance. Unsere Online-Verkäufe sind seit dem Release deutlich gestiegen.",
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Rina+Melati&background=9370DB&color=fff"
+    },
+    {
+      id: 6,
+      name: "Fahmi Idris",
+      role: "CEO, Bauunternehmen",
+      content: "Ein sehr zuverlässiger digitaler Partner. Ihre Arbeit übertrifft unsere Erwartungen in Bezug auf Funktionalität und Design immer.",
+      rating: 5,
+      image: "https://ui-avatars.com/api/?name=Fahmi+Idris&background=708090&color=fff"
+    }
+  ];
+
   const translations = {
     id: {
       title: "Apa Kata",
@@ -123,10 +174,15 @@ const Testimonials = () => {
       title: "What Our",
       titleGradient: "Clients Say",
       subtitle: "Your trust is our top priority in delivering the best quality."
+    },
+    de: {
+      title: "Was unsere",
+      titleGradient: "Kunden sagen",
+      subtitle: "Ihr Vertrauen ist unsere höchste Priorität bei der Bereitstellung bester Qualität."
     }
   };
 
-  const testimonials = language === 'en' ? testimonialsEn : testimonialsId;
+  const testimonials = language === 'en' ? testimonialsEn : language === 'de' ? testimonialsDe : testimonialsId;
   const t = translations[language] || translations.id;
 
   const totalSlides = isMobile ? testimonials.length : Math.ceil(testimonials.length / 3);

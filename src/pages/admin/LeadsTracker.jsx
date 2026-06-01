@@ -75,6 +75,7 @@ const LeadsTracker = () => {
         await deleteLead(id);
         fetchLeads();
       } catch (err) {
+        console.error(err);
         alert('Error deleting lead');
       }
     }

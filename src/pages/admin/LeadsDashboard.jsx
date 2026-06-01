@@ -31,6 +31,16 @@ const LeadsDashboard = () => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="admin-container">
+        <div className="admin-loading" style={{ color: 'white', textAlign: 'center', padding: '3rem' }}>
+          Loading Dashboard Analytics...
+        </div>
+      </div>
+    );
+  }
+
   const emptyAnalytics = {
     totalContacts: 0, totalResponded: 0, totalDeals: 0,
     responseRate: 0, dealRate: 0,

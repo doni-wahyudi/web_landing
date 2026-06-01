@@ -161,6 +161,7 @@ const CpanelAccounts = () => {
       </div>
 
       <CpanelAccountModal 
+        key={isModalOpen ? (accountToEdit?.id || 'new') : 'closed'}
         isOpen={isModalOpen} 
         onClose={handleCloseModal} 
         onSave={handleSaveAccount} 

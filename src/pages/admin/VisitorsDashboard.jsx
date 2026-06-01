@@ -28,6 +28,16 @@ const VisitorsDashboard = () => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="admin-container">
+        <div className="admin-loading" style={{ color: 'white', textAlign: 'center', padding: '3rem' }}>
+          Loading Traffic Analytics...
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="admin-container">
       <div className="admin-header">
