@@ -8,6 +8,7 @@ import rentalImg from '../assets/portfolio/rental.webp';
 import bakeryImg from '../assets/portfolio/bakery.webp';
 import glowmartImg from '../assets/portfolio/glowmart.webp';
 import intanmiracleImg from '../assets/portfolio/intanmiracle.webp';
+import bagaspramonoImg from '../assets/portfolio/bagaspramono.webp';
 
 export const projects = [
   {
@@ -279,5 +280,32 @@ export const projects = [
       de: "Verbindet hunderte Familien praktisch mit zertifizierten Hebammen/Therapeuten, beschleunigt die postnatale Erholung neuer Mütter und unterstützt die kindliche Entwicklung optimal durch zertifizierte Behandlungen."
     },
     techStack: ["React", "Vite", "Supabase", "React Router", "Tailwind CSS"]
+  },
+  {
+    id: 11,
+    title: "Bagas Pramono",
+    category: {
+      id: "Layanan Publik & Profil Politisi",
+      en: "Public Service & Politician Profile",
+      de: "Öffentlicher Dienst & Politikerprofil"
+    },
+    url: "https://bagaspramono.web.id/",
+    image: bagaspramonoImg,
+    challenge: {
+      id: "Anggota legislatif memerlukan media komunikasi digital yang transparan untuk menyebarkan rekam jejak pengabdian, memantau aspirasi konstituen, dan membangun kepercayaan publik secara real-time.",
+      en: "Legislative members require a transparent digital communication medium to broadcast track records of service, monitor constituent aspirations, and build public trust in real-time.",
+      de: "Abgeordnete benötigen ein transparentes digitales Kommunikationsmedium, um ihre Leistungsbilanz zu veröffentlichen, die Anliegen der Bürger zu verfolgen und in Echtzeit Vertrauen aufzubauen."
+    },
+    solution: {
+      id: "Portal profil politisi premium dengan modul penyampaian aspirasi warga terintegrasi database, visualisasi timeline rekam jejak kerja, update berita kegiatan sosial, serta manajemen galeri dokumentasi kegiatan.",
+      en: "A premium politician profile portal featuring a database-integrated citizen feedback system, interactive service track record timelines, social campaign updates, and documentation gallery management.",
+      de: "Ein erstklassiges Politikerprofil-Portal mit einem datenbankintegrierten Bürgerfeedback-System, interaktiven Zeitachsen für die Leistungsbilanz, sozialen Kampagnen-Updates und einer Dokumentationsgalerie."
+    },
+    outcome: {
+      id: "Menjembatani konstituen Provinsi Lampung secara langsung dengan wakil rakyatnya, mendokumentasikan hasil advokasi program secara akuntabel, dan meningkatkan keterlibatan publik hingga 80%.",
+      en: "Directly bridges Lampung Province constituents with their legislative representative, document advocacy programs accountably, and boosts public engagement by up to 80%.",
+      de: "Verbindet Bürger der Provinz Lampung direkt mit ihrem Abgeordneten, dokumentiert Interessenvertretungen nachvollziehbar und steigert die Bürgerbeteiligung um bis zu 80%."
+    },
+    techStack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "Lucide Icons"]
   }
 ];

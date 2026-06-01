@@ -3,7 +3,7 @@ import Portfolio from '../components/Portfolio';
 const PortfolioPage = () => {
   return (
     <div className="page-wrapper pt-20">
-      <Portfolio />
+      <Portfolio isHomepage={false} />
     </div>
   );
 };

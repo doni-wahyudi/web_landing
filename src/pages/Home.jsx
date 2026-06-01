@@ -37,7 +37,7 @@ const Home = () => {
         <Process />
       </div>
       <div className="reveal-on-scroll delay-200">
-        <Portfolio />
+        <Portfolio isHomepage={true} />
       </div>
       <div className="reveal-on-scroll delay-300">
         <Pricing />

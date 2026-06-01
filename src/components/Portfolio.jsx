@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { projects } from '../data/projects';
 import './Portfolio.css';
 
-const Portfolio = () => {
+const Portfolio = ({ isHomepage = false }) => {
   const { language } = useLanguage();
 
   const translations = {
@@ -36,7 +36,12 @@ const Portfolio = () => {
 
   const t = translations[language] || translations.id;
 
-  const homepageProjects = [1, 2, 10, 6, 5, 9]
+  const homepageOrder = [1, 2, 10, 6, 5, 9];
+  const fullOrder = [1, 2, 10, 6, 5, 9, 3, 4, 7, 8, 11];
+
+  const targetOrder = isHomepage ? homepageOrder : fullOrder;
+
+  const displayedProjects = targetOrder
     .map(id => projects.find(p => p.id === id))
     .filter(Boolean);
 
@@ -51,7 +56,7 @@ const Portfolio = () => {
         </div>
 
         <div className="portfolio-grid">
-          {homepageProjects.map(project => (
+          {displayedProjects.map(project => (
             <div key={project.id} className="portfolio-card glass">
               <div className="portfolio-img-wrapper">
                 <div className="portfolio-browser-header">
@@ -86,11 +91,13 @@ const Portfolio = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12 animate-entrance">
-          <Link to="/portfolio" className="btn btn-outline btn-lg btn-glint">
-            {language === 'en' ? 'View All Projects' : language === 'de' ? 'Alle Projekte anzeigen' : 'Lihat Semua Portfolio'} <FiArrowRight />
-          </Link>
-        </div>
+        {isHomepage && (
+          <div className="text-center mt-12 animate-entrance">
+            <Link to="/portfolio" className="btn btn-outline btn-lg btn-glint">
+              {language === 'en' ? 'View All Projects' : language === 'de' ? 'Alle Projekte anzeigen' : 'Lihat Semua Portfolio'} <FiArrowRight />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

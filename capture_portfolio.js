@@ -11,7 +11,8 @@ import puppeteer from 'puppeteer';
     { url: 'https://aurotechbimbel.my.id/', filename: 'bimbel_web.webp' },
     { url: 'https://aurotechklinik.my.id/', filename: 'clinic.webp' },
     { url: 'https://aurotechrental.my.id/', filename: 'rental.webp' },
-    { url: 'https://aurotechbakery.my.id/', filename: 'bakery.webp' }
+    { url: 'https://aurotechbakery.my.id/', filename: 'bakery.webp' },
+    { url: 'https://bagaspramono.web.id/', filename: 'bagaspramono.webp' }
   ];
 
   console.log('Launching browser...');
