@@ -11,6 +11,12 @@
   margin-bottom: 2rem;
 }
 
+.dashboard-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .month-selector-wrapper {
   display: inline-flex;
   align-items: center;

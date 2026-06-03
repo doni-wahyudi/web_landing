@@ -107,17 +107,16 @@ const LeadsDashboard = () => {
         <div className="dashboard-controls-row">
           {/* Active WA Account Selector */}
           <div className="month-selector-wrapper glass">
-            <span className="control-label" style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem' }}>WA Accounts:</span>
+            <FiPhone className="selector-icon" />
             <select 
               value={activeWaAccounts} 
               onChange={(e) => setActiveWaAccounts(parseInt(e.target.value))}
               className="month-dropdown"
-              style={{ minWidth: '60px' }}
             >
-              <option value={1}>1 (Quota: 20/day)</option>
-              <option value={2}>2 (Quota: 40/day)</option>
-              <option value={3}>3 (Quota: 60/day)</option>
-              <option value={4}>4 (Quota: 80/day)</option>
+              <option value={1}>1 WA Account (20/day)</option>
+              <option value={2}>2 WA Accounts (40/day)</option>
+              <option value={3}>3 WA Accounts (60/day)</option>
+              <option value={4}>4 WA Accounts (80/day)</option>
             </select>
           </div>
 
