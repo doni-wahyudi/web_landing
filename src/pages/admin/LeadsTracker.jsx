@@ -352,7 +352,7 @@ const LeadsTracker = () => {
         </div>
 
         <div style={{ display: 'flex', gap: '0.75rem' }}>
-          <button className="btn btn-secondary" onClick={() => setShowSummaryModal(true)}>
+          <button className="btn btn-outline" onClick={() => setShowSummaryModal(true)}>
             <FiFileText /> Log Daily Summary
           </button>
           <button className="btn btn-primary" onClick={() => setShowAddLeadModal(true)}>
