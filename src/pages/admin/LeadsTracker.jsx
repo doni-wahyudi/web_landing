@@ -5,6 +5,7 @@ import {
   FiPhone, FiClock, FiX, FiCheck, FiInfo, FiTag, FiAlertTriangle, FiPlusCircle,
   FiFileText, FiList
 } from 'react-icons/fi';
+import { useLanguage } from '../../context/LanguageContext';
 import { 
   getLeads as getDailySummaries, 
   addLead as addDailySummary, 
@@ -18,13 +19,171 @@ import {
 } from '../../services/crmService';
 import './LeadsTracker.css';
 
-const STATUS_CONFIG = {
-  ALL: { label: 'All CRM Leads', color: 'rgba(255, 255, 255, 0.4)' },
-  responded: { label: 'Responded', color: '#9b59b6' },
-  responded_followup: { label: 'Warm Follow-up', color: '#e67e22' },
-  unresponded_followup: { label: 'Cold Follow-up', color: '#7f8c8d' },
-  deal: { label: 'Deals Closed', color: '#2ecc71' },
-  failed: { label: 'Failed/Rejected', color: '#e74c3c' }
+const trackerTranslations = {
+  id: {
+    title: 'Pelacak Lead & CRM Hibrida',
+    subtitle: 'Catat metrik ringkasan harian dan detail profil percakapan pelanggan dalam satu dasbor',
+    btnDailySummary: 'Catat Ringkasan Harian',
+    btnCustomerProfile: 'Catat Profil Pelanggan',
+    followupDueTitle: 'Tugas Follow-Up Hari Ini',
+    followupDueSubtitle: 'Lead ini telah mencapai jadwal follow-up. Hubungi mereka di WhatsApp!',
+    dueBadge: 'Batas:',
+    openProfile: 'Buka Profil',
+    tabCrmProfiles: 'Profil CRM Pelanggan',
+    tabDailySummaries: 'Laporan Ringkasan Harian',
+    searchPlaceholder: 'Cari profil pelanggan berdasarkan nama, bisnis, telepon, wilayah...',
+    noCrmLeads: 'Belum ada profil pelanggan. Catat profil baru saat pelanggan merespons, gagal, atau deal.',
+    noDailySummaries: 'Belum ada ringkasan harian yang dicatat. Mulai catat kinerja harian dengan tombol di atas.',
+    colLeadInfo: 'Informasi Lead',
+    colCategoryRegion: 'Kategori & Wilayah',
+    colSource: 'Sumber',
+    colStatus: 'Status',
+    colNextAction: 'Tindakan Selanjutnya',
+    colActions: 'Aksi',
+    colDate: 'Tanggal',
+    colOutreachStats: 'Statistik Jangkauan',
+    colOutreachResults: 'Hasil Konversi',
+    colActiveWa: 'WA Aktif',
+    colNotesPlan: 'Catatan & Rencana',
+    confirmDeleteProfile: 'Apakah Anda yakin ingin menghapus profil pelanggan ini secara permanen?',
+    confirmDeleteSummary: 'Apakah Anda yakin ingin menghapus laporan ringkasan harian ini secara permanen?',
+    // drawer
+    drawerTitle: 'Detail Profil Lead',
+    drawerLogProgress: 'Update Status Pelanggan',
+    drawerLogCold: 'Catat Cold F/U',
+    drawerLogWarm: 'Catat Warm F/U',
+    drawerLogResponse: 'Catat Respons',
+    drawerCloseDeal: 'Deal Closed',
+    drawerMarkFailed: 'Tandai Gagal',
+    drawerMetadata: 'Metadata Lead',
+    drawerPhone: 'Nomor WhatsApp',
+    drawerCategory: 'Kategori',
+    drawerRegion: 'Wilayah/Area',
+    drawerSource: 'Sumber Lead',
+    drawerDealPkg: 'Paket Deal',
+    drawerDealVal: 'Nilai Transaksi',
+    drawerReason: 'Alasan Gagal',
+    drawerHistory: 'Riwayat Percakapan',
+    drawerDeleteBtn: 'Hapus Profil Pelanggan',
+    // Summary Modal
+    sumModalTitle: 'Catat Metrik Ringkasan Harian',
+    sumDate: 'Tanggal Laporan *',
+    sumActiveWa: 'Jumlah Akun WA Aktif *',
+    sumRegion: 'Wilayah *',
+    sumCategory: 'Kategori Bisnis (Bidang Umum) *',
+    sumOutreachCount: 'Total Kontak Baru Hari Ini *',
+    sumColdFuCount: 'Cold Follow-up (Kontak tak merespons yang di-ping) *',
+    sumWarmFuCount: 'Warm Follow-up (Kontak merespon yang di-ping) *',
+    sumResponseCount: 'Respons Diterima (Total respons baru hari ini) *',
+    sumDealsCount: 'Deal Closed Hari Ini *',
+    sumFailedCount: 'Jumlah Lead Gagal/Menolak Hari Ini *',
+    sumNotes: 'Catatan & Kendala Hari Ini',
+    sumPlan: 'Rencana Berikutnya / Tindakan Besok',
+    sumSubmit: 'Catat Ringkasan Harian',
+    // Customer Modal
+    custModalTitle: 'Log Profil Lead Utama',
+    custBusinessName: 'Nama Bisnis *',
+    custPersonName: 'Nama Kontak Person',
+    custPhone: 'Nomor WhatsApp *',
+    custCategory: 'Kategori (Bidang Bisnis) *',
+    custRegion: 'Wilayah / Area *',
+    custSource: 'Sumber Lead *',
+    custStatus: 'Status Saat Ini *',
+    custFollowupDate: 'Jadwal Follow-up Selanjutnya (Opsional)',
+    custDealPkg: 'Paket Deal *',
+    custDealVal: 'Nilai Transaksi (IDR) *',
+    custFailReason: 'Alasan Kegagalan Utama *',
+    custNotes: 'Catatan Profil & Percakapan',
+    custSubmit: 'Simpan Profil Pelanggan',
+    // Progress modal
+    progModalTitle: 'Catat Aksi',
+    progDate: 'Tanggal Aksi',
+    progNextDate: 'Jadwal Follow-up Selanjutnya *',
+    progNotes: 'Catatan Aksi / Detail Percakapan *',
+    progSubmit: 'Update Progres Pelanggan'
+  },
+  en: {
+    title: 'Hybrid Lead Tracker & CRM',
+    subtitle: 'Log daily summary metrics and record detailed customer conversation profiles in one dashboard',
+    btnDailySummary: 'Log Daily Summary',
+    btnCustomerProfile: 'Log Customer Profile',
+    followupDueTitle: 'Follow-Up Tasks Due Today',
+    followupDueSubtitle: 'These leads reached their scheduled follow-up interval. Ping them on WhatsApp!',
+    dueBadge: 'Due:',
+    openProfile: 'Open Profile',
+    tabCrmProfiles: 'Customer CRM Profiles',
+    tabDailySummaries: 'Daily Summary Reports',
+    searchPlaceholder: 'Search customer profiles by name, business, phone, area...',
+    noCrmLeads: 'No customer profiles found. Log a profile when a customer responds, failure happens or deal closes.',
+    noDailySummaries: 'No daily summaries logged yet. Keep track of daily performance by hitting "Log Daily Summary".',
+    colLeadInfo: 'Lead Info',
+    colCategoryRegion: 'Category & Region',
+    colSource: 'Source',
+    colStatus: 'Status',
+    colNextAction: 'Next Action',
+    colActions: 'Actions',
+    colDate: 'Date',
+    colOutreachStats: 'Outreach Stats',
+    colOutreachResults: 'Conversion Outcomes',
+    colActiveWa: 'Active WA',
+    colNotesPlan: 'Notes & Plan',
+    confirmDeleteProfile: 'Are you sure you want to permanently delete this customer profile?',
+    confirmDeleteSummary: 'Are you sure you want to permanently delete this daily summary log?',
+    // drawer
+    drawerTitle: 'Lead Profile Details',
+    drawerLogProgress: 'Update Customer Status',
+    drawerLogCold: 'Log Cold F/U',
+    drawerLogWarm: 'Log Warm F/U',
+    drawerLogResponse: 'Log Response',
+    drawerCloseDeal: 'Close Deal',
+    drawerMarkFailed: 'Mark Failed',
+    drawerMetadata: 'Lead Metadata',
+    drawerPhone: 'Phone Number',
+    drawerCategory: 'Category',
+    drawerRegion: 'Region/Area',
+    drawerSource: 'Lead Source',
+    drawerDealPkg: 'Deal Package',
+    drawerDealVal: 'Deal Value',
+    drawerReason: 'Rejection Reason',
+    drawerHistory: 'Conversation History',
+    drawerDeleteBtn: 'Delete Customer Profile',
+    // Summary Modal
+    sumModalTitle: 'Log Daily Summary Metrics',
+    sumDate: 'Report Date *',
+    sumActiveWa: 'Active WA Accounts Active *',
+    sumRegion: 'Region *',
+    sumCategory: 'Business Category (General Field) *',
+    sumOutreachCount: 'Outreach Contact Count (New Contacts today) *',
+    sumColdFuCount: 'Cold Follow-ups (unresponded contacts pinged) *',
+    sumWarmFuCount: 'Warm Follow-ups (responded contacts pinged) *',
+    sumResponseCount: 'Responses Received (total responses today) *',
+    sumDealsCount: 'Deals Closed Today *',
+    sumFailedCount: 'Failed / Rejected Count Today *',
+    sumNotes: 'Notes / Obstacles Today',
+    sumPlan: 'Next Plan / Action Steps',
+    sumSubmit: 'Log Daily Summary',
+    // Customer Modal
+    custModalTitle: 'Log Key Lead Profile',
+    custBusinessName: 'Business Name *',
+    custPersonName: 'Contact Person Name',
+    custPhone: 'WhatsApp Phone Number *',
+    custCategory: 'Category (Business Field) *',
+    custRegion: 'Region / Area *',
+    custSource: 'Lead Source *',
+    custStatus: 'Current Status *',
+    custFollowupDate: 'Scheduled Follow-up (Optional)',
+    custDealPkg: 'Deal Package *',
+    custDealVal: 'Deal Value (IDR) *',
+    custFailReason: 'Primary Rejection/Failure Reason *',
+    custNotes: 'Profile & Conversation Notes',
+    custSubmit: 'Log Customer Profile',
+    // Progress modal
+    progModalTitle: 'Log Action',
+    progDate: 'Action Date',
+    progNextDate: 'Scheduled Next Follow-up Date *',
+    progNotes: 'Activity Notes / Details *',
+    progSubmit: 'Update Customer Progress'
+  }
 };
 
 const LEAD_SOURCES = [
@@ -57,6 +216,9 @@ const REGIONS = [
 ];
 
 const LeadsTracker = () => {
+  const { language } = useLanguage();
+  const t = trackerTranslations[language] || trackerTranslations.id;
+
   // Tabs: 'profiles' for CRM records, 'summaries' for daily logs
   const [activeWorkspaceTab, setActiveWorkspaceTab] = useState('profiles');
   
@@ -76,6 +238,15 @@ const LeadsTracker = () => {
   const [showSummaryModal, setShowSummaryModal] = useState(false);
   const [showLogActivityModal, setShowLogActivityModal] = useState(false);
   const [activityType, setActivityType] = useState(''); // Type of progress logging
+
+  const STATUS_CONFIG = {
+    ALL: { label: t.tabCrmProfiles, color: 'rgba(255, 255, 255, 0.4)' },
+    responded: { label: language === 'id' ? 'Merespon' : 'Responded', color: '#9b59b6' },
+    responded_followup: { label: language === 'id' ? 'Follow-up Hangat' : 'Warm Follow-up', color: '#e67e22' },
+    unresponded_followup: { label: language === 'id' ? 'Follow-up Dingin' : 'Cold Follow-up', color: '#7f8c8d' },
+    deal: { label: language === 'id' ? 'Deal Ditutup' : 'Deals Closed', color: '#2ecc71' },
+    failed: { label: language === 'id' ? 'Gagal/Menolak' : 'Failed/Rejected', color: '#e74c3c' }
+  };
 
   // New Customer Profile Form State (CRM)
   const [newLeadData, setNewLeadData] = useState({
@@ -299,7 +470,7 @@ const LeadsTracker = () => {
   };
 
   const handleDeleteLead = async (id) => {
-    if (window.confirm('Are you sure you want to permanently delete this customer profile?')) {
+    if (window.confirm(t.confirmDeleteProfile)) {
       try {
         await deleteCrmLead(id);
         setActiveLead(null);
@@ -311,7 +482,7 @@ const LeadsTracker = () => {
   };
 
   const handleDeleteSummary = async (id) => {
-    if (window.confirm('Are you sure you want to permanently delete this daily summary log?')) {
+    if (window.confirm(t.confirmDeleteSummary)) {
       try {
         await deleteDailySummary(id);
         fetchDailySummariesData();
@@ -347,16 +518,16 @@ const LeadsTracker = () => {
       {/* Header bar with actions */}
       <div className="crm-header-bar">
         <div className="admin-header">
-          <h1>Hybrid Lead Tracker & CRM</h1>
-          <p>Log daily summary metrics and record detailed customer conversation profiles in one dashboard</p>
+          <h1>{t.title}</h1>
+          <p>{t.subtitle}</p>
         </div>
 
         <div style={{ display: 'flex', gap: '0.75rem' }}>
           <button className="btn btn-outline" onClick={() => setShowSummaryModal(true)}>
-            <FiFileText /> Log Daily Summary
+            <FiFileText /> {t.btnDailySummary}
           </button>
           <button className="btn btn-primary" onClick={() => setShowAddLeadModal(true)}>
-            <FiPlusCircle /> Log Customer Profile
+            <FiPlusCircle /> {t.btnCustomerProfile}
           </button>
         </div>
       </div>
@@ -366,9 +537,9 @@ const LeadsTracker = () => {
         <div className="followup-alert-widget glass animate-reveal">
           <div className="widget-header">
             <h4>
-              <FiClock className="icon-pulse" /> Follow-Up Tasks Due Today ({followUpDueLeads.length})
+              <FiClock className="icon-pulse" /> {t.followupDueTitle} ({followUpDueLeads.length})
             </h4>
-            <span className="subtitle">These leads reached their scheduled follow-up interval. Ping them on WhatsApp!</span>
+            <span className="subtitle">{t.followupDueSubtitle}</span>
           </div>
           <div className="due-leads-grid">
             {followUpDueLeads.slice(0, 4).map(lead => (
@@ -377,13 +548,13 @@ const LeadsTracker = () => {
                   <span className="due-badge" style={{ backgroundColor: STATUS_CONFIG[lead.status]?.color }}>
                     {STATUS_CONFIG[lead.status]?.label}
                   </span>
-                  <span className="due-date">Due: {new Date(lead.next_followup_date).toLocaleDateString()}</span>
+                  <span className="due-date">{t.dueBadge} {new Date(lead.next_followup_date).toLocaleDateString()}</span>
                 </div>
                 <h5>{lead.business_name || 'No Business Name'}</h5>
                 <p>{lead.customer_name} ({lead.phone_number})</p>
                 <div className="due-card-footer">
                   <span className="badge-region">{lead.area}</span>
-                  <button className="btn-tiny">Open Profile</button>
+                  <button className="btn-tiny">{t.openProfile}</button>
                 </div>
               </div>
             ))}
@@ -397,13 +568,13 @@ const LeadsTracker = () => {
           className={`workspace-tab ${activeWorkspaceTab === 'profiles' ? 'active' : ''}`}
           onClick={() => { setActiveWorkspaceTab('profiles'); setActiveLead(null); }}
         >
-          <FiUsers /> Customer CRM Profiles ({crmLeads.length})
+          <FiUsers /> {t.tabCrmProfiles} ({crmLeads.length})
         </button>
         <button 
           className={`workspace-tab ${activeWorkspaceTab === 'summaries' ? 'active' : ''}`}
           onClick={() => { setActiveWorkspaceTab('summaries'); setActiveLead(null); }}
         >
-          <FiList /> Daily Summary Reports ({dailySummaries.length})
+          <FiList /> {t.tabDailySummaries} ({dailySummaries.length})
         </button>
       </div>
 
@@ -421,7 +592,7 @@ const LeadsTracker = () => {
                   <FiSearch className="search-icon" />
                   <input 
                     type="text" 
-                    placeholder="Search customer profiles by name, business, phone, area..." 
+                    placeholder={t.searchPlaceholder} 
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
                   />
@@ -456,19 +627,19 @@ const LeadsTracker = () => {
               ) : filteredLeads.length === 0 ? (
                 <div className="empty-placeholder">
                   <FiInfo size={24} style={{ marginBottom: '0.5rem', color: 'var(--primary)' }} />
-                  No customer profiles found. Log a profile when a customer responds, failure happens or deal closes.
+                  {t.noCrmLeads}
                 </div>
               ) : (
                 <div className="reports-table-container">
                   <table className="reports-table">
                     <thead>
                       <tr>
-                        <th>Lead Info</th>
-                        <th>Category & Region</th>
-                        <th>Source</th>
-                        <th>Status</th>
-                        <th>Next Action</th>
-                        <th>Actions</th>
+                        <th>{t.colLeadInfo}</th>
+                        <th>{t.colCategoryRegion}</th>
+                        <th>{t.colSource}</th>
+                        <th>{t.colStatus}</th>
+                        <th>{t.colNextAction}</th>
+                        <th>{t.colActions}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -543,20 +714,20 @@ const LeadsTracker = () => {
               ) : dailySummaries.length === 0 ? (
                 <div className="empty-placeholder">
                   <FiInfo size={24} style={{ marginBottom: '0.5rem', color: 'var(--primary)' }} />
-                  No daily summaries logged yet. Keep track of daily performance by hitting "Log Daily Summary".
+                  {t.noDailySummaries}
                 </div>
               ) : (
                 <div className="reports-table-container">
                   <table className="reports-table">
                     <thead>
                       <tr>
-                        <th>Date</th>
-                        <th>Category & Region</th>
-                        <th>Outreach Stats</th>
-                        <th>Conversion Outcomes</th>
-                        <th>Active WA</th>
-                        <th>Notes & Plan</th>
-                        <th>Actions</th>
+                        <th>{t.colDate}</th>
+                        <th>{t.colCategoryRegion}</th>
+                        <th>{t.colOutreachStats}</th>
+                        <th>{t.colOutreachResults}</th>
+                        <th>{t.colActiveWa}</th>
+                        <th>{t.colNotesPlan}</th>
+                        <th>{t.colActions}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -620,7 +791,7 @@ const LeadsTracker = () => {
         {activeWorkspaceTab === 'profiles' && activeLead && (
           <div className="crm-details-drawer glass animate-slide-in">
             <div className="drawer-header">
-              <h3>Lead Profile Details</h3>
+              <h3>{t.drawerTitle}</h3>
               <button className="btn-close" onClick={() => setActiveLead(null)}><FiX /></button>
             </div>
 
@@ -636,7 +807,7 @@ const LeadsTracker = () => {
 
               {/* Main Actions Panel */}
               <div className="profile-actions-panel">
-                <h5>Update Customer Status</h5>
+                <h5>{t.drawerLogProgress}</h5>
                 <div className="action-buttons-grid">
                   {!['deal', 'failed'].includes(activeLead.status) && (
                     <>
@@ -647,7 +818,7 @@ const LeadsTracker = () => {
                           setShowLogActivityModal(true);
                         }}
                       >
-                        <FiClock /> Log Cold F/U
+                        <FiClock /> {t.drawerLogCold}
                       </button>
                       <button 
                         className="btn-action responded" 
@@ -656,7 +827,7 @@ const LeadsTracker = () => {
                           setShowLogActivityModal(true);
                         }}
                       >
-                        <FiActivity /> Log Response
+                        <FiActivity /> {t.drawerLogResponse}
                       </button>
                       <button 
                         className="btn-action warm" 
@@ -665,7 +836,7 @@ const LeadsTracker = () => {
                           setShowLogActivityModal(true);
                         }}
                       >
-                        <FiTrendingUp /> Log Warm F/U
+                        <FiTrendingUp /> {t.drawerLogWarm}
                       </button>
                     </>
                   )}
@@ -677,7 +848,7 @@ const LeadsTracker = () => {
                         setShowLogActivityModal(true);
                       }}
                     >
-                      <FiTarget /> Close Deal
+                      <FiTarget /> {t.drawerCloseDeal}
                     </button>
                   )}
                   {activeLead.status !== 'failed' && (
@@ -688,7 +859,7 @@ const LeadsTracker = () => {
                         setShowLogActivityModal(true);
                       }}
                     >
-                      <FiAlertTriangle /> Mark Failed
+                      <FiAlertTriangle /> {t.drawerMarkFailed}
                     </button>
                   )}
                 </div>
@@ -696,31 +867,31 @@ const LeadsTracker = () => {
 
               {/* Detailed Lead parameters */}
               <div className="profile-details-list">
-                <h5>Lead Metadata</h5>
+                <h5>{t.drawerMetadata}</h5>
                 <div className="detail-item">
-                  <span className="label"><FiPhone /> Phone Number</span>
+                  <span className="label"><FiPhone /> {t.drawerPhone}</span>
                   <span className="value">{activeLead.phone_number}</span>
                 </div>
                 <div className="detail-item">
-                  <span className="label"><FiBriefcase /> Category</span>
+                  <span className="label"><FiBriefcase /> {t.drawerCategory}</span>
                   <span className="value">{activeLead.category}</span>
                 </div>
                 <div className="detail-item">
-                  <span className="label"><FiMapPin /> Region/Area</span>
+                  <span className="label"><FiMapPin /> {t.drawerRegion}</span>
                   <span className="value">{activeLead.area}</span>
                 </div>
                 <div className="detail-item">
-                  <span className="label"><FiTag /> Lead Source</span>
+                  <span className="label"><FiTag /> {t.drawerSource}</span>
                   <span className="value">{activeLead.lead_source}</span>
                 </div>
                 {activeLead.status === 'deal' && (
                   <>
                     <div className="detail-item highlighted-deal">
-                      <span className="label"><FiTarget /> Deal Package</span>
+                      <span className="label"><FiTarget /> {t.drawerDealPkg}</span>
                       <span className="value">{activeLead.deal_package || 'Not specified'}</span>
                     </div>
                     <div className="detail-item highlighted-deal">
-                      <span className="label">💵 Deal Value</span>
+                      <span className="label">💵 {t.drawerDealVal}</span>
                       <span className="value">
                         {activeLead.deal_value ? `IDR ${parseFloat(activeLead.deal_value).toLocaleString('id-ID')}` : 'IDR 0'}
                       </span>
@@ -729,13 +900,13 @@ const LeadsTracker = () => {
                 )}
                 {activeLead.status === 'failed' && (
                   <div className="detail-item highlighted-failed">
-                    <span className="label"><FiAlertTriangle /> Rejection Reason</span>
+                    <span className="label"><FiAlertTriangle /> {t.drawerReason}</span>
                     <span className="value">{activeLead.failure_reason || 'Not specified'}</span>
                   </div>
                 )}
                 {activeLead.notes && (
                   <div className="detail-item-notes">
-                    <span className="label"><FiMessageSquare /> Conversation History</span>
+                    <span className="label"><FiMessageSquare /> {t.drawerHistory}</span>
                     <p className="value-notes" style={{ whiteSpace: 'pre-wrap' }}>{activeLead.notes}</p>
                   </div>
                 )}
@@ -744,7 +915,7 @@ const LeadsTracker = () => {
               {/* Delete button inside drawer */}
               <div className="profile-danger-zone">
                 <button onClick={() => handleDeleteLead(activeLead.id)} className="btn btn-danger btn-full">
-                  <FiTrash2 /> Delete Customer Profile
+                  <FiTrash2 /> {t.drawerDeleteBtn}
                 </button>
               </div>
             </div>
@@ -757,13 +928,13 @@ const LeadsTracker = () => {
         <div className="modal-overlay" onClick={() => setShowAddLeadModal(false)}>
           <div className="modal-card glass" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
-              <h3><FiPlusCircle /> Log Key Lead Profile</h3>
+              <h3><FiPlusCircle /> {t.custModalTitle}</h3>
               <button className="btn-close" onClick={() => setShowAddLeadModal(false)}><FiX /></button>
             </div>
             <form onSubmit={handleCreateLead} className="premium-form modal-form">
               <div className="form-row">
                 <div className="form-group">
-                  <label>Business Name *</label>
+                  <label>{t.custBusinessName}</label>
                   <input 
                     type="text" 
                     placeholder="e.g. Dental Clinic XYZ" 
@@ -773,7 +944,7 @@ const LeadsTracker = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label>Contact Person Name</label>
+                  <label>{t.custPersonName}</label>
                   <input 
                     type="text" 
                     placeholder="e.g. Dr. Jane Doe" 
@@ -785,7 +956,7 @@ const LeadsTracker = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label><FiPhone /> WhatsApp Phone Number *</label>
+                  <label><FiPhone /> {t.custPhone}</label>
                   <input 
                     type="text" 
                     placeholder="e.g. 08123456789" 
@@ -795,7 +966,7 @@ const LeadsTracker = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label><FiBriefcase /> Category (Business Field) *</label>
+                  <label><FiBriefcase /> {t.custCategory}</label>
                   <input 
                     type="text" 
                     placeholder="e.g. Dental, Bakery, Laundry" 
@@ -808,7 +979,7 @@ const LeadsTracker = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label><FiMapPin /> Region / Area *</label>
+                  <label><FiMapPin /> {t.custRegion}</label>
                   <select 
                     value={newLeadData.area}
                     onChange={e => setNewLeadData({...newLeadData, area: e.target.value})}
@@ -820,7 +991,7 @@ const LeadsTracker = () => {
                   </select>
                 </div>
                 <div className="form-group">
-                  <label><FiTag /> Lead Source *</label>
+                  <label><FiTag /> {t.custSource}</label>
                   <select 
                     value={newLeadData.leadSource}
                     onChange={e => setNewLeadData({...newLeadData, leadSource: e.target.value})}
@@ -848,21 +1019,21 @@ const LeadsTracker = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label><FiActivity /> Current Status *</label>
+                  <label><FiActivity /> {t.custStatus}</label>
                   <select 
                     value={newLeadData.status}
                     onChange={e => setNewLeadData({...newLeadData, status: e.target.value})}
                     required
                   >
-                    <option value="responded">Responded (Unqualified Follow-up)</option>
-                    <option value="responded_followup">Responded (Warm Follow-up)</option>
-                    <option value="unresponded_followup">Unresponded (Cold Follow-up)</option>
-                    <option value="deal">Deal Closed (Closed Won)</option>
-                    <option value="failed">Failed / Rejected (Closed Lost)</option>
+                    <option value="responded">{language === 'id' ? 'Merespon (Follow-up Belum Kualifikasi)' : 'Responded (Unqualified Follow-up)'}</option>
+                    <option value="responded_followup">{language === 'id' ? 'Merespon (Follow-up Hangat)' : 'Responded (Warm Follow-up)'}</option>
+                    <option value="unresponded_followup">{language === 'id' ? 'Tidak Merespon (Follow-up Dingin)' : 'Unresponded (Cold Follow-up)'}</option>
+                    <option value="deal">{language === 'id' ? 'Deal Ditutup (Closed Won)' : 'Deal Closed (Closed Won)'}</option>
+                    <option value="failed">{language === 'id' ? 'Gagal / Ditolak (Closed Lost)' : 'Failed / Rejected (Closed Lost)'}</option>
                   </select>
                 </div>
                 <div className="form-group">
-                  <label><FiCalendar /> Scheduled Follow-up (Optional)</label>
+                  <label><FiCalendar /> {t.custFollowupDate}</label>
                   <input 
                     type="date" 
                     value={newLeadData.nextFollowupDate}
@@ -875,7 +1046,7 @@ const LeadsTracker = () => {
               {newLeadData.status === 'deal' && (
                 <div className="form-row animate-reveal">
                   <div className="form-group">
-                    <label>Deal Package *</label>
+                    <label>{t.custDealPkg}</label>
                     <select 
                       value={newLeadData.dealPackage}
                       onChange={e => setNewLeadData({...newLeadData, dealPackage: e.target.value})}
@@ -887,7 +1058,7 @@ const LeadsTracker = () => {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label>Deal Value (IDR) *</label>
+                    <label>{t.custDealVal}</label>
                     <input 
                       type="number" 
                       placeholder="e.g. 1500000" 
@@ -902,7 +1073,7 @@ const LeadsTracker = () => {
               {/* Conditional failure input */}
               {newLeadData.status === 'failed' && (
                 <div className="form-group animate-reveal">
-                  <label>Failure Reason *</label>
+                  <label>{t.custFailReason}</label>
                   <select 
                     value={newLeadData.failureReason}
                     onChange={e => setNewLeadData({...newLeadData, failureReason: e.target.value})}
@@ -916,7 +1087,7 @@ const LeadsTracker = () => {
               )}
 
               <div className="form-group">
-                <label><FiMessageSquare /> Profile & Conversation Notes</label>
+                <label><FiMessageSquare /> {t.custNotes}</label>
                 <textarea 
                   rows="3" 
                   placeholder="Notes about their specific needs, objections, package details..."
@@ -926,7 +1097,7 @@ const LeadsTracker = () => {
               </div>
 
               <button type="submit" className="btn btn-primary btn-full">
-                Log Customer Profile
+                {t.custSubmit}
               </button>
             </form>
           </div>
@@ -938,13 +1109,13 @@ const LeadsTracker = () => {
         <div className="modal-overlay" onClick={() => setShowSummaryModal(false)}>
           <div className="modal-card glass" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
-              <h3><FiFileText /> Log Daily Summary Metrics</h3>
+              <h3><FiFileText /> {t.sumModalTitle}</h3>
               <button className="btn-close" onClick={() => setShowSummaryModal(false)}><FiX /></button>
             </div>
             <form onSubmit={handleCreateSummary} className="premium-form modal-form">
               <div className="form-row">
                 <div className="form-group">
-                  <label>Report Date *</label>
+                  <label>{t.sumDate}</label>
                   <input 
                     type="date" 
                     value={newSummaryData.reportDate}
@@ -953,7 +1124,7 @@ const LeadsTracker = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label>Active WA Accounts Active *</label>
+                  <label>{t.sumActiveWa}</label>
                   <input 
                     type="number" 
                     value={newSummaryData.waAccountsActive}
@@ -966,7 +1137,7 @@ const LeadsTracker = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label><FiMapPin /> Region *</label>
+                  <label><FiMapPin /> {t.sumRegion}</label>
                   <select 
                     value={newSummaryData.region}
                     onChange={e => setNewSummaryData({...newSummaryData, region: e.target.value})}
@@ -978,7 +1149,7 @@ const LeadsTracker = () => {
                   </select>
                 </div>
                 <div className="form-group">
-                  <label><FiBriefcase /> Business Category (General Field) *</label>
+                  <label><FiBriefcase /> {t.sumCategory}</label>
                   <input 
                     type="text" 
                     placeholder="e.g. Dental Clinics, Barbershops" 
@@ -991,7 +1162,7 @@ const LeadsTracker = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label>Outreach Contact Count (New Contacts today) *</label>
+                  <label>{t.sumOutreachCount}</label>
                   <input 
                     type="number" 
                     placeholder="e.g. 40" 
@@ -1001,7 +1172,7 @@ const LeadsTracker = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label>Cold Follow-ups (unresponded contacts pinged) *</label>
+                  <label>{t.sumColdFuCount}</label>
                   <input 
                     type="number" 
                     placeholder="e.g. 10" 
@@ -1014,7 +1185,7 @@ const LeadsTracker = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label>Warm Follow-ups (responded contacts pinged) *</label>
+                  <label>{t.sumWarmFuCount}</label>
                   <input 
                     type="number" 
                     placeholder="e.g. 5" 
@@ -1024,7 +1195,7 @@ const LeadsTracker = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label>Responses Received (total responses today) *</label>
+                  <label>{t.sumResponseCount}</label>
                   <input 
                     type="number" 
                     placeholder="e.g. 2" 
@@ -1037,7 +1208,7 @@ const LeadsTracker = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label>Deals Closed Today *</label>
+                  <label>{t.sumDealsCount}</label>
                   <input 
                     type="number" 
                     placeholder="e.g. 1" 
@@ -1047,7 +1218,7 @@ const LeadsTracker = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label>Failed / Rejected Count Today *</label>
+                  <label>{t.sumFailedCount}</label>
                   <input 
                     type="number" 
                     placeholder="e.g. 1" 
@@ -1059,7 +1230,7 @@ const LeadsTracker = () => {
               </div>
 
               <div className="form-group">
-                <label><FiMessageSquare /> Notes / Obstacles Today</label>
+                <label><FiMessageSquare /> {t.sumNotes}</label>
                 <textarea 
                   rows="2" 
                   placeholder="Obstacles, WA account bans, general remarks..."
@@ -1069,7 +1240,7 @@ const LeadsTracker = () => {
               </div>
 
               <div className="form-group">
-                <label><FiTarget /> Next Plan / Action Steps</label>
+                <label><FiTarget /> {t.sumPlan}</label>
                 <textarea 
                   rows="2" 
                   placeholder="Plans for tomorrow, follow-up regions..."
@@ -1079,7 +1250,7 @@ const LeadsTracker = () => {
               </div>
 
               <button type="submit" className="btn btn-primary btn-full">
-                Log Daily Summary
+                {t.sumSubmit}
               </button>
             </form>
           </div>
@@ -1092,11 +1263,11 @@ const LeadsTracker = () => {
           <div className="modal-card glass" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h3>
-                Log Action: {
-                  activityType === 'cold_followup' ? 'Cold Follow-up' :
-                  activityType === 'warm_followup' ? 'Warm Follow-up' :
-                  activityType === 'response_received' ? 'Response Received' :
-                  activityType === 'deal_closed' ? 'Close Deal' : 'Mark Failed'
+                {t.progModalTitle}: {
+                  activityType === 'cold_followup' ? (language === 'id' ? 'Cold Follow-up' : 'Cold Follow-up') :
+                  activityType === 'warm_followup' ? (language === 'id' ? 'Warm Follow-up' : 'Warm Follow-up') :
+                  activityType === 'response_received' ? (language === 'id' ? 'Respons Diterima' : 'Response Received') :
+                  activityType === 'deal_closed' ? (language === 'id' ? 'Deal Closed' : 'Close Deal') : (language === 'id' ? 'Tandai Gagal' : 'Mark Failed')
                 }
               </h3>
               <button className="btn-close" onClick={() => setShowLogActivityModal(false)}><FiX /></button>
@@ -1105,7 +1276,7 @@ const LeadsTracker = () => {
             <form onSubmit={handleLogActivity} className="premium-form modal-form">
               <div className="form-row">
                 <div className="form-group">
-                  <label><FiCalendar /> Action Date</label>
+                  <label><FiCalendar /> {t.progDate}</label>
                   <input 
                     type="date" 
                     value={activityData.activityDate}
@@ -1115,7 +1286,7 @@ const LeadsTracker = () => {
                 </div>
                 {['cold_followup', 'warm_followup'].includes(activityType) && (
                   <div className="form-group">
-                    <label><FiClock /> Scheduled Next Follow-up Date *</label>
+                    <label><FiClock /> {t.progNextDate}</label>
                     <input 
                       type="date" 
                       value={activityData.nextFollowupDate}
@@ -1129,7 +1300,7 @@ const LeadsTracker = () => {
               {activityType === 'deal_closed' && (
                 <div className="form-row animate-reveal">
                   <div className="form-group">
-                    <label>Deal Package Closed *</label>
+                    <label>{t.custDealPkg}</label>
                     <select 
                       value={activityData.dealPackage}
                       onChange={e => setActivityData({...activityData, dealPackage: e.target.value})}
@@ -1141,7 +1312,7 @@ const LeadsTracker = () => {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label>Deal Transaction Value (IDR) *</label>
+                    <label>{t.custDealVal}</label>
                     <input 
                       type="number" 
                       placeholder="e.g. 1500000" 
@@ -1155,7 +1326,7 @@ const LeadsTracker = () => {
 
               {activityType === 'marked_failed' && (
                 <div className="form-group animate-reveal">
-                  <label>Primary Rejection/Failure Reason *</label>
+                  <label>{t.custFailReason}</label>
                   <select 
                     value={activityData.failureReason}
                     onChange={e => setActivityData({...activityData, failureReason: e.target.value})}
@@ -1169,7 +1340,7 @@ const LeadsTracker = () => {
               )}
 
               <div className="form-group">
-                <label><FiMessageSquare /> Activity Notes / Details *</label>
+                <label><FiMessageSquare /> {t.progNotes}</label>
                 <textarea 
                   rows="3" 
                   placeholder={
@@ -1184,7 +1355,7 @@ const LeadsTracker = () => {
               </div>
 
               <button type="submit" className="btn btn-primary btn-full">
-                <FiCheck /> Update Customer Progress
+                <FiCheck /> {t.progSubmit}
               </button>
             </form>
           </div>
