@@ -26,8 +26,22 @@ const getFlagEmoji = (countryCode) => {
   }
 };
 
+// Generate dynamic list of past 12 months to filter by
+const getMonthsList = () => {
+  const months = [];
+  const date = new Date();
+  for (let i = 0; i < 12; i++) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    months.push(`${year}-${month}`);
+    date.setMonth(date.getMonth() - 1);
+  }
+  return months;
+};
+
 const VisitorsDashboard = () => {
-  const [selectedMonth, setSelectedMonth] = useState('ALL');
+  const months = getMonthsList();
+  const [selectedMonth, setSelectedMonth] = useState(months[0]);
   const [stats, setStats] = useState({
     totalViews: 0,
     uniqueVisitors: 0,
@@ -40,21 +54,6 @@ const VisitorsDashboard = () => {
     history: []
   });
   const [isLoading, setIsLoading] = useState(true);
-
-  // Generate dynamic list of past 6 months to filter by
-  const getMonthsList = () => {
-    const months = [];
-    const date = new Date();
-    for (let i = 0; i < 12; i++) {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      months.push(`${year}-${month}`);
-      date.setMonth(date.getMonth() - 1);
-    }
-    return months;
-  };
-
-  const months = getMonthsList();
 
   const formatMonthName = (monthStr) => {
     if (!monthStr || monthStr === 'ALL') return 'All Months';
