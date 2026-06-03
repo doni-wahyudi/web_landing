@@ -595,3 +595,37 @@
   overflow-y: auto;
   padding-right: 0.5rem;
 }
+
+/* --- WORKSPACE TABS --- */
+.crm-workspace-tabs {
+  display: flex;
+  gap: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.workspace-tab {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0.8rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.25s var(--transition-base);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.workspace-tab:hover {
+  color: white;
+}
+
+.workspace-tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+

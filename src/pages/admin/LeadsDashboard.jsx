@@ -17,15 +17,14 @@ const LeadsDashboard = () => {
   const [analyticsData, setAnalyticsData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   
-  // Dashboard Filtering & Capacity Configuration
+  // Dashboard Filtering
   const [selectedMonth, setSelectedMonth] = useState('ALL');
-  const [activeWaAccounts, setActiveWaAccounts] = useState(2); // Defaults to 2 WhatsApp accounts (40 quota capacity)
 
   // Sub-filtering states for local visual highlight/drilldowns
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [selectedIndustry, setSelectedIndustry] = useState(null);
 
-  // Generate dynamic list of past 6 months to filter by
+  // Generate dynamic list of past 12 months to filter by
   const getMonthsList = () => {
     const months = [];
     const date = new Date();
@@ -50,14 +49,13 @@ const LeadsDashboard = () => {
 
   useEffect(() => {
     fetchDashboardData();
-  }, [selectedMonth, activeWaAccounts]);
+  }, [selectedMonth]);
 
   const fetchDashboardData = async () => {
     setIsLoading(true);
     try {
       const data = await getCrmAnalytics({ 
-        month: selectedMonth, 
-        activeWaAccounts 
+        month: selectedMonth
       });
       setAnalyticsData(data);
     } catch (err) {
@@ -105,19 +103,10 @@ const LeadsDashboard = () => {
         </div>
 
         <div className="dashboard-controls-row">
-          {/* Active WA Account Selector */}
-          <div className="month-selector-wrapper glass">
-            <FiPhone className="selector-icon" />
-            <select 
-              value={activeWaAccounts} 
-              onChange={(e) => setActiveWaAccounts(parseInt(e.target.value))}
-              className="month-dropdown"
-            >
-              <option value={1}>1 WA Account (20/day)</option>
-              <option value={2}>2 WA Accounts (40/day)</option>
-              <option value={3}>3 WA Accounts (60/day)</option>
-              <option value={4}>4 WA Accounts (80/day)</option>
-            </select>
+          {/* Average WA Accounts Information */}
+          <div className="month-selector-wrapper glass" style={{ padding: '0.6rem 1rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <FiPhone style={{ color: 'var(--primary)' }} />
+            <span>Avg Active WA today: <strong>{summary.avgWa?.toFixed(1) || '2.0'}</strong></span>
           </div>
 
           {/* Month selector */}
