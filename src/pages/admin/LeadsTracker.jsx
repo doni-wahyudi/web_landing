@@ -69,7 +69,8 @@ const trackerTranslations = {
     sumModalTitle: 'Catat Metrik Ringkasan Harian',
     sumDate: 'Tanggal Laporan *',
     sumActiveWa: 'Jumlah Akun WA Aktif *',
-    sumRegion: 'Wilayah *',
+    sumRegionCountry: 'Negara *',
+    sumRegionCity: 'Kota / Wilayah',
     sumCategory: 'Kategori Bisnis (Bidang Umum) *',
     sumOutreachCount: 'Total Kontak Baru Hari Ini *',
     sumColdFuCount: 'Cold Follow-up (Kontak tak merespons yang di-ping) *',
@@ -86,7 +87,8 @@ const trackerTranslations = {
     custPersonName: 'Nama Kontak Person',
     custPhone: 'Nomor WhatsApp *',
     custCategory: 'Kategori (Bidang Bisnis) *',
-    custRegion: 'Wilayah / Area *',
+    custRegionCountry: 'Negara *',
+    custRegionCity: 'Kota / Wilayah',
     custSource: 'Sumber Lead *',
     custStatus: 'Status Saat Ini *',
     custFollowupDate: 'Jadwal Follow-up Selanjutnya (Opsional)',
@@ -151,7 +153,8 @@ const trackerTranslations = {
     sumModalTitle: 'Log Daily Summary Metrics',
     sumDate: 'Report Date *',
     sumActiveWa: 'Active WA Accounts Active *',
-    sumRegion: 'Region *',
+    sumRegionCountry: 'Country *',
+    sumRegionCity: 'City / Area',
     sumCategory: 'Business Category (General Field) *',
     sumOutreachCount: 'Outreach Contact Count (New Contacts today) *',
     sumColdFuCount: 'Cold Follow-ups (unresponded contacts pinged) *',
@@ -168,7 +171,8 @@ const trackerTranslations = {
     custPersonName: 'Contact Person Name',
     custPhone: 'WhatsApp Phone Number *',
     custCategory: 'Category (Business Field) *',
-    custRegion: 'Region / Area *',
+    custRegionCountry: 'Country *',
+    custRegionCity: 'City / Area',
     custSource: 'Lead Source *',
     custStatus: 'Current Status *',
     custFollowupDate: 'Scheduled Follow-up (Optional)',
@@ -210,11 +214,6 @@ const FAILURE_REASONS = [
   'Not interested / Declined directly'
 ];
 
-const REGIONS = [
-  'Jakarta Pusat', 'Jakarta Utara', 'Jakarta Timur', 'Jakarta Selatan', 
-  'Jakarta Barat', 'Bekasi', 'Depok', 'Tangerang', 'Bogor', 'Luar Jabodetabek'
-];
-
 const LeadsTracker = () => {
   const { language } = useLanguage();
   const t = trackerTranslations[language] || trackerTranslations.id;
@@ -233,20 +232,20 @@ const LeadsTracker = () => {
   const [dailySummaries, setDailySummaries] = useState([]);
   const [isLoadingSummaries, setIsLoadingSummaries] = useState(true);
 
+  // Dynamic Countries state from REST Countries API
+  const [countries, setCountries] = useState(['Indonesia', 'Singapore', 'Malaysia', 'Australia', 'United States']);
+
   // Modals state
   const [showAddLeadModal, setShowAddLeadModal] = useState(false);
   const [showSummaryModal, setShowSummaryModal] = useState(false);
   const [showLogActivityModal, setShowLogActivityModal] = useState(false);
   const [activityType, setActivityType] = useState(''); // Type of progress logging
 
-  const STATUS_CONFIG = {
-    ALL: { label: t.tabCrmProfiles, color: 'rgba(255, 255, 255, 0.4)' },
-    responded: { label: language === 'id' ? 'Merespon' : 'Responded', color: '#9b59b6' },
-    responded_followup: { label: language === 'id' ? 'Follow-up Hangat' : 'Warm Follow-up', color: '#e67e22' },
-    unresponded_followup: { label: language === 'id' ? 'Follow-up Dingin' : 'Cold Follow-up', color: '#7f8c8d' },
-    deal: { label: language === 'id' ? 'Deal Ditutup' : 'Deals Closed', color: '#2ecc71' },
-    failed: { label: language === 'id' ? 'Gagal/Menolak' : 'Failed/Rejected', color: '#e74c3c' }
-  };
+  // Form states: Country and City inputs for both modals
+  const [custCountry, setCustCountry] = useState('Indonesia');
+  const [custCity, setCustCity] = useState('');
+  const [sumCountry, setSumCountry] = useState('Indonesia');
+  const [sumCity, setSumCity] = useState('');
 
   // New Customer Profile Form State (CRM)
   const [newLeadData, setNewLeadData] = useState({
@@ -254,8 +253,6 @@ const LeadsTracker = () => {
     businessName: '',
     phoneNumber: '',
     category: '',
-    area: 'Jakarta Barat',
-    customArea: '',
     status: 'responded', // defaults to responded
     leadSource: 'Google Maps Search',
     dealValue: '',
@@ -268,7 +265,6 @@ const LeadsTracker = () => {
   // New Daily Summary Form State
   const [newSummaryData, setNewSummaryData] = useState({
     reportDate: new Date().toISOString().split('T')[0],
-    region: 'Jakarta Barat',
     businessField: '',
     waAccountsActive: 2,
     contactCount: '',
@@ -291,10 +287,33 @@ const LeadsTracker = () => {
     nextFollowupDate: ''
   });
 
+  const STATUS_CONFIG = {
+    ALL: { label: t.tabCrmProfiles, color: 'rgba(255, 255, 255, 0.4)' },
+    responded: { label: language === 'id' ? 'Merespon' : 'Responded', color: '#9b59b6' },
+    responded_followup: { label: language === 'id' ? 'Follow-up Hangat' : 'Warm Follow-up', color: '#e67e22' },
+    unresponded_followup: { label: language === 'id' ? 'Follow-up Dingin' : 'Cold Follow-up', color: '#7f8c8d' },
+    deal: { label: language === 'id' ? 'Deal Ditutup' : 'Deals Closed', color: '#2ecc71' },
+    failed: { label: language === 'id' ? 'Gagal/Menolak' : 'Failed/Rejected', color: '#e74c3c' }
+  };
+
   useEffect(() => {
     fetchCrmLeadsData();
     fetchDailySummariesData();
+    fetchCountriesData();
   }, []);
+
+  const fetchCountriesData = async () => {
+    try {
+      const res = await fetch('https://restcountries.com/v3.1/all');
+      if (!res.ok) throw new Error('REST countries API failed');
+      const data = await res.json();
+      const countryNames = data.map(c => c.name.common).sort();
+      const sorted = ['Indonesia', ...countryNames.filter(name => name !== 'Indonesia')];
+      setCountries(sorted);
+    } catch (err) {
+      console.error('REST Countries fetch failed. Using hardcoded fallback country list:', err);
+    }
+  };
 
   const fetchCrmLeadsData = async () => {
     setIsLoadingCrm(true);
@@ -323,7 +342,7 @@ const LeadsTracker = () => {
   const handleCreateLead = async (e) => {
     e.preventDefault();
     try {
-      const finalArea = newLeadData.area === 'Luar Jabodetabek' ? newLeadData.customArea : newLeadData.area;
+      const finalArea = custCity ? `${custCountry} - ${custCity}` : custCountry;
       const payload = {
         customerName: newLeadData.customerName,
         businessName: newLeadData.businessName,
@@ -348,8 +367,6 @@ const LeadsTracker = () => {
         businessName: '',
         phoneNumber: '',
         category: '',
-        area: 'Jakarta Barat',
-        customArea: '',
         status: 'responded',
         leadSource: 'Google Maps Search',
         dealValue: '',
@@ -358,6 +375,8 @@ const LeadsTracker = () => {
         notes: '',
         nextFollowupDate: ''
       });
+      setCustCountry('Indonesia');
+      setCustCity('');
       
       fetchCrmLeadsData();
     } catch (err) {
@@ -368,9 +387,10 @@ const LeadsTracker = () => {
   const handleCreateSummary = async (e) => {
     e.preventDefault();
     try {
+      const finalRegion = sumCity ? `${sumCountry} - ${sumCity}` : sumCountry;
       const payload = {
         reportDate: newSummaryData.reportDate,
-        region: newSummaryData.region,
+        region: finalRegion,
         businessField: newSummaryData.businessField,
         waAccountsActive: parseInt(newSummaryData.waAccountsActive) || 2,
         contactCount: parseInt(newSummaryData.contactCount) || 0,
@@ -389,7 +409,6 @@ const LeadsTracker = () => {
       // Reset form
       setNewSummaryData({
         reportDate: new Date().toISOString().split('T')[0],
-        region: 'Jakarta Barat',
         businessField: '',
         waAccountsActive: 2,
         contactCount: '',
@@ -401,6 +420,8 @@ const LeadsTracker = () => {
         notes: '',
         nextPlan: ''
       });
+      setSumCountry('Indonesia');
+      setSumCity('');
       
       fetchDailySummariesData();
     } catch (err) {
@@ -979,17 +1000,29 @@ const LeadsTracker = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label><FiMapPin /> {t.custRegion}</label>
+                  <label><FiMapPin /> {t.custRegionCountry}</label>
                   <select 
-                    value={newLeadData.area}
-                    onChange={e => setNewLeadData({...newLeadData, area: e.target.value})}
+                    value={custCountry}
+                    onChange={e => setCustCountry(e.target.value)}
                     required
                   >
-                    {REGIONS.map(reg => (
-                      <option key={reg} value={reg}>{reg}</option>
+                    {countries.map(c => (
+                      <option key={c} value={c}>{c}</option>
                     ))}
                   </select>
                 </div>
+                <div className="form-group">
+                  <label><FiMapPin /> {t.custRegionCity}</label>
+                  <input 
+                    type="text" 
+                    placeholder="e.g. Jakarta Barat, Selangor, Sydney"
+                    value={custCity}
+                    onChange={e => setCustCity(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
                 <div className="form-group">
                   <label><FiTag /> {t.custSource}</label>
                   <select 
@@ -1002,22 +1035,6 @@ const LeadsTracker = () => {
                     ))}
                   </select>
                 </div>
-              </div>
-
-              {newLeadData.area === 'Luar Jabodetabek' && (
-                <div className="form-group">
-                  <label>Nama Kota (Luar Jabodetabek)</label>
-                  <input 
-                    type="text" 
-                    placeholder="e.g. Surabaya, Bandung" 
-                    value={newLeadData.customArea}
-                    onChange={e => setNewLeadData({...newLeadData, customArea: e.target.value})}
-                    required
-                  />
-                </div>
-              )}
-
-              <div className="form-row">
                 <div className="form-group">
                   <label><FiActivity /> {t.custStatus}</label>
                   <select 
@@ -1032,6 +1049,9 @@ const LeadsTracker = () => {
                     <option value="failed">{language === 'id' ? 'Gagal / Ditolak (Closed Lost)' : 'Failed / Rejected (Closed Lost)'}</option>
                   </select>
                 </div>
+              </div>
+
+              <div className="form-row">
                 <div className="form-group">
                   <label><FiCalendar /> {t.custFollowupDate}</label>
                   <input 
@@ -1137,17 +1157,29 @@ const LeadsTracker = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label><FiMapPin /> {t.sumRegion}</label>
+                  <label><FiMapPin /> {t.sumRegionCountry}</label>
                   <select 
-                    value={newSummaryData.region}
-                    onChange={e => setNewSummaryData({...newSummaryData, region: e.target.value})}
+                    value={sumCountry}
+                    onChange={e => setSumCountry(e.target.value)}
                     required
                   >
-                    {REGIONS.map(reg => (
-                      <option key={reg} value={reg}>{reg}</option>
+                    {countries.map(c => (
+                      <option key={c} value={c}>{c}</option>
                     ))}
                   </select>
                 </div>
+                <div className="form-group">
+                  <label><FiMapPin /> {t.sumRegionCity}</label>
+                  <input 
+                    type="text" 
+                    placeholder="e.g. Jakarta Barat, Selangor, Sydney"
+                    value={sumCity}
+                    onChange={e => setSumCity(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="form-row font-row">
                 <div className="form-group">
                   <label><FiBriefcase /> {t.sumCategory}</label>
                   <input 
