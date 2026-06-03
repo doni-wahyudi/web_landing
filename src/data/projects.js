@@ -46,7 +46,7 @@ export const projects = [
       en: "Education Landing Page",
       de: "Bildung Landing Page"
     },
-    url: "https://doni-wahyudi.github.io/bimbel_junior/",
+    url: "https://bimbeljunior.com",
     image: bimbelJuniorImg,
     challenge: {
       id: "Lembaga bimbingan belajar anak-anak yang memerlukan platform digital responsif berkecepatan tinggi untuk mengenalkan program, profil pengajar, transparansi legalitas, serta pendaftaran siswa baru secara langsung via WhatsApp.",
