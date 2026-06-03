@@ -1258,7 +1258,7 @@ const LeadsTracker = () => {
                 </div>
               </div>
 
-              <div className="form-row font-row">
+              <div className="form-row">
                 <div className="form-group">
                   <label><FiBriefcase /> {t.sumCategory}</label>
                   <input 
@@ -1292,9 +1292,6 @@ const LeadsTracker = () => {
                     required 
                   />
                 </div>
-              </div>
-
-              <div className="form-row">
                 <div className="form-group">
                   <label>{t.sumWarmFuCount}</label>
                   <input 
@@ -1305,6 +1302,9 @@ const LeadsTracker = () => {
                     required 
                   />
                 </div>
+              </div>
+
+              <div className="form-row">
                 <div className="form-group">
                   <label>{t.sumResponseCount}</label>
                   <input 
@@ -1315,9 +1315,6 @@ const LeadsTracker = () => {
                     required 
                   />
                 </div>
-              </div>
-
-              <div className="form-row">
                 <div className="form-group">
                   <label>{t.sumDealsCount}</label>
                   <input 
@@ -1340,24 +1337,25 @@ const LeadsTracker = () => {
                 </div>
               </div>
 
-              <div className="form-group">
-                <label><FiMessageSquare /> {t.sumNotes}</label>
-                <textarea 
-                  rows="2" 
-                  placeholder="Obstacles, WA account bans, general remarks..."
-                  value={newSummaryData.notes}
-                  onChange={e => setNewSummaryData({...newSummaryData, notes: e.target.value})}
-                ></textarea>
-              </div>
-
-              <div className="form-group">
-                <label><FiTarget /> {t.sumPlan}</label>
-                <textarea 
-                  rows="2" 
-                  placeholder="Plans for tomorrow, follow-up regions..."
-                  value={newSummaryData.nextPlan}
-                  onChange={e => setNewSummaryData({...newSummaryData, nextPlan: e.target.value})}
-                ></textarea>
+              <div className="form-row">
+                <div className="form-group">
+                  <label><FiMessageSquare /> {t.sumNotes}</label>
+                  <textarea 
+                    rows="2" 
+                    placeholder="Obstacles, WA account bans, general remarks..."
+                    value={newSummaryData.notes}
+                    onChange={e => setNewSummaryData({...newSummaryData, notes: e.target.value})}
+                  ></textarea>
+                </div>
+                <div className="form-group">
+                  <label><FiTarget /> {t.sumPlan}</label>
+                  <textarea 
+                    rows="2" 
+                    placeholder="Plans for tomorrow, follow-up regions..."
+                    value={newSummaryData.nextPlan}
+                    onChange={e => setNewSummaryData({...newSummaryData, nextPlan: e.target.value})}
+                  ></textarea>
+                </div>
               </div>
 
               <button type="submit" className="btn btn-primary btn-full">
