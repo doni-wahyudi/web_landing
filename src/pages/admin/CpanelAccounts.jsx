@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiPlus, FiEdit2, FiTrash2, FiExternalLink, FiEye, FiEyeOff, FiCopy, FiCheck } from 'react-icons/fi';
+import { FiPlus, FiEdit2, FiTrash2, FiExternalLink } from 'react-icons/fi';
 import { getCpanelAccounts, addCpanelAccount, updateCpanelAccount, deleteCpanelAccount } from '../../services/cpanelService';
 import CpanelAccountModal from '../../components/admin/CpanelAccountModal';
 import './CpanelAccounts.css';
@@ -9,10 +9,6 @@ const CpanelAccounts = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [accountToEdit, setAccountToEdit] = useState(null);
-  
-  // States for password visibility/copying within the table
-  const [visiblePasswords, setVisiblePasswords] = useState({});
-  const [copiedId, setCopiedId] = useState(null);
 
   const fetchAccounts = async () => {
     setIsLoading(true);
@@ -66,16 +62,6 @@ const CpanelAccounts = () => {
     }
   };
 
-  const togglePasswordVisibility = (id) => {
-    setVisiblePasswords(prev => ({ ...prev, [id]: !prev[id] }));
-  };
-
-  const copyPassword = (password, id) => {
-    navigator.clipboard.writeText(password);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
-  };
-
   return (
     <div className="admin-page animate-fade-in">
       <div className="admin-page-header">
@@ -101,8 +87,6 @@ const CpanelAccounts = () => {
               <tr>
                 <th>Website URL</th>
                 <th>cPanel URL</th>
-                <th>Username</th>
-                <th>Password</th>
                 <th className="text-right">Actions</th>
               </tr>
             </thead>
@@ -118,30 +102,6 @@ const CpanelAccounts = () => {
                     <a href={acc.cpanelUrl} target="_blank" rel="noopener noreferrer" className="table-link">
                       {acc.cpanelUrl.replace(/^https?:\/\//, '')} <FiExternalLink size={12} />
                     </a>
-                  </td>
-                  <td><span className="badge-user">{acc.username}</span></td>
-                  <td>
-                    <div className="table-password-cell">
-                      <span className="password-mask">
-                        {visiblePasswords[acc.id] ? acc.password : '••••••••'}
-                      </span>
-                      <div className="password-actions">
-                        <button 
-                          className="btn-icon-small" 
-                          onClick={() => togglePasswordVisibility(acc.id)}
-                          title={visiblePasswords[acc.id] ? "Hide Password" : "Show Password"}
-                        >
-                          {visiblePasswords[acc.id] ? <FiEyeOff /> : <FiEye />}
-                        </button>
-                        <button 
-                          className="btn-icon-small" 
-                          onClick={() => copyPassword(acc.password, acc.id)}
-                          title="Copy Password"
-                        >
-                          {copiedId === acc.id ? <FiCheck className="text-success" /> : <FiCopy />}
-                        </button>
-                      </div>
-                    </div>
                   </td>
                   <td>
                     <div className="table-actions">
@@ -172,3 +132,4 @@ const CpanelAccounts = () => {
 };
 
 export default CpanelAccounts;
+

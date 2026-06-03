@@ -103,35 +103,35 @@ const dashboardTranslations = {
   }
 };
 
+// Generate dynamic list of past 12 months to filter by
+const getMonthsList = () => {
+  const months = [];
+  const date = new Date();
+  // Add current month and past 11 months
+  for (let i = 0; i < 12; i++) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    months.push(`${year}-${month}`);
+    date.setMonth(date.getMonth() - 1);
+  }
+  return months;
+};
+
 const LeadsDashboard = () => {
   const { language } = useLanguage();
   const t = dashboardTranslations[language] || dashboardTranslations.id;
+  const months = getMonthsList();
 
   const [analyticsData, setAnalyticsData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   
   // Dashboard Filtering
-  const [selectedMonth, setSelectedMonth] = useState('ALL');
+  const [selectedMonth, setSelectedMonth] = useState(months[0]);
 
   // Sub-filtering states for local visual highlight/drilldowns
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [selectedIndustry, setSelectedIndustry] = useState(null);
 
-  // Generate dynamic list of past 12 months to filter by
-  const getMonthsList = () => {
-    const months = [];
-    const date = new Date();
-    // Add current month and past 11 months
-    for (let i = 0; i < 12; i++) {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      months.push(`${year}-${month}`);
-      date.setMonth(date.getMonth() - 1);
-    }
-    return months;
-  };
-
-  const months = getMonthsList();
 
   const formatMonthName = (monthStr) => {
     if (!monthStr || monthStr === 'ALL') return t.allMonths;

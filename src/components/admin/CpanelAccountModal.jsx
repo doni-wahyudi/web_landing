@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import { FiX, FiEye, FiEyeOff } from 'react-icons/fi';
+import { FiX } from 'react-icons/fi';
 import './CpanelAccountModal.css';
 
 const CpanelAccountModal = ({ isOpen, onClose, onSave, accountToEdit }) => {
   const [formData, setFormData] = useState({
     websiteUrl: accountToEdit?.websiteUrl || '',
     cpanelUrl: accountToEdit?.cpanelUrl || '',
-    username: accountToEdit?.username || '',
-    password: accountToEdit?.password || ''
+    username: '',
+    password: ''
   });
   
-  const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
@@ -64,44 +63,6 @@ const CpanelAccountModal = ({ isOpen, onClose, onSave, accountToEdit }) => {
             />
           </div>
           
-          <div className="form-grid-2">
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input 
-                type="text" 
-                id="username" 
-                name="username" 
-                placeholder="cpaneluser" 
-                value={formData.username}
-                onChange={handleChange}
-                required 
-              />
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <div className="input-with-action">
-                <input 
-                  type={showPassword ? "text" : "password"} 
-                  id="password" 
-                  name="password" 
-                  placeholder="••••••••" 
-                  value={formData.password}
-                  onChange={handleChange}
-                  required 
-                />
-                <button 
-                  type="button" 
-                  className="btn-input-action"
-                  onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                >
-                  {showPassword ? <FiEyeOff /> : <FiEye />}
-                </button>
-              </div>
-            </div>
-          </div>
-          
           <div className="admin-modal-footer">
             <button type="button" className="btn btn-outline" onClick={onClose} disabled={isSubmitting}>
               Cancel
@@ -117,3 +78,4 @@ const CpanelAccountModal = ({ isOpen, onClose, onSave, accountToEdit }) => {
 };
 
 export default CpanelAccountModal;
+
