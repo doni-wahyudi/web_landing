@@ -69,8 +69,8 @@ const trackerTranslations = {
     sumModalTitle: 'Catat Metrik Ringkasan Harian',
     sumDate: 'Tanggal Laporan *',
     sumActiveWa: 'Jumlah Akun WA Aktif *',
-    sumRegionCountry: 'Negara *',
-    sumRegionCity: 'Kota / Wilayah',
+    sumRegionProvince: 'Provinsi *',
+    sumRegionCity: 'Kota / Kabupaten *',
     sumCategory: 'Kategori Bisnis (Bidang Umum) *',
     sumOutreachCount: 'Total Kontak Baru Hari Ini *',
     sumColdFuCount: 'Cold Follow-up (Kontak tak merespons yang di-ping) *',
@@ -87,8 +87,8 @@ const trackerTranslations = {
     custPersonName: 'Nama Kontak Person',
     custPhone: 'Nomor WhatsApp *',
     custCategory: 'Kategori (Bidang Bisnis) *',
-    custRegionCountry: 'Negara *',
-    custRegionCity: 'Kota / Wilayah',
+    custRegionProvince: 'Provinsi *',
+    custRegionCity: 'Kota / Kabupaten *',
     custSource: 'Sumber Lead *',
     custStatus: 'Status Saat Ini *',
     custFollowupDate: 'Jadwal Follow-up Selanjutnya (Opsional)',
@@ -153,8 +153,8 @@ const trackerTranslations = {
     sumModalTitle: 'Log Daily Summary Metrics',
     sumDate: 'Report Date *',
     sumActiveWa: 'Active WA Accounts Active *',
-    sumRegionCountry: 'Country *',
-    sumRegionCity: 'City / Area',
+    sumRegionProvince: 'Province *',
+    sumRegionCity: 'City / Regency *',
     sumCategory: 'Business Category (General Field) *',
     sumOutreachCount: 'Outreach Contact Count (New Contacts today) *',
     sumColdFuCount: 'Cold Follow-ups (unresponded contacts pinged) *',
@@ -171,8 +171,8 @@ const trackerTranslations = {
     custPersonName: 'Contact Person Name',
     custPhone: 'WhatsApp Phone Number *',
     custCategory: 'Category (Business Field) *',
-    custRegionCountry: 'Country *',
-    custRegionCity: 'City / Area',
+    custRegionProvince: 'Province *',
+    custRegionCity: 'City / Regency *',
     custSource: 'Lead Source *',
     custStatus: 'Current Status *',
     custFollowupDate: 'Scheduled Follow-up (Optional)',
@@ -214,6 +214,14 @@ const FAILURE_REASONS = [
   'Not interested / Declined directly'
 ];
 
+// Helper to clean up Indonesian city prefixes (e.g. KOTA JAKARTA BARAT -> Jakarta Barat)
+const cleanCityName = (name) => {
+  if (!name) return '';
+  let clean = name.toUpperCase();
+  clean = clean.replace(/^(KOTA|KABUPATEN|KAB\.)\s+/g, '');
+  return clean.split(' ').map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(' ');
+};
+
 const LeadsTracker = () => {
   const { language } = useLanguage();
   const t = trackerTranslations[language] || trackerTranslations.id;
@@ -232,8 +240,8 @@ const LeadsTracker = () => {
   const [dailySummaries, setDailySummaries] = useState([]);
   const [isLoadingSummaries, setIsLoadingSummaries] = useState(true);
 
-  // Dynamic Countries state from REST Countries API
-  const [countries, setCountries] = useState(['Indonesia', 'Singapore', 'Malaysia', 'Australia', 'United States']);
+  // Dynamic Provinces list from open API
+  const [provinces, setProvinces] = useState([]);
 
   // Modals state
   const [showAddLeadModal, setShowAddLeadModal] = useState(false);
@@ -241,11 +249,15 @@ const LeadsTracker = () => {
   const [showLogActivityModal, setShowLogActivityModal] = useState(false);
   const [activityType, setActivityType] = useState(''); // Type of progress logging
 
-  // Form states: Country and City inputs for both modals
-  const [custCountry, setCustCountry] = useState('Indonesia');
-  const [custCity, setCustCity] = useState('');
-  const [sumCountry, setSumCountry] = useState('Indonesia');
-  const [sumCity, setSumCity] = useState('');
+  // Cascading location states for Daily Summary
+  const [sumProvinceId, setSumProvinceId] = useState('');
+  const [sumCities, setSumCities] = useState([]);
+  const [sumCityName, setSumCityName] = useState('');
+
+  // Cascading location states for Customer CRM Profile
+  const [custProvinceId, setCustProvinceId] = useState('');
+  const [custCities, setCustCities] = useState([]);
+  const [custCityName, setCustCityName] = useState('');
 
   // New Customer Profile Form State (CRM)
   const [newLeadData, setNewLeadData] = useState({
@@ -299,19 +311,66 @@ const LeadsTracker = () => {
   useEffect(() => {
     fetchCrmLeadsData();
     fetchDailySummariesData();
-    fetchCountriesData();
+    fetchProvincesData();
   }, []);
 
-  const fetchCountriesData = async () => {
+  const fetchProvincesData = async () => {
     try {
-      const res = await fetch('https://restcountries.com/v3.1/all');
-      if (!res.ok) throw new Error('REST countries API failed');
+      const res = await fetch('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+      if (!res.ok) throw new Error('Provinces fetch failed');
       const data = await res.json();
-      const countryNames = data.map(c => c.name.common).sort();
-      const sorted = ['Indonesia', ...countryNames.filter(name => name !== 'Indonesia')];
-      setCountries(sorted);
+      const sorted = data.sort((a, b) => a.name.localeCompare(b.name));
+      setProvinces(sorted);
     } catch (err) {
-      console.error('REST Countries fetch failed. Using hardcoded fallback country list:', err);
+      console.error('Failed to load Indonesian provinces from API:', err);
+    }
+  };
+
+  const handleSumProvinceChange = async (provinceId) => {
+    setSumProvinceId(provinceId);
+    setSumCityName('');
+    if (!provinceId) {
+      setSumCities([]);
+      return;
+    }
+    try {
+      const res = await fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${provinceId}.json`);
+      if (!res.ok) throw new Error('Regencies fetch failed');
+      const data = await res.json();
+      const cleaned = data.map(item => ({
+        id: item.id,
+        name: cleanCityName(item.name)
+      })).sort((a, b) => a.name.localeCompare(b.name));
+      setSumCities(cleaned);
+      if (cleaned.length > 0) {
+        setSumCityName(cleaned[0].name);
+      }
+    } catch (err) {
+      console.error('Error fetching regencies:', err);
+    }
+  };
+
+  const handleCustProvinceChange = async (provinceId) => {
+    setCustProvinceId(provinceId);
+    setCustCityName('');
+    if (!provinceId) {
+      setCustCities([]);
+      return;
+    }
+    try {
+      const res = await fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${provinceId}.json`);
+      if (!res.ok) throw new Error('Regencies fetch failed');
+      const data = await res.json();
+      const cleaned = data.map(item => ({
+        id: item.id,
+        name: cleanCityName(item.name)
+      })).sort((a, b) => a.name.localeCompare(b.name));
+      setCustCities(cleaned);
+      if (cleaned.length > 0) {
+        setCustCityName(cleaned[0].name);
+      }
+    } catch (err) {
+      console.error('Error fetching regencies:', err);
     }
   };
 
@@ -342,13 +401,16 @@ const LeadsTracker = () => {
   const handleCreateLead = async (e) => {
     e.preventDefault();
     try {
-      const finalArea = custCity ? `${custCountry} - ${custCity}` : custCountry;
+      if (!custCityName) {
+        alert('Please select a City / Regency');
+        return;
+      }
       const payload = {
         customerName: newLeadData.customerName,
         businessName: newLeadData.businessName,
         phoneNumber: newLeadData.phoneNumber,
         category: newLeadData.category,
-        area: finalArea,
+        area: custCityName,
         status: newLeadData.status,
         leadSource: newLeadData.leadSource,
         dealValue: newLeadData.status === 'deal' ? parseFloat(newLeadData.dealValue) || 0 : 0,
@@ -375,8 +437,9 @@ const LeadsTracker = () => {
         notes: '',
         nextFollowupDate: ''
       });
-      setCustCountry('Indonesia');
-      setCustCity('');
+      setCustProvinceId('');
+      setCustCities([]);
+      setCustCityName('');
       
       fetchCrmLeadsData();
     } catch (err) {
@@ -387,10 +450,13 @@ const LeadsTracker = () => {
   const handleCreateSummary = async (e) => {
     e.preventDefault();
     try {
-      const finalRegion = sumCity ? `${sumCountry} - ${sumCity}` : sumCountry;
+      if (!sumCityName) {
+        alert('Please select a City / Regency');
+        return;
+      }
       const payload = {
         reportDate: newSummaryData.reportDate,
-        region: finalRegion,
+        region: sumCityName,
         businessField: newSummaryData.businessField,
         waAccountsActive: parseInt(newSummaryData.waAccountsActive) || 2,
         contactCount: parseInt(newSummaryData.contactCount) || 0,
@@ -420,8 +486,9 @@ const LeadsTracker = () => {
         notes: '',
         nextPlan: ''
       });
-      setSumCountry('Indonesia');
-      setSumCity('');
+      setSumProvinceId('');
+      setSumCities([]);
+      setSumCityName('');
       
       fetchDailySummariesData();
     } catch (err) {
@@ -1000,25 +1067,31 @@ const LeadsTracker = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label><FiMapPin /> {t.custRegionCountry}</label>
+                  <label><FiMapPin /> {t.custRegionProvince}</label>
                   <select 
-                    value={custCountry}
-                    onChange={e => setCustCountry(e.target.value)}
+                    value={custProvinceId}
+                    onChange={e => handleCustProvinceChange(e.target.value)}
                     required
                   >
-                    {countries.map(c => (
-                      <option key={c} value={c}>{c}</option>
+                    <option value="">-- Pilih Provinsi --</option>
+                    {provinces.map(p => (
+                      <option key={p.id} value={p.id}>{p.name}</option>
                     ))}
                   </select>
                 </div>
                 <div className="form-group">
                   <label><FiMapPin /> {t.custRegionCity}</label>
-                  <input 
-                    type="text" 
-                    placeholder="e.g. Jakarta Barat, Selangor, Sydney"
-                    value={custCity}
-                    onChange={e => setCustCity(e.target.value)}
-                  />
+                  <select 
+                    value={custCityName}
+                    onChange={e => setCustCityName(e.target.value)}
+                    required
+                    disabled={!custProvinceId}
+                  >
+                    <option value="">-- Pilih Kota / Kabupaten --</option>
+                    {custCities.map(c => (
+                      <option key={c.id} value={c.name}>{c.name}</option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
@@ -1157,25 +1230,31 @@ const LeadsTracker = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label><FiMapPin /> {t.sumRegionCountry}</label>
+                  <label><FiMapPin /> {t.sumRegionProvince}</label>
                   <select 
-                    value={sumCountry}
-                    onChange={e => setSumCountry(e.target.value)}
+                    value={sumProvinceId}
+                    onChange={e => handleSumProvinceChange(e.target.value)}
                     required
                   >
-                    {countries.map(c => (
-                      <option key={c} value={c}>{c}</option>
+                    <option value="">-- Pilih Provinsi --</option>
+                    {provinces.map(p => (
+                      <option key={p.id} value={p.id}>{p.name}</option>
                     ))}
                   </select>
                 </div>
                 <div className="form-group">
                   <label><FiMapPin /> {t.sumRegionCity}</label>
-                  <input 
-                    type="text" 
-                    placeholder="e.g. Jakarta Barat, Selangor, Sydney"
-                    value={sumCity}
-                    onChange={e => setSumCity(e.target.value)}
-                  />
+                  <select 
+                    value={sumCityName}
+                    onChange={e => setSumCityName(e.target.value)}
+                    required
+                    disabled={!sumProvinceId}
+                  >
+                    <option value="">-- Pilih Kota / Kabupaten --</option>
+                    {sumCities.map(c => (
+                      <option key={c.id} value={c.name}>{c.name}</option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
