@@ -69,7 +69,10 @@ const VisitorsDashboard = () => {
   const fetchStats = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/visitor-stats?month=${selectedMonth}`);
+      const token = sessionStorage.getItem('admin_token');
+      const response = await fetch(`${API_BASE_URL}/visitor-stats?month=${selectedMonth}`, {
+        headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+      });
       if (response.ok) {
         const data = await response.json();
         setStats(data);

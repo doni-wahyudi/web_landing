@@ -2,8 +2,18 @@ const API_BASE_URL = window.location.hostname === 'localhost' || window.location
   ? 'http://localhost:5000/api'
   : 'https://aurotech.co.id/api';
 
+const getHeaders = (extraHeaders = {}) => {
+  const token = sessionStorage.getItem('admin_token');
+  return {
+    ...extraHeaders,
+    ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+  };
+};
+
 export const getLeads = async () => {
-  const response = await fetch(`${API_BASE_URL}/leads`);
+  const response = await fetch(`${API_BASE_URL}/leads`, {
+    headers: getHeaders()
+  });
   if (!response.ok) throw new Error('Failed to fetch leads');
   return response.json();
 };
@@ -11,7 +21,7 @@ export const getLeads = async () => {
 export const addLead = async (leadData) => {
   const response = await fetch(`${API_BASE_URL}/leads`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: getHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(leadData)
   });
   if (!response.ok) throw new Error('Failed to add lead');
@@ -20,11 +30,13 @@ export const addLead = async (leadData) => {
 
 export const deleteLead = async (id) => {
   const response = await fetch(`${API_BASE_URL}/leads/${id}`, {
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: getHeaders()
   });
   if (!response.ok) throw new Error('Failed to delete lead');
   return true;
 };
+
 
 export const getAnalytics = (leads) => {
   if (!leads || leads.length === 0) return null;

@@ -2,9 +2,19 @@ const API_BASE_URL = window.location.hostname === 'localhost' || window.location
   ? 'http://localhost:5000/api'
   : 'https://aurotech.co.id/api';
 
+const getHeaders = (extraHeaders = {}) => {
+  const token = sessionStorage.getItem('admin_token');
+  return {
+    ...extraHeaders,
+    ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+  };
+};
+
 export const getLeads = async (params = {}) => {
   const query = new URLSearchParams(params).toString();
-  const response = await fetch(`${API_BASE_URL}/crm/leads?${query}`);
+  const response = await fetch(`${API_BASE_URL}/crm/leads?${query}`, {
+    headers: getHeaders()
+  });
   if (!response.ok) throw new Error('Failed to fetch CRM leads');
   return response.json();
 };
@@ -12,7 +22,7 @@ export const getLeads = async (params = {}) => {
 export const addLead = async (leadData) => {
   const response = await fetch(`${API_BASE_URL}/crm/leads`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: getHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(leadData)
   });
   if (!response.ok) throw new Error('Failed to add CRM lead');
@@ -22,7 +32,7 @@ export const addLead = async (leadData) => {
 export const updateLead = async (id, leadData) => {
   const response = await fetch(`${API_BASE_URL}/crm/leads/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: getHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(leadData)
   });
   if (!response.ok) throw new Error('Failed to update CRM lead');
@@ -31,7 +41,8 @@ export const updateLead = async (id, leadData) => {
 
 export const deleteLead = async (id) => {
   const response = await fetch(`${API_BASE_URL}/crm/leads/${id}`, {
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: getHeaders()
   });
   if (!response.ok) throw new Error('Failed to delete CRM lead');
   return true;
@@ -40,7 +51,7 @@ export const deleteLead = async (id) => {
 export const logLeadActivity = async (id, activityData) => {
   const response = await fetch(`${API_BASE_URL}/crm/leads/${id}/activity`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: getHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(activityData)
   });
   if (!response.ok) throw new Error('Failed to log lead activity');
@@ -49,7 +60,10 @@ export const logLeadActivity = async (id, activityData) => {
 
 export const getCrmAnalytics = async (params = {}) => {
   const query = new URLSearchParams(params).toString();
-  const response = await fetch(`${API_BASE_URL}/crm/analytics?${query}`);
+  const response = await fetch(`${API_BASE_URL}/crm/analytics?${query}`, {
+    headers: getHeaders()
+  });
   if (!response.ok) throw new Error('Failed to fetch CRM analytics');
   return response.json();
 };
+

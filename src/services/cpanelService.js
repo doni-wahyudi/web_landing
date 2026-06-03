@@ -2,8 +2,18 @@ const API_BASE_URL = window.location.hostname === 'localhost' || window.location
   ? 'http://localhost:5000/api'
   : 'https://aurotech.co.id/api';
 
+const getHeaders = (extraHeaders = {}) => {
+  const token = sessionStorage.getItem('admin_token');
+  return {
+    ...extraHeaders,
+    ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+  };
+};
+
 export const getCpanelAccounts = async () => {
-  const response = await fetch(`${API_BASE_URL}/cpanel-accounts`);
+  const response = await fetch(`${API_BASE_URL}/cpanel-accounts`, {
+    headers: getHeaders()
+  });
   if (!response.ok) throw new Error('Failed to fetch accounts');
   return response.json();
 };
@@ -11,7 +21,7 @@ export const getCpanelAccounts = async () => {
 export const addCpanelAccount = async (account) => {
   const response = await fetch(`${API_BASE_URL}/cpanel-accounts`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: getHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(account)
   });
   if (!response.ok) throw new Error('Failed to add account');
@@ -21,7 +31,7 @@ export const addCpanelAccount = async (account) => {
 export const updateCpanelAccount = async (id, updatedData) => {
   const response = await fetch(`${API_BASE_URL}/cpanel-accounts/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: getHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(updatedData)
   });
   if (!response.ok) throw new Error('Failed to update account');
@@ -30,8 +40,10 @@ export const updateCpanelAccount = async (id, updatedData) => {
 
 export const deleteCpanelAccount = async (id) => {
   const response = await fetch(`${API_BASE_URL}/cpanel-accounts/${id}`, {
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: getHeaders()
   });
   if (!response.ok) throw new Error('Failed to delete account');
   return true;
 };
+

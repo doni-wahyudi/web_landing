@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { FiLock, FiUser } from 'react-icons/fi';
 import './AdminLogin.css';
 
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api'
+  : 'https://aurotech.co.id/api';
+
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -10,21 +14,33 @@ const AdminLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
-    // Mock authentication
-    setTimeout(() => {
-      if (username === 'admin' && password === 'admin123') {
+    try {
+      const response = await fetch(`${API_BASE_URL}/admin/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         sessionStorage.setItem('admin_logged_in', 'true');
+        sessionStorage.setItem('admin_token', data.token);
         navigate('/admin/cpanel');
       } else {
-        setError('Invalid username or password');
+        setError(data.error || 'Invalid username or password');
         setIsLoading(false);
       }
-    }, 800);
+    } catch (err) {
+      console.error('Authentication error:', err);
+      setError('Server connection failed. Please try again.');
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -47,6 +63,7 @@ const AdminLogin = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
+                disabled={isLoading}
               />
             </div>
           </div>
@@ -60,6 +77,7 @@ const AdminLogin = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                disabled={isLoading}
               />
             </div>
           </div>
@@ -68,12 +86,10 @@ const AdminLogin = () => {
             {isLoading ? 'Authenticating...' : 'Sign In'}
           </button>
         </form>
-        <div className="admin-login-footer">
-          <p>Demo Credentials: admin / admin123</p>
-        </div>
       </div>
     </div>
   );
 };
 
 export default AdminLogin;
+
