@@ -87,6 +87,7 @@ const PortfolioDetail = () => {
   const projectChallenge = project.challenge ? (project.challenge[language] || project.challenge.id || project.challenge) : '';
   const projectSolution = project.solution ? (project.solution[language] || project.solution.id || project.solution) : '';
   const projectOutcome = project.outcome ? (project.outcome[language] || project.outcome.id || project.outcome) : '';
+  const isPhoneProject = project.category.en === "Social Media Management";
 
   return (
     <div className="portfolio-detail pt-24 pb-16">
@@ -119,19 +120,34 @@ const PortfolioDetail = () => {
         <div className="portfolio-showcase">
           {/* Left Column: Visuals */}
           <div className="portfolio-visual-col">
-            <div className="detail-visual glass animate-entrance delay-200">
-               <div className="portfolio-browser-header">
-                  <div className="browser-dots">
-                    <span></span><span></span><span></span>
-                  </div>
-                </div>
-                <div className="detail-image">
+            <div className={`detail-visual ${isPhoneProject ? 'is-phone' : ''} glass animate-entrance delay-200`}>
+              {isPhoneProject ? (
+                <div className="phone-mockup-frame detail-page-phone">
+                  <div className="phone-speaker-camera"></div>
+                  <div className="phone-screen-image">
                     <img 
                       src={project.image} 
                       alt={project.title}
                       loading="lazy"
                     />
+                  </div>
                 </div>
+              ) : (
+                <>
+                  <div className="portfolio-browser-header">
+                    <div className="browser-dots">
+                      <span></span><span></span><span></span>
+                    </div>
+                  </div>
+                  <div className="detail-image">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      loading="lazy"
+                    />
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
