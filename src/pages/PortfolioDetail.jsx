@@ -88,6 +88,9 @@ const PortfolioDetail = () => {
   const projectSolution = project.solution ? (project.solution[language] || project.solution.id || project.solution) : '';
   const projectOutcome = project.outcome ? (project.outcome[language] || project.outcome.id || project.outcome) : '';
   const isPhoneProject = project.category.en === "Social Media Management";
+  const visitButtonText = isPhoneProject
+    ? (language === 'en' ? 'Visit Instagram' : language === 'de' ? 'Instagram besuchen' : 'Kunjungi Instagram')
+    : t.visitLive;
 
   return (
     <div className="portfolio-detail pt-24 pb-16">
@@ -112,7 +115,7 @@ const PortfolioDetail = () => {
           </div>
           <div className="detail-actions">
             <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg btn-glint">
-              {t.visitLive} <FiExternalLink />
+              {visitButtonText} <FiExternalLink />
             </a>
           </div>
         </div>
