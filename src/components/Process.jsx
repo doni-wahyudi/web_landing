@@ -1,5 +1,8 @@
 import { useLanguage } from '../context/LanguageContext';
-import { FiMessageCircle, FiPenTool, FiRefreshCw, FiSend } from 'react-icons/fi';
+import consultImg from '../assets/process_consultation.png';
+import designImg from '../assets/process_design.png';
+import revisionImg from '../assets/process_revision.png';
+import launchImg from '../assets/process_launch.png';
 import './Process.css';
 
 const Process = () => {
@@ -11,28 +14,28 @@ const Process = () => {
       title: "Konsultasi",
       description: "Diskusi kebutuhan & brief proyek untuk memahami visi dan target audiens bisnis Anda.",
       time: "Hari 1",
-      icon: <FiMessageCircle />
+      icon: <img src={consultImg} alt="Konsultasi" className="process-step-img" />
     },
     {
       id: 2,
       title: "Desain",
       description: "Pembuatan wireframe & mockup UI/UX untuk persetujuan sebelum pengembangan.",
       time: "Hari 2–4",
-      icon: <FiPenTool />
+      icon: <img src={designImg} alt="Desain" className="process-step-img" />
     },
     {
       id: 3,
       title: "Revisi",
       description: "Penyempurnaan desain dan fungsionalitas berdasarkan feedback Anda.",
       time: "Hari 5–6",
-      icon: <FiRefreshCw />
+      icon: <img src={revisionImg} alt="Revisi" className="process-step-img" />
     },
     {
       id: 4,
       title: "Launch",
       description: "Testing menyeluruh, go-live, dan serah terima (handover) aset digital.",
       time: "Hari 7",
-      icon: <FiSend />
+      icon: <img src={launchImg} alt="Launch" className="process-step-img" />
     }
   ];
 
@@ -42,28 +45,28 @@ const Process = () => {
       title: "Consultation",
       description: "Discuss requirements & project brief to understand your business vision and target audience.",
       time: "Day 1",
-      icon: <FiMessageCircle />
+      icon: <img src={consultImg} alt="Consultation" className="process-step-img" />
     },
     {
       id: 2,
       title: "Design",
       description: "Creation of wireframes & UI/UX mockups for approval before development.",
       time: "Days 2–4",
-      icon: <FiPenTool />
+      icon: <img src={designImg} alt="Design" className="process-step-img" />
     },
     {
       id: 3,
       title: "Revision",
       description: "Refining design and functionality based on your feedback.",
       time: "Days 5–6",
-      icon: <FiRefreshCw />
+      icon: <img src={revisionImg} alt="Revision" className="process-step-img" />
     },
     {
       id: 4,
       title: "Launch",
       description: "Thorough testing, go-live, and digital asset handover.",
       time: "Day 7",
-      icon: <FiSend />
+      icon: <img src={launchImg} alt="Launch" className="process-step-img" />
     }
   ];
 
@@ -73,28 +76,28 @@ const Process = () => {
       title: "Beratung",
       description: "Besprechung der Anforderungen & des Projektbriefings, um Ihre Geschäftsvision und Zielgruppe zu verstehen.",
       time: "Tag 1",
-      icon: <FiMessageCircle />
+      icon: <img src={consultImg} alt="Beratung" className="process-step-img" />
     },
     {
       id: 2,
       title: "Design",
       description: "Erstellung von Wireframes & UI/UX-Mockups zur Freigabe vor der Entwicklung.",
       time: "Tag 2–4",
-      icon: <FiPenTool />
+      icon: <img src={designImg} alt="Design" className="process-step-img" />
     },
     {
       id: 3,
       title: "Revision",
       description: "Verfeinerung von Design und Funktionalität basierend auf Ihrem Feedback.",
       time: "Tag 5–6",
-      icon: <FiRefreshCw />
+      icon: <img src={revisionImg} alt="Revision" className="process-step-img" />
     },
     {
       id: 4,
       title: "Launch",
       description: "Umfangreiche Tests, Go-Live und Übergabe der digitalen Assets.",
       time: "Tag 7",
-      icon: <FiSend />
+      icon: <img src={launchImg} alt="Launch" className="process-step-img" />
     }
   ];
 

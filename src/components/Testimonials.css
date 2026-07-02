@@ -193,3 +193,23 @@
     gap: 1.5rem;
   }
 }
+
+.testimonials-section {
+  position: relative;
+  background: linear-gradient(180deg, #050505 0%, #080d1a 50%, #050505 100%) !important;
+}
+
+.testimonials-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(45, 212, 191, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.testimonials-carousel-container {
+  z-index: 2;
+}

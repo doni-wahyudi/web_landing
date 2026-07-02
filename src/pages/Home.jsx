@@ -5,6 +5,8 @@ import Pricing from '../components/Pricing';
 import Testimonials from '../components/Testimonials';
 import Team from '../components/Team';
 import FAQ from '../components/FAQ';
+import SectionDivider from '../components/SectionDivider';
+import ClientLogos from '../components/ClientLogos';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
@@ -33,9 +35,14 @@ const Home = () => {
         description={t.seoDesc}
       />
       <Hero />
+      <ClientLogos />
+      
+      <SectionDivider variant="wave" color="#0f172a" />
       <div className="reveal-on-scroll delay-100">
         <Process />
       </div>
+      <SectionDivider variant="wave" flip={true} color="#0f172a" />
+
       <div className="reveal-on-scroll delay-200">
         <Portfolio isHomepage={true} />
       </div>
@@ -45,9 +52,13 @@ const Home = () => {
       <div className="reveal-on-scroll delay-400">
         <Team />
       </div>
+
+      <SectionDivider variant="curve" color="#0f172a" />
       <div className="reveal-on-scroll delay-500">
         <Testimonials />
       </div>
+      <SectionDivider variant="curve" flip={true} color="#0f172a" />
+
       <div className="reveal-on-scroll delay-600">
         <FAQ />
       </div>

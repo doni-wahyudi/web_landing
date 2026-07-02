@@ -2,7 +2,8 @@ import { useRef } from 'react';
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { useWhatsAppModal } from '../context/WhatsAppModalContext';
-import personImage from '../assets/hero_alt.png';
+import heroDevices from '../assets/hero_devices.png';
+import PersonImage from '../assets/hero_alt.png'; // keep original as fallback or unused
 import './Hero.css';
 
 const Hero = () => {
@@ -111,18 +112,34 @@ const Hero = () => {
               <span>{t.trust3}</span>
             </div>
           </div>
+
+          <div className="hero-stats delay-400">
+            <div className="stat-item">
+              <span className="stat-number text-gradient">40+</span>
+              <span className="stat-label">{language === 'en' ? 'Projects Done' : language === 'de' ? 'Projekte abgeschlossen' : 'Proyek Selesai'}</span>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <span className="stat-number text-gradient">100%</span>
+              <span className="stat-label">{language === 'en' ? 'Clients Satisfied' : language === 'de' ? 'Zufriedene Kunden' : 'Klien Puas'}</span>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <span className="stat-number text-gradient">5+</span>
+              <span className="stat-label">{language === 'en' ? 'Years Exp' : language === 'de' ? 'Jahre Erfahrung' : 'Tahun Pengalaman'}</span>
+            </div>
+          </div>
         </div>
 
         <div className="hero-visual animate-fade-in delay-200">
-          <div className="hero-image-card">
+          <div className="hero-mockup-container">
             <img 
-              src={personImage} 
-              alt="Professional Project" 
-              className="hero-main-image"
+              src={heroDevices} 
+              alt="Aurotech Premium Website Mockup" 
+              className="hero-device-image"
               fetchpriority="high"
               loading="eager"
             />
-            <div className="card-glass-sheen"></div>
           </div>
         </div>
       </div>

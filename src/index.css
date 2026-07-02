@@ -6,6 +6,11 @@
   --primary-light: #FFD700;
   --primary-glow: rgba(212, 175, 55, 0.4);
   
+  --accent: #2DD4BF; /* Teal Accent */
+  --accent-dark: #14B8A6;
+  --accent-light: #5EEAD4;
+  --accent-glow: rgba(45, 212, 191, 0.3);
+  
   --secondary: #0f172a; 
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
@@ -76,6 +81,10 @@ button {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.text-accent {
+  color: var(--accent);
 }
 
 /* Custom Scrollbar */

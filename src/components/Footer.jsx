@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { FiInstagram, FiFacebook, FiTwitter, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
+import { FiInstagram, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
+import { FaTiktok } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
 import logoImg from '../assets/logo_auro.webp';
 import typographyImg from '../assets/typography_white.webp';
@@ -18,7 +19,12 @@ const Footer = () => {
       about: "Tentang Kami",
       terms: "Syarat & Ketentuan",
       privacy: "Kebijakan Privasi",
-      legitimacy: "Terdaftar di Kemenkumham"
+      legitimacy: "Terdaftar di Kemenkumham",
+      webProfile: "Premium Company Profile",
+      landingPage: "Landing Page",
+      customWeb: "Aplikasi Web Kustom",
+      androidApp: "Aplikasi Android & iOS",
+      customSoftware: "Software Kustom"
     },
     en: {
       desc: "Your best partner in realizing a professional, aesthetic, and sales-oriented digital identity.",
@@ -28,7 +34,12 @@ const Footer = () => {
       about: "About Us",
       terms: "Terms & Conditions",
       privacy: "Privacy Policy",
-      legitimacy: "Registered at Ministry of Law"
+      legitimacy: "Registered at Ministry of Law",
+      webProfile: "Premium Company Profile",
+      landingPage: "Landing Page",
+      customWeb: "Custom Web Applications",
+      androidApp: "Android & iOS Applications",
+      customSoftware: "Custom Software"
     },
     de: {
       desc: "Ihr bester Partner bei der Verwirklichung einer professionellen, ästhetischen und verkaufsorientierten digitalen Identität.",
@@ -38,7 +49,12 @@ const Footer = () => {
       about: "Über uns",
       terms: "Nutzungsbedingungen",
       privacy: "Datenschutzerklärung",
-      legitimacy: "Registriert beim Justizministerium"
+      legitimacy: "Registriert beim Justizministerium",
+      webProfile: "Premium Firmenprofil",
+      landingPage: "Landing Page",
+      customWeb: "Individuelle Webanwendungen",
+      androidApp: "Android- & iOS-Anwendungen",
+      customSoftware: "Individuelle Software"
     }
   };
 
@@ -58,9 +74,8 @@ const Footer = () => {
             {t.desc}
           </p>
           <div className="social-links">
-            <a href="#" aria-label="Instagram"><FiInstagram /></a>
-            <a href="#" aria-label="Facebook"><FiFacebook /></a>
-            <a href="#" aria-label="Twitter"><FiTwitter /></a>
+            <a href="https://www.instagram.com/aurotech.co.id/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FiInstagram /></a>
+            <a href="https://www.tiktok.com/@aurotech.co.id" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><FaTiktok /></a>
           </div>
 
           <div className="legitimacy-signals">
@@ -72,11 +87,11 @@ const Footer = () => {
         <div className="footer-links">
           <h3>{t.services}</h3>
           <ul>
-            <li><Link to="/portfolio">Premium Company Profile</Link></li>
-            <li><Link to="/portfolio">Landing Page</Link></li>
-            <li>Custom Web Application</li>
-            <li>Aplikasi Android</li>
-            <li>Custom Software</li>
+            <li><Link to="/portfolio">{t.webProfile}</Link></li>
+            <li><Link to="/portfolio">{t.landingPage}</Link></li>
+            <li>{t.customWeb}</li>
+            <li>{t.androidApp}</li>
+            <li>{t.customSoftware}</li>
           </ul>
         </div>
 
@@ -109,4 +124,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

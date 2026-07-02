@@ -10,6 +10,18 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useWhatsAppModal } from '../context/WhatsAppModalContext';
 import './Pricing.css';
+import tierBasicImg from '../assets/pricing_basic.png';
+import tierProImg from '../assets/pricing_pro.png';
+import tierPremiumImg from '../assets/pricing_premium.png';
+import tierCustomImg from '../assets/pricing_custom.png';
+
+const getPlanIcon = (name) => {
+  const lowercase = name.toLowerCase();
+  if (lowercase.includes('basic') || lowercase.includes('starter') || lowercase.includes('perpanjangan') || lowercase.includes('renewal')) return tierBasicImg;
+  if (lowercase.includes('profesional') || lowercase.includes('professional') || lowercase.includes('medium') || lowercase.includes('growth') || lowercase.includes('logo')) return tierProImg;
+  if (lowercase.includes('premium') || lowercase.includes('enterprise') || lowercase.includes('apps') || lowercase.includes('ultimate') || lowercase.includes('diamond')) return tierPremiumImg;
+  return tierCustomImg;
+};
 
 const getFeatureIcon = (name) => {
   const lowercase = name.toLowerCase();
@@ -1351,6 +1363,7 @@ const Pricing = () => {
                 {plan.featured && <div className="featured-badge gold-ribbon">{language === 'en' ? 'POPULAR' : language === 'de' ? 'BELIEBT' : 'POPULER'}</div>}
 
                 <div className="pricing-header">
+                  <img src={getPlanIcon(plan.name)} alt="" className="pricing-tier-icon" />
                   <h3 className="plan-name">{plan.name}</h3>
                   <div className="plan-price-container">
                     {plan.originalPrice && (
@@ -1401,6 +1414,7 @@ const Pricing = () => {
                   {plan.featured && <div className="featured-badge gold-ribbon">{language === 'en' ? 'POPULAR' : language === 'de' ? 'BELIEBT' : 'POPULER'}</div>}
 
                   <div className="pricing-header">
+                    <img src={getPlanIcon(plan.name)} alt="" className="pricing-tier-icon" />
                     <h3 className="plan-name">{plan.name}</h3>
                     <div className="plan-price-container">
                       {plan.originalPrice && (
@@ -1451,6 +1465,7 @@ const Pricing = () => {
                 {plan.featured && <div className="featured-badge gold-ribbon">{language === 'en' ? 'BEST VALUE' : language === 'de' ? 'BESTES ANGEBOT' : 'TERBAIK'}</div>}
 
                 <div className="pricing-header">
+                  <img src={getPlanIcon(plan.name)} alt="" className="pricing-tier-icon" />
                   <h3 className="plan-name">{plan.name}</h3>
                   <div className="plan-price-container">
                     {plan.originalPrice && (
@@ -1510,6 +1525,7 @@ const Pricing = () => {
                     {plan.featured && <div className="featured-badge gold-ribbon">{language === 'en' ? 'POPULAR' : language === 'de' ? 'BELIEBT' : 'POPULER'}</div>}
 
                     <div className="pricing-header">
+                      <img src={getPlanIcon(plan.name)} alt="" className="pricing-tier-icon" />
                       <h3 className="plan-name">{plan.name}</h3>
                       <div className="plan-price-container">
                         {plan.originalPrice && (
@@ -1702,6 +1718,7 @@ const Pricing = () => {
                     <div key={index} className="maintenance-slide">
                       <div className={`pricing-card glass-card maintenance-card ${plan.isRenewal ? 'renewal-card' : ''}`}>
                         <div className="pricing-header">
+                          <img src={getPlanIcon(plan.name)} alt="" className="pricing-tier-icon" />
                           <span className="card-category">{plan.category}</span>
                           <h3 className="plan-name">{plan.name}</h3>
                           <div className="plan-price gold-text">

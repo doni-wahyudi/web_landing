@@ -136,31 +136,37 @@
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 2.5rem 1.5rem;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 2.5rem 1.75rem;
   position: relative;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.4s ease;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
 .glass-card.featured {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 215, 0, 0.5);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  transform: scale(1.05);
+  background: rgba(212, 175, 55, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 15px 35px rgba(212, 175, 55, 0.08);
+  transform: scale(1.03);
   z-index: 2;
 }
 
 .glass-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.01);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
+
 .glass-card.featured:hover {
-  transform: scale(1.05) translateY(-5px);
+  transform: scale(1.05) translateY(-8px);
+  border-color: var(--primary);
+  box-shadow: 0 20px 45px rgba(212, 175, 55, 0.15);
 }
 
 .gold-ribbon {
@@ -918,6 +924,15 @@
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.08);
   box-shadow: none;
+}
+
+.pricing-tier-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin: 0 auto 1.5rem;
+  display: block;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 10px rgba(212, 175, 55, 0.15));
 }
 
 .app-feature-badge.not-included .badge-icon {
