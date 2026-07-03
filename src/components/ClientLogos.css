@@ -64,7 +64,7 @@
 
 .client-logos-track:hover .client-logo-text {
   opacity: 0.65;
-  color: var(--primary-light);
+  color: var(--primary-text);
 }
 
 @keyframes marquee {

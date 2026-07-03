@@ -179,7 +179,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 99px;
   font-size: 0.85rem;
-  color: var(--primary-light);
+  color: var(--primary-text);
 }
 
 /* Phone Mockup Layout inside Portfolio Detail Page */

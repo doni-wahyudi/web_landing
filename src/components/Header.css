@@ -10,8 +10,10 @@
 
 .header.scrolled {
   padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(var(--primary-rgb), 0.15);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  background: rgba(250, 248, 245, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .header-container {
@@ -58,13 +60,13 @@
 .nav-links a:not(.btn) {
   font-weight: 500;
   font-size: 1rem;
-  color: var(--text-muted);
+  color: var(--text-main);
   transition: var(--transition-fast);
   padding: 0.5rem 0;
 }
 
 .nav-links a:not(.btn):hover {
-  color: var(--text-main);
+  color: var(--primary);
 }
 
 .nav-cta-wrapper {
@@ -113,11 +115,10 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   padding: 0.25rem 0.5rem;
   border-radius: 99px;
-  backdrop-filter: blur(10px);
 }
 
 .lang-btn {
@@ -138,6 +139,6 @@
 }
 
 .lang-separator {
-  color: rgba(255, 255, 255, 0.2);
+  color: var(--text-muted);
   font-size: 0.85rem;
 }

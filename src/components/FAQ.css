@@ -33,7 +33,7 @@
 }
 
 .faq-question:hover {
-  color: var(--primary-light);
+  color: var(--primary-text);
 }
 
 .faq-icon {

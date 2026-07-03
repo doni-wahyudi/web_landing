@@ -95,7 +95,7 @@
 
 .footer-links a:hover,
 .footer-links li:hover {
-  color: var(--primary-light);
+  color: var(--primary-text);
 }
 
 .footer-contact li {

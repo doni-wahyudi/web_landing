@@ -84,7 +84,7 @@
   border: 1px solid rgba(var(--primary-rgb), 0.3);
   padding: 10px;
   border-radius: 12px;
-  color: var(--primary-light);
+  color: var(--primary-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,14 +141,14 @@
 .btn-lang-notice:hover {
   background: rgba(var(--primary-rgb), 0.08);
   border-color: rgba(var(--primary-rgb), 0.4);
-  color: var(--primary-light);
+  color: var(--primary-text);
   padding-left: 1.25rem;
 }
 
 .btn-lang-notice.active {
   background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.15) 0%, rgba(153, 101, 21, 0.15) 100%);
-  border-color: var(--primary-light);
-  color: var(--primary-light);
+  border-color: var(--primary-text);
+  color: var(--primary-text);
   font-weight: 600;
   box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.1);
 }

@@ -118,7 +118,7 @@
 }
 
 .portfolio-info span {
-  color: var(--primary-light);
+  color: var(--primary-text);
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -361,7 +361,7 @@
 }
 
 .phone-handle-link:hover {
-  color: var(--primary-light);
+  color: var(--primary-text);
   text-shadow: 0 0 8px var(--primary-glow);
   text-decoration: underline;
 }
