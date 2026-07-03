@@ -1315,7 +1315,7 @@ const Pricing = () => {
         </div>
 
         <div className="section-header text-center mt-6">
-          <h2 className="section-title text-white">{t.title}</h2>
+          <h2 className="section-title">{t.title}</h2>
           <p className="text-gray-300">{t.subtitle}</p>
         </div>
 
@@ -1700,7 +1700,7 @@ const Pricing = () => {
         {activeCategory === 'web' && (
           <>
             <div className="section-header text-center" style={{ marginTop: '8rem' }}>
-              <h2 className="section-title text-white">{t.addonTitle}</h2>
+              <h2 className="section-title">{t.addonTitle}</h2>
               <p className="text-gray-300">{t.addonSubtitle}</p>
             </div>
 

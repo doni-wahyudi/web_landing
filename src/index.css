@@ -159,6 +159,14 @@ body::after {
 .text-center { text-align: center !important; }
 .mx-auto { margin-left: auto !important; margin-right: auto !important; }
 
+/* Tailwind-compatible utility stubs (not using TW, but match class names used in JSX) */
+.text-sm { font-size: 0.875rem; }
+.font-medium { font-weight: 500; }
+.text-gray-300 { color: var(--text-muted) !important; }
+.text-gray-400 { color: var(--text-muted) !important; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+
 .section-header {
   margin-bottom: 4rem;
   max-width: 850px;

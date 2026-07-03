@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--bg-dark);
+  background-color: #0F172A; /* Dark navy — ensures all white elements are readable */
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -41,15 +41,14 @@
   height: 38px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  filter: brightness(1); /* white logo shows on dark background */
 }
 
 .preloader-jargon {
   font-family: var(--font-heading);
   font-size: 0.85rem;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.7); /* readable on dark navy */
   letter-spacing: 0.2em;
-  opacity: 0.8;
   margin-top: 0.5rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -60,7 +59,7 @@
   font-size: 1rem;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.5);
   font-weight: 500;
   margin-top: 1rem;
 }
@@ -68,7 +67,7 @@
 .loading-bar-container {
   width: 200px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15); /* visible on dark bg */
   margin: 1.5rem auto;
   overflow: hidden;
   border-radius: 2px;
@@ -91,15 +90,15 @@
   to { transform: translateX(0); }
 }
 
-/* Background effects */
+/* Background grid effect */
 .preloader-grid {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(rgba(var(--primary-rgb), 0.05) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(var(--primary-rgb), 0.05) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(var(--primary-rgb), 0.07) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(var(--primary-rgb), 0.07) 1px, transparent 1px);
   background-size: 50px 50px;
   z-index: 0;
   opacity: 0.5;
