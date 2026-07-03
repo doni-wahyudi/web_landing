@@ -1,8 +1,8 @@
 /* Complete Pricing CSS Redesign */
 
 .pricing-wrapper {
-  background: linear-gradient(135deg, #050505 0%, #121212 100%);
-  color: white;
+  background: var(--bg-dark);
+  color: var(--text-main);
   padding: 5rem 0;
   position: relative;
   overflow: hidden;
@@ -164,7 +164,7 @@
 }
 
 .glass-card.featured .original-price {
-  color: rgba(255, 255, 255, 0.4) !important;
+  color: rgba(255, 255, 255, 0.65) !important;
 }
 
 .glass-card.featured .gold-text {
@@ -254,7 +254,7 @@
 
 .original-price {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--text-muted);
   text-decoration: line-through;
   font-weight: 500;
 }
@@ -501,10 +501,11 @@
   display: flex;
   padding: 0.35rem;
   border-radius: 99px;
-  background: rgba(10, 10, 10, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border-light);
   gap: 0.25rem;
   backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .pricing-tab {
@@ -521,11 +522,11 @@
 
 .pricing-tab:hover {
   color: var(--text-main);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(var(--primary-rgb), 0.05);
 }
 
 .pricing-tab.active {
-  color: #000;
+  color: #fff;
   background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 50%, var(--primary-dark) 100%);
   box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3);
 }
@@ -533,11 +534,11 @@
 /* Extra Bonuses Callout */
 .extra-bonuses-panel {
   padding: 3rem 2.5rem; /* Generous luxury padding */
-  background: rgba(10, 10, 10, 0.55) !important;
+  background: var(--bg-card) !important;
   backdrop-filter: blur(20px);
-  border: 1px solid var(--border-glow) !important;
+  border: 1px solid var(--border-light) !important;
   border-radius: 24px !important;
-  box-shadow: 0 12px 40px rgba(var(--primary-rgb), 0.08) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.03) !important;
 }
 
 @media (max-width: 768px) {
@@ -560,12 +561,12 @@
   gap: 0.75rem;
   padding: 0.75rem 1.5rem;
   border-radius: 99px; /* Rounded pill style matches header tabs */
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-dark);
+  border: 1px solid var(--border-light);
   font-size: 0.88rem;
-  color: #e2e8f0;
+  color: var(--text-main);
   backdrop-filter: blur(8px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   max-width: 100%;
@@ -596,10 +597,12 @@
 /* Media Monitoring Table Matrix */
 .monitoring-table-container {
   margin-top: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+  background: var(--bg-card);
   backdrop-filter: blur(20px);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .monitoring-table {
@@ -611,12 +614,12 @@
 .monitoring-table th, 
 .monitoring-table td {
   padding: 1.25rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-light);
   font-size: 0.95rem;
 }
 
 .monitoring-table th {
-  background: rgba(255, 255, 255, 0.01);
+  background: rgba(0, 0, 0, 0.02);
   font-family: var(--font-heading);
   text-align: center;
   vertical-align: top;
@@ -678,7 +681,7 @@
 }
 
 .val-icon.yes {
-  color: #10b981;
+  color: #047857;
 }
 
 .val-icon.no {
@@ -689,7 +692,7 @@
 .text-val {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #e2e8f0;
+  color: var(--text-main);
 }
 
 .pkg-action-cell {
@@ -717,7 +720,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .details-list li:last-child {
@@ -892,13 +895,13 @@
   gap: 0.5rem;
   padding: 0.5rem 0.85rem;
   border-radius: 99px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-dark);
+  border: 1px solid var(--border-light);
   font-size: 0.82rem;
-  color: #e2e8f0;
+  color: var(--text-main);
   backdrop-filter: blur(8px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
   width: 100%;
   box-sizing: border-box;
 }

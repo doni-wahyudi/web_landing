@@ -37,11 +37,11 @@ const Home = () => {
       <Hero />
       <ClientLogos />
       
-      <SectionDivider variant="wave" color="#0f172a" />
+      <SectionDivider variant="wave" color="var(--secondary)" />
       <div className="reveal-on-scroll delay-100">
         <Process />
       </div>
-      <SectionDivider variant="wave" flip={true} color="#0f172a" />
+      <SectionDivider variant="wave" flip={true} color="var(--secondary)" />
 
       <div className="reveal-on-scroll delay-200">
         <Portfolio isHomepage={true} />
@@ -53,11 +53,11 @@ const Home = () => {
         <Team />
       </div>
 
-      <SectionDivider variant="curve" color="#0f172a" />
+      <SectionDivider variant="curve" color="var(--secondary)" />
       <div className="reveal-on-scroll delay-500">
         <Testimonials />
       </div>
-      <SectionDivider variant="curve" flip={true} color="#0f172a" />
+      <SectionDivider variant="curve" flip={true} color="var(--secondary)" />
 
       <div className="reveal-on-scroll delay-600">
         <FAQ />

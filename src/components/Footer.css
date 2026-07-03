@@ -30,6 +30,7 @@
   width: auto;
   object-fit: contain;
   margin-top: -4px;
+  filter: invert(1) brightness(0.1);
 }
 
 .footer-grid {
@@ -133,10 +134,10 @@
 
 .legitimacy-signals {
   margin-top: 1.5rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-dark);
   padding: 1rem;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-light);
 }
 
 .legitimacy-item {

@@ -31,6 +31,7 @@
   width: auto;
   object-fit: contain;
   margin-top: -4px;
+  filter: invert(1) brightness(0.1);
 }
 
 .logo-icon {
