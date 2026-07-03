@@ -26,7 +26,7 @@ const ArticlesManager = lazy(() => import('./pages/admin/ArticlesManager'));
 
 // Loading component for Suspense
 const AdminLoader = () => (
-  <div style={{ padding: '2rem', textAlign: 'center', color: '#D4AF37' }}>
+  <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--primary)' }}>
     Loading dashboard...
   </div>
 );

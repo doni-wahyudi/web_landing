@@ -1,8 +1,8 @@
 .client-logos-section {
   padding: 2.5rem 0;
-  background-color: #050505;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: var(--secondary);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
   overflow: hidden;
   position: relative;
   z-index: 2;
@@ -30,13 +30,13 @@
 .client-logos-marquee::before {
   left: 0;
   top: 0;
-  background: linear-gradient(to right, #050505 0%, transparent 100%);
+  background: linear-gradient(to right, var(--secondary) 0%, transparent 100%);
 }
 
 .client-logos-marquee::after {
   right: 0;
   top: 0;
-  background: linear-gradient(to left, #050505 0%, transparent 100%);
+  background: linear-gradient(to left, var(--secondary) 0%, transparent 100%);
 }
 
 .client-logos-track {

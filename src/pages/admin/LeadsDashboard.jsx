@@ -12,7 +12,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { getCrmAnalytics } from '../../services/crmService';
 import './LeadsDashboard.css';
 
-const PIE_COLORS = ['#D4AF37', '#3498db', '#2ecc71', '#e67e22', '#9b59b6', '#f1c40f', '#1abc9c', '#e74c3c'];
+const PIE_COLORS = ['#2563EB', '#3498db', '#2ecc71', '#e67e22', '#9b59b6', '#f1c40f', '#1abc9c', '#e74c3c'];
 
 const dashboardTranslations = {
   id: {
@@ -356,8 +356,8 @@ const LeadsDashboard = () => {
                         <stop offset="95%" stopColor="#3498db" stopOpacity={0}/>
                       </linearGradient>
                       <linearGradient id="colorDeals" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#D4AF37" stopOpacity={0.2}/>
-                        <stop offset="95%" stopColor="#D4AF37" stopOpacity={0}/>
+                        <stop offset="5%" stopColor="#2563EB" stopOpacity={0.2}/>
+                        <stop offset="95%" stopColor="#2563EB" stopOpacity={0}/>
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
@@ -367,7 +367,7 @@ const LeadsDashboard = () => {
                     <Legend />
                     <Area type="monotone" dataKey="Touchpoints" name={t.chartWorkEffort} stroke="#3498db" strokeWidth={2} fillOpacity={1} fill="url(#colorEffort)" />
                     <Area type="monotone" dataKey="Contacts" name={t.chartNewOutreach} stroke="#9b59b6" strokeWidth={2} fillOpacity={0} />
-                    <Area type="monotone" dataKey="Deals" name={t.chartDealsClosed} stroke="#D4AF37" strokeWidth={2} fillOpacity={1} fill="url(#colorDeals)" />
+                    <Area type="monotone" dataKey="Deals" name={t.chartDealsClosed} stroke="#2563EB" strokeWidth={2} fillOpacity={1} fill="url(#colorDeals)" />
                   </AreaChart>
                 ) : (
                   <LineChart data={trend}>
@@ -378,7 +378,7 @@ const LeadsDashboard = () => {
                     <Legend />
                     <Line type="monotone" dataKey="Touchpoints" name={t.chartWorkEffort} stroke="#3498db" strokeWidth={2} activeDot={{ r: 8 }} />
                     <Line type="monotone" dataKey="Contacts" name={t.chartNewOutreach} stroke="#9b59b6" strokeWidth={2} />
-                    <Line type="monotone" dataKey="Deals" name={t.chartDealsClosed} stroke="#D4AF37" strokeWidth={2} />
+                    <Line type="monotone" dataKey="Deals" name={t.chartDealsClosed} stroke="#2563EB" strokeWidth={2} />
                   </LineChart>
                 )}
               </ResponsiveContainer>
@@ -510,7 +510,7 @@ const LeadsDashboard = () => {
                   <Bar 
                     dataKey="deals" 
                     name={t.chartDealsClosed} 
-                    fill="#D4AF37" 
+                    fill="#2563EB" 
                     radius={[4, 4, 0, 0]}
                     onClick={(entry) => setSelectedRegion(entry.name === selectedRegion ? null : entry.name)}
                     style={{ cursor: 'pointer' }}

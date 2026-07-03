@@ -64,13 +64,13 @@
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background: rgba(212, 175, 55, 0.1);
+  background: rgba(var(--primary-rgb), 0.1);
   color: var(--primary-light);
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.4rem 0.8rem;
   border-radius: 99px;
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
 }
 
 .solution-features {
@@ -118,7 +118,7 @@
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--primary);
-  background: rgba(212, 175, 55, 0.05);
+  background: rgba(var(--primary-rgb), 0.05);
   box-shadow: 0 0 20px var(--border-glow);
 }
 
@@ -197,7 +197,7 @@
   width: 60px;
   height: 60px;
   border-radius: 12px;
-  background: rgba(212, 175, 55, 0.1);
+  background: rgba(var(--primary-rgb), 0.1);
   color: var(--primary);
   display: flex;
   align-items: center;

@@ -10,7 +10,7 @@ import {
 import './LeadsDashboard.css';
 
 const API_BASE_URL = 'https://aurotech.co.id/api';
-const CHART_COLORS = ['#3498db', '#D4AF37', '#2ecc71', '#9b59b6', '#e67e22', '#e74c3c'];
+const CHART_COLORS = ['#3498db', '#2563EB', '#2ecc71', '#9b59b6', '#e67e22', '#e74c3c'];
 
 // Helper to convert 2-letter ISO country code to flag emoji
 const getFlagEmoji = (countryCode) => {
@@ -181,8 +181,8 @@ const VisitorsDashboard = () => {
                       <stop offset="95%" stopColor="#3498db" stopOpacity={0}/>
                     </linearGradient>
                     <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#D4AF37" stopOpacity={0.15}/>
-                      <stop offset="95%" stopColor="#D4AF37" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#2563EB" stopOpacity={0.15}/>
+                      <stop offset="95%" stopColor="#2563EB" stopOpacity={0}/>
                     </linearGradient>
                   </defs>
                   <XAxis 
@@ -195,7 +195,7 @@ const VisitorsDashboard = () => {
                   <Tooltip contentStyle={{ background: '#111', border: '1px solid #333' }} />
                   <Legend />
                   <Area type="monotone" dataKey="unique_visitors" name="Unique Visitors" stroke="#3498db" strokeWidth={2} fillOpacity={1} fill="url(#colorVisits)" />
-                  <Area type="monotone" dataKey="total_views" name="Page Views" stroke="#D4AF37" strokeWidth={1.5} fillOpacity={1} fill="url(#colorViews)" />
+                  <Area type="monotone" dataKey="total_views" name="Page Views" stroke="#2563EB" strokeWidth={1.5} fillOpacity={1} fill="url(#colorViews)" />
                 </AreaChart>
               </ResponsiveContainer>
             ) : (
@@ -320,7 +320,7 @@ const VisitorsDashboard = () => {
                   <XAxis dataKey="name" stroke="rgba(255,255,255,0.5)" style={{ fontSize: '0.8rem' }} />
                   <YAxis stroke="rgba(255,255,255,0.5)" />
                   <Tooltip contentStyle={{ background: '#111', border: '1px solid #333' }} />
-                  <Bar dataKey="value" name="Sessions" fill="#D4AF37" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="value" name="Sessions" fill="#2563EB" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             ) : (

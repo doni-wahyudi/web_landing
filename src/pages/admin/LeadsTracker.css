@@ -15,8 +15,8 @@
 .followup-alert-widget {
   padding: 1.5rem;
   border-radius: var(--radius-xl);
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  background: rgba(212, 175, 55, 0.02);
+  border: 1px solid rgba(var(--primary-rgb), 0.25);
+  background: rgba(var(--primary-rgb), 0.02);
   margin-bottom: 2rem;
 }
 
@@ -63,8 +63,8 @@
 
 .due-lead-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(212, 175, 55, 0.3);
-  background: rgba(212, 175, 55, 0.03);
+  border-color: rgba(var(--primary-rgb), 0.3);
+  background: rgba(var(--primary-rgb), 0.03);
 }
 
 .due-card-top {
@@ -109,8 +109,8 @@
 
 .btn-tiny {
   padding: 0.25rem 0.6rem;
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: rgba(var(--primary-rgb), 0.1);
+  border: 1px solid rgba(var(--primary-rgb), 0.25);
   color: var(--primary);
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
@@ -181,7 +181,7 @@
 
 .crm-search-wrapper input:focus {
   border-color: var(--primary);
-  background: rgba(212, 175, 55, 0.02);
+  background: rgba(var(--primary-rgb), 0.02);
 }
 
 .clear-search {
@@ -226,9 +226,9 @@
 }
 
 .crm-tab.active {
-  background: rgba(212, 175, 55, 0.1);
+  background: rgba(var(--primary-rgb), 0.1);
   color: var(--primary);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
 }
 
 .tab-count {
@@ -256,7 +256,7 @@
 }
 
 .lead-row.selected {
-  background: rgba(212, 175, 55, 0.04);
+  background: rgba(var(--primary-rgb), 0.04);
 }
 
 .lead-name-cell {
@@ -682,7 +682,7 @@
 .form-group input:hover,
 .form-group select:hover,
 .form-group textarea:hover {
-  border-color: rgba(212, 175, 55, 0.25);
+  border-color: rgba(var(--primary-rgb), 0.25);
   background: rgba(255, 255, 255, 0.05);
 }
 
@@ -690,7 +690,7 @@
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--primary);
-  background: rgba(212, 175, 55, 0.02);
+  background: rgba(var(--primary-rgb), 0.02);
   box-shadow: 0 0 10px var(--primary-glow);
 }
 

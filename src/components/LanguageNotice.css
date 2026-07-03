@@ -9,10 +9,10 @@
   background: rgba(18, 18, 18, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  border: 1px solid rgba(var(--primary-rgb), 0.25);
   border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(var(--primary-rgb), 0.05);
   font-family: 'Inter', sans-serif;
   overflow: hidden;
 }
@@ -80,11 +80,11 @@
 }
 
 .lang-notice-icon-box {
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: rgba(var(--primary-rgb), 0.1);
+  border: 1px solid rgba(var(--primary-rgb), 0.3);
   padding: 10px;
   border-radius: 12px;
-  color: #ffd700;
+  color: var(--primary-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,7 +96,7 @@
 
 @keyframes langGlobePulse {
   0%, 100% { opacity: 0.8; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); color: #fff799; filter: drop-shadow(0 0 4px rgba(212,175,55,0.4)); }
+  50% { opacity: 1; transform: scale(1.05); color: #fff799; filter: drop-shadow(0 0 4px rgba(var(--primary-rgb),0.4)); }
 }
 
 .lang-notice-title-box h4 {
@@ -139,18 +139,18 @@
 }
 
 .btn-lang-notice:hover {
-  background: rgba(212, 175, 55, 0.08);
-  border-color: rgba(212, 175, 55, 0.4);
-  color: #ffd700;
+  background: rgba(var(--primary-rgb), 0.08);
+  border-color: rgba(var(--primary-rgb), 0.4);
+  color: var(--primary-light);
   padding-left: 1.25rem;
 }
 
 .btn-lang-notice.active {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(153, 101, 21, 0.15) 100%);
-  border-color: #ffd700;
-  color: #ffd700;
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.15) 0%, rgba(153, 101, 21, 0.15) 100%);
+  border-color: var(--primary-light);
+  color: var(--primary-light);
   font-weight: 600;
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.1);
 }
 
 /* Mobile Responsiveness */
