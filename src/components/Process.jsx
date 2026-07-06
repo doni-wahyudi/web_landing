@@ -1,8 +1,8 @@
 import { useLanguage } from '../context/LanguageContext';
-import consultImg from '../assets/process_consultation.png';
-import designImg from '../assets/process_design.png';
-import revisionImg from '../assets/process_revision.png';
-import launchImg from '../assets/process_launch.png';
+import { IoChatbubblesSharp } from 'react-icons/io5';
+import { FiPenTool } from 'react-icons/fi';
+import { MdOutlineAutorenew } from 'react-icons/md';
+import { IoRocketSharp } from 'react-icons/io5';
 import './Process.css';
 
 const Process = () => {
@@ -14,28 +14,28 @@ const Process = () => {
       title: "Konsultasi",
       description: "Diskusi kebutuhan & brief proyek untuk memahami visi dan target audiens bisnis Anda.",
       time: "Hari 1",
-      icon: <img src={consultImg} alt="Konsultasi" className="process-step-img" />
+      icon: <IoChatbubblesSharp className="process-step-icon" />
     },
     {
       id: 2,
       title: "Desain",
       description: "Pembuatan wireframe & mockup UI/UX untuk persetujuan sebelum pengembangan.",
       time: "Hari 2–4",
-      icon: <img src={designImg} alt="Desain" className="process-step-img" />
+      icon: <FiPenTool className="process-step-icon" />
     },
     {
       id: 3,
       title: "Revisi",
       description: "Penyempurnaan desain dan fungsionalitas berdasarkan feedback Anda.",
       time: "Hari 5–6",
-      icon: <img src={revisionImg} alt="Revisi" className="process-step-img" />
+      icon: <MdOutlineAutorenew className="process-step-icon" />
     },
     {
       id: 4,
       title: "Launch",
       description: "Testing menyeluruh, go-live, dan serah terima (handover) aset digital.",
       time: "Hari 7",
-      icon: <img src={launchImg} alt="Launch" className="process-step-img" />
+      icon: <IoRocketSharp className="process-step-icon" />
     }
   ];
 
@@ -45,28 +45,28 @@ const Process = () => {
       title: "Consultation",
       description: "Discuss requirements & project brief to understand your business vision and target audience.",
       time: "Day 1",
-      icon: <img src={consultImg} alt="Consultation" className="process-step-img" />
+      icon: <IoChatbubblesSharp className="process-step-icon" />
     },
     {
       id: 2,
       title: "Design",
       description: "Creation of wireframes & UI/UX mockups for approval before development.",
       time: "Days 2–4",
-      icon: <img src={designImg} alt="Design" className="process-step-img" />
+      icon: <FiPenTool className="process-step-icon" />
     },
     {
       id: 3,
       title: "Revision",
       description: "Refining design and functionality based on your feedback.",
       time: "Days 5–6",
-      icon: <img src={revisionImg} alt="Revision" className="process-step-img" />
+      icon: <MdOutlineAutorenew className="process-step-icon" />
     },
     {
       id: 4,
       title: "Launch",
       description: "Thorough testing, go-live, and digital asset handover.",
       time: "Day 7",
-      icon: <img src={launchImg} alt="Launch" className="process-step-img" />
+      icon: <IoRocketSharp className="process-step-icon" />
     }
   ];
 
@@ -76,28 +76,28 @@ const Process = () => {
       title: "Beratung",
       description: "Besprechung der Anforderungen & des Projektbriefings, um Ihre Geschäftsvision und Zielgruppe zu verstehen.",
       time: "Tag 1",
-      icon: <img src={consultImg} alt="Beratung" className="process-step-img" />
+      icon: <IoChatbubblesSharp className="process-step-icon" />
     },
     {
       id: 2,
       title: "Design",
       description: "Erstellung von Wireframes & UI/UX-Mockups zur Freigabe vor der Entwicklung.",
       time: "Tag 2–4",
-      icon: <img src={designImg} alt="Design" className="process-step-img" />
+      icon: <FiPenTool className="process-step-icon" />
     },
     {
       id: 3,
       title: "Revision",
       description: "Verfeinerung von Design und Funktionalität basierend auf Ihrem Feedback.",
       time: "Tag 5–6",
-      icon: <img src={revisionImg} alt="Revision" className="process-step-img" />
+      icon: <MdOutlineAutorenew className="process-step-icon" />
     },
     {
       id: 4,
       title: "Launch",
       description: "Umfangreiche Tests, Go-Live und Übergabe der digitalen Assets.",
       time: "Tag 7",
-      icon: <img src={launchImg} alt="Launch" className="process-step-img" />
+      icon: <IoRocketSharp className="process-step-icon" />
     }
   ];
 
@@ -133,22 +133,22 @@ const Process = () => {
         <div className="process-timeline">
           {steps.map((step, index) => (
             <div key={step.id} className="process-step animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
-              <div className="process-icon-wrapper glass">
+              <div className="process-icon-wrapper">
                 <span className="process-number">{step.id}</span>
-                <div className="process-icon">{step.icon}</div>
+                {step.icon}
               </div>
               <div className="process-content">
                 <h3 className="process-title">{step.title}</h3>
-                <span className="process-time text-gradient">{step.time}</span>
+                <span className="process-time">{step.time}</span>
                 <p className="process-desc">{step.description}</p>
               </div>
-              {index < steps.length - 1 && <div className="process-connector"></div>}
             </div>
           ))}
         </div>
       </div>
     </section>
   );
+
 };
 
 export default Process;
