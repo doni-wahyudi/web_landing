@@ -150,7 +150,7 @@ const Team = () => {
   const teamMembers = language === 'en' ? teamMembersEn : language === 'de' ? teamMembersDe : teamMembersId;
 
   return (
-    <section className="section team-section bg-primary">
+    <section className="section team-section">
       <div className="container">
         <div className="section-header text-center animate-entrance">
           <h2 className="section-title">{t.title} <span className="text-gradient">{t.titleGradient}</span></h2>

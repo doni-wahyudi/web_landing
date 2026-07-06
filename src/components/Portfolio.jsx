@@ -98,7 +98,7 @@ const Portfolio = ({ isHomepage = false }) => {
   };
 
   return (
-    <section id="portfolio" className="section portfolio bg-secondary">
+    <section id="portfolio" className="section portfolio">
       <div className="container">
         <div className="section-header text-center animate-entrance">
           <h2 className="section-title">{t.title} <span className="text-gradient">{t.titleGradient}</span> {t.titleSuffix}</h2>

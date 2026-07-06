@@ -1309,7 +1309,7 @@ const Pricing = () => {
       <div className="container">
         {/* Scarcity Banner Hook */}
         <div className="promo-banner text-center mb-8">
-          <div className="inline-block bg-primary text-black px-6 py-3 rounded-full font-bold shadow-lg animate-pulse">
+          <div className="promo-badge">
             {t.promo}
           </div>
         </div>

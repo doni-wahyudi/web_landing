@@ -189,7 +189,7 @@ const ArticleDetail = () => {
   if (!article) return <div className="blog-empty text-center">{t.notFound}</div>;
 
   return (
-    <article className="article-detail bg-primary section animate-fade-in">
+    <article className="article-detail section animate-fade-in">
       <div className="container">
         <Link to="/blog" className="btn-back">{t.back}</Link>
         

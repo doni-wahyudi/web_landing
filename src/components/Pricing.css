@@ -36,6 +36,18 @@
 .gold-text { color: var(--primary-text) !important; font-weight: bold; }
 .gold-text-light { color: #93C5FD !important; } /* Use on dark backgrounds only */
 
+.promo-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #ffffff !important;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.22);
+  animation: pulse-glow 2s infinite;
+}
+
 /* Pricing Cards */
 .pricing-grid {
   display: grid;

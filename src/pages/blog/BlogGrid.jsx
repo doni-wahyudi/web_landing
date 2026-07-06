@@ -56,7 +56,7 @@ const BlogGrid = () => {
   };
 
   return (
-    <section className="section blog-section bg-primary">
+    <section className="section blog-section">
       <div className="container animate-fade-in">
         <div className="section-header text-center">
           <h1 className="section-title">{t.title}</h1>
