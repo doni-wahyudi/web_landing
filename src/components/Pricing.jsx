@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { 
-  FiCheck, FiX, FiChevronLeft, FiChevronRight,
+  FiCheck, FiX, FiChevronLeft, FiChevronRight, FiArrowRight,
   FiLayout, FiDatabase, FiDollarSign, FiPackage, FiLock, FiServer, FiPieChart, FiShield,
   FiSmartphone, FiCreditCard, FiBell, FiMapPin, FiCloud, FiAward,
   FiTrendingUp, FiEdit3, FiPenTool, FiShare2, FiUsers, FiMail, FiVideo, FiSearch,
@@ -96,6 +96,97 @@ const Pricing = () => {
   const [isPaused, setIsPaused] = useState(false);
   const { language } = useLanguage();
   const { openWhatsAppModal } = useWhatsAppModal();
+
+  const [timeLeft, setTimeLeft] = useState('');
+  const [calcType, setCalcType] = useState('web');
+  const [calcPages, setCalcPages] = useState(5);
+  const [calcSEO, setCalcSEO] = useState(false);
+  const [calcWA, setCalcWA] = useState(false);
+  const [calcAdmin, setCalcAdmin] = useState(false);
+  const [calcPayment, setCalcPayment] = useState(false);
+
+  useEffect(() => {
+    const updateTimer = () => {
+      const now = new Date();
+      const midnight = new Date();
+      midnight.setHours(23, 59, 59, 999);
+      const diff = midnight - now;
+      if (diff <= 0) {
+        setTimeLeft('00:00:00');
+        return;
+      }
+      const hrs = Math.floor(diff / (1000 * 60 * 60)).toString().padStart(2, '0');
+      const mins = Math.floor((diff / (1000 * 60)) % 60).toString().padStart(2, '0');
+      const secs = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
+      setTimeLeft(`${hrs}:${mins}:${secs}`);
+    };
+    updateTimer();
+    const timerId = setInterval(updateTimer, 1000);
+    return () => clearInterval(timerId);
+  }, []);
+
+  const calculateEstimate = () => {
+    let basePrice = 2500000;
+    let extraPageCost = 250000;
+    let freePages = 3;
+    if (calcType === 'app') {
+      basePrice = 12000000;
+      extraPageCost = 750000;
+      freePages = 5;
+    } else if (calcType === 'system') {
+      basePrice = 8000000;
+      extraPageCost = 500000;
+      freePages = 5;
+    }
+    const pageCost = Math.max(0, calcPages - freePages) * extraPageCost;
+    let addonCost = 0;
+    if (calcSEO) addonCost += 1500000;
+    if (calcWA) addonCost += 1000000;
+    if (calcAdmin) addonCost += 3000000;
+    if (calcPayment) addonCost += 2500000;
+    const idrTotal = basePrice + pageCost + addonCost;
+    if (language === 'de') {
+      return `€${Math.round(idrTotal / 17500)}`;
+    } else if (language === 'en') {
+      return `$${Math.round(idrTotal / 16000)}`;
+    }
+    return `Rp ${idrTotal.toLocaleString('id-ID')}`;
+  };
+
+  const getWhatsAppCalcLink = () => {
+    const total = calculateEstimate();
+    const typeLabel = calcType === 'web' ? 'Website' : calcType === 'app' ? 'Mobile App' : 'Information System / ERP';
+    const seoText = calcSEO ? '✓ SEO Optimization ' : '';
+    const waText = calcWA ? '✓ WhatsApp CRM ' : '';
+    const adminText = calcAdmin ? '✓ Admin Dashboard ' : '';
+    const payText = calcPayment ? '✓ Payment Gateway ' : '';
+    const addons = [seoText, waText, adminText, payText].filter(Boolean).join(', ') || 'None';
+    
+    let textMessage = `Halo Aurotech, saya tertarik membuat proyek dengan rincian berikut:
+- Tipe Projek: ${typeLabel}
+- Jumlah Halaman/Modul: ${calcPages}
+- Fitur Tambahan: ${addons}
+- Estimasi Biaya: ${total}
+Mohon info lebih lanjut untuk konsultasi gratis ini. Terima kasih!`;
+
+    if (language === 'en') {
+      textMessage = `Hi Aurotech, I am interested in building a project with the following details:
+- Project Type: ${typeLabel}
+- Total Pages/Modules: ${calcPages}
+- Selected Add-ons: ${addons}
+- Estimated Cost: ${total}
+Please guide me further for the free consultation. Thank you!`;
+    } else if (language === 'de') {
+      textMessage = `Hallo Aurotech, ich habe Interesse an einem Projekt mit folgenden Details:
+- Projekttyp: ${typeLabel}
+- Anzahl der Seiten/Module: ${calcPages}
+- Ausgewählte Add-ons: ${addons}
+- Geschätzte Kosten: ${total}
+Bitte informieren Sie mich über eine kostenlose Beratung. Vielen Dank!`;
+    }
+
+    return `https://wa.me/628123456789?text=${encodeURIComponent(textMessage)}`;
+  };
 
   const sosmedScrollRef = useRef(null);
 
@@ -1125,6 +1216,7 @@ const Pricing = () => {
       tabSEO: "SEO Google",
       tabSosmed: "Kelola Sosmed",
       tabMonitoring: "Media Monitoring",
+      tabCalculator: "Kalkulator Projek",
       extraBonus: "🔥 BONUS TAMBAHAN (DISEMUA PAKET SOSMED):",
       bonuses: [
         "Free Copywriting Caption",
@@ -1177,6 +1269,7 @@ const Pricing = () => {
       tabSEO: "Google SEO",
       tabSosmed: "Social Media",
       tabMonitoring: "Media Monitoring",
+      tabCalculator: "Cost Estimator",
       extraBonus: "🔥 EXTRA BONUSES (INCLUDED IN ALL SOCIAL PACKAGES):",
       bonuses: [
         "Free Caption Copywriting",
@@ -1229,6 +1322,7 @@ const Pricing = () => {
       tabSEO: "Google SEO",
       tabSosmed: "Social Media",
       tabMonitoring: "Media Monitoring",
+      tabCalculator: "Projekt-Kalkulator",
       extraBonus: "🔥 EXTRA-BONI (IN ALLEN SOCIAL-MEDIA-PAKETEN ENTHALTEN):",
       bonuses: [
         "Kostenlose Texterstellung für Captions",
@@ -1310,7 +1404,7 @@ const Pricing = () => {
         {/* Scarcity Banner Hook */}
         <div className="promo-banner text-center mb-8">
           <div className="promo-badge">
-            {t.promo}
+            {t.promo} <span className="promo-timer">⏱️ {language === 'en' ? 'Ends in' : language === 'de' ? 'Endet in' : 'Berakhir dalam'}: {timeLeft}</span>
           </div>
         </div>
 
@@ -1351,6 +1445,12 @@ const Pricing = () => {
               onClick={() => setActiveCategory('monitoring')}
             >
               {t.tabMonitoring}
+            </button>
+            <button
+              className={`pricing-tab ${activeCategory === 'calculator' ? 'active' : ''}`}
+              onClick={() => setActiveCategory('calculator')}
+            >
+              {t.tabCalculator}
             </button>
           </div>
         </div>
@@ -1690,6 +1790,142 @@ const Pricing = () => {
                       </li>
                     ))}
                   </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 6: Interactive Project Cost Calculator */}
+        {activeCategory === 'calculator' && (
+          <div className="calculator-wrapper glass animate-entrance">
+            <div className="calculator-grid">
+              {/* Calculator Settings */}
+              <div className="calculator-settings">
+                <h3>{language === 'en' ? 'Select Project Type' : language === 'de' ? 'Projekttyp wählen' : 'Pilih Tipe Projek'}</h3>
+                <div className="calc-type-selector">
+                  <div 
+                    className={`calc-type-card ${calcType === 'web' ? 'active' : ''}`}
+                    onClick={() => { setCalcType('web'); setCalcPages(5); }}
+                  >
+                    <span className="calc-type-icon"><FiGlobe /></span>
+                    <span>Website</span>
+                  </div>
+                  <div 
+                    className={`calc-type-card ${calcType === 'app' ? 'active' : ''}`}
+                    onClick={() => { setCalcType('app'); setCalcPages(10); }}
+                  >
+                    <span className="calc-type-icon"><FiSmartphone /></span>
+                    <span>Mobile App</span>
+                  </div>
+                  <div 
+                    className={`calc-type-card ${calcType === 'system' ? 'active' : ''}`}
+                    onClick={() => { setCalcType('system'); setCalcPages(15); }}
+                  >
+                    <span className="calc-type-icon"><FiLayers /></span>
+                    <span>Information System / ERP</span>
+                  </div>
+                </div>
+
+                <div className="calc-pages-slider">
+                  <div className="slider-label-row">
+                    <span>{language === 'en' ? 'Number of Pages / Modules' : language === 'de' ? 'Anzahl der Seiten / Module' : 'Jumlah Halaman / Modul'}</span>
+                    <span className="pages-count gold-text">{calcPages}</span>
+                  </div>
+                  <input 
+                    type="range" 
+                    min="1" 
+                    max="50" 
+                    value={calcPages} 
+                    onChange={(e) => setCalcPages(parseInt(e.target.value))} 
+                    className="calc-slider"
+                  />
+                  <div className="slider-limits">
+                    <span>1</span>
+                    <span>50+</span>
+                  </div>
+                </div>
+
+                <h3>{language === 'en' ? 'Add-on Premium Features' : language === 'de' ? 'Zusätzliche Premium-Funktionen' : 'Fitur Premium Tambahan'}</h3>
+                <div className="calc-addons-grid">
+                  <label className={`calc-addon-checkbox ${calcSEO ? 'active' : ''}`}>
+                    <input 
+                      type="checkbox" 
+                      checked={calcSEO} 
+                      onChange={(e) => setCalcSEO(e.target.checked)} 
+                      style={{ display: 'none' }}
+                    />
+                    <span className="addon-icon"><FiSearch /></span>
+                    <div className="addon-details">
+                      <span className="addon-title">SEO Optimization</span>
+                      <span className="addon-desc">{language === 'en' ? 'Rank #1 on Google' : language === 'de' ? 'Platz 1 bei Google' : 'Dominasi Halaman 1 Google'}</span>
+                    </div>
+                  </label>
+
+                  <label className={`calc-addon-checkbox ${calcWA ? 'active' : ''}`}>
+                    <input 
+                      type="checkbox" 
+                      checked={calcWA} 
+                      onChange={(e) => setCalcWA(e.target.checked)} 
+                      style={{ display: 'none' }}
+                    />
+                    <span className="addon-icon"><FiMessageSquare /></span>
+                    <div className="addon-details">
+                      <span className="addon-title">WhatsApp CRM Link</span>
+                      <span className="addon-desc">{language === 'en' ? 'Direct WA registration form' : language === 'de' ? 'Direktes WA-Registrierungsformular' : 'Integrasi leads ke WhatsApp'}</span>
+                    </div>
+                  </label>
+
+                  <label className={`calc-addon-checkbox ${calcAdmin ? 'active' : ''}`}>
+                    <input 
+                      type="checkbox" 
+                      checked={calcAdmin} 
+                      onChange={(e) => setCalcAdmin(e.target.checked)} 
+                      style={{ display: 'none' }}
+                    />
+                    <span className="addon-icon"><FiLayout /></span>
+                    <div className="addon-details">
+                      <span className="addon-title">Admin Dashboard</span>
+                      <span className="addon-desc">{language === 'en' ? 'Manage contents dynamically' : language === 'de' ? 'Inhalte dynamisch verwalten' : 'Panel kelola konten mandiri'}</span>
+                    </div>
+                  </label>
+
+                  <label className={`calc-addon-checkbox ${calcPayment ? 'active' : ''}`}>
+                    <input 
+                      type="checkbox" 
+                      checked={calcPayment} 
+                      onChange={(e) => setCalcPayment(e.target.checked)} 
+                      style={{ display: 'none' }}
+                    />
+                    <span className="addon-icon"><FiCreditCard /></span>
+                    <div className="addon-details">
+                      <span className="addon-title">Payment Gateway</span>
+                      <span className="addon-desc">{language === 'en' ? 'Accept automated payments' : language === 'de' ? 'Automatisierte Zahlungen akzeptieren' : 'Pembayaran otomatis & e-wallet'}</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              {/* Calculator Summary */}
+              <div className="calculator-summary">
+                <div className="summary-card glass">
+                  <h4>{language === 'en' ? 'Estimated Total Cost' : language === 'de' ? 'Geschätzte Gesamtkosten' : 'Estimasi Total Investasi'}</h4>
+                  <div className="calculated-price gold-text">{calculateEstimate()}</div>
+                  <p className="calc-note">
+                    {language === 'en' 
+                      ? '*This is an approximate valuation. Final price will be tailored based on detailed project specifications.'
+                      : language === 'de'
+                      ? '*Dies ist eine ungefähre Schätzung. Der endgültige Preis wird auf die detaillierten Projektspezifikationen abgestimmt.'
+                      : '*Estimasi ini bersifat perkiraan awal. Biaya final disesuaikan kembali dengan detail spesifikasi teknis pengerjaan.'}
+                  </p>
+                  <a 
+                    href={getWhatsAppCalcLink()}
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-primary btn-lg btn-glint w-full mt-6"
+                  >
+                    {language === 'en' ? 'Discuss Specifications' : language === 'de' ? 'Spezifikationen besprechen' : 'Diskusikan Spesifikasi Projek'} <FiArrowRight />
+                  </a>
                 </div>
               </div>
             </div>

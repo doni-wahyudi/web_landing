@@ -1,6 +1,6 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiArrowRight, FiExternalLink, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiArrowRight, FiExternalLink, FiChevronLeft, FiChevronRight, FiCheck } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { projects } from '../data/projects';
 import './Portfolio.css';
@@ -8,6 +8,7 @@ import './Portfolio.css';
 const Portfolio = ({ isHomepage = false }) => {
   const { language } = useLanguage();
   const sliderRef = useRef(null);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const translations = {
     id: {
@@ -131,9 +132,12 @@ const Portfolio = ({ isHomepage = false }) => {
                 </div>
                 <div className="portfolio-overlay">
                   <div className="portfolio-buttons">
-                    <Link to={`/portfolio/${project.id}`} className="btn btn-primary btn-sm">
+                    <button 
+                      onClick={() => setSelectedProject(project)}
+                      className="btn btn-primary btn-sm"
+                    >
                       {t.viewDetail} <FiArrowRight />
-                    </Link>
+                    </button>
                     <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm">
                       {t.visitWeb} <FiExternalLink />
                     </a>
@@ -178,9 +182,12 @@ const Portfolio = ({ isHomepage = false }) => {
                         <h4>{project.title}</h4>
                         <span>{t.visitInsta}</span>
                         <div className="phone-overlay-buttons">
-                          <Link to={`/portfolio/${project.id}`} className="btn btn-primary btn-sm">
+                          <button 
+                            onClick={() => setSelectedProject(project)}
+                            className="btn btn-primary btn-sm"
+                          >
                             {t.viewDetail}
-                          </Link>
+                          </button>
                           <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm">
                             {t.visitInsta}
                           </a>
@@ -208,6 +215,84 @@ const Portfolio = ({ isHomepage = false }) => {
           </div>
         )}
       </div>
+
+      {/* Case Study Modal Overlay */}
+      {selectedProject && (
+        <div className="case-study-overlay" onClick={() => setSelectedProject(null)}>
+          <div className="case-study-modal glass animate-entrance" onClick={(e) => e.stopPropagation()}>
+            <button className="close-btn" onClick={() => setSelectedProject(null)}>×</button>
+            
+            <div className="case-study-layout">
+              <div className="case-study-visual">
+                <div className="case-study-img-wrapper">
+                  <img 
+                    src={selectedProject.image} 
+                    alt={selectedProject.title} 
+                    className="case-study-hero-img"
+                  />
+                </div>
+                <div className="tech-stack-container mt-6">
+                  {selectedProject.techStack && selectedProject.techStack.map((tech, idx) => (
+                    <span key={idx} className="tech-badge">{tech}</span>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="case-study-details">
+                <span className="case-study-category">{selectedProject.category[language]}</span>
+                <h2>{selectedProject.title}</h2>
+                
+                <div className="case-study-sections">
+                  {selectedProject.challenge && (
+                    <div className="cs-section">
+                      <h4>💡 {language === 'en' ? 'Challenge' : language === 'de' ? 'Herausforderung' : 'Tantangan'}</h4>
+                      <p>{selectedProject.challenge[language] || selectedProject.challenge.id || selectedProject.challenge}</p>
+                    </div>
+                  )}
+                  {selectedProject.solution && (
+                    <div className="cs-section">
+                      <h4>🚀 {language === 'en' ? 'Solution' : language === 'de' ? 'Lösung' : 'Solusi'}</h4>
+                      <p>{selectedProject.solution[language] || selectedProject.solution.id || selectedProject.solution}</p>
+                    </div>
+                  )}
+                  {selectedProject.outcome && (
+                    <div className="cs-section">
+                      <h4>📈 {language === 'en' ? 'Outcome / Results' : language === 'de' ? 'Ergebnis' : 'Hasil / Dampak'}</h4>
+                      <p>{selectedProject.outcome[language] || selectedProject.outcome.id || selectedProject.outcome}</p>
+                    </div>
+                  )}
+                </div>
+                
+                <div className="case-study-actions">
+                  <a 
+                    href={selectedProject.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-outline btn-sm"
+                  >
+                    {language === 'en' ? 'Visit Live' : language === 'de' ? 'Live besuchen' : 'Kunjungi Web'} <FiExternalLink />
+                  </a>
+                  
+                  <a 
+                    href={`https://wa.me/628123456789?text=${encodeURIComponent(
+                      language === 'en'
+                        ? `Hi Aurotech, I am interested in building a project similar to ${selectedProject.title}. Let's discuss!`
+                        : language === 'de'
+                        ? `Hallo Aurotech, ich habe Interesse an einem Projekt ähnlich wie ${selectedProject.title}. Lassen Sie uns sprechen!`
+                        : `Halo Aurotech, saya tertarik untuk membuat projek serupa dengan ${selectedProject.title}. Mari diskusikan!`
+                    )}`}
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-primary btn-sm btn-glint"
+                  >
+                    {language === 'en' ? 'Start Similar Project' : language === 'de' ? 'Projekt starten' : 'Mulai Projek Serupa'} <FiArrowRight />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
