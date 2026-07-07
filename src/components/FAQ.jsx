@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
+import mascotImg from '../assets/mascot_faq.png';
 import './FAQ.css';
 
 const FAQ = () => {
@@ -176,7 +177,11 @@ const FAQ = () => {
           </p>
         </div>
 
-        <div className="faq-container">
+        <div className="faq-layout">
+          <div className="faq-mascot-container">
+            <img src={mascotImg} alt="Aurotech Cyber Owl Mascot" className="faq-mascot animate-float" />
+          </div>
+          <div className="faq-container">
           {faqs.map((faq, index) => (
             <div
               key={index}
@@ -205,6 +210,7 @@ const FAQ = () => {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

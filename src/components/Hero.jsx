@@ -3,6 +3,7 @@ import { FiArrowRight, FiCheckCircle } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { useWhatsAppModal } from '../context/WhatsAppModalContext';
 import heroDevices from '../assets/hero_devices.png';
+import mascotImg from '../assets/mascot_waving.png';
 import PersonImage from '../assets/hero_alt.png'; // keep original as fallback or unused
 import './Hero.css';
 
@@ -240,6 +241,11 @@ const Hero = () => {
               className="hero-device-image"
               fetchpriority="high"
               loading="eager"
+            />
+            <img 
+              src={mascotImg}
+              alt="Aurotech Cyber Owl Mascot"
+              className="hero-mascot"
             />
           </div>
         </div>

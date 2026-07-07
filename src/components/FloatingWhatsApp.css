@@ -18,9 +18,10 @@
 }
 
 .whatsapp-tooltip {
+  display: flex;
+  align-items: center;
   background-color: var(--card-bg);
   color: var(--text-primary);
-  padding: 10px 15px;
   border-radius: 8px;
   font-size: 0.85rem;
   font-weight: 500;
@@ -30,6 +31,17 @@
   position: relative;
   white-space: nowrap;
   animation: pulse-tooltip 2s infinite;
+}
+
+.mascot-avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 12px;
+  border: 2px solid var(--primary);
+  box-shadow: var(--shadow-sm);
+  background: white;
 }
 
 .whatsapp-tooltip::after {

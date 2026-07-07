@@ -14,6 +14,7 @@ import tierBasicImg from '../assets/pricing_basic.png';
 import tierProImg from '../assets/pricing_pro.png';
 import tierPremiumImg from '../assets/pricing_premium.png';
 import tierCustomImg from '../assets/pricing_custom.png';
+import mascotImg from '../assets/mascot_services.png';
 
 const getPlanIcon = (name) => {
   const lowercase = name.toLowerCase();
@@ -1909,6 +1910,9 @@ Bitte informieren Sie mich über eine kostenlose Beratung. Vielen Dank!`;
               {/* Calculator Summary */}
               <div className="calculator-summary">
                 <div className="summary-card glass">
+                  <div className="calculator-mascot-container">
+                    <img src={mascotImg} alt="Aurotech Mascot" className="calculator-mascot animate-float" />
+                  </div>
                   <h4>{language === 'en' ? 'Estimated Total Cost' : language === 'de' ? 'Geschätzte Gesamtkosten' : 'Estimasi Total Investasi'}</h4>
                   <div className="calculated-price gold-text">{calculateEstimate()}</div>
                   <p className="calc-note">

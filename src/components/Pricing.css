@@ -1198,6 +1198,19 @@
   top: 100px;
 }
 
+.calculator-mascot-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.calculator-mascot {
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+}
+
 .summary-card h4 {
   font-size: 0.95rem;
   text-transform: uppercase;

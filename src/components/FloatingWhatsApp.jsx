@@ -3,6 +3,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import './FloatingWhatsApp.css';
 import { useLanguage } from '../context/LanguageContext';
 import { useWhatsAppModal } from '../context/WhatsAppModalContext';
+import mascotImg from '../assets/mascot_waving.png';
 
 const FloatingWhatsApp = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,8 +43,9 @@ const FloatingWhatsApp = () => {
 
   return (
     <div className={`floating-whatsapp-container ${isVisible ? 'visible' : ''}`}>
-      <div className="whatsapp-tooltip">
-        {t.message}
+      <div className="whatsapp-tooltip glass">
+        <img src={mascotImg} alt="Aurotech Mascot" className="mascot-avatar" />
+        <span>{t.message}</span>
       </div>
       <button 
         onClick={() => openWhatsAppModal(

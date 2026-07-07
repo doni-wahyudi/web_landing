@@ -4,6 +4,11 @@ import {
 } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { useWhatsAppModal } from '../context/WhatsAppModalContext';
+import mascotImg from '../assets/mascot_services.png';
+import imgConsultation from '../assets/process_consultation.png';
+import imgDesign from '../assets/process_design.png';
+import imgRevision from '../assets/process_revision.png';
+import imgLaunch from '../assets/process_launch.png';
 import './Services.css';
 
 const Services = () => {
@@ -327,22 +332,26 @@ const Services = () => {
     {
       num: "01",
       title: "Discovery & Strategy",
-      desc: "Diskusi mendalam untuk memahami audiens, kompetitor, dan tujuan bisnis Anda."
+      desc: "Diskusi mendalam untuk memahami audiens, kompetitor, dan tujuan bisnis Anda.",
+      img: imgConsultation
     },
     {
       num: "02",
       title: "UI/UX Design",
-      desc: "Pembuatan prototipe visual yang estetik dan fungsional untuk disetujui."
+      desc: "Pembuatan prototipe visual yang estetik dan fungsional untuk disetujui.",
+      img: imgDesign
     },
     {
       num: "03",
       title: "Development",
-      desc: "Proses coding menggunakan stack teknologi terbaru untuk hasil yang kencang."
+      desc: "Proses coding menggunakan stack teknologi terbaru untuk hasil yang kencang.",
+      img: imgRevision
     },
     {
       num: "04",
       title: "Final QA & Launch",
-      desc: "Pengujian ketat di berbagai browser dan integrasi SEO sebelum go-live."
+      desc: "Pengujian ketat di berbagai browser dan integrasi SEO sebelum go-live.",
+      img: imgLaunch
     }
   ];
 
@@ -350,22 +359,26 @@ const Services = () => {
     {
       num: "01",
       title: "Discovery & Strategy",
-      desc: "In-depth discussions to understand your audience, competitors, and business goals."
+      desc: "In-depth discussions to understand your audience, competitors, and business goals.",
+      img: imgConsultation
     },
     {
       num: "02",
       title: "UI/UX Design",
-      desc: "Creation of aesthetic and functional visual prototypes for approval."
+      desc: "Creation of aesthetic and functional visual prototypes for approval.",
+      img: imgDesign
     },
     {
       num: "03",
       title: "Development",
-      desc: "Coding process using the latest technology stack for fast results."
+      desc: "Coding process using the latest technology stack for fast results.",
+      img: imgRevision
     },
     {
       num: "04",
       title: "Final QA & Launch",
-      desc: "Rigorous testing across multiple browsers and SEO integration before go-live."
+      desc: "Rigorous testing across multiple browsers and SEO integration before go-live.",
+      img: imgLaunch
     }
   ];
 
@@ -373,22 +386,26 @@ const Services = () => {
     {
       num: "01",
       title: "Entdeckung & Strategie",
-      desc: "Tiefgehende Gespräche, um Ihre Zielgruppe, Wettbewerber und Geschäftsziele zu verstehen."
+      desc: "Tiefgehende Gespräche, um Ihre Zielgruppe, Wettbewerber und Geschäftsziele zu verstehen.",
+      img: imgConsultation
     },
     {
       num: "02",
       title: "UI/UX Design",
-      desc: "Erstellung von ästhetischen und funktionalen visuellen Prototypen zur Freigabe."
+      desc: "Erstellung von ästhetischen und funktionalen visuellen Prototypen zur Freigabe.",
+      img: imgDesign
     },
     {
       num: "03",
       title: "Entwicklung",
-      desc: "Codierungsprozess mit dem neuesten Technologie-Stack für schnelle Ergebnisse."
+      desc: "Codierungsprozess mit dem neuesten Technologie-Stack für schnelle Ergebnisse.",
+      img: imgRevision
     },
     {
       num: "04",
       title: "Abschließende QS & Launch",
-      desc: "Umfangreiche Tests auf verschiedenen Browsern und SEO-Integration vor dem Go-live."
+      desc: "Umfangreiche Tests auf verschiedenen Browsern und SEO-Integration vor dem Go-live.",
+      img: imgLaunch
     }
   ];
 
@@ -575,8 +592,11 @@ const Services = () => {
 
           <div className="process-workflow">
             {steps.map((step, index) => (
-              <div key={index} className="process-step">
-                <div className="step-number">{step.num}</div>
+              <div key={index} className="process-step glass-card">
+                <div className="process-step-image-wrapper">
+                  <img src={step.img} alt={step.title} className="process-step-image" />
+                  <div className="step-number">{step.num}</div>
+                </div>
                 <div className="step-content">
                   <h3>{step.title}</h3>
                   <p>{step.desc}</p>
@@ -612,16 +632,21 @@ const Services = () => {
 
       {/* 5. FINAL CTA */}
       <section className="section cta-section-mini glass">
-        <div className="container text-center">
-          <h2 className="cta-title animate-entrance">{t.ctaTitle}</h2>
-          <p className="cta-desc animate-entrance delay-100">{t.ctaDesc}</p>
-          <div className="cta-actions animate-entrance delay-200">
-            <button 
-              className="btn btn-primary btn-lg btn-glint"
-              onClick={() => openWhatsAppModal(language === 'en' ? 'Company Profile Website' : 'Company Profile Website')}
-            >
-              <FiMessageSquare /> {t.ctaButton}
-            </button>
+        <div className="container cta-services-layout">
+          <div className="cta-services-mascot-container">
+            <img src={mascotImg} alt="Aurotech Cyber Owl Mascot" className="cta-services-mascot animate-float" />
+          </div>
+          <div className="cta-services-content">
+            <h2 className="cta-title animate-entrance">{t.ctaTitle}</h2>
+            <p className="cta-desc animate-entrance delay-100">{t.ctaDesc}</p>
+            <div className="cta-actions animate-entrance delay-200">
+              <button 
+                className="btn btn-primary btn-lg btn-glint"
+                onClick={() => openWhatsAppModal(language === 'en' ? 'Company Profile Website' : 'Company Profile Website')}
+              >
+                <FiMessageSquare /> {t.ctaButton}
+              </button>
+            </div>
           </div>
         </div>
       </section>
