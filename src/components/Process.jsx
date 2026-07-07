@@ -1,8 +1,9 @@
 import { useLanguage } from '../context/LanguageContext';
-import { IoChatbubblesSharp } from 'react-icons/io5';
-import { FiPenTool } from 'react-icons/fi';
-import { MdOutlineAutorenew } from 'react-icons/md';
-import { IoRocketSharp } from 'react-icons/io5';
+import imgConsultation from '../assets/process_consultation.png';
+import imgDesign from '../assets/process_design.png';
+import imgRevision from '../assets/process_revision.png';
+import imgLaunch from '../assets/process_launch.png';
+import mascotWaving from '../assets/mascot_waving.png';
 import './Process.css';
 
 const Process = () => {
@@ -14,28 +15,28 @@ const Process = () => {
       title: "Konsultasi",
       description: "Diskusi kebutuhan & brief proyek untuk memahami visi dan target audiens bisnis Anda.",
       time: "Hari 1",
-      icon: <IoChatbubblesSharp className="process-step-icon" />
+      img: imgConsultation
     },
     {
       id: 2,
       title: "Desain",
       description: "Pembuatan wireframe & mockup UI/UX untuk persetujuan sebelum pengembangan.",
       time: "Hari 2–4",
-      icon: <FiPenTool className="process-step-icon" />
+      img: imgDesign
     },
     {
       id: 3,
       title: "Revisi",
       description: "Penyempurnaan desain dan fungsionalitas berdasarkan feedback Anda.",
       time: "Hari 5–6",
-      icon: <MdOutlineAutorenew className="process-step-icon" />
+      img: imgRevision
     },
     {
       id: 4,
       title: "Launch",
       description: "Testing menyeluruh, go-live, dan serah terima (handover) aset digital.",
       time: "Hari 7",
-      icon: <IoRocketSharp className="process-step-icon" />
+      img: imgLaunch
     }
   ];
 
@@ -45,28 +46,28 @@ const Process = () => {
       title: "Consultation",
       description: "Discuss requirements & project brief to understand your business vision and target audience.",
       time: "Day 1",
-      icon: <IoChatbubblesSharp className="process-step-icon" />
+      img: imgConsultation
     },
     {
       id: 2,
       title: "Design",
       description: "Creation of wireframes & UI/UX mockups for approval before development.",
       time: "Days 2–4",
-      icon: <FiPenTool className="process-step-icon" />
+      img: imgDesign
     },
     {
       id: 3,
       title: "Revision",
       description: "Refining design and functionality based on your feedback.",
       time: "Days 5–6",
-      icon: <MdOutlineAutorenew className="process-step-icon" />
+      img: imgRevision
     },
     {
       id: 4,
       title: "Launch",
       description: "Thorough testing, go-live, and digital asset handover.",
       time: "Day 7",
-      icon: <IoRocketSharp className="process-step-icon" />
+      img: imgLaunch
     }
   ];
 
@@ -76,28 +77,28 @@ const Process = () => {
       title: "Beratung",
       description: "Besprechung der Anforderungen & des Projektbriefings, um Ihre Geschäftsvision und Zielgruppe zu verstehen.",
       time: "Tag 1",
-      icon: <IoChatbubblesSharp className="process-step-icon" />
+      img: imgConsultation
     },
     {
       id: 2,
       title: "Design",
       description: "Erstellung von Wireframes & UI/UX-Mockups zur Freigabe vor der Entwicklung.",
       time: "Tag 2–4",
-      icon: <FiPenTool className="process-step-icon" />
+      img: imgDesign
     },
     {
       id: 3,
       title: "Revision",
       description: "Verfeinerung von Design und Funktionalität basierend auf Ihrem Feedback.",
       time: "Tag 5–6",
-      icon: <MdOutlineAutorenew className="process-step-icon" />
+      img: imgRevision
     },
     {
       id: 4,
       title: "Launch",
       description: "Umfangreiche Tests, Go-Live und Übergabe der digitalen Assets.",
       time: "Tag 7",
-      icon: <IoRocketSharp className="process-step-icon" />
+      img: imgLaunch
     }
   ];
 
@@ -125,21 +126,28 @@ const Process = () => {
   return (
     <section className="section process-section bg-secondary">
       <div className="container">
-        <div className="section-header text-center animate-entrance">
-          <h2 className="section-title">{t.title} <span className="text-gradient">{t.titleGradient}</span></h2>
-          <p className="section-subtitle">{t.subtitle}</p>
+        <div className="process-header-container">
+          <div className="process-mascot-intro">
+            <img src={mascotWaving} alt="Auro Mascot" className="process-header-mascot animate-float" />
+          </div>
+          <div className="section-header text-left">
+            <h2 className="section-title">{t.title} <span className="text-gradient">{t.titleGradient}</span></h2>
+            <p className="section-subtitle">{t.subtitle}</p>
+          </div>
         </div>
 
-        <div className="process-timeline">
+        <div className="process-grid-layout">
           {steps.map((step, index) => (
-            <div key={step.id} className="process-step animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
-              <div className="process-icon-wrapper">
+            <div key={step.id} className="process-card glass-card animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
+              <div className="process-card-image-wrapper">
+                <img src={step.img} alt={step.title} className="process-card-image" />
                 <span className="process-number">{step.id}</span>
-                {step.icon}
               </div>
-              <div className="process-content">
-                <h3 className="process-title">{step.title}</h3>
-                <span className="process-time">{step.time}</span>
+              <div className="process-card-content">
+                <div className="process-card-header">
+                  <h3 className="process-title">{step.title}</h3>
+                  <span className="process-time">{step.time}</span>
+                </div>
                 <p className="process-desc">{step.description}</p>
               </div>
             </div>

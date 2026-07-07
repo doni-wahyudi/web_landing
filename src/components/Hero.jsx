@@ -234,6 +234,9 @@ const Hero = () => {
         </div>
 
         <div className="hero-visual animate-fade-in delay-200">
+          <div className="hero-floating-shape shape-1"></div>
+          <div className="hero-floating-shape shape-2"></div>
+          <div className="hero-floating-shape shape-3"></div>
           <div className="hero-mockup-container">
             <img 
               src={heroDevices} 
