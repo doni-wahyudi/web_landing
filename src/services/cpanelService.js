@@ -10,12 +10,21 @@ const getHeaders = (extraHeaders = {}) => {
   };
 };
 
+const handleResponse = async (response, defaultError) => {
+  if (response.status === 401) {
+    sessionStorage.removeItem('admin_logged_in');
+    sessionStorage.removeItem('admin_token');
+    throw new Error('Sesi admin berakhir. Silakan login ulang.');
+  }
+  if (!response.ok) throw new Error(defaultError);
+  return response.json();
+};
+
 export const getCpanelAccounts = async () => {
   const response = await fetch(`${API_BASE_URL}/cpanel-accounts`, {
     headers: getHeaders()
   });
-  if (!response.ok) throw new Error('Failed to fetch accounts');
-  return response.json();
+  return handleResponse(response, 'Failed to fetch accounts');
 };
 
 export const addCpanelAccount = async (account) => {
@@ -24,8 +33,7 @@ export const addCpanelAccount = async (account) => {
     headers: getHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(account)
   });
-  if (!response.ok) throw new Error('Failed to add account');
-  return response.json();
+  return handleResponse(response, 'Failed to add account');
 };
 
 export const updateCpanelAccount = async (id, updatedData) => {
@@ -34,8 +42,7 @@ export const updateCpanelAccount = async (id, updatedData) => {
     headers: getHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(updatedData)
   });
-  if (!response.ok) throw new Error('Failed to update account');
-  return response.json();
+  return handleResponse(response, 'Failed to update account');
 };
 
 export const deleteCpanelAccount = async (id) => {
@@ -43,6 +50,11 @@ export const deleteCpanelAccount = async (id) => {
     method: 'DELETE',
     headers: getHeaders()
   });
+  if (response.status === 401) {
+    sessionStorage.removeItem('admin_logged_in');
+    sessionStorage.removeItem('admin_token');
+    throw new Error('Sesi admin berakhir. Silakan login ulang.');
+  }
   if (!response.ok) throw new Error('Failed to delete account');
   return true;
 };

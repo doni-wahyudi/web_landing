@@ -10,12 +10,21 @@ const getHeaders = (extraHeaders = {}) => {
   };
 };
 
+const handleResponse = async (response, defaultError) => {
+  if (response.status === 401) {
+    sessionStorage.removeItem('admin_logged_in');
+    sessionStorage.removeItem('admin_token');
+    throw new Error('Sesi admin berakhir. Silakan login ulang.');
+  }
+  if (!response.ok) throw new Error(defaultError);
+  return response.json();
+};
+
 export const getLeads = async () => {
   const response = await fetch(`${API_BASE_URL}/leads`, {
     headers: getHeaders()
   });
-  if (!response.ok) throw new Error('Failed to fetch leads');
-  return response.json();
+  return handleResponse(response, 'Failed to fetch leads');
 };
 
 export const addLead = async (leadData) => {
@@ -24,8 +33,7 @@ export const addLead = async (leadData) => {
     headers: getHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(leadData)
   });
-  if (!response.ok) throw new Error('Failed to add lead');
-  return response.json();
+  return handleResponse(response, 'Failed to add lead');
 };
 
 export const deleteLead = async (id) => {
@@ -33,6 +41,11 @@ export const deleteLead = async (id) => {
     method: 'DELETE',
     headers: getHeaders()
   });
+  if (response.status === 401) {
+    sessionStorage.removeItem('admin_logged_in');
+    sessionStorage.removeItem('admin_token');
+    throw new Error('Sesi admin berakhir. Silakan login ulang.');
+  }
   if (!response.ok) throw new Error('Failed to delete lead');
   return true;
 };

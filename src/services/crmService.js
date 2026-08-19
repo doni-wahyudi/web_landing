@@ -10,13 +10,22 @@ const getHeaders = (extraHeaders = {}) => {
   };
 };
 
+const handleResponse = async (response, defaultError) => {
+  if (response.status === 401) {
+    sessionStorage.removeItem('admin_logged_in');
+    sessionStorage.removeItem('admin_token');
+    throw new Error('Sesi admin berakhir. Silakan login ulang.');
+  }
+  if (!response.ok) throw new Error(defaultError);
+  return response.json();
+};
+
 export const getLeads = async (params = {}) => {
   const query = new URLSearchParams(params).toString();
   const response = await fetch(`${API_BASE_URL}/crm/leads?${query}`, {
     headers: getHeaders()
   });
-  if (!response.ok) throw new Error('Failed to fetch CRM leads');
-  return response.json();
+  return handleResponse(response, 'Failed to fetch CRM leads');
 };
 
 export const addLead = async (leadData) => {
@@ -25,8 +34,7 @@ export const addLead = async (leadData) => {
     headers: getHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(leadData)
   });
-  if (!response.ok) throw new Error('Failed to add CRM lead');
-  return response.json();
+  return handleResponse(response, 'Failed to add CRM lead');
 };
 
 export const updateLead = async (id, leadData) => {
@@ -35,8 +43,7 @@ export const updateLead = async (id, leadData) => {
     headers: getHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(leadData)
   });
-  if (!response.ok) throw new Error('Failed to update CRM lead');
-  return response.json();
+  return handleResponse(response, 'Failed to update CRM lead');
 };
 
 export const deleteLead = async (id) => {
@@ -44,6 +51,11 @@ export const deleteLead = async (id) => {
     method: 'DELETE',
     headers: getHeaders()
   });
+  if (response.status === 401) {
+    sessionStorage.removeItem('admin_logged_in');
+    sessionStorage.removeItem('admin_token');
+    throw new Error('Sesi admin berakhir. Silakan login ulang.');
+  }
   if (!response.ok) throw new Error('Failed to delete CRM lead');
   return true;
 };
@@ -54,8 +66,7 @@ export const logLeadActivity = async (id, activityData) => {
     headers: getHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(activityData)
   });
-  if (!response.ok) throw new Error('Failed to log lead activity');
-  return response.json();
+  return handleResponse(response, 'Failed to log lead activity');
 };
 
 export const getCrmAnalytics = async (params = {}) => {
@@ -63,7 +74,6 @@ export const getCrmAnalytics = async (params = {}) => {
   const response = await fetch(`${API_BASE_URL}/crm/analytics?${query}`, {
     headers: getHeaders()
   });
-  if (!response.ok) throw new Error('Failed to fetch CRM analytics');
-  return response.json();
+  return handleResponse(response, 'Failed to fetch CRM analytics');
 };
 

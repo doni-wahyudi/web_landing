@@ -10,6 +10,16 @@ const getHeaders = (extraHeaders = {}) => {
   };
 };
 
+const handleResponse = async (response, defaultError) => {
+  if (response.status === 401) {
+    sessionStorage.removeItem('admin_logged_in');
+    sessionStorage.removeItem('admin_token');
+    throw new Error('Sesi admin berakhir. Silakan login ulang.');
+  }
+  if (!response.ok) throw new Error(defaultError);
+  return response.json();
+};
+
 export const getArticles = async () => {
   const response = await fetch(`${API_BASE_URL}/articles`);
   if (!response.ok) throw new Error('Fetch failed');
@@ -22,8 +32,7 @@ export const createArticle = async (formData) => {
     headers: getHeaders(),
     body: formData // Form data handles multipart files automatically
   });
-  if (!response.ok) throw new Error('Post failed');
-  return response.json();
+  return handleResponse(response, 'Post failed');
 };
 
 export const updateArticle = async (id, formData) => {
@@ -32,8 +41,7 @@ export const updateArticle = async (id, formData) => {
     headers: getHeaders(),
     body: formData
   });
-  if (!response.ok) throw new Error('Update failed');
-  return response.json();
+  return handleResponse(response, 'Update failed');
 };
 
 export const deleteArticle = async (id) => {
@@ -41,6 +49,11 @@ export const deleteArticle = async (id) => {
     method: 'DELETE',
     headers: getHeaders()
   });
+  if (response.status === 401) {
+    sessionStorage.removeItem('admin_logged_in');
+    sessionStorage.removeItem('admin_token');
+    throw new Error('Sesi admin berakhir. Silakan login ulang.');
+  }
   if (!response.ok) throw new Error('Delete failed');
   return true;
 };

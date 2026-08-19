@@ -32,16 +32,18 @@ const AdminLayout = () => {
   const { language, setLanguage } = useLanguage();
   const t = translations[language] || translations.id;
 
-  // Simple mock auth check
+  // Auth check - ensure both login flag and auth token are present
   useEffect(() => {
     const isLoggedIn = sessionStorage.getItem('admin_logged_in');
-    if (!isLoggedIn && window.location.pathname !== '/admin/login') {
+    const token = sessionStorage.getItem('admin_token');
+    if ((!isLoggedIn || !token) && window.location.pathname !== '/admin/login') {
       navigate('/admin/login');
     }
   }, [navigate]);
 
   const handleLogout = () => {
     sessionStorage.removeItem('admin_logged_in');
+    sessionStorage.removeItem('admin_token');
     navigate('/admin/login');
   };
 

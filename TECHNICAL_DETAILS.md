@@ -51,10 +51,20 @@ A premium, high-conversion landing page and management portal for Aurotech web d
   - **Interactive Visualizations**: Includes monthly filtering, daily activity trends, conversion funnels, lead source breakdown pies, and failure reason bar charts.
   - **Follow-Up task alerts**: Lists leads due for follow-up today based on scheduled interval dates.
 
+* **Social Media Management Portfolio & Carousel**:
+  - Added 12 new social media client case studies (`id: 12-23` in `src/data/projects.js` including Al-Azhar, As-Syifa, Beana, Syam Aqiqah, etc.).
+  - Added dedicated social media carousel section in `Portfolio.jsx` (`.social-slider-track` with left/right scroll controls and Instagram direct links).
+  - Updated `PortfolioDetail.jsx` and `PortfolioPage.jsx` to seamlessly support social media project rendering and responsive layouts.
+* **Blog Articles Pagination & Filter System**:
+  - Implemented responsive pagination on `BlogGrid.jsx` (6 articles per page in a 3-column desktop / 2-column tablet / 1-column mobile grid).
+  - Integrated dynamic category filtering with automatic unique category extraction and pill buttons.
+  - Added glassmorphic search input with live keyword matching across titles, contents, and categories.
+  - Added smart pagination range controls with previous/next navigation, active golden glow buttons, result counter info, and smooth scroll to section top.
+
 ---
 
 ## 5. Guidelines for Future Chats & Agents
-* **Styling Variables**: Check `src/index.css` for predefined design tokens (`--primary: #D4AF37`, `--bg-dark: #050505`, etc.) before writing custom styles.
+* **Styling Variables**: Check `src/index.css` for predefined design tokens (`--primary: #2563EB`, `--bg-page: #F8F6F2`, `--text-main: #1E293B`, etc.) before writing custom styles.
 * **Portfolio Additions**: To append a project, add its metadata block to `src/data/projects.js` and list its live URL in `capture_portfolio.js` for automated screenshots.
 * **Git Protocols**: Keep changes staged/unstaged; do not commit or push unless explicitly requested.
 
@@ -63,3 +73,4 @@ A premium, high-conversion landing page and management portal for Aurotech web d
 ## 6. Verification Pipeline & Smoke Tests
 1. **Development Server**: Run `npm run dev` to confirm compiles and asset resolves work correctly.
 2. **Production Build**: Execute `npm run build` to verify the React bundler compiles files into `dist` successfully with no asset resolution issues.
+

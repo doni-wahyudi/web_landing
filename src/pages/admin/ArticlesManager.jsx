@@ -82,7 +82,10 @@ const ArticlesManager = () => {
       loadData();
     } catch (error) {
       console.error(error);
-      alert("Save failed. Verify backend.");
+      alert(error.message || "Save failed. Verify backend.");
+      if (error.message && error.message.includes('login')) {
+        window.location.href = '/admin/login';
+      }
     }
   };
 
